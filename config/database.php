@@ -43,7 +43,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             //'host' => env('DB_HOST', 'viewv323.cfdxq4habhuc.us-east-1.rds.amazonaws.com'),
-            'host' => env('DB_HOST', 'desa360auto.cfdxq4habhuc.us-east-1.rds.amazonaws.com'),
+            'host' => env('DB_HOST', 'desa360.cfdxq4habhuc.us-east-1.rds.amazonaws.com'),
             //'host' => env('DB_HOST', '192.168.0.102'),
             'database' => env('DB_DATABASE', 'BovedaDB'),
             //'database' => env('DB_DATABASE', 'view360'),
