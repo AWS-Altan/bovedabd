@@ -32,21 +32,21 @@ Route::group(['middleware' => ['auth']], function () {
     /*Sisfen -  Modificación Boveda  */
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
         // Menu de Alta de usuario
-        Route::resource('/Alta_user', 'Alta_user_Controller', ['names' => ['index' => 'User.alta_user.index']])->only(['index']);
+        Route::resource('/Alta_user', 'Alta_user_Controller', ['names' => ['index' => 'Users.alta_user.index']])->only(['index']);
         // Menu de baja de usuario
-        Route::resource('/Baja_user', 'Baja_user_Controller', ['names' => ['index' => 'User.baja_user.index']])->only(['index']);
+        Route::resource('/Baja_user', 'Baja_user_Controller', ['names' => ['index' => 'Users.baja_user.index']])->only(['index']);
         // Menu de Modificación de  de usuario
-        Route::resource('/Modif_user', 'Modif_user_Controller', ['names' => ['index' => 'User.modif_user.index']])->only(['index']);
+        Route::resource('/Modif_user', 'Modif_user_Controller', ['names' => ['index' => 'Users.modif_user.index']])->only(['index']);
         // Menu de Consulta de password
-        Route::resource('/view_password', 'View_pass_Controller', ['names' => ['index' => 'User.View_pass.index']])->only(['index']);
+        Route::resource('/view_password', 'View_pass_Controller', ['names' => ['index' => 'Users.View_pass.index']])->only(['index']);
         // Menu de Activación de usuario
-        Route::resource('/Active_user', 'Active_user_Controller', ['names' => ['index' => 'User.Active_user.index']])->only(['index']);
+        Route::resource('/Active_user', 'Active_user_Controller', ['names' => ['index' => 'Users.Active_user.index']])->only(['index']);
         // Menu de Desactivación de usuario
-        Route::resource('/Deactive_user', 'Deactive_user_Controller', ['names' => ['index' => 'User.Deactive_user.index']])->only(['index']);
+        Route::resource('/Deactive_user', 'Deactive_user_Controller', ['names' => ['index' => 'Users.Deactive_user.index']])->only(['index']);
         // Menu de Cambiar Password de usuario
-        Route::resource('/Change_pass', 'Change_pass_Controller', ['names' => ['index' => 'User.Change_pass.index']])->only(['index']);
+        Route::resource('/Change_pass', 'Change_pass_Controller', ['names' => ['index' => 'Users.Change_pass.index']])->only(['index']);
         // Menu de Enviar Contraseña
-        Route::resource('/Send_pass', 'Send_pass_Controller', ['names' => ['index' => 'User.Send_pass.index']])->only(['index']);
+        Route::resource('/Send_pass', 'Send_pass_Controller', ['names' => ['index' => 'Users.Send_pass.index']])->only(['index']);
     }); //Route
 
 

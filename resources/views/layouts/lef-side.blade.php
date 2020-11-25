@@ -17,7 +17,7 @@
 
                 @if ( !isset( $menu[2] ) )
 					<li>
-						<a href="{{ route('User.alta_user.index') }}">
+						<a href="{{ route('Users.alta_user.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Alta usuarios</span></div>
 							<div class="clearfix"></div>
 						</a>
@@ -26,7 +26,7 @@
 
                 @if ( !isset( $menu[3] ) )
 					<li>
-						<a href="{{ route('User.baja_user.index') }}">
+						<a href="{{ route('Users.baja_user.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Baja usuario</span></div>
 							<div class="clearfix"></div>
 						</a>
@@ -35,7 +35,7 @@
 
                 @if ( !isset( $menu[4] ) )
 					<li>
-						<a href="{{ route('User.modif_user.index') }}">
+						<a href="{{ route('Users.modif_user.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Modificación de usuario</span></div>
 							<div class="clearfix"></div>
 						</a>
@@ -44,7 +44,7 @@
 
                 @if ( !isset( $menu[5] ) )
 					<li>
-						<a href="{{ route('User.View_pass.index') }}">
+						<a href="{{ route('Users.View_pass.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Consulta de Password</span></div>
 							<div class="clearfix"></div>
 						</a>
@@ -53,7 +53,7 @@
 
                 @if ( !isset( $menu[6] ) )
 					<li>
-						<a href="{{ route('User.Active_user.index') }}">
+						<a href="{{ route('Users.Active_user.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Activación de usuario</span></div>
 							<div class="clearfix"></div>
 						</a>
@@ -62,7 +62,7 @@
 
                 @if ( !isset( $menu[7] ) )
 					<li>
-						<a href="{{ route('User.Deactive_user.index') }}">
+						<a href="{{ route('Users.Deactive_user.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Desactivación de usuario</span></div>
 							<div class="clearfix"></div>
 						</a>
@@ -71,7 +71,7 @@
 
                 @if ( !isset( $menu[8] ) )
 					<li>
-						<a href="{{ route('User.Change_pass.index') }}">
+						<a href="{{ route('Users.Change_pass.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Cambiar / Rotar Password</span></div>
 							<div class="clearfix"></div>
 						</a>
@@ -80,7 +80,7 @@
 
                 @if ( !isset( $menu[9] ) )
 					<li>
-						<a href="{{ route('User.Send_pass.index') }}">
+						<a href="{{ route('Users.Send_pass.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Envio de Contraseña</span></div>
 							<div class="clearfix"></div>
 						</a>
