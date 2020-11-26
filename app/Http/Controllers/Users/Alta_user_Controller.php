@@ -1,5 +1,6 @@
 <?php
 
+//namespace App\Http\Controllers\Users;
 namespace App\Http\Controllers\Users;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -31,7 +32,9 @@ class Alta_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.altauser', ['menu' => $menu] );
+        return view('operation.users.altauser', ['menu' => $menu] );
+
+
     }
 
        protected function login()
