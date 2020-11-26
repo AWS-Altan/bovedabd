@@ -31,7 +31,8 @@ class Calendar_activ_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('actividades.Calendar_activ', ['menu' => $menu] );
+        //return view('actividades.Calendar_activ', ['menu' => $menu] );
+        return view('Actividades.Calendar_activ')-> with('menu',$menu);
     }
 
        protected function login()

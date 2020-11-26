@@ -31,7 +31,8 @@ class View_Remedy_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('actividades.View_Remedy', ['menu' => $menu] );
+        //return view('actividades.View_Remedy', ['menu' => $menu] );
+        return view('Actividades.View_Remedy')-> with('menu',$menu);
     }
 
        protected function login()

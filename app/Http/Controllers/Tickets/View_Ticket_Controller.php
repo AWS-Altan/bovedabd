@@ -31,7 +31,8 @@ class View_Ticket_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('tickets.View_Ticket', ['menu' => $menu] );
+        //return view('tickets.View_Ticket', ['menu' => $menu] );
+        return view('Tickets.View_Ticket')-> with('menu',$menu);
     }
 
        protected function login()

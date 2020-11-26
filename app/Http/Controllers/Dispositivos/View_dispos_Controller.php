@@ -31,7 +31,8 @@ class View_dispos_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('dispositivos.View_dispos', ['menu' => $menu] );
+        //return view('dispositivos.View_dispos', ['menu' => $menu] );
+        return view('Dispositivos.View_dispos')-> with('menu',$menu);
     }
 
        protected function login()

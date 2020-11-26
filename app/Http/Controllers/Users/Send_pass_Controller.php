@@ -31,7 +31,8 @@ class Send_pass_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.send_pass', ['menu' => $menu] );
+        //return view('users.send_pass', ['menu' => $menu] );
+        return view('Users.send_pass')-> with('menu',$menu);
     }
 
        protected function login()

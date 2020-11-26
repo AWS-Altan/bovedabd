@@ -31,7 +31,8 @@ class Deactive_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.deactive_user', ['menu' => $menu] );
+        //return view('users.deactive_user', ['menu' => $menu] );
+        return view('Users.deactive_user')-> with('menu',$menu);
     }
 
        protected function login()

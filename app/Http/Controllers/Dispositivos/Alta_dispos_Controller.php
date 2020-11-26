@@ -31,7 +31,8 @@ class Alta_dispos_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('dispositivos.Alta_dispos', ['menu' => $menu] );
+        //return view('dispositivos.Alta_dispos', ['menu' => $menu] );
+        return view('Dispositivos.Alta_dispos')-> with('menu',$menu);
     }
 
        protected function login()

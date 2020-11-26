@@ -33,9 +33,10 @@ class Alta_user_Controller extends BaseController
             return redirect()->route('home.index');
 
         //return \View::make('Users\altauser', ['menu' => $menu] );
-        return view('Users.altauser', ['menu' => $menu] );
+        // return view('Users.altauser', ['menu' => $menu] ); // OK windows
         //prueba 2020-11-26
         //return view('Users.altauser', ['menu' => $menu], ); // MArco error en la vista
+        // return view('Users.altauser', ['menu' => $menu] ); // OK windows
         return view('Users.altauser')-> with('menu',$menu); // test 2
 
 

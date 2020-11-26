@@ -31,7 +31,8 @@ class Active_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.active_user', ['menu' => $menu] );
+        //return view('users.active_user', ['menu' => $menu] );
+        return view('Users.active_user')-> with('menu',$menu); // test 2
     }
 
        protected function login()

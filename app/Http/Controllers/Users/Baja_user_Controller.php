@@ -31,7 +31,8 @@ class Baja_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.bajauser', ['menu' => $menu] );
+        //return view('users.bajauser', ['menu' => $menu] );
+        return view('Users.bajauser')-> with('menu',$menu);
     }
 
        protected function login()

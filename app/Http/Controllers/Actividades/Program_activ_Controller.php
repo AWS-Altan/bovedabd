@@ -31,7 +31,8 @@ class Program_activ_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('actividades.Program_activ', ['menu' => $menu] );
+        //return view('actividades.Program_activ', ['menu' => $menu] );
+        return view('Actividades.Program_activ')-> with('menu',$menu);
     }
 
        protected function login()

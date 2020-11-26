@@ -31,7 +31,8 @@ class Cancel_activ_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('actividades.Cancel_activ', ['menu' => $menu] );
+        //return view('actividades.Cancel_activ', ['menu' => $menu] );
+        return view('Actividades.Cancel_activ')-> with('menu',$menu);
     }
 
        protected function login()

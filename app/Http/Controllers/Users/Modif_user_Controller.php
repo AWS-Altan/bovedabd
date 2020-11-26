@@ -31,7 +31,8 @@ class Modif_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.modif_user', ['menu' => $menu] );
+        //return view('users.modif_user', ['menu' => $menu] );
+        return view('Users.modif_user')-> with('menu',$menu);
     }
 
        protected function login()

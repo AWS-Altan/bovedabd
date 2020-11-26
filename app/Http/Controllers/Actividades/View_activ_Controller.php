@@ -31,7 +31,8 @@ class View_activ_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('actividades.View_activ', ['menu' => $menu] );
+        // return view('actividades.View_activ', ['menu' => $menu] );
+        return view('Actividades.View_activ')-> with('menu',$menu);
     }
 
        protected function login()

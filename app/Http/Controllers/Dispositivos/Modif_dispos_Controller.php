@@ -31,7 +31,8 @@ class Modif_dispos_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('dispositivos.Modif_dispos', ['menu' => $menu] );
+        //return view('dispositivos.Modif_dispos', ['menu' => $menu] );
+        return view('Dispositivos.Modif_dispos')-> with('menu',$menu);
     }
 
        protected function login()

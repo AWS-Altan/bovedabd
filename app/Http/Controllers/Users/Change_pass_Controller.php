@@ -31,7 +31,8 @@ class Change_pass_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.change_pass', ['menu' => $menu] );
+        //return view('users.change_pass', ['menu' => $menu] );
+        return view('Users.change_pass')-> with('menu',$menu);
     }
 
        protected function login()

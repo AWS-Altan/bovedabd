@@ -31,7 +31,8 @@ class View_pass_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('users.view_pass', ['menu' => $menu] );
+        //return view('users.view_pass', ['menu' => $menu] );
+        return view('Users.view_pass')-> with('menu',$menu);
     }
 
        protected function login()
