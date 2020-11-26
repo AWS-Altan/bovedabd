@@ -32,7 +32,10 @@ class Alta_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return \View::make('Users\altauser', ['menu' => $menu] );
+        //return \View::make('Users\altauser', ['menu' => $menu] );
+        //return view('Users.altauser', ['menu' => $menu] );
+        //prueba 2020-11-26
+        return view('Users.altauser', ['menu' => $menu], );
 
 
     }
