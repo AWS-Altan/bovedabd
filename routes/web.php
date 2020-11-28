@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
         // Menu de Alta de usuario
         Route::resource('/Alta_user', 'Alta_user_Controller', ['names' => ['index' => 'Users.alta_user.index']])->only(['index']);
+        Route::get('/call/Alta_user', 'Alta_user_Controller@new_user')->name('Users.call.alta_user');
         // Menu de baja de usuario
         Route::resource('/Baja_user', 'Baja_user_Controller', ['names' => ['index' => 'Users.baja_user.index']])->only(['index']);
         // Menu de Modificación de  de usuario
@@ -47,6 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/Change_pass', 'Change_pass_Controller', ['names' => ['index' => 'Users.Change_pass.index']])->only(['index']);
         // Menu de Enviar Contraseña
         Route::resource('/Send_pass', 'Send_pass_Controller', ['names' => ['index' => 'Users.Send_pass.index']])->only(['index']);
+        // Menu de Alta Masiva usurios
+        Route::resource('/Massive_users', 'Massive_SignIn_Controller', ['names' => ['index' => 'Users.Masive_Sign_in.index']])->only(['index']);
     }); //Route
 
 
@@ -57,6 +60,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/View_disp', 'View_dispos_Controller', ['names' => ['index' => 'Dispositivo.View_dispos.index']])->only(['index']);
         // Menu de Modificación Dispositivos
         Route::resource('/Modif_disp', 'Modif_dispos_Controller', ['names' => ['index' => 'Dispositivo.Modif_dispos.index']])->only(['index']);
+        // Menu de Alta Masiva Dispositivos
+        Route::resource('/Massive_creation', 'Massive_Creation_Controller', ['names' => ['index' => 'Dispositivo.Masive_creation.index']])->only(['index']);
+
     }); //Route
 
     Route::group(['prefix' => 'actividades', 'namespace' => 'Actividades'], function () {
@@ -83,7 +89,6 @@ Route::group(['middleware' => ['auth']], function () {
     /*Sisfen -  Modificación Boveda  */
 
 	Route::group(['prefix' => 'operations', 'namespace' => 'Operations'], function () {
-
 		Route::resource('/imei/valportal', 'ImeiValPortalController', ['names' => ['index' => 'imei.valitation.portal']])->only(['index']);
         Route::resource('/batch', 'BatchOperationsController', ['names' => ['index' => 'batch.index']])->only(['index']);
 		Route::post('/batch-load', 'BatchOperationsController@load')->name('batch.load');
@@ -92,10 +97,6 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::resource('/portinbatch', 'PortinbatchController', ['names' => ['index' => 'portinbatch.index']])->only(['index']);
 		Route::resource('/alta', 'AltaController', ['names' => ['index' => 'imei.alta.index']])->only(['index']);
         Route::get('/call/identify', 'CallsController@identify')->name('imei.call.identify');
-
-
-
-
         // Este es el ruteo de las APIs que se ocupan
         Route::get('/call/offert', 'CallsController@offert')->name('support.call.offer');
 		Route::get('/call/valid', 'CallsController@valid')->name('support.call.valid');
@@ -108,11 +109,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/iot/queryHighConsumptions', 'ConsultaAltoConsumoIoTController@queryHighConsumptions')->name('iot.query-high-consumptions');
 
 
-	});
+
+
+    });
+
+
 
 	Route::post('/support/reset', 'Support\SupportController@reset')->name('support.reset');
 
 });
+
+
 
 
 

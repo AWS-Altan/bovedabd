@@ -19,4 +19,24 @@ class Vwuser extends Model
     {
         return $this->belongsTo(mvno::class, 'mvno_id');
     }
+
+    //programación para el insert
+    protected $fillable = [
+        "name" ,
+        "vwrole_id",
+        "email",
+        "password",
+        "phone",
+        "active",
+        "last_session_id",
+        "created_by",
+        "id_company",
+        "id_estado",
+        "nivel",
+        "idresp",
+        "id_solicitante"
+    ];
 }
+
+
+

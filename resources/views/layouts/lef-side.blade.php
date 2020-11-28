@@ -87,6 +87,15 @@
 					</li>
 				@endif
 
+                <!-- Adicion 2020/11/26 -->
+                @if ( !isset( $menu[23] ) )
+					<li>
+						<a href="{{ route('Users.Masive_Sign_in.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta Masiva de usuarios</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+				@endif
 
 
 
@@ -161,6 +170,16 @@
 						</a>
 					</li>
                 @endif
+
+                <!-- Adicion 2020/11/27 -->
+                @if ( !isset( $menu[24] ) )
+					<li>
+						<a href="{{ route('Dispositivo.Masive_creation.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta Masiva de Dispositivos</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+				@endif
 
 
                 @if ( !isset( $menu[33] )  )

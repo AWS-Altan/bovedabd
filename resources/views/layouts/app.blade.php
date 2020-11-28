@@ -137,7 +137,8 @@
 		patrones['orderid']=/^[1-9][0-9]{7,19}$/;
 		patrones['beid']=/^[1-9][0-2]{3}$/;
 		patrones['idPreregistro']=/^[1-9][0-9]{1,10}$/;
-		patrones['nir']=/^[1-9][0-9]{1,4}$/;
+        patrones['nir']=/^[1-9][0-9]{1,4}$/;
+        patrones['email']=/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
 
 		var inputTope = new Array();
 		inputTope['msisdn']=10;
