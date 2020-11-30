@@ -259,6 +259,8 @@
 					</li>
 				@endif
 
+                <!-- sisfen - falta gestion de credenciales del elemento -->
+
 
                 @if ( !isset( $menu[52] )  )
 					<li>
@@ -312,7 +314,7 @@
                 @if ( !isset( $menu[18] )  )
 					<li>
 						<a href="{{ route('Actividades.Calendar_activ.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Calendariazación</span></div>
+							<div class="pull-left"><span class="right-nav-text">Calendariazación passwords</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
@@ -334,7 +336,9 @@
 							<div class="clearfix"></div>
 						</a>
 					</li>
-				@endif
+                @endif
+
+                <!--Sisfen - Agregar revision de Historial -->
 
                 @if ( !isset( $menu[53] ) )
 				<li>
@@ -364,8 +368,15 @@
 				</li>
                 @endif
 
+                <!--Sisfen - Agregar revision de Historial -->
 
-			</ul>
+
+            </ul>
+
+
+
+
+
 		</li>
 		@endif
 

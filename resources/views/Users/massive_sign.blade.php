@@ -57,6 +57,9 @@
 										<input id="rescorde" type="hidden" name="">
 									</div>
 								</div>
+                            </div>
+                            <!-- Texto de Menajes -->
+                            <div class="row" id="message">
 							</div>
 
 						</section>

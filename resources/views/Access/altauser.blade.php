@@ -52,6 +52,9 @@
                                         Aqui van los campos
                                     </div>
                                 </div>
+                                <!-- Texto de Menajes -->
+                                <div class="row" id="message">
+								</div>
                             </form>
 						</section>
 					</div>
@@ -59,4 +62,50 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+
+<!-- Inicio la programación del estilo -->
+@section('jsfree')
+<style type="text/css">
+	.wizard > .steps > ul > li{
+		    width: 45%;
+	}
+</style>
+<script>
+    // Funcion de Fin de Vista, ejecucion
+    function finished(){
+
+    } //finished
+    //Cargo comportmiento de inicio de pantalla
+    $(window).on('load', function()
+    {
+
+        // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
+
+        var Operations2 = function ()
+        {
+            //Inicio el comporatamiento de la ventana
+
+
+        	return {
+		        init: function() {
+		        	$('#previous').hide();
+                    $( "#finish" ).text('Siguiemte');
+
+                    $('#message').empty();
+				    //initializePlugins2();
+
+				    $( "#finish" ).click(function() {
+                        //Aqui va el codigo de cuando se presiona el boton
+                        //$('#message').append('voy 4');
+                    });
+                    //$('#message').append('voy 3');
+		        }
+		    };
+        }
+        Operations2().init();
+    });// fin de inicio de pantall
+
+</script>
 @endsection

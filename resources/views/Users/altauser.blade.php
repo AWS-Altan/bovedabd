@@ -169,13 +169,11 @@
                                             </div>
                                         </div>
                                 </div>
+                                <!-- Texto de Menajes -->
                                 <div class="row" id="message">
 								</div>
                             </form>
-
-
 						</section>
-
 					</div>
 				</div>
 			</div>
