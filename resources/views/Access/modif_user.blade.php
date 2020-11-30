@@ -9,22 +9,8 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Desactivación de Usuario Boveda</span></h3>
+						<h3><span class="head-font capitalize-font">Modificación de Usuario</span></h3>
 						<section>
-                            <!-- Contenedor -->
-                            <form id="form_tabs" action="#">
-                                <div class="panel panel-default">
-                                    <!-- Header Subseccion -->
-                                    <div class="panel-heading">
-    								Texto Seccion
-                                    </div>
-                                    <!-- Contenido Subseccion -->
-                                    <div class="card-body">
-                                        <div><br></div>
-                                        Aqui van los campos
-                                    </div>
-                                </div>
-                            </form>
                             <!-- Contenedor -->
                             <form id="form_tabs" action="#">
                                 <div class="panel panel-default">

@@ -22,7 +22,7 @@ trait Getmenu
         foreach (Vwactions::all() as $value)
             if ( !is_null( $value->config ) )
                 foreach (json_decode( $value->config )->role_excluded as $val)
-                    loginfo('sisfen_Menu ', [$val]);
+                    loginfo('Menu: ', [$val]);
                     if ( $val->id == app('auth')->user()->vwrole_id )
                        $menu[$value->id] = $value->name;
 

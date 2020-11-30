@@ -9,28 +9,37 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Activación de usuario</span></h3>
+						<h3><span class="head-font capitalize-font">Activación de usuario Boveda</span></h3>
 						<section>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group mb-0">
-										<div class="row">
-											<div class="col-sm-9">
-												<div class="form-wrap" style="display: inline-block;">
-													    <div class="help-block" style="color:#9E1D22; font-weight: bold;">
-													    	Activación de usuario
-													    </div>
-													</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
+                            <!-- Contenedor -->
+                            <form id="form_tabs" action="#">
+                                <div class="panel panel-default">
+                                    <!-- Header Subseccion -->
+                                    <div class="panel-heading">
+    								Texto Seccion
+                                    </div>
+                                    <!-- Contenido Subseccion -->
+                                    <div class="card-body">
+                                        <div><br></div>
+                                        Aqui van los campos
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Contenedor -->
+                            <form id="form_tabs" action="#">
+                                <div class="panel panel-default">
+                                    <!-- Header Subseccion -->
+                                    <div class="panel-heading">
+    								Texto Seccion
+                                    </div>
+                                    <!-- Contenido Subseccion -->
+                                    <div class="card-body">
+                                        <div><br></div>
+                                        Aqui van los campos
+                                    </div>
+                                </div>
+                            </form>
 						</section>
-
 					</div>
 				</div>
 			</div>

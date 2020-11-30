@@ -6,15 +6,13 @@
 <div class="fixed-sidebar-left">
 	<ul class="nav navbar-nav side-nav nicescroll-bar fixed">
 
-
-
-
-		<li><hr class="light-grey-hr mb-10"/></li>
-
+        <!-- Manejo de Usuarios Internos del sistema -->
+        <li><hr class="light-grey-hr mb-10"/></li>
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Usuario</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Usuarios Sistema</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="operaciones_dr" class="collapse collapse-level-1 two-col-list">
 
+                <!-- Alta usuarios -->
                 @if ( !isset( $menu[2] ) )
 					<li>
 						<a href="{{ route('Users.alta_user.index') }}">
@@ -99,7 +97,7 @@
 
 
 
-                @if ( !isset( $menu[32] ) )
+                @if ( !isset( $menu[51] ) )
 					<li>
 						<a href="{{ route('portinbatch.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Prueba Pantalla con Busqueda</span></div>
@@ -111,19 +109,8 @@
 
 
 
-                @if ( !isset( $menu[30] ) )
-					<li>
-						<a href="{{ route('imei.alta.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Pantalla General</span></div>
-							<div class="clearfix"></div>
-						</a>
-					</li>
-				@endif
-
-
-
                 <!-- Sisfen - aqui  -->
-				@if ( !isset( $menu[31] ) )
+				@if ( !isset( $menu[50] ) )
 				<li>
 					<a href="{{ route('batch.index') }}">
 						<div class="pull-left"></i><span class="right-nav-text">Pantalla con seleccion</span></div>
@@ -136,9 +123,100 @@
 		</li>
 
 
+        <!-- Manejo de Usuarios de Plataformas -->
+        <li><hr class="light-grey-hr mb-10"/></li>
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Usuarios Plataformas</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<ul id="acciones_dr" class="collapse collapse-level-1 two-col-list">
 
-		<li><hr class="light-grey-hr mb-10"/></li>
+                <!-- Alta usuarios -->
+                @if ( !isset( $menu[26] ) )
+					<li>
+						<a href="{{ route('Access.alta_user.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta Accesos Usuarios</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
 
+                @if ( !isset( $menu[27] ) )
+					<li>
+						<a href="{{ route('Access.baja_user.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Baja Accesos Usuario</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[28] ) )
+					<li>
+						<a href="{{ route('Access.modif_user.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Modificación de Accesos Usuario</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[29] ) )
+					<li>
+						<a href="{{ route('Access.View_pass.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Consulta de Password</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[30] ) )
+					<li>
+						<a href="{{ route('Access.Active_user.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Activación de usuarios</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[31] ) )
+					<li>
+						<a href="{{ route('Access.Deactive_user.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Desactivación de usuarios</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[32] ) )
+					<li>
+						<a href="{{ route('Access.Change_pass.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Cambiar / Rotar Passwords</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[33] ) )
+					<li>
+						<a href="{{ route('Access.Send_pass.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Envio de Contraseñas</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+				@endif
+
+                <!-- Adicion 2020/11/26 -->
+                @if ( !isset( $menu[34] ) )
+					<li>
+						<a href="{{ route('Access.Masive_Sign_in.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta Masiva de usuarios</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+				@endif
+
+			</ul>
+        </li>
+
+        <!-- Manejo de Plataformas -- Dispoitivos -->
+        <li><hr class="light-grey-hr mb-10"/></li>
 		@if ( !isset( $menu[10] )  )
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#portabilidad_dr"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Dispositivos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
@@ -182,7 +260,7 @@
 				@endif
 
 
-                @if ( !isset( $menu[33] )  )
+                @if ( !isset( $menu[52] )  )
 					<li>
 						<a href="{{ route('iot.home.query-high-consumptions') }}">
 							<div class="pull-left"><span class="right-nav-text">Reporte tabla 1</span></div>
@@ -196,8 +274,9 @@
 		</li>
 		@endif
 
+
+        <!-- Manejo de Actividades -->
         <li><hr class="light-grey-hr mb-10"/></li>
-<!-- aqui -->
         @if ( !isset( $menu[14] )  )
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#guias_dr"><div class="pull-left"><i class="fa fa-file-text mr-20"></i><span class="right-nav-text">Actividades</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
@@ -257,7 +336,7 @@
 					</li>
 				@endif
 
-                @if ( !isset( $menu[34] ) )
+                @if ( !isset( $menu[53] ) )
 				<li>
 					<a href="{{ route('consulta.index' , array('isMob'=>'false') ) }}">
 						<div class="pull-left"><span class="right-nav-text">Consulta con busqueda</span></div>
@@ -269,16 +348,9 @@
 	    </li>
 		@endif
 
-<!-- aqui -->
-
-
-
 		<li><hr class="light-grey-hr mb-10"/></li>
 
-
-
-
-<!-- aqui -->
+        <!-- Manejo de Tickets -->
         @if ( !isset( $menu[21] )  )
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Tickets"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Tickets</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>

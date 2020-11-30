@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -9,7 +10,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta Masiva de Dispositivos</span></h3>
+						<h3><span class="head-font capitalize-font">Alta Masiva de Usuarios</span></h3>
 						<section>
                             <!-- Contenedor -->
                             <form id="form_tabs" action="#">
@@ -36,8 +37,8 @@
                                                                         <p>Archivos:
                                                                         <input type="file" name="archivos[]" />
                                                                         <input type="submit" value="Enviar" />
-                                                                    </div>
 
+                                                                    </div>
 																</div>
 															</div>
 														</form>

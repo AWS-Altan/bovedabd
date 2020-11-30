@@ -24,8 +24,8 @@ class ConsultaController extends Controller
     public function index($isMob)
     {
         $menu = $this->get_menu();
-        loginfo('Sisfen_nume Menu ', $menu);
-        if ( isset( $menu[34] ) )
+        loginfo('Inicio_nume Menu ', $menu);
+        if ( isset( $menu[53] ) )
             return redirect()->route('home.index');
 
         return view('consulta', ['menu' => $this->get_menu() , 'isMob' => $isMob ] );

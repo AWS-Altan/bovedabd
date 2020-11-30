@@ -30,7 +30,7 @@ class ConsultaAltoConsumoIoTController extends BaseController
 	public function index()
     {
     	$menu = $this->get_menu();
-    	if ( isset( $menu[33] ) )
+    	if ( isset( $menu[52] ) )
     		return redirect()->route('home.index');
 
     	return view('operation.iot.consulta-alto-consumo', ['menu' =>$menu] );

@@ -9,7 +9,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Desactivación de Usuario Boveda</span></h3>
+						<h3><span class="head-font capitalize-font">Envio de Contraseña</span></h3>
 						<section>
                             <!-- Contenedor -->
                             <form id="form_tabs" action="#">

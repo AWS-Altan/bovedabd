@@ -9,7 +9,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Desactivación de Usuario Boveda</span></h3>
+						<h3><span class="head-font capitalize-font">Activación de usuario</span></h3>
 						<section>
                             <!-- Contenedor -->
                             <form id="form_tabs" action="#">
@@ -21,8 +21,23 @@
                                     <!-- Contenido Subseccion -->
                                     <div class="card-body">
                                         <div><br></div>
-                                        Aqui van los campos
+                                        <!-- Campo 01 -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Campo</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_Campo01" placeholder="Ingrese Descripcion" data-error="Valor inválido" maxlength="150">
+													    <div class="help-block with-errors" id="err_msg_campo"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </form>
                             <!-- Contenedor -->

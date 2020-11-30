@@ -29,7 +29,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::get('/historyperfil', 'View360Controller@perfil')->name('history.perfil');
 
-    /*Sisfen -  Modificación Boveda  */
+    /* Modificación Boveda
+        Controladores usados en los Menus de Boveda por cada una de sus separaciones
+    */
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
         // Menu de Alta de usuario
         Route::resource('/Alta_user', 'Alta_user_Controller', ['names' => ['index' => 'Users.alta_user.index']])->only(['index']);
@@ -50,6 +52,28 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/Send_pass', 'Send_pass_Controller', ['names' => ['index' => 'Users.Send_pass.index']])->only(['index']);
         // Menu de Alta Masiva usurios
         Route::resource('/Massive_users', 'Massive_SignIn_Controller', ['names' => ['index' => 'Users.Masive_Sign_in.index']])->only(['index']);
+    }); //Route
+
+    Route::group(['prefix' => 'access', 'namespace' => 'Access'], function () {
+        // Menu de Alta de usuario
+        Route::resource('/Alta_access', 'Alta_access_Controller', ['names' => ['index' => 'Access.alta_user.index']])->only(['index']);
+        //Route::get('/call/Alta_access', 'Alta_user_Controller@new_user')->name('Users.call.alta_user');
+        // Menu de baja de usuario
+        Route::resource('/Baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);
+        // Menu de Modificación de  de usuario
+        Route::resource('/Modif_access', 'Modif_access_Controller', ['names' => ['index' => 'Access.modif_user.index']])->only(['index']);
+        // Menu de Consulta de password
+        Route::resource('/view_access', 'View_access_Controller', ['names' => ['index' => 'Access.View_pass.index']])->only(['index']);
+        // Menu de Activación de usuario
+        Route::resource('/Active_access', 'Active_access_Controller', ['names' => ['index' => 'Access.Active_user.index']])->only(['index']);
+        // Menu de Desactivación de usuario
+        Route::resource('/Deactive_access', 'Deactive_access_Controller', ['names' => ['index' => 'Access.Deactive_user.index']])->only(['index']);
+        // Menu de Cambiar Password de usuario
+        Route::resource('/Change_access', 'Change_access_Controller', ['names' => ['index' => 'Access.Change_pass.index']])->only(['index']);
+        // Menu de Enviar Contraseña
+        Route::resource('/Send_access', 'Send_access_Controller', ['names' => ['index' => 'Access.Send_pass.index']])->only(['index']);
+        // Menu de Alta Masiva usurios
+        Route::resource('/Massive_access', 'Massive_access_Controller', ['names' => ['index' => 'Access.Masive_Sign_in.index']])->only(['index']);
     }); //Route
 
 
@@ -86,7 +110,6 @@ Route::group(['middleware' => ['auth']], function () {
     }); //Route
 
 
-    /*Sisfen -  Modificación Boveda  */
 
 	Route::group(['prefix' => 'operations', 'namespace' => 'Operations'], function () {
 		Route::resource('/imei/valportal', 'ImeiValPortalController', ['names' => ['index' => 'imei.valitation.portal']])->only(['index']);

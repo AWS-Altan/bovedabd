@@ -1,7 +1,6 @@
 <?php
 
-//namespace App\Http\Controllers\Users;
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Access;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -26,7 +25,7 @@ use Carbon\Carbon;
 /*******************************
  * Controlador de Alta de usuario
 ********************************/
-class Alta_user_Controller extends BaseController
+class Alta_access_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
     /*******************************
@@ -39,7 +38,7 @@ class Alta_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('Users.altauser')-> with('menu',$menu); // test 2
+        return view('Access.altauser')-> with('menu',$menu); // test 2
     } // index
 
     /****************************
@@ -92,7 +91,6 @@ class Alta_user_Controller extends BaseController
                         "password" => Hash::make( request()->send_password),
                         "phone" => "55906438",
                         "active" => "0",
-                        // "MVNO_ID" => NULL,
                         "last_session_id" => session()->get('idsession'),
                         "created_by" => request()->send_id_createdby,
                         "id_company" => request()->send_id_company,

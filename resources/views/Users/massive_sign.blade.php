@@ -10,8 +10,14 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta Masiva de Usuarios</span></h3>
+						<h3><span class="head-font capitalize-font">Alta Masiva de Usuarios Boveda</span></h3>
 						<section>
+                            <!-- Contenedor -->
+                            <form id="form_tabs" action="#">
+                                <div class="panel panel-default">
+
+                                </div>
+                            </form>
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="form-group mb-0">

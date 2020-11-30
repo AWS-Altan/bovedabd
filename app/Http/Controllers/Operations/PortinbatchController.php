@@ -28,7 +28,7 @@ class PortinbatchController extends BaseController
     public function index()
     {
         $menu = $this->get_menu();
-        if ( isset( $menu[32] ) )
+        if ( isset( $menu[51] ) )
             return redirect()->route('home.index');
 
         return view('operation.portinbatch', ['menu' => $menu] );

@@ -9,8 +9,9 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta de usuario</span></h3>
+						<h3><span class="head-font capitalize-font">Alta de usuario Boveda</span></h3>
 						<section>
+                            <!-- Contenedor -->
                             <form id="form_tabs" action="#">
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
@@ -19,8 +20,8 @@
                                     </div>
                                     <!-- despues del header de la seccion -->
                                     <div class="card-body">
+                                        <!-- Campo de Correo de usuario -->
                                         <div class="row">
-                                            <!-- Campo de Correo de usuario -->
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
@@ -34,8 +35,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Campo de Contraseña -->
                                         <div class="row">
-                                            <!-- Campo de Contraseña -->
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
@@ -57,6 +58,7 @@
     								Datos Usuario
                                     </div>
                                     <div class="card-body">
+                                        <!-- Campo de Nombre de Usuario -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
@@ -71,7 +73,21 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!-- Campo de Telefono de Usuario -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Número Telefonico</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_Telefono" placeholder="Ingrese el Telefono del usuario" data-error="Valor inválido" maxlength="150">
+													    <div class="help-block with-errors" id="err_msg_Telefono"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -81,8 +97,8 @@
                                     <div class="panel-heading">
     								Datos Extras Temporales
                                     </div>
+                                        <!-- Campo temporal de ID company -->
                                         <div class="row">
-                                            <!-- Campo temporal de ID company -->
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
@@ -96,8 +112,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Campo Temporal de ID Estado -->
                                         <div class="row">
-                                            <!-- Campo Temporal de ID Estado -->
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
@@ -110,8 +126,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Campo Temporal de ID Nivel-->
                                         <div class="row">
-                                            <!-- Campo Temporal de ID Nivel-->
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
@@ -124,8 +140,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Campo Temporal de ID Responsable -->
                                         <div class="row">
-                                            <!-- Campo Temporal de ID Responsable -->
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
@@ -138,8 +154,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Campo Temporal de Id solicitante -->
                                         <div class="row">
-                                            <!-- Campo Temporal de Id solicitante -->
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">

@@ -24,6 +24,7 @@ class Vwuser extends Model
     protected $fillable = [
         "name" ,
         "vwrole_id",
+        "MVNO_ID",
         "email",
         "password",
         "phone",
@@ -34,7 +35,8 @@ class Vwuser extends Model
         "id_estado",
         "nivel",
         "idresp",
-        "id_solicitante"
+        "id_solicitante",
+        "active_user"
     ];
 }
 
