@@ -36,7 +36,7 @@ class General_User_Controller extends BaseController
                 $boveda_user =  Vwuser::where('email','=',request()->value)->get();
 
                 foreach ($boveda_user as $user_bob) {
-                    loginfo('name'.$user_bob->name,);
+                    loginfo('name'.$user_bob->name);
                     loginfo('email'.$user_bob->email);
 
                     $response = json_encode(['description' => 'ok',
