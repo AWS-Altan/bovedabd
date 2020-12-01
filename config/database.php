@@ -43,15 +43,29 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             //'host' => env('DB_HOST', 'viewv323.cfdxq4habhuc.us-east-1.rds.amazonaws.com'),
-            'host' => env('DB_HOST', 'desa360.cfdxq4habhuc.us-east-1.rds.amazonaws.com'),
+
+            //Desarrollo
+            //'host' => env('DB_HOST', 'desa360.cfdxq4habhuc.us-east-1.rds.amazonaws.com'),
+            //'database' => env('DB_DATABASE', 'BovedaDB'),
+            //'username' => env('DB_USERNAME', 'boveda'),
+            //'password' => env('DB_PASSWORD', 'bovedadb'),
+            //'port' => env('DB_PORT', '3306'),
+
+            // Maquina local
             //'host' => env('DB_HOST', '192.168.0.102'),
-            'database' => env('DB_DATABASE', 'BovedaDB'),
             //'database' => env('DB_DATABASE', 'view360'),
             //'username' => env('DB_USERNAME', 'sisfen'),
-            'username' => env('DB_USERNAME', 'boveda'),
             //'password' => env('DB_PASSWORD', 'Teletran1!'),
-            'password' => env('DB_PASSWORD', 'bovedadb'),
+            //'port' => env('DB_PORT', '3306'),
+
+            // Desarrollo Boveda
+            'host' => env('DB_HOST', '52.201.46.166'),
+            'database' => env('DB_DATABASE', 'boveda'),
+            'username' => env('DB_USERNAME', 'republica'),
+            'password' => env('DB_PASSWORD', 'S0yR0m3o-'),
             'port' => env('DB_PORT', '3306'),
+
+
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
