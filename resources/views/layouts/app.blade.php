@@ -124,8 +124,8 @@
     <script>
     	var glob = new Array();
     	var offerts = new Array();
-    	var tipo_campo='msisdn';
-    	var tipo_campo_lef='msisdn';
+    	var tipo_campo='email';
+    	var tipo_campo_lef='email';
 		var patrones = new Array();
 		patrones['msisdn']=/^[1-9][0-9]{9}$/;
 		patrones['imsi']=/^[1-9][0-9]{14}$/;
@@ -146,7 +146,8 @@
 		inputTope['imei']=16;
 		inputTope['icc']=19;
 		inputTope['beid']=3;
-		inputTope['idPreregistro']=10;
+        inputTope['idPreregistro']=10;
+        inputTope['email']=100;
 
 		function bloqueo() {
 			$.blockUI({ message: 'Procesando ...',css: {
@@ -160,15 +161,15 @@
 	        } });
 		}
 
-
-		function TipoDato4(valor){
+        //antes: function TipoDato4(valor){
+        function fun_tipodato(valor){
 			tipo_campo=valor;
-			$("#inputData").prop('maxLength', inputTope[tipo_campo]);
-			$("#inputData").attr('placeholder', 'Ingrese valor de '+tipo_campo.toUpperCase()+' a consultar')
-			$("#inputData").val('');
-			$('#inputData').focus();
-			$("#inputData").css({'border' : '1px solid rgba(33, 33, 33, 0.12)'});
-			$("#message_error").text("");
+			$("#cmd_searchdata").prop('maxLength', inputTope[tipo_campo]);
+			$("#cmd_searchdata").attr('placeholder', 'Ingrese valor de '+tipo_campo.toUpperCase()+' a consultar')
+			$("#cmd_searchdata").val('');
+			$('#cmd_searchdata').focus();
+			$("#cmd_searchdata").css({'border' : '1px solid rgba(33, 33, 33, 0.12)'});
+			$("#message_text").text("");
 		}
 
 		function TipoDatoIdPreregistro(valor){

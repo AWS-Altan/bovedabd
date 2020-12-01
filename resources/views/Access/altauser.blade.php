@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                                 <!-- Texto de Menajes -->
-                                <div class="row" id="message">
+                                <div class="row" id="message_text">
 								</div>
                             </form>
 						</section>
@@ -93,14 +93,14 @@
 		        	$('#previous').hide();
                     $( "#finish" ).text('Siguiemte');
 
-                    $('#message').empty();
+                    $('#message_text').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        //$('#message').append('voy 4');
+                        //$('#message_text').append('voy 4');
                     });
-                    //$('#message').append('voy 3');
+                    //$('#message_text').append('voy 3');
 		        }
 		    };
         }

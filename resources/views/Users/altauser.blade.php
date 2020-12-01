@@ -170,7 +170,7 @@
                                         </div>
                                 </div>
                                 <!-- Texto de Menajes -->
-                                <div class="row" id="message">
+                                <div class="row" id="message_text">
 								</div>
                             </form>
 						</section>
@@ -310,14 +310,14 @@
                     $( "#finish" ).text('Alta');
 
                     //$('#message').empty();
-				    $('#message').append('voy 2');
+				    $('#message_text').append('voy 2');
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        $('#message').append('voy 4');
+                        $('#message_text').append('voy 4');
                     });
-                    $('#message').append('voy 3');
+                    $('#message_text').append('voy 3');
 		        }
 		    };
         }

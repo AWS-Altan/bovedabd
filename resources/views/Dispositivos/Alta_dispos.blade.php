@@ -53,10 +53,11 @@
                                     </div>
                                 </div>
                             </form>
-                            <!-- Texto de Menajes -->
-                            <div class="row" id="message">
-							</div>
-						</section>
+
+                        </section>
+                        <!-- Texto de Menajes -->
+                        <div class="row" id="message_text">
+        				</div>
 					</div>
 				</div>
 			</div>
@@ -92,7 +93,7 @@
 		        	$('#previous').hide();
                     $( "#finish" ).text('Siguiemte');
 
-                    $('#message').empty();
+                    $('#message_text').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {

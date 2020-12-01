@@ -33,17 +33,17 @@ class Baja_user_Controller extends BaseController
 
         //return view('users.bajauser', ['menu' => $menu] );
         return view('Users.bajauser')-> with('menu',$menu);
-    }
+    } //index
 
-       protected function login()
+    protected function login()
     {
         $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
         $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
         return json_decode($this->httpClient->request('POST', config('conf.url_login'), [
                 'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
-    }
+    } //login
 
 
 
 
-}
+} //Baja_user_Controller

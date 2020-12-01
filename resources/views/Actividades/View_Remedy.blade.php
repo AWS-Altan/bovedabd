@@ -58,6 +58,12 @@
 	}
 </style>
 <script>
+
+    // funcion para cambio de pestaña
+    function ValidateNext() {
+        //Validacion de campo de busqueda Input data del layou te busqueda
+    } //ValidateNext
+
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 

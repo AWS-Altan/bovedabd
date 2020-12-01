@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
         Controladores usados en los Menus de Boveda por cada una de sus separaciones
     */
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
+
+        // General Funcion de Busqueda de usaurio
+        Route::get('/call/Baja_user_search', 'General_User_Controller@search_user')->name('Users.call.user_search');
         // Menu de Alta de usuario
         Route::resource('/Alta_user', 'Alta_user_Controller', ['names' => ['index' => 'Users.alta_user.index']])->only(['index']);
         Route::get('/call/Alta_user', 'Alta_user_Controller@new_user')->name('Users.call.alta_user');

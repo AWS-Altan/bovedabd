@@ -58,7 +58,7 @@
 								</div>
 							</div>
                             <!-- Texto de Menajes -->
-                            <div class="row" id="message">
+                            <div class="row" id="message_text">
 							</div>
 						</section>
 
