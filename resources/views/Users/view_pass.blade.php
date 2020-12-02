@@ -17,30 +17,85 @@
 								    <div class="col-sm-12">
 									    <div class="form-group mb-0">
 										    <div class="row">
-											     @include('layouts.Search_Users')
+											     @include('layouts.Search_Action')
 										    </div>
 									    </div>
 								    </div>
 							    </div>
-
                             </form>
                         </section>
-                        <h3><span class="head-font capitalize-font">Visaulización Contraseña</span></h3>
+                        <h3><span class="head-font capitalize-font">Revisión Contraseña</span></h3>
 						<section>
                             <form id="step_two">
-
+                                <!-- Panel -->
+                                <div class="panel panel-default">
+                                    <!-- Header Subseccion -->
+                                    <div class="panel-heading">
+    								Datos Usuario
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- Campo de Correo de usuario -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Correo Usuario</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del usuario" data-error="Valor inválido" maxlength="150" disabled>
+													    <div class="help-block with-errors" id="err_msg_Mail_user"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de Nombre de Usuario -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Nombre Usuario</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre Completo del usuario" data-error="Valor inválido" maxlength="150" disabled>
+													    <div class="help-block with-errors" id="err_msg_NombreAlta"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de Contraseña -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Contraseña</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_password" placeholder="Ingrese la contrase&ntilde;a del usuario" data-error="Valor inválido" maxlength="150" disabled>
+														<div class="help-block with-errors" id="err_msg_password"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </section>
-                        <!-- Texto de Menajes -->
-                        <div class="row" id="message_text">
-						</div>
+                        <div>
+                            <div align="center">
+                                <!-- Texto de Menajes -->
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="row" id="message_text">
+						        </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 @endsection
-
 
 <!-- Inicio la programación del estilo -->
 @section('jsfree')
@@ -89,7 +144,7 @@
 
         //Ejecuto la busqueda del dato
         $.ajax({
-			url: "{{ route('Users.call.user_search') }}",
+			url: "{{ route('Users.call.view_user_pass') }}",
 			type: 'GET',
 		 	data: {
 		 		'type': tipo_campo,
@@ -102,7 +157,8 @@
         })
         .fail(function() {
 	        	$('#message_text').empty();
-				$('#message_text').append('<label class="help-block mb-30 text-left"><strong>Time Out</strong>');
+                $('#message_text').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');
+                $( "#previous" ).trigger( "click" );
 	        	$.unblockUI();
 	        })
         .always(function() {
@@ -110,17 +166,22 @@
         	if(obj.error){
         		$('#value').val('');
 				$('#message_text').empty();
-				$('#message_text').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
+				$('#message_text').append('<label class="help-block mb-30 text-center"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
         	}else{
-                // inserto los datos y configuro la siguiente pestaña
-                $('#message_text').append('sisfen voy ').append(obj.name);
-        		/*$("#msisdn").text( ' '+changenull(obj.msisdn) );
-        		$("#imsi").text( ' '+changenull(obj.imsi) );
-        		$("#icc").text( ' '+changenull(obj.iccid) );
-        		$('#message_error').empty();
- 	        	*/
+                // coloco los datos en los txt
+                $('#cmd_NombreAlta').val(obj.name);
+                $("#cmd_Mail_user").val(obj.email);
+                $("#cmd_password").val(obj.password);
+
+
+                // configuro la siguiente pestaña
+        		$('#message_text').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Confirme el borrado del usuario</strong> ');
+                // $('#previous').show();
+                $( "#finish" ).text('Borrar');
+
+                $.unblockUI();
 
 	        }// Else
 			$.unblockUI();

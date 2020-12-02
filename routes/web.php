@@ -41,18 +41,31 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/call/Alta_user', 'Alta_user_Controller@new_user')->name('Users.call.alta_user');
         // Menu de baja de usuario
         Route::resource('/Baja_user', 'Baja_user_Controller', ['names' => ['index' => 'Users.baja_user.index']])->only(['index']);
+        Route::get('/call/Baja_user', 'Baja_user_Controller@delete_user')->name('Users.call.user_delete');
+
         // Menu de Modificación de  de usuario
         Route::resource('/Modif_user', 'Modif_user_Controller', ['names' => ['index' => 'Users.modif_user.index']])->only(['index']);
+        Route::get('/call/Modif_user_search', 'Modif_user_Controller@search_user')->name('Users.call.search_complete');
+        Route::get('/call/Modif_user', 'Modif_user_Controller@modif_user')->name('Users.call.modif_user');
+
+
         // Menu de Consulta de password
-        Route::resource('/view_password', 'View_pass_Controller', ['names' => ['index' => 'Users.View_pass.index']])->only(['index']);
+        //Route::resource('/view_password', 'View_pass_Controller', ['names' => ['index' => 'Users.View_pass.index']])->only(['index']);
+        //Route::get('/call/view_password', 'View_pass_Controller@user_pass')->name('Users.call.view_user_pass');
+
         // Menu de Activación de usuario
         Route::resource('/Active_user', 'Active_user_Controller', ['names' => ['index' => 'Users.Active_user.index']])->only(['index']);
+        Route::get('/call/Active_user', 'Active_user_Controller@user_active')->name('Users.call.user_active');
+
         // Menu de Desactivación de usuario
         Route::resource('/Deactive_user', 'Deactive_user_Controller', ['names' => ['index' => 'Users.Deactive_user.index']])->only(['index']);
+        Route::get('/call/Deactive_user', 'Deactive_user_Controller@user_deactive')->name('Users.call.user_deactive');
+
         // Menu de Cambiar Password de usuario
         Route::resource('/Change_pass', 'Change_pass_Controller', ['names' => ['index' => 'Users.Change_pass.index']])->only(['index']);
+        Route::get('/call/Change_pass', 'Change_pass_Controller@change_pass')->name('Users.call.user_pass');
         // Menu de Enviar Contraseña
-        Route::resource('/Send_pass', 'Send_pass_Controller', ['names' => ['index' => 'Users.Send_pass.index']])->only(['index']);
+        //Route::resource('/Send_pass', 'Send_pass_Controller', ['names' => ['index' => 'Users.Send_pass.index']])->only(['index']);
         // Menu de Alta Masiva usurios
         Route::resource('/Massive_users', 'Massive_SignIn_Controller', ['names' => ['index' => 'Users.Masive_Sign_in.index']])->only(['index']);
     }); //Route

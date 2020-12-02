@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates};
+use Hash; //para el password
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -35,7 +36,7 @@ class Change_pass_Controller extends BaseController
         return view('Users.change_pass')-> with('menu',$menu);
     }
 
-       protected function login()
+    protected function login()
     {
         $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
         $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
@@ -43,7 +44,40 @@ class Change_pass_Controller extends BaseController
                 'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
     }
 
+    public function change_pass()
+    {
+        loginfo('Cambio password');
+        // Escribo los datos de alta
+        loginfo('type:' . request()->type .
+                ', value: ' . request()->value);
 
+        try {
+                $exception = Vwuser::where('email', request()->value)
+                ->update([
+                        "password" => Hash::make( request()->send_password),
+                ]);
+
+                //Escribo al log
+                loginfo('actualice usuario');
+
+                $response = json_encode(['description' => 'OK',
+                                  'statusCode' => 200
+                    ]);//json encode
+
+
+
+
+            } catch (\Exception $e) {
+                loginfo('Error al actualizar el usuario', [ $e->getMessage() ]);
+                $response = json_encode(['description' => 'NOK',
+                                  'statusCode' => 400
+                    ]);//json encode
+                return $response;
+            } //Try/Catch
+
+            //regreso respuesta
+        return $response;
+    }//change_pass
 
 
 }

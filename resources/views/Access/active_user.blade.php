@@ -9,7 +9,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Busqueda de Usuario</span></h3>
+                        <h3><span class="head-font capitalize-font">Busqueda de Dispositivo</span></h3>
 						<section>
                             <form id="step_one">
                                 <!-- Template busqueda Usuario -->
@@ -17,14 +17,15 @@
 								    <div class="col-sm-12">
 									    <div class="form-group mb-0">
 										    <div class="row">
-											     @include('layouts.Search_Action')
+											     @include('layouts.Search_Dispositive')
 										    </div>
 									    </div>
 								    </div>
 							    </div>
+
                             </form>
                         </section>
-                        <h3><span class="head-font capitalize-font">Confirmación Activación</span></h3>
+                        <h3><span class="head-font capitalize-font">Cambio Información</span></h3>
 						<section>
                             <form id="step_two">
 
@@ -32,7 +33,7 @@
                         </section>
                         <!-- Texto de Menajes -->
                         <div class="row" id="message_text">
-						</div>
+        				</div>
 					</div>
 				</div>
 			</div>

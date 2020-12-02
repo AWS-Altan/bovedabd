@@ -31,7 +31,6 @@ class Baja_user_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        //return view('users.bajauser', ['menu' => $menu] );
         return view('Users.bajauser')-> with('menu',$menu);
     } //index
 
@@ -43,7 +42,46 @@ class Baja_user_Controller extends BaseController
                 'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
     } //login
 
+    public function delete_user()
+    {
 
+        loginfo('Borrado de usuario');
+        // Escribo los datos de alta
+        loginfo('type:' . request()->type .
+                ', value: ' . request()->value);
+
+        try {
+                //consulta
+                $boveda_user =  Vwuser::where('email','=',request()->value)->forceDelete();
+                //$boveda_user->forceDelete();
+
+
+                foreach ($boveda_user as $user_bob) {
+                    $response = json_encode(['description' => 'NOK',
+                                  'statusCode' => 400,
+                    ]);//json encode
+
+                } //for each
+
+                    $response = json_encode(['description' => 'ok',
+                                  'statusCode' => 200
+
+                    ]);//json encode
+
+
+
+
+            } catch (\Exception $e) {
+                loginfo('Error al consultar el usuario', [ $e->getMessage() ]);
+                $response = json_encode(['description' => 'nok',
+                                  'statusCode' => 300
+                    ]);//json encode
+                return $response;
+            } //Try/Catch
+
+            //regreso respuesta
+        return $response;
+    }//delete_user
 
 
 } //Baja_user_Controller

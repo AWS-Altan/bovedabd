@@ -74,7 +74,8 @@ class Alta_user_Controller extends BaseController
                 ' id reesponsable:' . request()->send_id_responable .
                 ' id solicitante:' . request()->send_id_solicitante .
                 ' id credor:' . request()->send_id_createdby .
-                ' creador:' . request()->send_createdby);
+                ' creador:' . request()->send_createdby .
+                ' telefono:' . request()->send_Telefono);
         //Inserto al log de la base
         Vwlogs::create([
                         "vwuser_id" => app('auth')->user()->id,
@@ -83,14 +84,28 @@ class Alta_user_Controller extends BaseController
                         "action_low" => 'test2',
                         "resoponse_low" => 'test3'
                     ]);
+        //Escribo al log
+        loginfo('inserte en logs');
+
+        //traigo el maximo
+        try{
+            $max_id = Vwuser::max('id');
+            loginfo('Valor max');
+            loginfo($max_id);
+            $max_id++;
+        }catch (Exception $e) {
+
+        }
+
         //Realizo insercion en el Catalogo
         try {
-                Vwuser::create([
+                $exception = Vwuser::create([
+                        "id" => $max_id,
                         "name" => request()->send_username,
                         "vwrole_id" => "1",
                         "email" => request()->send_email,
                         "password" => Hash::make( request()->send_password),
-                        "phone" => "55906438",
+                        "phone" => request()->send_Telefono,
                         "active" => "0",
                         // "MVNO_ID" => NULL,
                         "last_session_id" => session()->get('idsession'),
@@ -102,14 +117,22 @@ class Alta_user_Controller extends BaseController
                         "id_solicitante" => request()->send_id_createdby
 
                 ]); //Insercion
+
+                //Escribo al log
+                loginfo('inserte usuario');
+
                 $response = json_encode(['description' => 'ok',
                                   'statusCode' => 200
                     ]);//json encode
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 loginfo('Error al dar de alta el usuario', [ $e->getMessage() ]);
-                $response = json_encode(['description' => 'ok',
-                                  'statusCode' => 200
+                $response = json_encode(['description' => 'NOk',
+                                  'statusCode' => 400
                     ]);//json encode
+
+                //Escribo al log
+                loginfo('Error en insercion');
+                loginfo($e->getMessage());
             } //Try/Catch
 
             //regreso respuesta

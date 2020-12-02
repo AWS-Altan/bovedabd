@@ -203,7 +203,7 @@
         $('#err_msg_ID_Nivel' ).empty();
         $('#err_msg_ID_Responsable' ).empty();
         $('#err_msg_ID_Solicitante' ).empty();
-
+        $('#err_msg_Telefono' ).empty();
 
 
         // Inicio Validaciones de campos
@@ -255,7 +255,8 @@
                  'send_id_responable'	: $('#cmd_ID_Responsable').val(),
 				 'send_id_solicitante' 	: $('#cmd_ID_Solicitante').val(),
                  'send_id_createdby'   	: "{{ app('auth')->user()->id }}",
-				 'send_createdby'    	: "{{ app('auth')->user()->email }}"
+                 'send_createdby'    	: "{{ app('auth')->user()->email }}",
+                 'send_Telefono'        : $('#cmd_Telefono').val()
 			}
 		})
         .done(function(response)
@@ -266,7 +267,7 @@
         .fail(function()
         {
 	        // $('#message').empty();
-			$('#message').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario Boveda </label>');
+			$('#message_text').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario Boveda </label>');
 	        $.unblockUI();
 	    })
         .always(function()
@@ -274,20 +275,29 @@
             if ( obj2.statusCode!= null && obj2.statusCode!=200 )
             {
 				// $('#message').empty();
-				$('#message').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
+				$('#message_text').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
 				$.unblockUI();
             }else
             {
 			    $('#validar').hide();
 				$('#finish').hide();
 				//$('#message').empty();
-				$('#message').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+                $('#message_text').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+                $('#cmd_Mail_user').val("");
+				$('#cmd_password').val("");
+				$('#cmd_NombreAlta').val("");
+				$('#cmd_ID_company').val("");
+				$('#cmd_ID_Estado').val("");
+				$('#cmd_ID_Nivel').val("");
+                $('#cmd_ID_Responsable').val("");
+				$('#cmd_ID_Solicitante').val("");
+                $('#cmd_Telefono').val("");
 				$.unblockUI();
             }//else
 		})
         /// a aqui
 
-        $('#message').append('voy finish B ');
+        $('#message_text').append('voy finish B ');
         //$.unblockUI();
 
     } //finished
@@ -302,14 +312,14 @@
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-            $('#message').append('voy 1');
+            $('#message_text').append('voy 1');
 
         	return {
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Alta');
 
-                    //$('#message').empty();
+                    $('#message_text').empty();
 				    $('#message_text').append('voy 2');
 				    //initializePlugins2();
 

@@ -43,7 +43,40 @@ class Deactive_user_Controller extends BaseController
                 'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
     }
 
+    public function user_deactive()
+    {
+        loginfo('Activo usuario');
+        // Escribo los datos de alta
+        loginfo('type:' . request()->type .
+                ', value: ' . request()->value);
 
+        try {
+                $exception = Vwuser::where('email', request()->value)
+                ->update([
+                        'active_user' => 0
+                ]);
+
+                //Escribo al log
+                loginfo('actualice usuario');
+
+                $response = json_encode(['description' => 'OK',
+                                  'statusCode' => 200
+                    ]);//json encode
+
+
+
+
+            } catch (\Exception $e) {
+                loginfo('Error al actualizar el usuario', [ $e->getMessage() ]);
+                $response = json_encode(['description' => 'NOK',
+                                  'statusCode' => 400
+                    ]);//json encode
+                return $response;
+            } //Try/Catch
+
+            //regreso respuesta
+        return $response;
+    }//user_active
 
 
 }

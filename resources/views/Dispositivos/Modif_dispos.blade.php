@@ -31,12 +31,6 @@
 
                             </form>
                         </section>
-                        <h3><span class="head-font capitalize-font">Confirmación Cambio</span></h3>
-						<section>
-                            <form id="step_tree">
-
-                            </form>
-                        </section>
                         <!-- Texto de Menajes -->
                         <div class="row" id="message_text">
         				</div>

@@ -64,16 +64,27 @@ class Alta_access_Controller extends BaseController
         //Escribo al log
         loginfo('Alta de usuario');
         // Escribo los datos de alta
-        loginfo(' mail:' . request()->send_email .
-                ' password: ' . request()->send_password .
-                ' usuario: ' . request()->send_username .
-                ' id company:' . request()->send_id_company .
-                ' id estado:' . request()->send_id_estado .
-                ' id nivel:' . request()->send_id_nivel .
-                ' id reesponsable:' . request()->send_id_responable .
-                ' id solicitante:' . request()->send_id_solicitante .
-                ' id credor:' . request()->send_id_createdby .
-                ' creador:' . request()->send_createdby);
+        loginfo('ip:' . request()-> send_ip .
+                'host:' . request()->send_host .
+                'idtipo_disp:' . request()->send_idtipodisp .
+                'idgrupo:' . request()->send_idgrupo .
+                'usuario:' . request()->send_usuario .
+                'idtipo:' . request()->send_idtipo .
+                'id_status:' . request()->send_idstatus .
+                'idperfil:' . request()->send_idperfil .
+                'flag_rota:' . request()->send_idflag .
+                'id_solicitante:' . request()->send_idsolicitante .
+                'fecha_alta:' . request()->send_fechaalta .
+                'fecha_rota:' . request()->send_fecharota .
+                'fecha_termino:' . request()->send_fechaterm );
+
+
+
+
+
+
+
+
         //Inserto al log de la base
         Vwlogs::create([
                         "vwuser_id" => app('auth')->user()->id,
@@ -82,24 +93,44 @@ class Alta_access_Controller extends BaseController
                         "action_low" => 'test2',
                         "resoponse_low" => 'test3'
                     ]);
+
+
+        //Escribo al log
+        loginfo('inserte en logs');
+
+        //traigo el maximo
+        try{
+            $max_id = Vwuser::max('id_disp');
+            loginfo('Valor max');
+            loginfo($max_id);
+            $max_id++;
+        }catch (Exception $e) {
+
+        }
+
         //Realizo insercion en el Catalogo
         try {
                 Vwuser::create([
-                        "name" => request()->send_username,
-                        "vwrole_id" => "1",
-                        "email" => request()->send_email,
-                        "password" => Hash::make( request()->send_password),
-                        "phone" => "55906438",
-                        "active" => "0",
-                        "last_session_id" => session()->get('idsession'),
-                        "created_by" => request()->send_id_createdby,
-                        "id_company" => request()->send_id_company,
-                        "id_estado" => request()->send_id_estado,
-                        "nivel" => request()->send_id_nivel,
-                        "idresp" => request()->send_id_responable,
-                        "id_solicitante" => request()->send_id_createdby
+                        "id_disp" => $max_id,
+                        "ip" => request()-> send_ip,
+                        "host" => request()->send_host,
+                        "idtipo_disp" => request()->send_idtipodisp,
+                        "idgrupo" => request()->send_idgrupo,
+                        "usuario" => request()->send_usuario,
+                        "idtipo" => request()->send_idtipo,
+                        "id_status" => request()->send_idstatus,
+                        "idperfil" => request()->send_idperfil,
+                        "flag_rota" => request()->send_idflag,
+                        "id_solicitante" => request()->send_idsolicitante,
+                        "fecha_alta" => request()->send_fechaalta,
+                        "fecha_rota" => request()->send_fecharota,
+                        "fecha_termino" => request()->send_fechaterm
 
                 ]); //Insercion
+
+                //Escribo al log
+                loginfo('inserté usuario');
+
                 $response = json_encode(['description' => 'ok',
                                   'statusCode' => 200
                     ]);//json encode
@@ -108,6 +139,9 @@ class Alta_access_Controller extends BaseController
                 $response = json_encode(['description' => 'ok',
                                   'statusCode' => 200
                     ]);//json encode
+                //Escribo al log
+                loginfo('Error en insercion');
+                loginfo($e->getMessage());
             } //Try/Catch
 
             //regreso respuesta

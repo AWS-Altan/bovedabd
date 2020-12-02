@@ -22,6 +22,7 @@ class Vwuser extends Model
 
     //programación para el insert
     protected $fillable = [
+        "id",
         "name" ,
         "vwrole_id",
         "MVNO_ID",

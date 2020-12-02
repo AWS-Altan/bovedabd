@@ -51,8 +51,8 @@ class General_User_Controller extends BaseController
 
             } catch (\Exception $e) {
                 loginfo('Error al consultar el usuario', [ $e->getMessage() ]);
-                $response = json_encode(['description' => 'nok',
-                                  'statusCode' => 300
+                $response = json_encode(['description' => 'NOK',
+                                  'statusCode' => 400
                     ]);//json encode
                 return $response;
             } //Try/Catch
@@ -64,4 +64,4 @@ class General_User_Controller extends BaseController
     } //search_user
 
 
-}
+} //General_User_Controller
