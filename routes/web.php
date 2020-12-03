@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'access', 'namespace' => 'Access'], function () {
         // Menu de Alta de usuario
         Route::resource('/Alta_access', 'Alta_access_Controller', ['names' => ['index' => 'Access.alta_user.index']])->only(['index']);
-        //Route::get('/call/Alta_access', 'Alta_user_Controller@new_user')->name('Users.call.alta_user');
+        Route::get('/call/Alta_access', 'Alta_access_Controller@new_user')->name('Users.call.alta_access');
         // Menu de baja de usuario
         Route::resource('/Baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);
         // Menu de Modificación de  de usuario

@@ -225,7 +225,7 @@
         //Mando los datos para ejecutar, construllo el Json
         $.ajax(
         {
-			url: "{{ route('Users.call.alta_user') }}",
+			url: "{{ route('Users.call.alta_access') }}",
 			type: 'GET',
 		 	data: {
                  'send_ip'			: $('#cmd_IP_Host').val(),

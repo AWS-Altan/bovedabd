@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates, Vwlogs};
+use App\Entities\{Dispositivos, mvno, Vwcredential, VwfileTemplates, Vwlogs};
 
 use Hash; //para el password
 
@@ -73,10 +73,10 @@ class Alta_access_Controller extends BaseController
                 'id_status:' . request()->send_idstatus .
                 'idperfil:' . request()->send_idperfil .
                 'flag_rota:' . request()->send_idflag .
-                'id_solicitante:' . request()->send_idsolicitante .
-                'fecha_alta:' . request()->send_fechaalta .
-                'fecha_rota:' . request()->send_fecharota .
-                'fecha_termino:' . request()->send_fechaterm );
+                'id_solicitante:' . request()->send_idsolicitante );
+                //'fecha_alta:' . request()->send_fechaalta .
+                //'fecha_rota:' . request()->send_fecharota .
+                //'fecha_termino:' . request()->send_fechaterm );
 
 
 
@@ -100,7 +100,7 @@ class Alta_access_Controller extends BaseController
 
         //traigo el maximo
         try{
-            $max_id = Vwuser::max('id_disp');
+            $max_id = Dispositivos::max('id_disp');
             loginfo('Valor max');
             loginfo($max_id);
             $max_id++;
@@ -110,7 +110,7 @@ class Alta_access_Controller extends BaseController
 
         //Realizo insercion en el Catalogo
         try {
-                Vwuser::create([
+                Dispositivos::create([
                         "id_disp" => $max_id,
                         "ip" => request()-> send_ip,
                         "host" => request()->send_host,
@@ -121,10 +121,10 @@ class Alta_access_Controller extends BaseController
                         "id_status" => request()->send_idstatus,
                         "idperfil" => request()->send_idperfil,
                         "flag_rota" => request()->send_idflag,
-                        "id_solicitante" => request()->send_idsolicitante,
-                        "fecha_alta" => request()->send_fechaalta,
-                        "fecha_rota" => request()->send_fecharota,
-                        "fecha_termino" => request()->send_fechaterm
+                        "id_solicitante" => request()->send_idsolicitante
+                        //"fecha_alta" => request()->send_fechaalta,
+                        //"fecha_rota" => request()->send_fecharota,
+                        //"fecha_termino" => request()->send_fechaterm
 
                 ]); //Insercion
 

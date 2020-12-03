@@ -23,7 +23,7 @@ class Dispositivos extends Model
 
     //programación para el insert
     protected $fillable = [
-        "id_disp"
+        "id_disp",
         "ip",
         "host",
         "idtipo_disp",
