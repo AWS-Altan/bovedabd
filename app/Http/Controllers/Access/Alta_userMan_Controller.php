@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Dispositivos, Vwcredential, VwfileTemplates, Vwlogs};
+use App\Entities\{Usermana, Vwcredential, VwfileTemplates, Vwlogs};
 
 use Hash; //para el password
 
@@ -25,7 +25,7 @@ use Carbon\Carbon;
 /*******************************
  * Controlador de Alta de usuario
 ********************************/
-class Alta_access_Controller extends BaseController
+class Alta_userMan_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
     /*******************************
@@ -38,7 +38,7 @@ class Alta_access_Controller extends BaseController
         if ( isset( $menu[2] ) )
             return redirect()->route('home.index');
 
-        return view('Access.altauser')-> with('menu',$menu); // test 2
+        return view('Access.altauserman')-> with('menu',$menu); // test 2
     } // index
 
     /****************************
@@ -64,24 +64,18 @@ class Alta_access_Controller extends BaseController
         //Escribo al log
         loginfo('Alta de usuario');
         // Escribo los datos de alta
-        loginfo('ip: ' . request()-> send_ip .
-                'host: ' . request()->send_host .
-                'idtipo_disp: ' . request()->send_idtipodisp .
-                'idgrupo: ' . request()->send_idgrupo .
-                'usuario: ' . request()->send_usuario .
-                'idtipo: ' . request()->send_idtipo .
-                'id_status: ' . request()->send_idstatus .
-                'idperfil: ' . request()->send_idperfil .
-                'flag_rota: ' . request()->send_idflag .
-                'id_solicitante: ' . request()->send_idsolicitante );
-                //'fecha_alta:' . request()->send_fechaalta .
-                //'fecha_rota:' . request()->send_fecharota .
-                //'fecha_termino:' . request()->send_fechaterm );
+        loginfo(
+                    'nombre: ' . request()->send_name .
+                    'appellido pat: ' . request()->send_apppat .
+                    'appellido mat:' . request()->send_appmat .
+                    'telefono: ' . request()->send_phone .
+                    'correo:' . request()->send_mail
+            );
 
         //Inserto al log de la base
         Vwlogs::create([
                         "vwuser_id" => app('auth')->user()->id,
-                        "actions" => 'Alta de usaurio',
+                        "actions" => 'Alta de usuario',
                         "responses" => 'test',
                         "action_low" => 'test2',
                         "resoponse_low" => 'test3'
@@ -93,7 +87,7 @@ class Alta_access_Controller extends BaseController
 
         //traigo el maximo
         try{
-            $max_id = Dispositivos::max('id_disp');
+            $max_id = Usermana::max('iduser_bv');
             loginfo('Valor max');
             loginfo($max_id);
             $max_id++;
@@ -101,24 +95,22 @@ class Alta_access_Controller extends BaseController
 
         }
 
+
         //Realizo insercion en el Catalogo
         try {
-                $status_insert = Dispositivos::create([
-                        "id_disp" => $max_id,
-                        "ip" => request()-> send_ip,
-                        "host" => request()->send_host,
-                        "idtipo_disp" => intval (request()->send_idtipodisp),
-                        "idgrupo" => intval(request()->send_idgrupo),
-                        "usuario" => request()->send_usuario,
-                        "idtipo" => intval(request()->send_idtipo),
-                        "id_status" => intval(request()->send_idstatus),
-                        "idperfil" => intval(request()->send_idperfil),
-                        "flag_rota" => intval(request()->send_idflag),
-                        "id_solicitante" => intval(request()->send_idsolicitante)
-                        //"fecha_alta" => request()->send_fechaalta,
-                        //"fecha_rota" => request()->send_fecharota,
-                        //"fecha_termino" => request()->send_fechaterm
-
+                $status_insert = Usermana::create([
+                    "iduser_bv" => $max_id,
+                    "nombre" => request()->send_name,
+                    "paterno" => request()->send_apppat,
+                    "materno" => request()->send_appmat,
+                    "msisdn" => request()->send_phone,
+                    //"id_company" =>
+                    "mail" => request()->send_mail
+                    //"fecha_alta" =>
+                    //"fecha_termino" =>
+                    //"id_estado"v
+                    //"nivel" =>
+                    //"idresp" =>
                 ]); //Insercion
 
                 //Escribo al log

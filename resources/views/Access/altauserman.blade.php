@@ -16,133 +16,78 @@
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
                                     <div class="panel-heading">
-    								Información del HOST
+    								Datos del Usuario
                                     </div>
                                     <!-- despues del header de la seccion -->
                                     <div class="card-body">
-                                        <!-- Campo de IP de Usuario -->
+                                        <!-- Campo de Nombre de usuario -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Nombre del Usuario</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="3" class="form-control" id="cmd_name" placeholder="Ingrese el nombre del usuario" data-error="Valor inválido" maxlength="50">
+														<div class="help-block with-errors" id="err_msg_name"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de Apellido Paterno -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Apellido Paterno</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="3" class="form-control" id="cmd_app_pat" placeholder="Ingrese el Apellido Paterno" data-error="Valor inválido" maxlength="50">
+														<div class="help-block with-errors" id="err_msg_app_pat"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de Apellido Materno -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Apelldo Materno</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="3" class="form-control" id="cmd_app_mat" placeholder="Ingrese el Apellido Materno" data-error="Valor inválido" maxlength="50">
+														<div class="help-block with-errors" id="err_msg_app_mat"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de Telefono de Usuario -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
                                                     <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">IP de Host</label>
+												        <label class="help-block text-left">Número Telefonico</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_IP_Host" placeholder="Ingrese La IP del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_IP"></div>
+														<input type="text" data-minlength="70" class="form-control" id="cmd_Telefono" placeholder="Ingrese el Telefono del usuario" data-error="Valor inválido" maxlength="30">
+													    <div class="help-block with-errors" id="err_msg_Telefono"></div>
 												    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Host -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Host</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Host" placeholder="Ingrese el nombre del host" data-error="Valor inválido" maxlength="150">
-														<div class="help-block with-errors" id="err_msg_host"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de tipo de dispositivo -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Tipo Dispositivo</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_tipo_disp" placeholder="Ingrese el tipo de dispositivo" data-error="Valor inválido" maxlength="150">
-														<div class="help-block with-errors" id="err_msg_tipo_disp"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /panel1 -->
-                                <div class="panel panel-default">
-                                    <!-- Header Subseccion -->
-                                    <div class="panel-heading">
-    								Información Usuario
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- Campo de Grupo de Usuario -->
+                                        <!-- Campo de Correo de usuario -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
                                                     <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Grupo</label>
+												        <label class="help-block text-left">Correo Usuario</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Grupo" placeholder="Ingrese grupo del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_grupo"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de Nombre de Usuario -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Nombre de Usuario</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre Completo del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_NombreAlta"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de Tipo de Usuario -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Tipo de Usuario</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_tipo_user" placeholder="Ingrese el tipo del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_tip_user"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de Perfil -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Perfil</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Perfil" placeholder="Ingrese el Perfil del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_Perfil"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de Rotación -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Rotación de PAsssword</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Rot_Pass" placeholder="Rotación de Pass" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_Rot_Pass"></div>
+														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del usuario" data-error="Valor inválido" maxlength="50">
+													    <div class="help-block with-errors" id="err_msg_Mail_user"></div>
 												    </div>
                                                 </div>
                                             </div>
@@ -175,16 +120,13 @@
 
 
         // Limpio los mensajes de Error
-        // $('#message' ).empty();
+        $('#message_text' ).empty();
 
-        $('err_msg_IP' ).empty();
-        $('err_msg_host' ).empty();
-        $('err_msg_tipo_disp' ).empty();
-        $('err_msg_grupo' ).empty();
-        $('err_msg_NombreAlta' ).empty();
-        $('err_msg_tip_user' ).empty();
-        $('err_msg_Perfil' ).empty();
-        $('err_msg_Rot_Pass' ).empty();
+        $('err_msg_name' ).empty();
+        $('err_msg_app_pat' ).empty();
+        $('err_msg_app_mat' ).empty();
+        $('err_msg_Mail_user' ).empty();
+        $('err_msg_Telefono' ).empty();
 
 
 /*
@@ -225,23 +167,14 @@
         //Mando los datos para ejecutar, construllo el Json
         $.ajax(
         {
-			url: "{{ route('Users.call.alta_access') }}",
+			url: "{{ route('Access.call.alta_userman') }}",
 			type: 'GET',
 		 	data: {
-                 'send_ip'			: $('#cmd_IP_Host').val(),
-                 'send_host'		: $('#cmd_Host').val(),
-				 'send_idtipodisp'	: $('#cmd_NombreAlta').val(),
-				 'send_idgrupo'		: $('#cmd_ID_company').val(),
-                 'send_usuario'	    : $('#cmd_ID_Estado').val(),
-                 'send_idtipo'		: $('#cmd_ID_Nivel').val(),
-                 'send_idstatus'	: $('#cmd_ID_Responsable').val(),
-                 'send_idperfil' 	: $('#cmd_ID_Solicitante').val(),
-                 'send_idflag'      : $('#cmd_ID_Solicitante').val(),
-                 'id_solicitante'   : "{{ app('auth')->user()->id }}",
-                 'send_fechaalta'   : "",
-                 'send_fecharota'   : "",
-                 'send_fechaterm'   : ""
-
+                 'send_name'		: $('#cmd_name').val(),
+                 'send_apppat'		: $('#cmd_app_pat').val(),
+				 'send_appmat'	    : $('#cmd_app_mat').val(),
+				 'send_phone'		: $('#cmd_Telefono').val(),
+                 'send_mail'	    : $('#cmd_Mail_user').val(),
 			}
 		})
         .done(function(response)

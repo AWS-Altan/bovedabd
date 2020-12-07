@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
+use App\Exceptions\CustomException;
 
 use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates};
 use Illuminate\Http\Request;
@@ -49,6 +50,7 @@ class General_User_Controller extends BaseController
                 } //for each
 
 
+
             } catch (\Exception $e) {
                 loginfo('Error al consultar el usuario', [ $e->getMessage() ]);
                 $response = json_encode(['description' => 'NOK',
@@ -56,6 +58,10 @@ class General_User_Controller extends BaseController
                     ]);//json encode
                 return $response;
             } //Try/Catch
+
+
+
+
 
             //regreso respuesta
         return $response;

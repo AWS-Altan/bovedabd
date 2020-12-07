@@ -28,7 +28,7 @@
                         <h3><span class="head-font capitalize-font">Cambio de información</span></h3>
 						<section>
                             <form id="step_two">
-<!-- Contenedor -->
+                            <!-- Contenedor -->
                             <form id="form_tabs" action="#">
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->

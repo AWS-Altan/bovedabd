@@ -15,10 +15,11 @@ class Dispositivos extends Model
      * @var string
      */
     protected $table = 'tbl_ctl_user_dispositivos';
+    public $timestamps = false;
 
     public function Dispositivos()
     {
-        return $this->belongsTo(Userplat::class, 'id_disp');
+        return $this->belongsTo(Dispositivos::class, 'id_disp');
     }
 
     //programación para el insert

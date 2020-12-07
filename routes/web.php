@@ -32,6 +32,19 @@ Route::group(['middleware' => ['auth']], function () {
     /* Modificación Boveda
         Controladores usados en los Menus de Boveda por cada una de sus separaciones
     */
+    Route::group(['prefix' => 'batch', 'namespace' => 'Batch'], function () {
+
+        // Menu de Reporte Batch
+        Route::resource('/Baja_access', 'Report_Batch_Controller', ['names' => ['index' => 'Batch.Report.index']])->only(['index']);
+        Route::get('/call/userdisp_search', 'Report_Batch_Controller@search_data')->name('batch.call.userdisp_search');
+
+        // Menu de Alta Masiva usurios
+        Route::resource('/Massive_access', 'Massive_Batch_Controller', ['names' => ['index' => 'Batch.Masive_SignIn.index']])->only(['index']);
+    }); //Route
+
+
+
+
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
 
         // General Funcion de Busqueda de usaurio
@@ -71,6 +84,15 @@ Route::group(['middleware' => ['auth']], function () {
     }); //Route
 
     Route::group(['prefix' => 'access', 'namespace' => 'Access'], function () {
+
+        
+        // Menu de Alta de usuario Manager
+        Route::resource('/Manager_access', 'Alta_userMan_Controller', ['names' => ['index' => 'Access.alta_userman.index']])->only(['index']);
+        Route::get('/call/Manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
+
+        
+
+
         // Menu de Alta de usuario
         Route::resource('/Alta_access', 'Alta_access_Controller', ['names' => ['index' => 'Access.alta_user.index']])->only(['index']);
         Route::get('/call/Alta_access', 'Alta_access_Controller@new_user')->name('Users.call.alta_access');
