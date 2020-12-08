@@ -64,7 +64,7 @@
                         <!-- Alta usuarios -->
                         @if ( !isset( $menu[26] ) )
                             <li>
-                                <a href="{{ route('Access.alta_user.index') }}">
+                                <a href="{{ route('access.alta_user.index') }}">
                                     <div class="pull-left"><span class="right-nav-text">Alta Usuarios Dispositivos</span></div>
                                     <div class="clearfix"></div>
                                 </a>

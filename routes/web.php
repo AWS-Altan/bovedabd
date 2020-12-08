@@ -90,11 +90,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/Manager_access', 'Alta_userMan_Controller', ['names' => ['index' => 'Access.alta_userman.index']])->only(['index']);
         Route::get('/call/Manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
 
-        
+        Route::post('/call/catalogos', 'AltaAccessController@getCatalogosList')->name('access.call.catalogos');
 
 
         // Menu de Alta de usuario
-        Route::resource('/Alta_access', 'Alta_access_Controller', ['names' => ['index' => 'Access.alta_user.index']])->only(['index']);
+        Route::resource('/alta_access', 'AltaAccessController', ['names' => ['index' => 'access.alta_user.index']])->only(['index']);
         Route::get('/call/Alta_access', 'Alta_access_Controller@new_user')->name('Users.call.alta_access');
         // Menu de baja de usuario
         Route::resource('/Baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);

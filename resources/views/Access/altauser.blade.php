@@ -16,137 +16,218 @@
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
                                     <div class="panel-heading">
-    								Información del HOST
+    								Informaci&oacute;n del Dispositivo
                                     </div>
                                     <!-- despues del header de la seccion -->
                                     <div class="card-body">
-                                        <!-- Campo de IP de Usuario -->
+                                        <!--  -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
+                                                    <!-- Campo de IP de Usuario -->
                                                     <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
+                                                    <div class="col-sm-2 mb-20">
 												        <label class="help-block text-left">IP de Host</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_IP_Host" placeholder="Ingrese La IP del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="ipHost" placeholder="Ingrese La IP del usuario" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_msg_IP"></div>
 												    </div>
+
+                                                    <!-- Campo de Host -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Host</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <input type="text" data-minlength="10" class="form-control" id="nameHost" placeholder="Ingrese el nombre del host" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_host"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Host -->
+                                        <!--  -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Host</label>
+                                                    <!-- Campo de tipo de dispositivo -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Tipo Dispositivo</label>
                                                     </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Host" placeholder="Ingrese el nombre del host" data-error="Valor inválido" maxlength="150">
-														<div class="help-block with-errors" id="err_msg_host"></div>
-												    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <select id="tipoDispositivo" class="form-control">
+                                                        </select> 
+                                                    </div>
+
+                                                    <!-- Campo de Grupo de Usuario -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Grupo</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <select id="grupo" class="form-control">
+                                                        </select> 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de tipo de dispositivo -->
+
+                                        <!-- -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Tipo Dispositivo</label>
+                                                    <!-- Campo de usuario del dispositivo-->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Usuario</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_tipo_disp" placeholder="Ingrese el tipo de dispositivo" data-error="Valor inválido" maxlength="150">
-														<div class="help-block with-errors" id="err_msg_tipo_disp"></div>
-												    </div>
+                                                        <input type="text" data-minlength="10" class="form-control" id="usuarioDispositivo" placeholder="Ingrese el usuario del dispositivo" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_usurioDispositivo"></div>
+                                                    </div>
+                                                    <!-- Contraseña del usuario del dispositivo-->
+                                                    <div class="col-sm-2">
+                                                        <label class="help-block text-left">Contrase&ntilde;a</label>
+                                                    </div>                                          
+                                                    <div class="col-sm-3">
+                                                        <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese la contrase&ntilde;a del usuario" data-error="Valor inválido" maxlength="150">
+                                                            <div class="help-block with-errors" id="inputPasswordError"></div>
+                                                    </div>  
+                                                    <div class="col-sm-1 mb-20">
+                                                        <button id="mostrarContrasena" class="btn btn-primary btn-xs">Ver</button>
+                                                   </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!--  -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <!-- Campo de tipo de dispositivo -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Tipo Usuario</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <select id="tipoUsuario" class="form-control">
+                                                        </select> 
+                                                    </div>
+
+                                                    <!-- Vigencia del usuario -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Vigencia:</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <input type='date' id="txtDate" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <!-- Perfil -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Perfil</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <select id="perfil" class="form-control">
+                                                        </select> 
+                                                    </div>
+                                                    <!-- Solicitante -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left" id="solicitanteLabel">Solicitante</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <select id="solicitante" class="form-control">
+                                                        </select> 
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                                 <!-- /panel1 -->
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
                                     <div class="panel-heading">
-    								Información Usuario
+    								Informaci&oacute;n del Solicitante
                                     </div>
                                     <div class="card-body">
-                                        <!-- Campo de Grupo de Usuario -->
+                                        <!-- Nombre del solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Grupo</label>
+                                                    <div class="col-sm-2 mb-20">
+												        <label class="help-block text-left">Nombre</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Grupo" placeholder="Ingrese grupo del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_grupo"></div>
+														<input type="text" data-minlength="10" class="form-control" id="nombreSolicitante" placeholder="Ingrese el nombre del solicitante" data-error="Valor inválido" maxlength="150">
+													    <div class="help-block with-errors" id="err_msg_nombreSolicitante"></div>
 												    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Nombre de Usuario -->
+                                        <!--  -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Nombre de Usuario</label>
+                                                    
+                                                     <!-- Apellido paterno del solicitante -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Apellido Paterno</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre Completo del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_NombreAlta"></div>
-												    </div>
+                                                        <input type="text" data-minlength="10" class="form-control" id="paternoSolicitante" placeholder="Ingrese el apellido paterno del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_paternoSolicitante"></div>
+                                                    </div>
+                                                     <!-- Apellido materno del solicitante -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Apellido Materno</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <input type="text" data-minlength="10" class="form-control" id="maternoSolicitante" placeholder="Ingrese el apellido materno del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_maternoSolicitante"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Tipo de Usuario -->
+
+                                        <!--  -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Tipo de Usuario</label>
+                                                    
+                                                     <!-- Movil del solicitante -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">M&oacute;vil</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_tipo_user" placeholder="Ingrese el tipo del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_tip_user"></div>
-												    </div>
+                                                        <input type="text" data-minlength="10" class="form-control" id="movilSolicitante" placeholder="Ingrese el m&oacute; del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_movilSolicitante"></div>
+                                                    </div>
+                                                     <!-- mail del solicitante -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Mail</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <input type="text" data-minlength="10" class="form-control" id="mailSolicitante" placeholder="Ingrese el mail del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_mailSolicitante"></div>
+                                                    </div>
+                                                    <!-- organización del solicitante -->
+                                                    <div class="col-sm-2 mb-20">
+                                                        <label class="help-block text-left">Organizaci&oacute;n</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <input type="text" data-minlength="10" class="form-control" id="organizacionSolicitante" placeholder="Ingrese la organización del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_organizacionSolicitante"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Perfil -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Perfil</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Perfil" placeholder="Ingrese el Perfil del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_Perfil"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de Rotación -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Rotación de PAsssword</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Rot_Pass" placeholder="Rotación de Pass" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_Rot_Pass"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
 
@@ -181,10 +262,14 @@
         $('err_msg_host' ).empty();
         $('err_msg_tipo_disp' ).empty();
         $('err_msg_grupo' ).empty();
-        $('err_msg_NombreAlta' ).empty();
-        $('err_msg_tip_user' ).empty();
-        $('err_msg_Perfil' ).empty();
-        $('err_msg_Rot_Pass' ).empty();
+        $('err_msg_nombreSolicitante' ).empty();
+        
+        $('err_msg_paternoSolicitante').empty();
+        $('err_msg_maternoSolicitante').empty();
+        $('err_msg_usurioDispositivo' ).empty();
+        $('err_msg_movilSolicitante' ).empty();
+        $('err_msg_mailSolicitante' ).empty();
+        $('err_msg_organizacionSolicitante' ).empty();
 
 
 /*
@@ -228,14 +313,13 @@
 			url: "{{ route('Users.call.alta_access') }}",
 			type: 'GET',
 		 	data: {
-                 'send_ip'			: $('#cmd_IP_Host').val(),
-                 'send_host'		: $('#cmd_Host').val(),
-				 'send_idtipodisp'	: $('#cmd_NombreAlta').val(),
+                 'send_ip'			: $('#ipHost').val(),
+                 'send_host'		: $('#nameHost').val(),
+				 'send_idtipodisp'	: $('#nombresolicitante').val(),
 				 'send_idgrupo'		: $('#cmd_ID_company').val(),
                  'send_usuario'	    : $('#cmd_ID_Estado').val(),
                  'send_idtipo'		: $('#cmd_ID_Nivel').val(),
                  'send_idstatus'	: $('#cmd_ID_Responsable').val(),
-                 'send_idperfil' 	: $('#cmd_ID_Solicitante').val(),
                  'send_idflag'      : $('#cmd_ID_Solicitante').val(),
                  'id_solicitante'   : "{{ app('auth')->user()->id }}",
                  'send_fechaalta'   : "",
@@ -268,21 +352,23 @@
 				$('#finish').hide();
 				//$('#message').empty();
                 $('#message_text').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
-                $('#cmd_IP_Host').val("");
-                $('#cmd_Host').val("");
-                $('#cmd_tipo_disp').val("");
-                $('#cmd_Grupo').val("");
-                $('#cmd_NombreAlta').val("");
-                $('#cmd_tipo_user').val("");
-                $('#cmd_Perfil').val("");
-                $('#cmd_Rot_Pass').val("");
+                $('#ipHost').val("");
+                $('#nameHost').val("");
+                $('#usuarioDispositivo').val("");
+                $('#password').val("");
+                $('#nombreSolicitante').val("");
+                $('#paternoSolicitante').val("");
+                $('#maternoSolicitante').val("");
+                $('#movilSolicitante').val("");
+                $('#mailSolicitante').val("");
+                $('#organizacionSolicitante').val("");
 
 				$.unblockUI();
             }//else
 		})
         /// a aqui
 
-        $('#message_text').append('voy finish B ');
+        //$('#message_text').append('voy finish B ');
         //$.unblockUI();
 
     } //finished
@@ -293,6 +379,122 @@
     {
 
         // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
+
+        $( "#mostrarContrasena" ).click(function( event ) {
+                    event.preventDefault();
+                    $('#password').prop('type','text');  
+                    setTimeout( function(){
+                    $('#password').prop('type','password');         
+                    },5000);
+                      
+
+                    
+                      
+        });
+
+
+        bloqueo();
+        var data = {};
+        
+        data.mail= '{{app('auth')->user()->email}}';
+        
+        $.ajax({
+            url: "{{ route('access.call.catalogos') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(data)
+        })
+        .done(function(response) {
+            var obj = jQuery.parseJSON(response);
+            glob = obj; 
+            //console.log('offertas:');
+            console.log(obj);
+            $('#grupo').append(
+                $('<option></option>').val( '' ).html( 'Seleccionar Grupo')
+            );
+            $.each( obj.grupo, function(index) {
+                
+                $('#grupo').append(
+                    $('<option></option>').val( obj.grupo[index].id ).html( obj.grupo[index].descripcion + ' - '+ obj.grupo[index].descripcionConjunto )
+                );
+
+            }); 
+
+
+            $('#tipoDispositivo').append(
+                $('<option></option>').val( '' ).html( 'Seleccionar tipo de dispositivo')
+            );
+            $.each( obj.tipoDispositivo, function(index) {
+                
+                $('#tipoDispositivo').append(
+                    $('<option></option>').val( obj.tipoDispositivo[index].id ).html( obj.tipoDispositivo[index].tipo +' ' +obj.tipoDispositivo[index].vendor +' '+obj.tipoDispositivo[index].descripcion )
+                );
+
+            }); 
+
+
+            $('#tipoUsuario').append(
+                $('<option></option>').val( '' ).html( 'Seleccionar tipo de usuario')
+            );
+            $.each( obj.tipoUsuario, function(index) {
+                
+                $('#tipoUsuario').append(
+                    $('<option></option>').val( obj.tipoUsuario[index].id ).html( obj.tipoUsuario[index].descripcion + ' - ' +  obj.tipoUsuario[index].descripcionTecnologia)
+                );
+
+            }); 
+
+            if(obj.isManager==='true'){
+                $('#solicitante').append(
+                    $('<option></option>').val( '' ).html( 'Seleccionar solicitante')
+                );
+                $.each( obj.solicitante, function(index) {
+                    
+                    $('#solicitante').append(
+                        $('<option></option>').val( obj.solicitante[index].id ).html( obj.solicitante[index].mail  )
+                    );
+
+                }); 
+            }else{
+                $('#solicitante').hide();
+                $('#solicitanteLabel').hide();
+
+            }
+
+
+            $.unblockUI();
+            
+        })
+        .fail(function() {
+                $.unblockUI();
+            })
+        .always(function() {
+            //$.unblockUI();
+        });
+
+
+         $('#solicitante').on('change', function() {
+            if ( $('#solicitante').val()!=='' ){
+                //alert('Entra');
+                $.each( glob.solicitante, function(index) {
+                    
+                    if ( glob.solicitante[index].id==$('#solicitante').val() ){
+                        $('#nombreSolicitante').val( glob.solicitante[index].nombre );
+                        $('#paternoSolicitante').val( glob.solicitante[index].paterno );
+                        $('#maternoSolicitante').val( glob.solicitante[index].materno );
+                        $('#movilSolicitante').val( glob.solicitante[index].movil );
+                        $('#mailSolicitante').val( glob.solicitante[index].mail );
+                        $('#organizacionSolicitante').val( glob.solicitante[index].organizacion );
+                    }
+                }); 
+            }
+            //else{
+            //    alert('no');
+            //    $('#nombreSolicitante').val( '' );
+            //}
+            
+        }); 
+
 
         var Operations2 = function ()
         {
@@ -305,14 +507,14 @@
                     $( "#finish" ).text('Alta');
 
                     $('#message_text').empty();
-				    $('#message_text').append('voy 2');
-				    //initializePlugins2();
+				    
+                    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
                         $('#message_text').append('voy 4');
                     });
-                    $('#message_text').append('voy 3');
+                    
 		        }
 		    };
         }
