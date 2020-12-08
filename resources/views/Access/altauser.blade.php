@@ -124,14 +124,6 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    <!-- Perfil -->
-                                                    <div class="col-sm-2 mb-20">
-                                                        <label class="help-block text-left">Perfil</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20 select select-group" >
-                                                        <select id="perfil" class="form-control">
-                                                        </select> 
-                                                    </div>
                                                     <!-- Solicitante -->
                                                     <div class="col-sm-2 mb-20">
                                                         <label class="help-block text-left" id="solicitanteLabel">Solicitante</label>
@@ -500,7 +492,7 @@
         {
             //Inicio el comporatamiento de la ventana
             $('#message_text').append('voy 1');
-
+            $('#finish').hide();
         	return {
 		        init: function() {
 		        	$('#previous').hide();
