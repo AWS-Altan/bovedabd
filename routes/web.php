@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Menu de Alta de usuario
         Route::resource('/alta_access', 'AltaAccessController', ['names' => ['index' => 'access.alta_user.index']])->only(['index']);
-        Route::get('/call/Alta_access', 'Alta_access_Controller@new_user')->name('Users.call.alta_access');
+        Route::get('/call/alta-access', 'AltaAccessController@newUser')->name('access.call.alta-user');
         // Menu de baja de usuario
         Route::resource('/Baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);
         // Menu de Modificación de  de usuario

@@ -30,8 +30,8 @@
 												        <label class="help-block text-left">IP de Host</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="ipHost" placeholder="Ingrese La IP del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_IP"></div>
+														<input type="text" data-minlength="10" class="form-control" id="ipHost" placeholder="Ingrese la IP del usuario" data-error="Valor inválido" maxlength="150">
+													    <div class="help-block with-errors" id="inputIpHostError"></div>
 												    </div>
 
                                                     <!-- Campo de Host -->
@@ -40,7 +40,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="nameHost" placeholder="Ingrese el nombre del host" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_host"></div>
+                                                        <div class="help-block with-errors" id="inputNameHostError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,6 +56,7 @@
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="tipoDispositivo" class="form-control">
                                                         </select> 
+                                                        <div class="help-block with-errors" id="inputtipoDispositivoError"></div>
                                                     </div>
 
                                                     <!-- Campo de Grupo de Usuario -->
@@ -64,7 +65,8 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="grupo" class="form-control">
-                                                        </select> 
+                                                        </select>
+                                                        <div class="help-block with-errors" id="inputGrupoError"></div> 
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +82,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="usuarioDispositivo" placeholder="Ingrese el usuario del dispositivo" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_usurioDispositivo"></div>
+                                                        <div class="help-block with-errors" id="inputUsuarioDispositivoError"></div>
                                                     </div>
                                                     <!-- Contraseña del usuario del dispositivo-->
                                                     <div class="col-sm-2">
@@ -88,9 +90,9 @@
                                                     </div>                                          
                                                     <div class="col-sm-3">
                                                         <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese la contrase&ntilde;a del usuario" data-error="Valor inválido" maxlength="150">
-                                                            <div class="help-block with-errors" id="inputPasswordError"></div>
+                                                        <div class="help-block with-errors" id="inputPasswordError"></div>
                                                     </div>  
-                                                    <div class="col-sm-1 mb-20">
+                                                    <div class="col-sm-1">
                                                         <button id="mostrarContrasena" class="btn btn-primary btn-xs">Ver</button>
                                                    </div>
                                                 </div>
@@ -107,7 +109,8 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="tipoUsuario" class="form-control">
-                                                        </select> 
+                                                        </select>
+                                                        <div class="help-block with-errors" id="inputTipoUsuarioError"></div>  
                                                     </div>
 
                                                     <!-- Vigencia del usuario -->
@@ -116,6 +119,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <input type='date' id="txtDate" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                        <div class="help-block with-errors" id="inputTxtDateError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,7 +134,8 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="solicitante" class="form-control">
-                                                        </select> 
+                                                        </select>
+                                                        <div class="help-block with-errors" id="inputSolicitanteError"></div>  
                                                     </div>
 
                                                 </div>
@@ -156,8 +161,8 @@
 												        <label class="help-block text-left">Nombre</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="nombreSolicitante" placeholder="Ingrese el nombre del solicitante" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_nombreSolicitante"></div>
+														<input type="text" data-minlength="10" class="form-control" id="nombreSolicitante" placeholder="Ingrese el nombre del solicitante" data-error="Valor inválido" maxlength="150" readonly="true">
+													    <div class="help-block with-errors" id="nombreSolicitanteError"></div>
 												    </div>
                                                 </div>
                                             </div>
@@ -172,16 +177,16 @@
                                                         <label class="help-block text-left">Apellido Paterno</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="paternoSolicitante" placeholder="Ingrese el apellido paterno del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_paternoSolicitante"></div>
+                                                        <input type="text" data-minlength="10" class="form-control" id="paternoSolicitante" placeholder="Ingrese el apellido paterno del solicitante" data-error="Valor inválido" maxlength="150" readonly="true">
+                                                        <div class="help-block with-errors" id="paternoSolicitantError"></div>
                                                     </div>
                                                      <!-- Apellido materno del solicitante -->
                                                     <div class="col-sm-2 mb-20">
                                                         <label class="help-block text-left">Apellido Materno</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="maternoSolicitante" placeholder="Ingrese el apellido materno del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_maternoSolicitante"></div>
+                                                        <input type="text" data-minlength="10" class="form-control" id="maternoSolicitante" placeholder="Ingrese el apellido materno del solicitante" data-error="Valor inválido" maxlength="150" readonly="true">
+                                                        <div class="help-block with-errors" id="maternoSolicitanteError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,15 +202,15 @@
                                                         <label class="help-block text-left">M&oacute;vil</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="movilSolicitante" placeholder="Ingrese el m&oacute; del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_movilSolicitante"></div>
+                                                        <input type="text" data-minlength="10" class="form-control" id="movilSolicitante" placeholder="Ingrese el m&oacutevil; del solicitante" data-error="Valor inválido" maxlength="150" readonly="true">
+                                                        <div class="help-block with-errors" id="movilSolicitanteError"></div>
                                                     </div>
                                                      <!-- mail del solicitante -->
                                                     <div class="col-sm-2 mb-20">
                                                         <label class="help-block text-left">Mail</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="mailSolicitante" placeholder="Ingrese el mail del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <input type="text" data-minlength="10" class="form-control" id="mailSolicitante" placeholder="Ingrese el mail del solicitante" data-error="Valor inválido" maxlength="150" readonly="true">
                                                         <div class="help-block with-errors" id="err_msg_mailSolicitante"></div>
                                                     </div>
                                                     <!-- organización del solicitante -->
@@ -213,7 +218,7 @@
                                                         <label class="help-block text-left">Organizaci&oacute;n</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="organizacionSolicitante" placeholder="Ingrese la organización del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <input type="text" data-minlength="10" class="form-control" id="organizacionSolicitante" placeholder="Ingrese la organización del solicitante" data-error="Valor inválido" maxlength="150" readonly="true">
                                                         <div class="help-block with-errors" id="err_msg_organizacionSolicitante"></div>
                                                     </div>
                                                 </div>
@@ -224,8 +229,8 @@
                                 </div>
 
                                 <!-- Texto de Menajes -->
-                                <div class="row" id="message_text">
-								</div>
+                                <div class="row" id="message">
+                                </div>
                             </form>
 						</section>
 					</div>
@@ -246,46 +251,85 @@
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 
-
+        alert($('#password').val());
+        return false;
         // Limpio los mensajes de Error
-        // $('#message' ).empty();
-
-        $('err_msg_IP' ).empty();
-        $('err_msg_host' ).empty();
-        $('err_msg_tipo_disp' ).empty();
-        $('err_msg_grupo' ).empty();
-        $('err_msg_nombreSolicitante' ).empty();
+        $('#message, #inputIpHostError,#inputNameHostError, #inputUsuarioDispositivoError, #inputPasswordError,#inputTxtDateError' ).empty();
+       
+        if ( $('#ipHost' ).val()=='' ){
+            $('#inputIpHostError' ).empty();
+            $('#inputIpHostError').append('<label class="alert-danger mb-30 text-left">capturar la ip del host</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+        }
         
-        $('err_msg_paternoSolicitante').empty();
-        $('err_msg_maternoSolicitante').empty();
-        $('err_msg_usurioDispositivo' ).empty();
-        $('err_msg_movilSolicitante' ).empty();
-        $('err_msg_mailSolicitante' ).empty();
-        $('err_msg_organizacionSolicitante' ).empty();
-
-
-/*
-        // Inicio Validaciones de campos
-        // Valido que el campo del correo no este vacio
-        if ( $('#cmd_Mail_user' ).val()=='' ){
-			$('#err_msg_Mail_user' ).empty();
-			$('#err_msg_Mail_user').append('<label class="alert-danger mb-30 text-left">capture el correo del usuario a dar de alta</label>');
-			return false;
+        if ( !patrones['ip'].test($('#ipHost').val())) {
+            $('#message').empty();
+            $('#inputIpHostError').empty();
+            $('#inputIpHostError').append('<label class="alert-danger mb-30 text-left">formato no v&aacute;lido</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+             return false;
         }
 
-        // Valido que el formato del correo sea correcto
-        if (!patrones['email'].test($('#cmd_Mail_user').val())) {
-			$('#err_msg_Mail_user').empty();
-			$('#err_msg_Mail_user').append('<label class="alert-danger mb-30 text-left">El formato no es v&aacute;lido</label>');
-			return false;
+        if ( $('#nameHost' ).val()=='' ){
+            $('#inputNameHostError').empty();
+            $('#inputNameHostError').append('<label class="alert-danger mb-30 text-left">capturar nombre del host</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+        }
+        
+        if (  $('select#tipoDispositivo').prop('selectedIndex')<=0 ){
+            $('#inputtipoDispositivoError').empty();
+            $('#inputtipoDispositivoError').append('<label class="alert-danger mb-30 text-left">seleccionar un tipo de dispositivo</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
         }
 
-        // Valido que el Password no este Vacio
-        if ( $('#cmd_password' ).val()=='' ){
-			$('#err_msg_password').empty();
-			$('#err_msg_password').append('<label class="alert-danger mb-30 text-left">Capture la contrase&ntilde;a del nuevo usuario para acceder a Boveda</label>');
-			return false;
-        }*/
+        if ( $('select#grupo').prop('selectedIndex')<=0){
+            $('#inputGrupoError').empty();
+            $('#inputGrupoError').append('<label class="alert-danger mb-30 text-left">seleccionar un grupo</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+        }
+        
+        if ( $('#usuarioDispositivo' ).val()=='' ){
+            $('#inputUsuarioDispositivoError').empty();
+            $('#inputUsuarioDispositivoError').append('<label class="alert-danger mb-30 text-left">capturar el nuevo usuario del dispositivo</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+        }
+
+        if ( $('#password' ).val()=='' ){
+            $('#inputPasswordError').empty();
+            $('#inputPasswordError').append('<label class="alert-danger mb-30 text-left">capturar contrase&ntilde;a del nuevo usuario del dispositivo</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+        }
+
+        if( $('select#tipoUsuario').prop('selectedIndex')<=0){
+            $('#inputTipoUsuarioError').empty();
+            $('#inputTipoUsuarioError').append('<label class="alert-danger mb-30 text-left">seleccionar tipo de usuario</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+        }
+        if ( $('#txtDate' ).val()=='' ){
+            $('#inputTxtDateError').empty();
+            $('#inputTxtDateError').append('<label class="alert-danger mb-30 text-left">capturar fecha de vigencia del nuevo usuario</label>');
+            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+        }
+
+        if ( $('select#solicitante option').length >0 ) {
+
+            if ( $('select#solicitante').prop('selectedIndex')<=0 ){
+                $('#inputSolicitanteError').empty();
+                $('#inputSolicitanteError').append('<label class="alert-danger mb-30 text-left">seleccionar un solicitante</label>');
+                $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                return false;
+            }
+
+        }
+        
 
         //Realizo el bloqueo de la pantalla
 		$.blockUI({ message: 'Procesando ...',css: {
@@ -300,25 +344,33 @@
 
         ///de aqui
         //Mando los datos para ejecutar, construllo el Json
+        var  solicitanteValue ='';
+        if ( $('select#solicitante option').length > 0 ){
+            solicitanteValue =$('select#solicitante option:selected').val();
+
+        }else{
+            solicitanteValue="{{ app('auth')->user()->id }}";
+        }
+
+        var data = {};
+        
+        data.ipHost             = $('#ipHost').val();
+        data.nameHost           = $('#nameHost').val();
+        data.tipoDispositivo    = $('select#tipoDispositivo option:selected').val();
+        data.grupo              = $('select#grupo option:selected').val();
+        data.usuarioDispositivo = $('#usuarioDispositivo').val();
+        data.password           = $('#password').val()
+        data.tipoUsuario        = $('select#tipoUsuario option:selected').val();
+        data.txtDate            = $('#txtDate').val();
+        data.solicitante        = solicitanteValue;
+        data.idStatus           = '1';
+
+
         $.ajax(
         {
-			url: "{{ route('Users.call.alta_access') }}",
+			url: "{{ route('access.call.alta-user') }}",
 			type: 'GET',
-		 	data: {
-                 'send_ip'			: $('#ipHost').val(),
-                 'send_host'		: $('#nameHost').val(),
-				 'send_idtipodisp'	: $('#nombresolicitante').val(),
-				 'send_idgrupo'		: $('#cmd_ID_company').val(),
-                 'send_usuario'	    : $('#cmd_ID_Estado').val(),
-                 'send_idtipo'		: $('#cmd_ID_Nivel').val(),
-                 'send_idstatus'	: $('#cmd_ID_Responsable').val(),
-                 'send_idflag'      : $('#cmd_ID_Solicitante').val(),
-                 'id_solicitante'   : "{{ app('auth')->user()->id }}",
-                 'send_fechaalta'   : "",
-                 'send_fecharota'   : "",
-                 'send_fechaterm'   : ""
-
-			}
+		 	data: JSON.stringify(data)
 		})
         .done(function(response)
         {
@@ -327,40 +379,28 @@
         })
         .fail(function()
         {
-	        // $('#message').empty();
-			$('#message_text').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario  </label>');
+	        $('#message').empty();
+			$('#message').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario  </label>');
 	        $.unblockUI();
 	    })
         .always(function()
         {
-            if ( obj2.statusCode!= null && obj2.statusCode!=200 )
+            if ( obj2.status!= null && obj2.status!='ok' )
             {
-				// $('#message').empty();
-				$('#message_text').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
+				$('#message').empty();
+				$('#message').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
 				$.unblockUI();
             }else
             {
-			    $('#validar').hide();
-				$('#finish').hide();
-				//$('#message').empty();
-                $('#message_text').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
-                $('#ipHost').val("");
-                $('#nameHost').val("");
-                $('#usuarioDispositivo').val("");
-                $('#password').val("");
-                $('#nombreSolicitante').val("");
-                $('#paternoSolicitante').val("");
-                $('#maternoSolicitante').val("");
-                $('#movilSolicitante').val("");
-                $('#mailSolicitante').val("");
-                $('#organizacionSolicitante').val("");
-
+			    $('#finish').hide();
+				$('#message').empty();
+                $('#message').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
 				$.unblockUI();
-            }//else
+            }
 		})
         /// a aqui
 
-        //$('#message_text').append('voy finish B ');
+        //$('#message').append('voy finish B ');
         //$.unblockUI();
 
     } //finished
@@ -374,12 +414,14 @@
 
         $( "#mostrarContrasena" ).click(function( event ) {
                     event.preventDefault();
-                    $('#password').prop('type','text');  
+                    var dPassword=atob( $('#password').val() );
+                    $('#password').val(dPassword);
+                    $('#password').prop('type','text'); 
                     setTimeout( function(){
                     $('#password').prop('type','password');         
                     },5000);
-                      
-
+                    var ePassword=btoa( $('#password').val() );  
+                    $('#password').val(ePassword);
                     
                       
         });
@@ -437,6 +479,10 @@
             }); 
 
             if(obj.isManager==='true'){
+
+                $('#solicitanteLabel').show();
+                $('#solicitante').show();
+
                 $('#solicitante').append(
                     $('<option></option>').val( '' ).html( 'Seleccionar solicitante')
                 );
@@ -448,6 +494,21 @@
 
                 }); 
             }else{
+
+                $.each( obj.solicitante, function(index) {
+                    
+                    
+                    if ( obj.solicitante[index].mail == "{{app('auth')->user()->email}}"){
+                        $('#nombreSolicitante').val( obj.solicitante[index].nombre );
+                        $('#paternoSolicitante').val( obj.solicitante[index].paterno );
+                        $('#maternoSolicitante').val( obj.solicitante[index].materno );
+                        $('#movilSolicitante').val( obj.solicitante[index].movil );
+                        $('#mailSolicitante').val( obj.solicitante[index].mail );
+                        $('#organizacionSolicitante').val( obj.solicitante[index].organizacion );
+                    }
+
+                }); 
+
                 $('#solicitante').hide();
                 $('#solicitanteLabel').hide();
 
@@ -465,7 +526,9 @@
         });
 
 
-         $('#solicitante').on('change', function() {
+
+
+        $('#solicitante').on('change', function() {
             if ( $('#solicitante').val()!=='' ){
                 //alert('Entra');
                 $.each( glob.solicitante, function(index) {
@@ -480,31 +543,159 @@
                     }
                 }); 
             }
-            //else{
-            //    alert('no');
-            //    $('#nombreSolicitante').val( '' );
-            //}
+            else{
+                $('#nombreSolicitante, #paternoSolicitante, #maternoSolicitante, #movilSolicitante, #mailSolicitante, #organizacionSolicitante').val( '' );
+            }
             
-        }); 
+        });
+
+        var initializePlugins2 = function initializePlugins2() {
+                
+                $("#ipHost").change(function( event ) {
+                    if ( !patrones['ip'].test($('#ipHost').val())) {
+                            $( '#finish' ).hide();
+                            $('#message').empty();
+                            $('#inputIpHostError').empty();
+                            $('#inputIpHostError').append('<label class="alert-danger mb-30 text-left">formato no v&aacute;lido</label>');
+                    }else{
+                        $('#inputIpHostError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+
+                });
+
+                $("#nameHost").change(function( event ) {
+                    if ( $('#nameHost' ).val()=='' ){
+                        $('#inputNameHostError').empty();
+                        $('#inputNameHostError').append('<label class="alert-danger mb-30 text-left">capturar nombre del host</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                    }else{
+                        $('#inputNameHostError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+
+                });
+
+                
+                $("#tipoDispositivo").change(function( event ) {
+                    if ( $('select#tipoDispositivo' ).prop('selectedIndex')<=0 ){
+                        $('#inputtipoDispositivoError').empty();
+                        $('#inputtipoDispositivoError').append('<label class="alert-danger mb-30 text-left">seleccionar un tipo de dispositivo</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                    }else{
+                        $('#inputtipoDispositivoError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+
+                });
+
+                $('#grupo').change( function(event){
+                    if ( $('select#grupo').prop('selectedIndex')<=0 ){
+                        $('#inputGrupoError').empty();
+                        $('#inputGrupoError').append('<label class="alert-danger mb-30 text-left">seleccionar un grupo</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                    }else{
+                        $('#inputGrupoError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+                });
+
+
+                $("#usuarioDispositivo").change(function( event ) {
+                    if ( $('#usuarioDispositivo' ).val()=='' ){
+                        $('#inputUsuarioDispositivoError').empty();
+                        $('#inputUsuarioDispositivoError').append('<label class="alert-danger mb-30 text-left">capturar el nuevo usuario del dispositivo</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                    }else{
+                        $('#inputUsuarioDispositivoError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+
+                });
+
+                $("#password").change(function( event ) {
+
+                    if ( $('#password' ).val()=='' ){
+                        $('#inputPasswordError').empty();
+                        $('#inputPasswordError').append('<label class="alert-danger mb-30 text-left">capturar contrase&ntilde;a del nuevo usuario del dispositivo</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                    }else{
+                        $('#inputPasswordError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+
+                });
+
+                $('#tipoUsuario').change(function( event ){
+                    if ( $('select#tipoUsuario').prop('selectedIndex')<=0 ){
+                        $('#inputTipoUsuarioError').empty();
+                        $('#inputTipoUsuarioError').append('<label class="alert-danger mb-30 text-left">seleccionar un tipo de usuario</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+
+                    }else{
+                        $('#inputTipoUsuarioError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+                });
+
+                $("#txtDate").change(function( event ) {
+
+                    if ( $('#txtDate' ).val()=='' ){
+                        $('#inputTxtDateError').empty();
+                        $('#inputTxtDateError').append('<label class="alert-danger mb-30 text-left">capturar fecha de vigencia del nuevo usuario</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                    }else{
+                        var ePassword=btoa( $('#password').val() );  
+                        $('#password').val(ePassword);
+                        $('#inputTxtDateError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+
+                });
+
+                $('#solicitante').change(function( event ){
+                    if ( $('select#solicitante').prop('selectedIndex')<=0 ){
+                        $('#inputSolicitanteError').empty();
+                        $('#inputSolicitanteError').append('<label class="alert-danger mb-30 text-left">seleccionar un solicitante</label>');
+                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+
+                    }else{
+                        $('#inputSolicitanteError').empty();
+                        $('#message').empty();
+                        $( '#finish' ).show();
+                    }
+                });
+
+
+                $('#password').empty();
+
+        };
+
 
 
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-            $('#message_text').append('voy 1');
-            $('#finish').hide();
-        	return {
+            $('#message').append('voy 1');
+            return {
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Alta');
 
-                    $('#message_text').empty();
+                    $('#message').empty();
 				    
-                    //initializePlugins2();
+                    initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        $('#message_text').append('voy 4');
                     });
                     
 		        }
