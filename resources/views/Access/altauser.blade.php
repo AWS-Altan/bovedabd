@@ -253,7 +253,7 @@
 
         // Limpio los mensajes de Error
         $('#message, #inputIpHostError,#inputNameHostError, #inputUsuarioDispositivoError, #inputPasswordError,#inputTxtDateError' ).empty();
-       
+
         if ( $('#ipHost' ).val()=='' ){
             $('#inputIpHostError' ).empty();
             $('#inputIpHostError').append('<label class="alert-danger mb-30 text-left">capturar la ip del host</label>');
@@ -412,14 +412,15 @@
 
         $( "#mostrarContrasena" ).click(function( event ) {
                     event.preventDefault();
+                    var ePassword=$('#password').val(); 
                     var dPassword=atob( $('#password').val() );
                     $('#password').val(dPassword);
                     $('#password').prop('type','text'); 
                     setTimeout( function(){
-                    $('#password').prop('type','password');         
+                    $('#password').prop('type','password');
+                    $('#password').val(ePassword);         
                     },5000);
-                    var ePassword=btoa( $('#password').val() );  
-                    $('#password').val(ePassword);
+                    
                     
                       
         });
@@ -625,6 +626,8 @@
                     }else{
                         $('#inputPasswordError').empty();
                         $('#message').empty();
+                        var encodePassword=btoa( $('#password').val() );  
+                        $('#password').val(encodePassword);
                         $( '#finish' ).show();
                     }
 
@@ -650,8 +653,6 @@
                         $('#inputTxtDateError').append('<label class="alert-danger mb-30 text-left">capturar fecha de vigencia del nuevo usuario</label>');
                         $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
                     }else{
-                        var ePassword=btoa( $('#password').val() );  
-                        $('#password').val(ePassword);
                         $('#inputTxtDateError').empty();
                         $('#message').empty();
                         $( '#finish' ).show();
@@ -691,6 +692,11 @@
                     $('#message').empty();
 				    
                     initializePlugins2();
+
+                    if ( $('#password').val() !='' ){
+                        var encodePassword=btoa( $('#password').val() );  
+                        $('#password').val(encodePassword);
+                    }
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
