@@ -251,8 +251,6 @@
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 
-        alert($('#password').val());
-        return false;
         // Limpio los mensajes de Error
         $('#message, #inputIpHostError,#inputNameHostError, #inputUsuarioDispositivoError, #inputPasswordError,#inputTxtDateError' ).empty();
        
