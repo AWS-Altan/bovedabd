@@ -27,7 +27,7 @@
                 @if ( !isset( $menu[36] ) )
 					<li>
 						<a href="{{ route('Batch.Masive_SignIn.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Alta Masiva de Dispositivos</span></div>
+							<div class="pull-left"><span class="right-nav-text">Carga Masiva de Usuarios</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
@@ -139,7 +139,7 @@
                         @if ( !isset( $menu[34] ) )
                             <li>
                                 <a href="{{ route('Access.Masive_Sign_in.index') }}">
-                                    <div class="pull-left"><span class="right-nav-text">Alta Masiva de usuarios</span></div>
+                                    <div class="pull-left"><span class="right-nav-text">Carga Masiva</span></div>
                                     <div class="clearfix"></div>
                                 </a>
                             </li>

@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Menu de Reporte Batch
         Route::resource('/Baja_access', 'Report_Batch_Controller', ['names' => ['index' => 'Batch.Report.index']])->only(['index']);
-        Route::get('/call/userdisp_search', 'Report_Batch_Controller@search_data')->name('batch.call.userdisp_search');
+        Route::post('/call/userdisp_search', 'Report_Batch_Controller@search_data_api')->name('batch.call.userdisp_search');
 
         // Menu de Alta Masiva usurios
         Route::resource('/Massive_access', 'Massive_Batch_Controller', ['names' => ['index' => 'Batch.Masive_SignIn.index']])->only(['index']);

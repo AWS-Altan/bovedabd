@@ -99,18 +99,89 @@
             color: '#fff'
         } });
 
-        //Ejecuto la busqueda del dato
+        //Ejecuto la busqueda del dato, armo la busqueda
+        data = {
+		 		"type": tipo_campo,
+		 		"value": $('#cmd_searchdata').val()
+		 	}
+
+        $('#message_text').append('<label class="help-block mb-30 text-left"><strong>   sisfen Ejecuto Busqueda</strong>');
+
         $.ajax({
 			url: "{{ route('batch.call.userdisp_search') }}",
-			type: 'GET',
-		 	data: {
-		 		'type': tipo_campo,
-		 		'value': $('#cmd_searchdata').val()
-		 	}
+			type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(data)
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            //$('#message_text').append('sisfen voy 4');
+            data = jQuery.parseJSON(obj.data);
+
+            //Hago el manejo de la tabla
+            if (obj.status = "ok") {
+                $('table#Tbl_usrdisp').DataTable({
+                    "data": data,
+                    "pageLength": 10,
+                    "order": [
+                        [0, "desc"]
+                    ],
+                    "columns": [
+                        {
+                            //Campo de IP
+                            "data": "send_ip"
+                        },
+                        {
+                            //Campo de HOST
+                            "data": "send_host"
+                        },
+                        {
+                            //Tipo Dispositivo
+                            "data": "send_idtipodisp"
+                        },
+                        {
+                            //GRUPO
+                            "data": "send_idgrupo"
+                        },
+                        {
+                            //USUARIO
+                            "data": "send_usuario"
+                        },
+                        {
+                            //TIPO USUARIO
+                            "data": "send_idtipo"
+                        },
+                        {
+                            //PERFIL
+                            "data": "send_idperfil"
+                        },
+                        {
+                            //SOLICITANTE
+                            "data": "send_idsolicitante"
+                        },
+                        {
+                            //STATUS
+                            "data": "send_idstatus"
+                        },
+                        {
+                            //FECHA INGRESO
+                            "data": "send_fechaIngreso"
+                        }
+                    ],
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv'
+                    ]
+                });
+    		} else {
+                //$('#message_text').append('sisfen voy 3');
+		        $("#cmd_searchdata").css({'border' : '1px solid #f73414'});
+			    $("#message_text").css('color', '#f73414');
+			    $("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+
+            } //else
+
+
+
         })
         .fail(function() {
 	        	$('#message_text').empty();
@@ -128,77 +199,7 @@
         	}else{
                 // inserto los datos y configuro la siguiente pestaña
                 $('#message_text').append('sisfen voy ').append(obj.send_host);
-                //Hago el manejo de la tabla
-                    $('table#Tbl_usrdisp').DataTable({
-                        "data": obj,
-                        "pageLength": 10,
-                        "order": [
-                            [0, "desc"]
-                        ],
-                        "columns": [
-                            {
-                                //Campo de IP
-                                "data": "send_ip"
 
-                            },
-                            {
-                                //Campo de HOST
-                                "data": "send_host"
-                            },
-                            {
-                                //Tipo Dispositivo
-                                "data": "send_idtipodisp"
-                            },
-                            {
-                                //GRUPO
-                                "data": "send_idgrupo"
-                            },
-                            {
-                                //USUARIO
-                                "data": "send_usuario"
-                            },
-                            {
-                                //TIPO USUARIO
-                                "data": "send_idtipo"
-                            },
-                            {
-                                //PERFIL
-                                "data": "send_idperfil"
-                            },
-                            {
-                                //SOLICITANTE
-                                "data": "send_idsolicitante"
-                            },
-                            {
-                                //STATUS
-                                "data": "send_idstatus"
-                            },
-                            {
-                                //FECHA INGRESO
-                                "data": "send_fechaIngreso"
-                            },
-                            {
-                                //FECHA ACTUALIZACIÓN
-                                "data": "send_fechaupdate"
-                            },
-                            {
-                                //ARCHIVO
-                                "data": "send_file"
-                            },
-                            {
-                                //NO REINTENTO
-                                "data": "send_reintento"
-                            },
-                            {
-                                //MSG ERROR
-                                "data": "send_errorplat"
-                            }
-                        ],
-                        dom: 'Bfrtip',
-                        buttons: [
-                            'csv'
-                        ]
-                    });
 
                 $('#message_text').append('sisfen pase ').append(obj.send_host);
                 $.unblockUI();
