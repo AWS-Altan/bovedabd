@@ -17,10 +17,6 @@
                                         <th>solicitante</th>
                                         <th>status</th>
                                         <th>Fecha Ingreso</th>
-                                        <th>Fecha Actualización</th>
-                                        <th>Archivo</th>
-                                        <th>No Reintento</th>
-                                        <th>Msg Error</th>
 									</tr>
 								</thead>
 							</table>
