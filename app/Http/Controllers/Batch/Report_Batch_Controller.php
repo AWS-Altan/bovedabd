@@ -21,6 +21,13 @@ class Report_Batch_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
+
+    public function __construct()
+    {
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
+
+    }
+
     /**
      * Show the Porta In.
      *
@@ -63,7 +70,7 @@ class Report_Batch_Controller extends BaseController
                     loginfo('Reviso Hostname:' . request()->value);
                     $boveda_userdisp =  Userplat::where('host','=',request()->value)->get();
                 }
-                elseif( request()->type == 'IP')
+                elseif( request()->type == 'ip')
                 {
                     loginfo('Reviso IP' . request()->value);
                     $boveda_userdisp =  Userplat::where('ip','=',request()->value)->get();
@@ -129,5 +136,39 @@ class Report_Batch_Controller extends BaseController
         return $response;
     }//search_data
 
+    public function search_data_api()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para el reporte: ');
+
+        $json = request()->json()->all();
+        loginfo($json);
+
+
+        try {
+
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'reportebatch'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);
+
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
+
+
+        }
+
+        return json_encode( $req );
+
+    }
+
+
+
 
 } //Report_Batch_Controller
+
+
+

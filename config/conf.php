@@ -10,7 +10,9 @@ return [
 	'url_batch'     => 'https://altanredes-test.apigee.net',
 	'url_cm_coppel' => 'https://altanredes-test.apigee.net/cm/v1/',
 
-	
-	'url_catalogos' => 'https://czo8mqimp7.execute-api.us-east-1.amazonaws.com/prod/',
+    'url_catalogos' => 'https://czo8mqimp7.execute-api.us-east-1.amazonaws.com/prod/',
+    'url_repbatch'  => 'https://jrqd67i07j.execute-api.us-east-1.amazonaws.com/prod/',
 
 ];
+
+

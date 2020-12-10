@@ -140,7 +140,7 @@
         patrones['nir']=/^[1-9][0-9]{1,4}$/;
         patrones['email']=/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
         patrones['hostname']=/^[1-9][0-9]{50}$/;
-        patrones['IP']=/^[_0-9-]+(.[0-9-]+)+(.[0-9-]+)+(.[0-9-]+){17}$/;
+        patrones['ip']=/^[_0-9-]+(.[0-9-]+)+(.[0-9-]+)+(.[0-9-]+){17}$/;
         patrones['username']=/^[1-9][0-9]{50}$/;
 
 
@@ -153,7 +153,7 @@
         inputTope['idPreregistro']=10;
         inputTope['email']=100;
         inputTope['hostname']=50;
-        inputTope['IP']=17;
+        inputTope['ip']=17;
         inputTope['username']=50;
 
 		function bloqueo() {

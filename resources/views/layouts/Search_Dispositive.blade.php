@@ -17,7 +17,7 @@
 
 <div class="col-sm-1">
 	<div class="radio radio-info" style="padding-top: 10px;">
-		<input type="radio" name="radio1" id="radio6" value="option2" Onclick="fun_tipodato('IP')">
+		<input type="radio" name="radio1" id="radio6" value="option2" Onclick="fun_tipodato('ip')">
 		<label for="radio6" style="margin-bottom: 0px;">
 			IP
 		</label>
