@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/call/batch_alta_report', 'Report_Batch_Controller@search_data_api')->name('batch.call.user_report_alta');
         // Menu de Alta Masiva usurios
         Route::resource('/massive_alta', 'Massive_Batch_Controller', ['names' => ['index' => 'batch.masive_alta.index']])->only(['index']);
+        Route::post('/batch-load-alta', 'Massive_Batch_Controller@load')->name('batch.masive_alta.load');
 
         // Menu de Reporte Batch baja
         Route::resource('/batch_baja_report', 'Report_Baja_Controller', ['names' => ['index' => 'batch.bajareport.index']])->only(['index']);

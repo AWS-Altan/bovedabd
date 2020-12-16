@@ -21,6 +21,14 @@ class Massive_Batch_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
+
+    public function __construct()
+    {
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_batchserv') ] );
+
+    }
+
+
     /**
      * Show the Porta In.
      *
@@ -45,7 +53,57 @@ class Massive_Batch_Controller extends BaseController
                 'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
     }
 
+    public function load()
+    {
+        $this->loginResponse = $this->login();
+        $file = request()->file('file');
 
+        $response = NULL;
+        try {
+
+            $response = $this->httpClient->request('POST',config('conf.url_batchserv').'upload.php',
+                [
+                    'multipart' =>
+                    [
+                        [
+                            'name' => 'archivos[]',
+                            'class'=> 'form-control',
+                            'placeholder' => 'Archivo',
+                            'data-error' => 'Valor inválido',
+                            'filename' => $file->getClientOriginalName(),
+                            'contents' => fopen($file, 'r')
+                        ]
+                    ]
+                ]);
+
+            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'upload.php', [$response->getBody()]);
+
+            loginfo('sisfen log 3');
+            $sJL_resupload = implode([$response->getBody()]);
+            loginfo('sisfen log 4');
+
+            $result_data[]= array(
+                'result_opp' => $sJL_resupload
+                );
+            return json_encode($result_data);
+            //return [$response->getBody()];
+
+        }catch(\Exception $exception){
+            loginfo('sisfen log 4');
+            loginfo('Exception http code: '.$exception->getMessage() );
+            //$response = $exception->getResponse();
+            loginfo('user '.app('auth')->user()->name.' error '.'http://34.232.219.112/upload.php'
+                .'statusCode '. $exception
+                , $exception );
+
+            return json_encode([ 'error' => parse_exception( $exception ),
+                'statusCode' => $exception
+            ]);
+        }
+
+
+
+    }
 
 
 } //Massive_Batch_Controller
