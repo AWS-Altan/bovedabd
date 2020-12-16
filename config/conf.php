@@ -12,6 +12,7 @@ return [
 
     'url_catalogos' => 'https://czo8mqimp7.execute-api.us-east-1.amazonaws.com/prod/',
     'url_repbatch'  => 'https://jrqd67i07j.execute-api.us-east-1.amazonaws.com/prod/',
+    'url_batchserv' => 'http://34.232.219.112/',
 
 ];
 

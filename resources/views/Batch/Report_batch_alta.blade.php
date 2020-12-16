@@ -8,36 +8,37 @@
 			</div>
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
-					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Busqueda de Host</span></h3>
-						<section>
-                            <form id="step_one">
-                                <!-- Template busqueda Usuario -->
-                                <div class="row">
-								    <div class="col-sm-12">
-									    <div class="form-group mb-0">
-										    <div class="row">
-											     @include('layouts.Search_Dispositive')
-										    </div>
-									    </div>
-								    </div>
-							    </div>
-                            </form>
-                        </section>
-                        <h3><span class="head-font capitalize-font">información</span></h3>
+                    <div id="example-basic">
+						<h3><span class="head-font capitalize-font">Reporte Batch de Altas</span></h3>
 						<section>
                             <form id="step_two">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         @include('layouts.table_user_dispositivos')
                                     </div>
+                                    <!-- Vigencia del usuario -->
+                                    <div class="col-sm-2 mb-20">
+                                        <label class="help-block text-left">Fecha Inicio:</label>
+                                    </div>
+                                    <div class="col-sm-4 mb-20 select select-group" >
+                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                        <div class="help-block with-errors" id="inputTxtDateError"></div>
+                                    </div>
+                                    <!-- Vigencia del usuario -->
+                                    <div class="col-sm-2 mb-20">
+                                        <label class="help-block text-left">Fecha Final:</label>
+                                    </div>
+                                    <div class="col-sm-4 mb-20 select select-group" >
+                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                        <div class="help-block with-errors" id="inputTxtDateError"></div>
+                                    </div>
                                 </div>
                             </form>
+                            <!-- Texto de Menajes -->
+                            <div class="row" id="message_text">
+            				</div>
                         </section>
-                        <!-- Texto de Menajes -->
-                        <div class="row" id="message_text">
-						</div>
-					</div>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -60,26 +61,9 @@
 
     // funcion para cambio de pestaña
     function ValidateNext() {
-        //Validacion de campo de busqueda Input data del layou te busqueda
-        var dato=$('#cmd_searchdata').val();
 
         fun_ejecuta_busqueda();
 
-
-        //sisfen - falta la valdiación del tipo de dato
-        //REalizo validacion de que el dato este correcto
-		/*if (patrones[tipo_campo].test(dato)) {
-            //$('#message_text').append('sisfen voy 2');
-			fun_ejecuta_busqueda();
-            return true;
-
-		} else {
-            //$('#message_text').append('sisfen voy 3');
-		    $("#cmd_searchdata").css({'border' : '1px solid #f73414'});
-			$("#message_text").css('color', '#f73414');
-			$("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
-            return false;
-        }//else*/
         return true;
 	}
 
@@ -99,16 +83,26 @@
             color: '#fff'
         } });
 
+
+
         //Ejecuto la busqueda del dato, armo la busqueda
-        data = {
-		 		"type": tipo_campo,
-		 		"value": $('#cmd_searchdata').val()
-		 	}
+        var sJL_mail = '{{app('auth')->user()->email}}';
 
-        $('#message_text').append('<label class="help-block mb-30 text-left"><strong>   sisfen Ejecuto Busqueda</strong>');
+		var data = {};
+        data.type   = "alta";
+        data.mail   = sJL_mail;
+        if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
+        {
+            data.fecha_ini = $('#txtDateini' ).val();
+            data.fecha_fin = $('#txtDatefin' ).val()
+        }
 
+
+        $('#message_text').append('<label class="help-block mb-30 text-left"><strong>   Ejecuto Busqueda</strong>' . sJL_mail);
+
+        //Hago el manejo de la tabla
         $.ajax({
-			url: "{{ route('batch.call.userdisp_search') }}",
+			url: "{{ route('batch.call.user_report_alta') }}",
 			type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(data)
@@ -117,9 +111,8 @@
             obj = jQuery.parseJSON(response);
             data = jQuery.parseJSON(obj.data);
 
-            //Hago el manejo de la tabla
             if (obj.status = "ok") {
-                $('table#Tbl_usrdisp').DataTable({
+                datatableInstance = $('table#Tbl_usrdisp').DataTable({
                     "data": data,
                     "pageLength": 10,
                     "order": [
@@ -173,14 +166,12 @@
                     ]
                 });
     		} else {
-                //$('#message_text').append('sisfen voy 3');
-		        $("#cmd_searchdata").css({'border' : '1px solid #f73414'});
+		        //$("#cmd_searchdata").css({'border' : '1px solid #f73414'});
 			    $("#message_text").css('color', '#f73414');
 			    $("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
 
             } //else
-
-
+            $.unblockUI();
 
         })
         .fail(function() {
@@ -198,10 +189,6 @@
 				$.unblockUI();
         	}else{
                 // inserto los datos y configuro la siguiente pestaña
-                $('#message_text').append('sisfen voy ').append(obj.send_host);
-
-
-                $('#message_text').append('sisfen pase ').append(obj.send_host);
                 $.unblockUI();
 	        }// Else
 			$.unblockUI();
@@ -214,6 +201,29 @@
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 
+        if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
+        {
+
+            if (datatableInstance) {
+                    datatableInstance.destroy();
+		    }
+            fun_ejecuta_busqueda();
+        }else if ($('#txtDateini' ).val()!='' || $('#txtDatefin' ).val()!='')
+        {
+            if ( $('#txtDateini' ).val()=='' ){
+                $('#message_text').empty();
+                $('#message_text').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha inicio de consulta</label>');
+                $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+            }
+
+            if ( $('#txtDatefin' ).val()=='' ){
+                $('#message_text').empty();
+                $('#message_text').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha fin de consulta</label>');
+                $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                return false;
+            }
+        }
     } //finished
     //Cargo comportmiento de inicio de pantalla
     $(window).on('load', function()
@@ -224,7 +234,7 @@
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-
+            var datatableInstance = null;
 
         	return {
 		        init: function() {
@@ -233,7 +243,9 @@
                     $( "#finish" ).text('Buscar');
 
                     $('#message_text').empty();
-				    //initializePlugins2();
+                    //initializePlugins2();
+
+                    fun_ejecuta_busqueda();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton

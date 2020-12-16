@@ -34,16 +34,24 @@ Route::group(['middleware' => ['auth']], function () {
     */
     Route::group(['prefix' => 'batch', 'namespace' => 'Batch'], function () {
 
-        // Menu de Reporte Batch
-        Route::resource('/Baja_access', 'Report_Batch_Controller', ['names' => ['index' => 'Batch.Report.index']])->only(['index']);
-        Route::post('/call/userdisp_search', 'Report_Batch_Controller@search_data_api')->name('batch.call.userdisp_search');
-
+        // Menu de Reporte Batch alta
+        Route::resource('/batch_alta_report', 'Report_Batch_Controller', ['names' => ['index' => 'batch.altareport.index']])->only(['index']);
+        Route::post('/call/batch_alta_report', 'Report_Batch_Controller@search_data_api')->name('batch.call.user_report_alta');
         // Menu de Alta Masiva usurios
-        Route::resource('/Massive_access', 'Massive_Batch_Controller', ['names' => ['index' => 'Batch.Masive_SignIn.index']])->only(['index']);
+        Route::resource('/massive_alta', 'Massive_Batch_Controller', ['names' => ['index' => 'batch.masive_alta.index']])->only(['index']);
+
+        // Menu de Reporte Batch baja
+        Route::resource('/batch_baja_report', 'Report_Baja_Controller', ['names' => ['index' => 'batch.bajareport.index']])->only(['index']);
+        Route::post('/call/batch_baja_report', 'Report_Baja_Controller@search_data_api')->name('batch.call.user_report_baja');
+        // Menu de baja Masiva usurios
+        Route::resource('/massive_baja', 'Massive_Batch_Controller', ['names' => ['index' => 'batch.masive_baja.index']])->only(['index']);
+
+        // Menu de Reporte Batch cambios
+        Route::resource('/batch_change_report', 'Report_Change_Controller', ['names' => ['index' => 'batch.changereport.index']])->only(['index']);
+        Route::post('/call/batch_change_report', 'Report_Change_Controller@search_data_api')->name('batch.call.user_report_change');
+        // Menu de cambios  Masiva usurios
+        Route::resource('/massive_change', 'Massive_Batch_Controller', ['names' => ['index' => 'batch.masive_change.index']])->only(['index']);
     }); //Route
-
-
-
 
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
 
@@ -85,7 +93,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'access', 'namespace' => 'Access'], function () {
 
-        
+
         // Menu de Alta de usuario Manager
         Route::resource('/Manager_access', 'Alta_userMan_Controller', ['names' => ['index' => 'Access.alta_userman.index']])->only(['index']);
         Route::get('/call/Manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
