@@ -10,7 +10,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta Masiva de Usuarios</span></h3>
+						<h3><span class="head-font capitalize-font">Cambios Masivos de Usuarios</span></h3>
 						<section>
                             <p>Seleccione el archivo a procesar:
                             <p>Archivos:
@@ -59,19 +59,19 @@
 		if ($('#inputFileData').val() )
 		{
             var file_data = $('#inputFileData')[0].files[0];
-			var extension = file_data.name.substr( 0,4);
-			if ( extension.toUpperCase() != 'BAJA')
+			var extension = file_data.name.substr( 0,6);
+			if ( extension.toUpperCase() != 'CAMBIO')
 			{
 				$('#inputErrors').show();
 				$('#result').empty();
-				$('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de alta</strong>');
+				$('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de cambio</strong>');
 				return;
 			}//if
             var form_data = new FormData();
             form_data.append("file", file_data);
             bloqueo();
 			$.ajax({
-                url: "{{ route('batch.masive_alta.load') }}",
+                url: "{{ route('batch.masive_change.load') }}",
                 type: 'POST',
                 dataType: 'text',  // what to expect back from the PHP script, if anything
                 cache: false,

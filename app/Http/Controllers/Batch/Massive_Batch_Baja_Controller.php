@@ -17,7 +17,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\BadResponseException;
 use Carbon\Carbon;
 
-class Massive_Batch_Controller extends BaseController
+class Massive_Batch_Baja_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
@@ -40,7 +40,7 @@ class Massive_Batch_Controller extends BaseController
         if ( isset( $menu[23] ) )
             return redirect()->route('home.index');
 
-        return view('Batch.massive_batch')-> with('menu',$menu); // test 2
+        return view('Batch.massive_batch_baja')-> with('menu',$menu); // test 2
 
 
     }
@@ -69,7 +69,7 @@ class Massive_Batch_Controller extends BaseController
                             'name' => 'archivos[]',
                             'class'=> 'form-control',
                             'placeholder' => 'Archivo',
-                            'data-error' => 'Valor inválido',
+                            'data-error' => 'Valor invÃ¡lido',
                             'filename' => $file->getClientOriginalName(),
                             'contents' => fopen($file, 'r')
                         ]
