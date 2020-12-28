@@ -37,23 +37,30 @@ Route::group(['middleware' => ['auth']], function () {
         // Menu de Reporte Batch alta
         Route::resource('/batch_alta_report', 'Report_Batch_Controller', ['names' => ['index' => 'batch.altareport.index']])->only(['index']);
         Route::post('/call/batch_alta_report', 'Report_Batch_Controller@search_data_api')->name('batch.call.user_report_alta');
+
         // Menu de Alta Masiva usurios
         Route::resource('/massive_alta', 'Massive_Batch_Controller', ['names' => ['index' => 'batch.masive_alta.index']])->only(['index']);
         Route::post('/batch-load-alta', 'Massive_Batch_Controller@load')->name('batch.masive_alta.load');
+        Route::post('/batch-exec-alta', 'Massive_Batch_Controller@execute')->name('batch.masive_alta.exec');
 
         // Menu de Reporte Batch baja
         Route::resource('/batch_baja_report', 'Report_Baja_Controller', ['names' => ['index' => 'batch.bajareport.index']])->only(['index']);
         Route::post('/call/batch_baja_report', 'Report_Baja_Controller@search_data_api')->name('batch.call.user_report_baja');
+
         // Menu de baja Masiva usurios
         Route::resource('/massive_baja', 'Massive_Batch_Baja_Controller', ['names' => ['index' => 'batch.masive_baja.index']])->only(['index']);
         Route::post('/batch-load-baja', 'Massive_Batch_Baja_Controller@load')->name('batch.masive_baja.load');
+        Route::post('/batch-exec-baja', 'Massive_Batch_Baja_Controller@execute')->name('batch.masive_baja.exec');
 
         // Menu de Reporte Batch cambios
         Route::resource('/batch_change_report', 'Report_Change_Controller', ['names' => ['index' => 'batch.changereport.index']])->only(['index']);
         Route::post('/call/batch_change_report', 'Report_Change_Controller@search_data_api')->name('batch.call.user_report_change');
+
         // Menu de cambios  Masiva usurios
         Route::resource('/massive_change', 'Massive_Batch_Cambio_Controller', ['names' => ['index' => 'batch.masive_change.index']])->only(['index']);
         Route::post('/batch-load-change', 'Massive_Batch_Cambio_Controller@load')->name('batch.masive_change.load');
+        Route::post('/batch-exec-change', 'Massive_Batch_Cambio_Controller@execute')->name('batch.masive_change.exec');
+
     }); //Route
 
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {

@@ -78,13 +78,24 @@ class Massive_Batch_Controller extends BaseController
 
             loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'upload.php', [$response->getBody()]);
 
-            $sJL_resupload = implode([$response->getBody()]);
+            //$sJL_resupload = implode([str_replace(array("\n","\r"),'',$response->getBody())]);
+            //$sJL_resupload = implode([$response->getBody()]);
+            //$sJL_resupload = implode([]);
+            $sJL_resupload = implode([html_entity_decode(utf8_decode($response->getBody()))]);
 
-            $result_data[]= array(
+
+            loginfo("sisten test1");
+            loginfo($sJL_resupload);
+            loginfo("sisten test2");
+            //remove
+
+            /*$result_data[]= array(
                 'result_opp' => $sJL_resupload
-                );
-            return json_encode($result_data);
-            //return [$response->getBody()];
+                );*/
+
+            loginfo("sisten test3");
+            //return json_encode();
+            return $sJL_resupload;
 
         }catch(\Exception $exception){
             loginfo('Exception http code: '.$exception->getMessage() );
@@ -96,11 +107,56 @@ class Massive_Batch_Controller extends BaseController
             return json_encode([ 'error' => parse_exception( $exception ),
                 'statusCode' => $exception
             ]);
-        }
+        } // Try
+    }// load
+
+    public function execute()
+    {
+        loginfo('Obtiene Datos del API para el reporte: ');
+
+        loginfo("sisten exec 1");
+        $json = request()->json()->all();
+        loginfo($json);
+
+
+        $responsexec = NULL;
+        try {
+            loginfo("sisten exec 2");
+            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi',
+                [
+                    'headers'  => [ 'Content-type' => 'Application/json' ],
+                    'json' => $json
+                ]);
+
+            loginfo("sisten exec 3");
+            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi', [$responsexec->getBody()]);
+
+            /*loginfo("sisten exec 4");
+            $sJL_resupload = implode([$responsexec->getBody()]);
+            loginfo("sisten exec 5" + $sJL_resupload);
+            $result_data[]= array(
+                'result_opp' => $sJL_resupload
+                );
+
+            loginfo("sisten exec 6" + $result_data);*/
+            return json_encode([$responsexec->getBody()]);
 
 
 
-    }
+        }catch(\Exception $exception){
+            loginfo("sisten exec 5");
+            loginfo('Exception http code: '.$exception->getMessage() );
+            //$responsexec = $exception->getResponse();
+            loginfo('user '.app('auth')->user()->name.' error '.config('conf.url_batchserv').'upload.php'
+                .'statusCode '. $exception
+                , $exception );
+
+            loginfo("sisten exec 6");
+            return json_encode([ 'error' => parse_exception( $exception ),
+                'statusCode' => $exception
+            ]);
+        } // Try
+    }// execute
 
 
 } //Massive_Batch_Controller

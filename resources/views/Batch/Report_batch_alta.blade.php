@@ -109,66 +109,72 @@
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            data = jQuery.parseJSON(obj.data);
-
             if (obj.status = "ok") {
-                datatableInstance = $('table#Tbl_usrdisp').DataTable({
-                    "data": data,
-                    "pageLength": 10,
-                    "order": [
-                        [0, "desc"]
-                    ],
-                    "columns": [
-                        {
-                            //Campo de IP
-                            "data": "send_ip"
-                        },
-                        {
-                            //Campo de HOST
-                            "data": "send_host"
-                        },
-                        {
-                            //Tipo Dispositivo
-                            "data": "send_idtipodisp"
-                        },
-                        {
-                            //GRUPO
-                            "data": "send_idgrupo"
-                        },
-                        {
-                            //USUARIO
-                            "data": "send_usuario"
-                        },
-                        {
-                            //TIPO USUARIO
-                            "data": "send_idtipo"
-                        },
-                        {
-                            //PERFIL
-                            "data": "send_idperfil"
-                        },
-                        {
-                            //SOLICITANTE
-                            "data": "send_idsolicitante"
-                        },
-                        {
-                            //STATUS
-                            "data": "send_idstatus"
-                        },
-                        {
-                            //FECHA INGRESO
-                            "data": "send_fechaIngreso"
-                        }
-                    ],
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'csv'
-                    ]
-                });
+                // $("#message_text").text("Status OK 1" + obj.status + "; " + obj.data);
+                if(obj.data != "No Data Return")
+                {
+                    data = jQuery.parseJSON(obj.data);
+                    datatableInstance = $('table#Tbl_usrdisp').DataTable({
+                        "data": data,
+                        "pageLength": 10,
+                        "order": [
+                            [0, "desc"]
+                        ],
+                        "columns": [
+                            {
+                                //Campo de IP
+                                "data": "send_ip"
+                            },
+                            {
+                                //Campo de HOST
+                                "data": "send_host"
+                            },
+                            {
+                                //Tipo Dispositivo
+                                "data": "send_idtipodisp"
+                            },
+                            {
+                                //GRUPO
+                                "data": "send_idgrupo"
+                            },
+                            {
+                                //USUARIO
+                                "data": "send_usuario"
+                            },
+                            {
+                                //TIPO USUARIO
+                                "data": "send_idtipo"
+                            },
+                            {
+                                //PERFIL
+                                "data": "send_idperfil"
+                            },
+                            {
+                                //SOLICITANTE
+                                "data": "send_idsolicitante"
+                            },
+                            {
+                                //STATUS
+                                "data": "send_idstatus"
+                            },
+                            {
+                                //FECHA INGRESO
+                                "data": "send_fechaIngreso"
+                            }
+                        ],
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'csv'
+                        ]
+                    });
+                }else {
+                    $("#message_text").text("No hay datos para Mostrar del dia de Ayer");
+                } //else
     		} else {
-		        //$("#cmd_searchdata").css({'border' : '1px solid #f73414'});
+                //$("#cmd_searchdata").css({'border' : '1px solid #f73414'});
 			    $("#message_text").css('color', '#f73414');
-			    $("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+                $("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+                $.unblockUI();
 
             } //else
             $.unblockUI();
@@ -190,7 +196,7 @@
         	}else{
                 // inserto los datos y configuro la siguiente pestaña
                 $.unblockUI();
-	        }// Else
+            }// Else
 			$.unblockUI();
         });
 
@@ -201,6 +207,7 @@
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 
+        $('#message_text').append("ejecuta");
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
 

@@ -51,7 +51,74 @@
 </style>
 <script>
 
+    function loadfile($file_data){
+        var form_data = new FormData();
+        form_data.append("file", $file_data);
+        bloqueo();
+	    $.ajax({
+            url: "{{ route('batch.masive_baja.load') }}",
+            type: 'POST',
+            dataType: 'text',  // what to expect back from the PHP script, if anything
+            cache: false,
+			contentType: false,
+            processData: false,
+            data: form_data
+        }).done(function (response)
+        {
+            $('#message_text').append("sisfen 1 ");
+            //$('#inputErrors').show();
+            //var obj = jQuery.parseJSON(response);
+            $('#result').append(response);
+            $('#message_text').append("sisfen 1.5 ");
 
+            executeCharge($file_data);
+            $('#message_text').append("sisfen 1.7 ");
+            $.unblockUI();
+	    })
+	    .fail(function() {
+            $('#message_text').append("sisfen 2 " + response);
+            $('#result').empty();
+            $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Time Out</strong>');
+            $('#message_text').append("sisfen 2.5 " + response);
+			$.unblockUI();
+	    })
+	    .always(function () {
+            $('#message_text').append("sisfen 6 " + response);
+            $('#inputErrors').append(response);
+            $('#message_text').append("sisfen 6.5 " + response);
+			$.unblockUI();
+        });
+    }//loadfile
+
+    function executeCharge($file_data){
+        var data = {};
+        data.file  = $file_data.name;
+
+        $.ajax({
+            url: "{{ route('batch.masive_baja.exec') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(data)
+        }).done(function (response)
+        {
+            $('#message_text').append("sisfen 2.1 ");
+            $('#inputErrors').show();
+            //var obj = jQuery.parseJSON(response);
+            $('#result').append($response);
+            $.unblockUI();
+		})
+		.fail(function() {
+            $('#result').empty();
+            $('#message_text').append("sisfen 2.4 ");
+            $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Time Out</strong>');
+			$.unblockUI();
+		})
+		.always(function () {
+            $('#message_text').append("sisfen 2.8 ");
+            $('#inputErrors').append(response);
+			$.unblockUI();
+		});
+    }//executeCharge
 
     // Funcion de Fin de Vista, ejecucion
     function finished(){
@@ -67,33 +134,15 @@
 				$('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de baja</strong>');
 				return;
 			}//if
-            var form_data = new FormData();
-            form_data.append("file", file_data);
-            bloqueo();
-			$.ajax({
-                url: "{{ route('batch.masive_baja.load') }}",
-                type: 'POST',
-                dataType: 'text',  // what to expect back from the PHP script, if anything
-                cache: false,
-				contentType: false,
-                processData: false,
-                data: form_data
-            }).done(function (response)
-            {
-                $('#inputErrors').show();
-                var obj = jQuery.parseJSON(response);
-                $('#result').append(response);
-                $.unblockUI();
-			})
-			.fail(function() {
-				$('#result').empty();
-                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Time Out</strong>');
-				$.unblockUI();
-			})
-			.always(function () {
-                $('#inputErrors').append(response);
-				$.unblockUI();
-			});
+
+            $('#message_text').append("sisfen 4 load");
+            loadfile(file_data);
+            // comienzo ejecución de carga
+
+            $('#message_text').append("sisfen 5 exec");
+            $.unblockUI();
+
+
 		} //if
 		else
 		{

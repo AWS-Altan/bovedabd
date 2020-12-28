@@ -109,55 +109,62 @@
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            data = jQuery.parseJSON(obj.data);
-
             if (obj.status = "ok") {
-                datatableInstance = $('table#Tbl_usrdisp').DataTable({
-                    "data": data,
-                    "pageLength": 10,
-                    "order": [
-                        [0, "desc"]
-                    ],
-                    "columns": [
-                        {
-                            //Campo de IP
-                            "data": "send_ip"
+                // $("#message_text").text("Status OK 1" + obj.status + "; " + obj.data);
+                if(obj.data != "No Data Return")
+                {
+                    data = jQuery.parseJSON(obj.data);
+                    datatableInstance = $('table#Tbl_usrdisp').DataTable({
+                        "data": data,
+                        "pageLength": 10,
+                        "order": [
+                            [0, "desc"]
+                        ],
+                        "columns": [
+                            {
+                                //Campo de IP
+                                "data": "send_ip"
 
-                        },
-                        {
-                            //Campo de tipo dispositivo
-                            "data": "send_idtipodisp"
-                        },
-                        {
-                            //Tipo Dispositivo
-                            "data": "send_usuario"
-                        },
-                        {
-                            //GRUPO
-                            "data": "send_idstatus"
-                        },
-                        {
-                            //USUARIO
-                            "data": "send_fechaIngreso"
-                        },
-                        {
-                            //TIPO USUARIO
-                            "data": "send_fechaupdate"
-                        },
-                        {
-                            //PERFIL
-                            "data": "send_reintento"
-                        },
-                        {
-                            //PERFIL
-                            "data": "send_estatus"
-                        }
-                    ],
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'csv'
-                    ]
-                });
+                            },
+                            {
+                                //Campo de tipo dispositivo
+                                "data": "send_idtipodisp"
+                            },
+                            {
+                                //Tipo Dispositivo
+                                "data": "send_usuario"
+                            },
+                            {
+                                //GRUPO
+                                "data": "send_idstatus"
+                            },
+                            {
+                                //USUARIO
+                                "data": "send_fechaIngreso"
+                            },
+                            {
+                                //TIPO USUARIO
+                                "data": "send_fechaupdate"
+                            },
+                            {
+                                //PERFIL
+                                "data": "send_reintento"
+                            },
+                            {
+                                //PERFIL
+                                "data": "send_estatus"
+                            }
+                        ],
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'csv'
+                        ]
+                    });
+                }else {
+                    $("#message_text").text("No hay datos para Mostrar del dia de Ayer");
+                    $( "#previous" ).trigger( "click" );
+                    $( "#finish" ).text('Buscar');
+                } //else
     		} else {
 		        //$("#cmd_searchdata").css({'border' : '1px solid #f73414'});
 			    $("#message_text").css('color', '#f73414');
@@ -183,7 +190,7 @@
         	}else{
                 // inserto los datos y configuro la siguiente pestaña
                 $.unblockUI();
-	        }// Else
+            }// Else
 			$.unblockUI();
         });
 
