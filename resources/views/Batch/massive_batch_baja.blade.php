@@ -14,8 +14,6 @@
 						<section>
                             <p>Seleccione el archivo a procesar:
                             <p>Archivos:
-							<!-- <input type="file" name="archivos[]" class="form-control" id="inputFileData" placeholder="Archivo" data-error="Valor inválido"> -->
-                            <!-- <input type="submit" value="Enviar" /> -->
 							<div class="form-group">
 								Seleccione el archivo a procesar: <input type="file" data-minlength="7" class="form-control" id="inputFileData" placeholder="Archivo" data-error="Valor inválido" maxlength="20">
 								<div class="help-block with-errors"></div>
@@ -51,10 +49,27 @@
 </style>
 <script>
 
+    function bloqueo()
+    {
+        //realizo el bloqueo de pantalla
+        $.blockUI({ message: 'Procesando ...',css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        } });
+    }//bloqueo
+
+    /******************************
+     *  Historial Modificaciones
+     * 2020/12/30 - modificacion de colores y omicion de resultado de carga
+    ******************************/
     function loadfile($file_data){
         var form_data = new FormData();
         form_data.append("file", $file_data);
-        bloqueo();
 	    $.ajax({
             url: "{{ route('batch.masive_baja.load') }}",
             type: 'POST',
@@ -65,27 +80,16 @@
             data: form_data
         }).done(function (response)
         {
-            $('#message_text').append("sisfen 1 ");
-            //$('#inputErrors').show();
-            //var obj = jQuery.parseJSON(response);
-            $('#result').append(response);
-            $('#message_text').append("sisfen 1.5 ");
-
             executeCharge($file_data);
-            $('#message_text').append("sisfen 1.7 ");
             $.unblockUI();
 	    })
 	    .fail(function() {
-            $('#message_text').append("sisfen 2 " + response);
             $('#result').empty();
             $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Time Out</strong>');
-            $('#message_text').append("sisfen 2.5 " + response);
 			$.unblockUI();
 	    })
 	    .always(function () {
-            $('#message_text').append("sisfen 6 " + response);
             $('#inputErrors').append(response);
-            $('#message_text').append("sisfen 6.5 " + response);
 			$.unblockUI();
         });
     }//loadfile
@@ -101,20 +105,25 @@
             data: JSON.stringify(data)
         }).done(function (response)
         {
-            $('#message_text').append("sisfen 2.1 ");
-            $('#inputErrors').show();
-            //var obj = jQuery.parseJSON(response);
-            $('#result').append($response);
+            jsJLresp = jQuery.parseJSON(response);
+            $('#message_text').empty();
+            $('#result').empty();
+
+            if(jsJLresp.details == "Success")
+            {
+                $('#result').append('<label class="help-block mb-30 text-left" style="color: green"><strong>' + jsJLresp.details + '</strong>');
+            }else{
+                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>' + jsJLresp.details + '</strong>');
+            }//else
+
             $.unblockUI();
 		})
 		.fail(function() {
             $('#result').empty();
-            $('#message_text').append("sisfen 2.4 ");
             $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Time Out</strong>');
 			$.unblockUI();
 		})
 		.always(function () {
-            $('#message_text').append("sisfen 2.8 ");
             $('#inputErrors').append(response);
 			$.unblockUI();
 		});
@@ -135,11 +144,10 @@
 				return;
 			}//if
 
-            $('#message_text').append("sisfen 4 load");
+            bloqueo();
             loadfile(file_data);
             // comienzo ejecución de carga
 
-            $('#message_text').append("sisfen 5 exec");
             $.unblockUI();
 
 
@@ -172,9 +180,7 @@
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        //$('#message').append('voy 4');
                     });
-                    //$('#message').append('voy 3');
 		        }
 		    };
         }

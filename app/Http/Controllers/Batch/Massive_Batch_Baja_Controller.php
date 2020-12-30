@@ -131,15 +131,15 @@ class Massive_Batch_Baja_Controller extends BaseController
             loginfo("sisten exec 3");
             loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi', [$responsexec->getBody()]);
 
-            /*loginfo("sisten exec 4");
-            $sJL_resupload = implode([$responsexec->getBody()]);
-            loginfo("sisten exec 5" + $sJL_resupload);
-            $result_data[]= array(
-                'result_opp' => $sJL_resupload
-                );
+            //inicio
+            loginfo("sisten exec 4");
+            $sJL_resupload = implode([html_entity_decode(utf8_decode($responsexec->getBody()))]);
+            loginfo($sJL_resupload);
+            loginfo("sisten exec 5");
+            //fin
 
-            loginfo("sisten exec 6" + $result_data);*/
-            return json_encode([$responsexec->getBody()]);
+            //return json_encode([$responsexec->getBody()]);
+            return $sJL_resupload;
 
 
 
