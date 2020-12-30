@@ -102,8 +102,8 @@
         }).done(function (response)
         {
             $('#message_text').append("sisfen 2.1 ");
+            $('#message_text').append($response);
             $('#inputErrors').show();
-            //var obj = jQuery.parseJSON(response);
             $('#result').append($response);
             $.unblockUI();
 		})

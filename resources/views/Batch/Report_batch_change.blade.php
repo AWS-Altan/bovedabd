@@ -60,12 +60,11 @@
 
 
     // funcion para cambio de pestaña
-    function ValidateNext() {
-
+    function ValidateNext()
+    {
         fun_ejecuta_busqueda();
-
         return true;
-	}
+	}//ValidateNext
 
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
@@ -83,8 +82,6 @@
             color: '#fff'
         } });
 
-
-
         //Ejecuto la busqueda del dato, armo la busqueda
         var sJL_mail = '{{app('auth')->user()->email}}';
 
@@ -97,23 +94,24 @@
             data.fecha_fin = $('#txtDatefin' ).val()
         }
 
-
-        $('#message_text').append('<label class="help-block mb-30 text-left"><strong>   Ejecuto Busqueda</strong>' . sJL_mail);
-
         //Hago el manejo de la tabla
         $.ajax({
-			url: "{{ route('batch.call.user_report_alta') }}",
+			url: "{{ route('batch.call.user_report_change') }}",
 			type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(data)
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            if (obj.status = "ok") {
-                // $("#message_text").text("Status OK 1" + obj.status + "; " + obj.data);
+            if (obj.status = "ok")
+            {
                 if(obj.data != "No Data Return")
                 {
                     data = jQuery.parseJSON(obj.data);
+                    if (typeof(datatableInstance)!== 'undefined')
+                    {
+                        datatableInstance.destroy();
+                    } //if
                     datatableInstance = $('table#Tbl_usrdisp').DataTable({
                         "data": data,
                         "pageLength": 10,
@@ -160,16 +158,15 @@
                             'csv'
                         ]
                     });
-                }else {
-                    $("#message_text").text("No hay datos para Mostrar del dia de Ayer");
-                    $( "#previous" ).trigger( "click" );
-                    $( "#finish" ).text('Buscar');
+                }else
+                {
+                    $("#message_text").text("No hay datos para Mostrar, seleccione una fecha");
                 } //else
-    		} else {
-		        //$("#cmd_searchdata").css({'border' : '1px solid #f73414'});
+            } else
+            {
 			    $("#message_text").css('color', '#f73414');
 			    $("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
-
+                $.unblockUI();
             } //else
             $.unblockUI();
 
@@ -187,10 +184,7 @@
 				$('#message_text').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
-        	}else{
-                // inserto los datos y configuro la siguiente pestaña
-                $.unblockUI();
-            }// Else
+        	}//if
 			$.unblockUI();
         });
 
@@ -203,21 +197,19 @@
 
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
-
-            if (datatableInstance) {
-                    datatableInstance.destroy();
-		    }
             fun_ejecuta_busqueda();
         }else if ($('#txtDateini' ).val()!='' || $('#txtDatefin' ).val()!='')
         {
-            if ( $('#txtDateini' ).val()=='' ){
+            if ( $('#txtDateini' ).val()=='' )
+            {
                 $('#message_text').empty();
                 $('#message_text').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha inicio de consulta</label>');
                 $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
-            return false;
+                return false;
             }
 
-            if ( $('#txtDatefin' ).val()=='' ){
+            if ( $('#txtDatefin' ).val()=='' )
+            {
                 $('#message_text').empty();
                 $('#message_text').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha fin de consulta</label>');
                 $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');

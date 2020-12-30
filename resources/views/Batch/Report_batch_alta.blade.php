@@ -61,15 +61,14 @@
 
     // funcion para cambio de pestaña
     function ValidateNext() {
-
         fun_ejecuta_busqueda();
-
         return true;
 	}
 
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
     {
+
         //limpio los textos
         $('#message_text').empty();
         //realizo el bloqueo de pantalla
@@ -82,8 +81,6 @@
             opacity: .5,
             color: '#fff'
         } });
-
-
 
         //Ejecuto la busqueda del dato, armo la busqueda
         var sJL_mail = '{{app('auth')->user()->email}}';
@@ -98,8 +95,6 @@
         }
 
 
-        $('#message_text').append('<label class="help-block mb-30 text-left"><strong>   Ejecuto Busqueda</strong>' . sJL_mail);
-
         //Hago el manejo de la tabla
         $.ajax({
 			url: "{{ route('batch.call.user_report_alta') }}",
@@ -109,11 +104,15 @@
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            if (obj.status = "ok") {
-                // $("#message_text").text("Status OK 1" + obj.status + "; " + obj.data);
+            if (obj.status = "ok")
+            {
                 if(obj.data != "No Data Return")
                 {
                     data = jQuery.parseJSON(obj.data);
+                    if (typeof(datatableInstance)!== 'undefined')
+                    {
+                        datatableInstance.destroy();
+                    } //if
                     datatableInstance = $('table#Tbl_usrdisp').DataTable({
                         "data": data,
                         "pageLength": 10,
@@ -168,10 +167,10 @@
                         ]
                     });
                 }else {
-                    $("#message_text").text("No hay datos para Mostrar del dia de Ayer");
+                    $("#message_text").text("No hay datos para Mostrar, seleccione una fecha");
                 } //else
-    		} else {
-                //$("#cmd_searchdata").css({'border' : '1px solid #f73414'});
+            } else
+            {
 			    $("#message_text").css('color', '#f73414');
                 $("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
                 $.unblockUI();
@@ -181,22 +180,19 @@
 
         })
         .fail(function() {
-	        	$('#message_text').empty();
+                $('#message_text').empty();
 				$('#message_text').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
 	        	$.unblockUI();
 	        })
         .always(function() {
         	//console.log(obj);
         	if(obj.error){
-        		$('#value').val('');
+                $('#value').val('');
 				$('#message_text').empty();
 				$('#message_text').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
-        	}else{
-                // inserto los datos y configuro la siguiente pestaña
-                $.unblockUI();
-            }// Else
+        	}
 			$.unblockUI();
         });
 
@@ -207,13 +203,8 @@
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 
-        $('#message_text').append("ejecuta");
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
-
-            if (datatableInstance) {
-                    datatableInstance.destroy();
-		    }
             fun_ejecuta_busqueda();
         }else if ($('#txtDateini' ).val()!='' || $('#txtDatefin' ).val()!='')
         {
