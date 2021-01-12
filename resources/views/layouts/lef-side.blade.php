@@ -112,14 +112,58 @@
                 <!-- Alta usuarios -->
                 @if ( !isset( $menu[26] ) )
 					<li>
-						<a href="{{ route('Access.alta_userman.index') }}">
+						<a href="{{ route('access.alta_userman.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Alta Relacion Accesos Usuarios</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
                 @endif
 
-				@if ( !isset( $menu[25] ))
+
+                <!-- Reporte de Usuarios Dispositivos -->
+                <!-- modif 2021/01/04 -->
+                @if ( !isset( $menu[44] ) )
+					<li>
+						<a href="{{ route('access.report_userdisp.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Reporte Usuarios Dispositivos</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[45] ) or !isset( $menu[46] ) )
+				<li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#Cat_disp_man">
+						<div class="pull-left"></i><span class="right-nav-text">Catálogo Boveda Remedy</span></div>
+						<div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+						<div class="clearfix"></div>
+					</a>
+					<ul id="Cat_disp_man" class="collapse collapse-level-1 two-col-list">
+                        <!-- Alta de Catalogo de dispositivos -->
+                        <!-- modif 2021/01/06 -->
+                        @if ( !isset( $menu[46] ) )
+					    <li>
+                            <a href="{{ route('access.insert_dispcatalog.index') }}">
+							    <div class="pull-left"><span class="right-nav-text">Alta Catálogo Dispositivos </span></div>
+							    <div class="clearfix"></div>
+						    </a>
+					    </li>
+                        @endif
+                        <!-- Modificación de Catalogo de Dispositivos -->
+                        <!-- modif 2021/01/04 -->
+                        @if ( !isset( $menu[45] ) )
+					    <li>
+                            <a href="{{ route('access.update_dispcatalog.index') }}">
+							    <div class="pull-left"><span class="right-nav-text">Modificaciones Catálogo Dispositivos </span></div>
+							    <div class="clearfix"></div>
+						    </a>
+					    </li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
+
+                @if ( !isset( $menu[25] ))
 				<li>
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#prereg_dr">
 						<div class="pull-left"></i><span class="right-nav-text">Usuarios Dispositivos</span></div>

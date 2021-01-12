@@ -35,7 +35,7 @@
                                 </div>
                             </form>
                             <!-- Texto de Menajes -->
-                            <div class="row" id="message_text">
+                            <div class="row" id="message_error">
             				</div>
                         </section>
                     </div>
@@ -70,7 +70,7 @@
     function fun_ejecuta_busqueda()
     {
         //limpio los textos
-        $('#message_text').empty();
+        $('#message_error').empty();
         //realizo el bloqueo de pantalla
         $.blockUI({ message: 'Procesando ...',css: {
             border: 'none',
@@ -160,28 +160,28 @@
                     });
                 }else
                 {
-                    $("#message_text").text("No hay datos para Mostrar, seleccione una fecha");
+                    $("#message_error").text("No hay datos para Mostrar, seleccione una fecha");
                 } //else
             } else
             {
-			    $("#message_text").css('color', '#f73414');
-			    $("#message_text").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+			    $("#message_error").css('color', '#f73414');
+			    $("#message_error").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
                 $.unblockUI();
             } //else
             $.unblockUI();
 
         })
         .fail(function() {
-	        	$('#message_text').empty();
-				$('#message_text').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
+	        	$('#message_error').empty();
+				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
 	        	$.unblockUI();
 	        })
         .always(function() {
         	//console.log(obj);
         	if(obj.error){
         		$('#value').val('');
-				$('#message_text').empty();
-				$('#message_text').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
+				$('#message_error').empty();
+				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
         	}//if
@@ -202,16 +202,16 @@
         {
             if ( $('#txtDateini' ).val()=='' )
             {
-                $('#message_text').empty();
-                $('#message_text').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha inicio de consulta</label>');
+                $('#message_error').empty();
+                $('#message_error').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha inicio de consulta</label>');
                 $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
                 return false;
             }
 
             if ( $('#txtDatefin' ).val()=='' )
             {
-                $('#message_text').empty();
-                $('#message_text').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha fin de consulta</label>');
+                $('#message_error').empty();
+                $('#message_error').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha fin de consulta</label>');
                 $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
                 return false;
             }
@@ -234,7 +234,7 @@
 		        	$('#previous').hide();
                     $( "#finish" ).text('Buscar');
 
-                    $('#message_text').empty();
+                    $('#message_error').empty();
                     //initializePlugins2();
 
                     fun_ejecuta_busqueda();

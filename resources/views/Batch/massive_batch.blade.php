@@ -30,7 +30,7 @@
 								</div>
 							</div>
                             <!-- Texto de Menajes -->
-                            <div class="row" id="message_text">
+                            <div class="row" id="message_error">
 							</div>
 						</section>
 					</div>
@@ -49,6 +49,7 @@
 </style>
 <script>
 
+    var bJL_successLoad=false; //variable para indicar que ya se realizo la carga
 
     function bloqueo()
     {
@@ -66,7 +67,7 @@
 
     /******************************
      *  Historial Modificaciones
-     * 2020/12/30 - modificacion de colores y omicion de resultado de carga
+     * 2020/12/30 - omicion de resultado de carga y redireccionamiento
     ******************************/
     function loadfile($file_data){
         var form_data = new FormData();
@@ -97,6 +98,10 @@
         });
     }//loadfile
 
+    /******************************
+     *  Historial Modificaciones
+     * 2020/12/30 - modificacion de colores y omicion de resultado de carga
+    ******************************/
     function executeCharge($file_data){
         var data = {};
         data.file  = $file_data.name;
@@ -109,11 +114,13 @@
         }).done(function (response)
         {
             jsJLresp = jQuery.parseJSON(response);
-            $('#message_text').empty();
+            //$('#message_error').empty();
             $('#result').empty();
             if(jsJLresp.details == "Success")
             {
                 $('#result').append('<label class="help-block mb-30 text-left" style="color: green"><strong>' + jsJLresp.details + '</strong>');
+                $("#finish" ).text('Ir a reporte');
+                bJL_successLoad = true;
             }else{
                 $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>' + jsJLresp.details + '</strong>');
             }//else
@@ -128,39 +135,50 @@
 		.always(function () {
             $('#inputErrors').append(response);
 			$.unblockUI();
-		});
+        });
     }//executeCharge
 
 
     // Funcion de Fin de Vista, ejecucion
-    function finished(){
-		$('#previous').hide();
-		if ($('#inputFileData').val() )
-		{
-            var file_data = $('#inputFileData')[0].files[0];
-            var extension = file_data.name.substr( 0,4);
-			if ( extension.toUpperCase() != 'ALTA')
-			{
+    function finished()
+    {
+        if(!bJL_successLoad)
+        {
+            $('#previous').hide();
+            if ($('#inputFileData').val() )
+            {
+                var file_data = $('#inputFileData')[0].files[0];
+                var extension = file_data.name.substr( 0,4);
+                if ( extension.toUpperCase() != 'ALTA')
+                {
 
-				$('#inputErrors').show();
-				$('#result').empty();
-				$('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de alta</strong>');
-				return;
-            }//if
+                    $('#inputErrors').show();
+                    $('#result').empty();
+                    $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de alta</strong>');
+                    return;
+                }//if
 
-            bloqueo();
-            loadfile(file_data);
+                bloqueo();
+                loadfile(file_data);
 
-            // comienzo ejecución de carga
-            $.unblockUI();
+                // comienzo ejecución de carga
+                $.unblockUI();
 
-		} //if
-		else
-		{
-			$('#inputErrors').show();
-			$('#result').empty();
-			$('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Seleccione un archivo válido</strong>');
-		} //else
+            } //if
+            else
+            {
+                $('#inputErrors').show();
+                $('#result').empty();
+                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Seleccione un archivo válido</strong>');
+            } //else
+        }//if
+        else
+        {
+            $('#message_error').text('sisfen redirect');
+            //sisfen aqui voy
+            //return redirect()->route('batch.altareport.index');
+
+        }//else
     } //finished
     //Cargo comportmiento de inicio de pantalla
     $(window).on('load', function()
@@ -178,7 +196,7 @@
 		        	$('#previous').hide();
                     // $( "#finish" ).hide();
 
-                    $('#message_text').empty();
+                    $('#message_error').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {

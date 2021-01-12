@@ -55,7 +55,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="tipoDispositivo" class="form-control">
-                                                        </select> 
+                                                        </select>
                                                         <div class="help-block with-errors" id="inputtipoDispositivoError"></div>
                                                     </div>
 
@@ -66,7 +66,7 @@
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="grupo" class="form-control">
                                                         </select>
-                                                        <div class="help-block with-errors" id="inputGrupoError"></div> 
+                                                        <div class="help-block with-errors" id="inputGrupoError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,11 +87,11 @@
                                                     <!-- Contraseña del usuario del dispositivo-->
                                                     <div class="col-sm-2">
                                                         <label class="help-block text-left">Contrase&ntilde;a</label>
-                                                    </div>                                          
+                                                    </div>
                                                     <div class="col-sm-3">
                                                         <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese la contrase&ntilde;a del usuario" data-error="Valor inválido" maxlength="150">
                                                         <div class="help-block with-errors" id="inputPasswordError"></div>
-                                                    </div>  
+                                                    </div>
                                                     <div class="col-sm-1">
                                                         <button id="mostrarContrasena" class="btn btn-primary btn-xs">Ver</button>
                                                    </div>
@@ -110,7 +110,7 @@
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="tipoUsuario" class="form-control">
                                                         </select>
-                                                        <div class="help-block with-errors" id="inputTipoUsuarioError"></div>  
+                                                        <div class="help-block with-errors" id="inputTipoUsuarioError"></div>
                                                     </div>
 
                                                     <!-- Vigencia del usuario -->
@@ -135,7 +135,7 @@
                                                     <div class="col-sm-4 mb-20 select select-group" >
                                                         <select id="solicitante" class="form-control">
                                                         </select>
-                                                        <div class="help-block with-errors" id="inputSolicitanteError"></div>  
+                                                        <div class="help-block with-errors" id="inputSolicitanteError"></div>
                                                     </div>
 
                                                 </div>
@@ -171,7 +171,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    
+
                                                      <!-- Apellido paterno del solicitante -->
                                                     <div class="col-sm-2 mb-20">
                                                         <label class="help-block text-left">Apellido Paterno</label>
@@ -196,7 +196,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    
+
                                                      <!-- Movil del solicitante -->
                                                     <div class="col-sm-2 mb-20">
                                                         <label class="help-block text-left">M&oacute;vil</label>
@@ -260,7 +260,7 @@
             $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
             return false;
         }
-        
+
         if ( !patrones['ip'].test($('#ipHost').val())) {
             $('#message').empty();
             $('#inputIpHostError').empty();
@@ -275,7 +275,7 @@
             $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
             return false;
         }
-        
+
         if (  $('select#tipoDispositivo').prop('selectedIndex')<=0 ){
             $('#inputtipoDispositivoError').empty();
             $('#inputtipoDispositivoError').append('<label class="alert-danger mb-30 text-left">seleccionar un tipo de dispositivo</label>');
@@ -289,7 +289,7 @@
             $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
             return false;
         }
-        
+
         if ( $('#usuarioDispositivo' ).val()=='' ){
             $('#inputUsuarioDispositivoError').empty();
             $('#inputUsuarioDispositivoError').append('<label class="alert-danger mb-30 text-left">capturar el nuevo usuario del dispositivo</label>');
@@ -327,7 +327,7 @@
             }
 
         }
-        
+
 
         //Realizo el bloqueo de la pantalla
 		$.blockUI({ message: 'Procesando ...',css: {
@@ -351,7 +351,7 @@
         }
 
         var data = {};
-        
+
         data.ipHost             = $('#ipHost').val();
         data.nameHost           = $('#nameHost').val();
         data.tipoDispositivo    = $('select#tipoDispositivo option:selected').val();
@@ -412,25 +412,25 @@
 
         $( "#mostrarContrasena" ).click(function( event ) {
                     event.preventDefault();
-                    var ePassword=$('#password').val(); 
+                    var ePassword=$('#password').val();
                     var dPassword=atob( $('#password').val() );
                     $('#password').val(dPassword);
-                    $('#password').prop('type','text'); 
+                    $('#password').prop('type','text');
                     setTimeout( function(){
                     $('#password').prop('type','password');
-                    $('#password').val(ePassword);         
+                    $('#password').val(ePassword);
                     },5000);
-                    
-                    
-                      
+
+
+
         });
 
 
         bloqueo();
         var data = {};
-        
+
         data.mail= '{{app('auth')->user()->email}}';
-        
+
         $.ajax({
             url: "{{ route('access.call.catalogos') }}",
             type: 'POST',
@@ -439,43 +439,43 @@
         })
         .done(function(response) {
             var obj = jQuery.parseJSON(response);
-            glob = obj; 
+            glob = obj;
             //console.log('offertas:');
             console.log(obj);
             $('#grupo').append(
                 $('<option></option>').val( '' ).html( 'Seleccionar Grupo')
             );
             $.each( obj.grupo, function(index) {
-                
+
                 $('#grupo').append(
                     $('<option></option>').val( obj.grupo[index].id ).html( obj.grupo[index].descripcion + ' - '+ obj.grupo[index].descripcionConjunto )
                 );
 
-            }); 
+            });
 
 
             $('#tipoDispositivo').append(
                 $('<option></option>').val( '' ).html( 'Seleccionar tipo de dispositivo')
             );
             $.each( obj.tipoDispositivo, function(index) {
-                
+
                 $('#tipoDispositivo').append(
                     $('<option></option>').val( obj.tipoDispositivo[index].id ).html( obj.tipoDispositivo[index].tipo +' ' +obj.tipoDispositivo[index].vendor +' '+obj.tipoDispositivo[index].descripcion )
                 );
 
-            }); 
+            });
 
 
             $('#tipoUsuario').append(
                 $('<option></option>').val( '' ).html( 'Seleccionar tipo de usuario')
             );
             $.each( obj.tipoUsuario, function(index) {
-                
+
                 $('#tipoUsuario').append(
                     $('<option></option>').val( obj.tipoUsuario[index].id ).html( obj.tipoUsuario[index].descripcion + ' - ' +  obj.tipoUsuario[index].descripcionTecnologia)
                 );
 
-            }); 
+            });
 
             if(obj.isManager==='true'){
 
@@ -486,17 +486,17 @@
                     $('<option></option>').val( '' ).html( 'Seleccionar solicitante')
                 );
                 $.each( obj.solicitante, function(index) {
-                    
+
                     $('#solicitante').append(
                         $('<option></option>').val( obj.solicitante[index].id ).html( obj.solicitante[index].mail  )
                     );
 
-                }); 
+                });
             }else{
 
                 $.each( obj.solicitante, function(index) {
-                    
-                    
+
+
                     if ( obj.solicitante[index].mail == "{{app('auth')->user()->email}}"){
                         $('#nombreSolicitante').val( obj.solicitante[index].nombre );
                         $('#paternoSolicitante').val( obj.solicitante[index].paterno );
@@ -506,7 +506,7 @@
                         $('#organizacionSolicitante').val( obj.solicitante[index].organizacion );
                     }
 
-                }); 
+                });
 
                 $('#solicitante').hide();
                 $('#solicitanteLabel').hide();
@@ -515,7 +515,7 @@
 
 
             $.unblockUI();
-            
+
         })
         .fail(function() {
                 $.unblockUI();
@@ -531,7 +531,7 @@
             if ( $('#solicitante').val()!=='' ){
                 //alert('Entra');
                 $.each( glob.solicitante, function(index) {
-                    
+
                     if ( glob.solicitante[index].id==$('#solicitante').val() ){
                         $('#nombreSolicitante').val( glob.solicitante[index].nombre );
                         $('#paternoSolicitante').val( glob.solicitante[index].paterno );
@@ -540,16 +540,16 @@
                         $('#mailSolicitante').val( glob.solicitante[index].mail );
                         $('#organizacionSolicitante').val( glob.solicitante[index].organizacion );
                     }
-                }); 
+                });
             }
             else{
                 $('#nombreSolicitante, #paternoSolicitante, #maternoSolicitante, #movilSolicitante, #mailSolicitante, #organizacionSolicitante').val( '' );
             }
-            
+
         });
 
         var initializePlugins2 = function initializePlugins2() {
-                
+
                 $("#ipHost").change(function( event ) {
                     if ( !patrones['ip'].test($('#ipHost').val())) {
                             $( '#finish' ).hide();
@@ -577,7 +577,7 @@
 
                 });
 
-                
+
                 $("#tipoDispositivo").change(function( event ) {
                     if ( $('select#tipoDispositivo' ).prop('selectedIndex')<=0 ){
                         $('#inputtipoDispositivoError').empty();
@@ -626,7 +626,7 @@
                     }else{
                         $('#inputPasswordError').empty();
                         $('#message').empty();
-                        var encodePassword=btoa( $('#password').val() );  
+                        var encodePassword=btoa( $('#password').val() );
                         $('#password').val(encodePassword);
                         $( '#finish' ).show();
                     }
@@ -690,18 +690,18 @@
                     $( "#finish" ).text('Alta');
 
                     $('#message').empty();
-				    
+
                     initializePlugins2();
 
                     if ( $('#password').val() !='' ){
-                        var encodePassword=btoa( $('#password').val() );  
+                        var encodePassword=btoa( $('#password').val() );
                         $('#password').val(encodePassword);
                     }
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
                     });
-                    
+
 		        }
 		    };
         }

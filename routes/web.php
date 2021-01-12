@@ -105,8 +105,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         // Menu de Alta de usuario Manager
-        Route::resource('/Manager_access', 'Alta_userMan_Controller', ['names' => ['index' => 'Access.alta_userman.index']])->only(['index']);
-        Route::get('/call/Manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
+        Route::resource('/manager_access', 'Alta_userMan_Controller', ['names' => ['index' => 'access.alta_userman.index']])->only(['index']);
+        Route::get('/call/manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
 
         Route::post('/call/catalogos', 'AltaAccessController@getCatalogosList')->name('access.call.catalogos');
 
@@ -115,21 +115,38 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/alta_access', 'AltaAccessController', ['names' => ['index' => 'access.alta_user.index']])->only(['index']);
         Route::get('/call/alta-access', 'AltaAccessController@newUser')->name('access.call.alta-user');
         // Menu de baja de usuario
-        Route::resource('/Baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);
+        Route::resource('/baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);
         // Menu de Modificación de  de usuario
-        Route::resource('/Modif_access', 'Modif_access_Controller', ['names' => ['index' => 'Access.modif_user.index']])->only(['index']);
+        Route::resource('/modif_access', 'Modif_access_Controller', ['names' => ['index' => 'Access.modif_user.index']])->only(['index']);
         // Menu de Consulta de password
         Route::resource('/view_access', 'View_access_Controller', ['names' => ['index' => 'Access.View_pass.index']])->only(['index']);
         // Menu de Activación de usuario
-        Route::resource('/Active_access', 'Active_access_Controller', ['names' => ['index' => 'Access.Active_user.index']])->only(['index']);
+        Route::resource('/active_access', 'Active_access_Controller', ['names' => ['index' => 'Access.Active_user.index']])->only(['index']);
         // Menu de Desactivación de usuario
-        Route::resource('/Deactive_access', 'Deactive_access_Controller', ['names' => ['index' => 'Access.Deactive_user.index']])->only(['index']);
+        Route::resource('/deactive_access', 'Deactive_access_Controller', ['names' => ['index' => 'Access.Deactive_user.index']])->only(['index']);
         // Menu de Cambiar Password de usuario
-        Route::resource('/Change_access', 'Change_access_Controller', ['names' => ['index' => 'Access.Change_pass.index']])->only(['index']);
+        Route::resource('/change_access', 'Change_access_Controller', ['names' => ['index' => 'Access.Change_pass.index']])->only(['index']);
         // Menu de Enviar Contraseña
-        Route::resource('/Send_access', 'Send_access_Controller', ['names' => ['index' => 'Access.Send_pass.index']])->only(['index']);
+        Route::resource('/send_access', 'Send_access_Controller', ['names' => ['index' => 'Access.Send_pass.index']])->only(['index']);
         // Menu de Alta Masiva usurios
-        Route::resource('/Massive_access', 'Massive_access_Controller', ['names' => ['index' => 'Access.Masive_Sign_in.index']])->only(['index']);
+        Route::resource('/massive_access', 'Massive_access_Controller', ['names' => ['index' => 'Access.Masive_Sign_in.index']])->only(['index']);
+
+        // Reporte de usuarios dispositivos
+        // 2021/01/04
+        Route::resource('/report_access_disp', 'Report_userdisp_Controller', ['names' => ['index' => 'access.report_userdisp.index']])->only(['index']);
+        Route::post('/call/access_user_report', 'Report_userdisp_Controller@search_data_api')->name('access.call.report_userdisp');
+
+
+        // Alta Catalogo dispositivos
+        // 2021/01/06
+        Route::resource('/insert_disp_catalog', 'Insert_dispcatalog_Controller', ['names' => ['index' => 'access.insert_dispcatalog.index']])->only(['index']);
+        Route::post('/call/insert_disp_catalog', 'Insert_dispcatalog_Controller@update_data_api')->name('access.call.insert_dispcatalog');
+        // Modificación Catalogo dispositivos
+        // 2021/01/04
+        Route::resource('/update_disp_catalog', 'Update_dispcatalog_Controller', ['names' => ['index' => 'access.update_dispcatalog.index']])->only(['index']);
+        Route::post('/call/search_disp_catalog', 'Update_dispcatalog_Controller@search_data_api')->name('access.call.search_dispcatalog');
+        Route::post('/call/update_disp_catalog', 'Update_dispcatalog_Controller@update_data_api')->name('access.call.update_dispcatalog');
+
     }); //Route
 
 

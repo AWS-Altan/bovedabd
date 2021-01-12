@@ -30,7 +30,7 @@
 								</div>
 							</div>
                             <!-- Texto de Menajes -->
-                            <div class="row" id="message_text">
+                            <div class="row" id="message_error">
 							</div>
 						</section>
 					</div>
@@ -106,7 +106,7 @@
         }).done(function (response)
         {
             jsJLresp = jQuery.parseJSON(response);
-            $('#message_text').empty();
+            $('#message_error').empty();
             $('#result').empty();
             if(jsJLresp.details == "Success")
             {
@@ -172,7 +172,7 @@
 		        	$('#previous').hide();
                     // $( "#finish" ).hide();
 
-                    $('#message_text').empty();
+                    $('#message_error').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {

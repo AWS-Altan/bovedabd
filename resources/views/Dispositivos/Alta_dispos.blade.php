@@ -56,7 +56,7 @@
 
                         </section>
                         <!-- Texto de Menajes -->
-                        <div class="row" id="message_text">
+                        <div class="row" id="message_error">
         				</div>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 		        	$('#previous').hide();
                     $( "#finish" ).text('Siguiemte');
 
-                    $('#message_text').empty();
+                    $('#message_error').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {

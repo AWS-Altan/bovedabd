@@ -9,12 +9,12 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
                     <div id="example-basic">
-						<h3><span class="head-font capitalize-font">Reporte Batch de Bajas</span></h3>
+						<h3><span class="head-font capitalize-font">Reporte de Usaurios dispositivos </span></h3>
 						<section>
                             <form id="step_two">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        @include('layouts.table_user_disp_baja_change')
+                                        @include('layouts.table_user_disp_report')
                                     </div>
                                     <!-- Vigencia del usuario -->
                                     <div class="col-sm-2 mb-20">
@@ -68,6 +68,7 @@
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
     {
+
         //limpio los textos
         $('#message_error').empty();
         //realizo el bloqueo de pantalla
@@ -85,7 +86,7 @@
         var sJL_mail = '{{app('auth')->user()->email}}';
 
 		var data = {};
-        data.type   = "baja";
+        data.type   = "alta";
         data.mail   = sJL_mail;
         if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
         {
@@ -93,9 +94,10 @@
             data.fecha_fin = $('#txtDatefin' ).val()
         }
 
+
         //Hago el manejo de la tabla
         $.ajax({
-			url: "{{ route('batch.call.user_report_baja') }}",
+			url: "{{ route('access.call.report_userdisp') }}",
 			type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(data)
@@ -104,8 +106,11 @@
             obj = jQuery.parseJSON(response);
             if (obj.status = "ok")
             {
+                $('#message_error').append("sisfen 1");
+                $('#message_error').append("sisfen 1.1" + obj);
                 if(obj.data != "No Data Return")
                 {
+                    $('#message_error').append("sisfen 2");
                     data = jQuery.parseJSON(obj.data);
                     if (typeof(datatableInstance)!== 'undefined')
                     {
@@ -121,35 +126,46 @@
                             {
                                 //Campo de IP
                                 "data": "send_ip"
-
                             },
                             {
-                                //Campo de tipo dispositivo
-                                "data": "send_idtipodisp"
+                                //Campo de HOST
+                                "data": "send_host"
                             },
                             {
                                 //Tipo Dispositivo
-                                "data": "send_usuario"
+                                "data": "send_idtipodisp"
                             },
                             {
                                 //GRUPO
-                                "data": "send_idstatus"
+                                "data": "send_idgrupo"
                             },
                             {
                                 //USUARIO
-                                "data": "send_fechaIngreso"
+                                "data": "send_usuario"
                             },
                             {
                                 //TIPO USUARIO
-                                "data": "send_fechaupdate"
+                                "data": "send_idtipo"
+                            },
+                            {
+                                //STATUS
+                                "data": "send_idstatus"
                             },
                             {
                                 //PERFIL
-                                "data": "send_reintento"
+                                "data": "send_idperfil"
                             },
                             {
-                                //PERFIL
-                                "data": "send_estatus"
+                                //SOLICITANTE
+                                "data": "send_idsolicitante"
+                            },
+                            {
+                                //FECHA INGRESO
+                                "data": "send_fechaIngreso"
+                            },
+                            {
+                                //FECHA INGRESO
+                                "data": "send_fechaTermino"
                             }
                         ],
                         dom: 'Bfrtip',
@@ -165,24 +181,25 @@
 			    $("#message_error").css('color', '#f73414');
                 $("#message_error").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
                 $.unblockUI();
+
             } //else
             $.unblockUI();
 
         })
         .fail(function() {
-	        	$('#message_error').empty();
+                $('#message_error').empty();
 				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
 	        	$.unblockUI();
 	        })
         .always(function() {
         	//console.log(obj);
         	if(obj.error){
-        		$('#value').val('');
+                $('#value').val('');
 				$('#message_error').empty();
 				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
-        	}//else
+        	}
 			$.unblockUI();
         });
 

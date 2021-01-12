@@ -177,7 +177,7 @@
                             </form>
                         </section>
                         <!-- Texto de Menajes -->
-                        <div class="row" id="message_text">
+                        <div class="row" id="message_error">
 						</div>
 					</div>
 				</div>
@@ -199,7 +199,7 @@
 // funcion para cambio de pestaña
     function ValidateNext() {
         //Validacion de campo de busqueda Input data del layou te busqueda
-        var dato=$('#cmd_searchdata').val();
+        var dato=$('#inputData').val();
 
         //REalizo validacion de que el dato este correcto
 		if (patrones[tipo_campo].test(dato)) {
@@ -207,9 +207,9 @@
             return true;
 
 		} else {
-		    $("#cmd_searchdata").css({'border' : '1px solid #f73414'});
-			$("#message_text").css('color', '#f73414');
-			$("#message_text").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
+		    $("#inputData").css({'border' : '1px solid #f73414'});
+			$("#message_error").css('color', '#f73414');
+			$("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
             return false;
         }//else
 	}
@@ -217,7 +217,7 @@
     // funcion para ejecutar busqueda
     function fun_ejecuta_busqueda(){
         //limpio los textos
-        $('#message_text').empty();
+        $('#message_error').empty();
         //realizo el bloqueo de pantalla
         $.blockUI({ message: 'Procesando ...',css: {
             border: 'none',
@@ -235,15 +235,15 @@
 			type: 'GET',
 		 	data: {
 		 		'type': tipo_campo,
-		 		'value': $('#cmd_searchdata').val()
+		 		'value': $('#inputData').val()
 		 	}
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
         })
         .fail(function() {
-	        	$('#message_text').empty();
-                $('#message_text').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');
+	        	$('#message_error').empty();
+                $('#message_error').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');
                 $( "#previous" ).trigger( "click" );
 	        	$.unblockUI();
 	        })
@@ -251,8 +251,8 @@
         	//console.log(obj);
         	if(obj.error){
         		$('#value').val('');
-				$('#message_text').empty();
-				$('#message_text').append('<label class="help-block mb-30 text-center"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
+				$('#message_error').empty();
+				$('#message_error').append('<label class="help-block mb-30 text-center"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
         	}else{
@@ -261,7 +261,7 @@
                 //$("#cmd_Mail_user").val(obj.email);
 
                 // configuro la siguiente pestaña
-        		$('#message_text').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Realice la modificación de datos del usuario</strong> ');
+        		$('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Realice la modificación de datos del usuario</strong> ');
                  $('#cmd_Mail_user').val(obj.send_email);
 				 $('#cmd_NombreAlta').val(obj.send_username);
 				 $('#cmd_ID_company').val(obj.send_id_company);
@@ -351,7 +351,7 @@
         .fail(function()
         {
 	        // $('#message').empty();
-			$('#message_text').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en Actualización de usuario Boveda </label>');
+			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en Actualización de usuario Boveda </label>');
 	        $.unblockUI();
 	    })
         .always(function()
@@ -359,14 +359,14 @@
             if ( obj2.statusCode!= null && obj2.statusCode!=200 )
             {
 				// $('#message').empty();
-				$('#message_text').append('<label class="alert-danger mb-30 text-left">Actualización de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
+				$('#message_error').append('<label class="alert-danger mb-30 text-left">Actualización de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
 				$.unblockUI();
             }else
             {
 			    $('#validar').hide();
 				$('#finish').hide();
 				//$('#message').empty();
-                $('#message_text').append('<label class="help-block mb-30 text-left">Actualización  del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+                $('#message_error').append('<label class="help-block mb-30 text-left">Actualización  del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
                 $('#cmd_Mail_user').val("");
 				$('#cmd_password').val("");
 				$('#cmd_NombreAlta').val("");
@@ -381,7 +381,7 @@
 		})
         /// a aqui
 
-        $('#message_text').append('voy finish B ');
+        $('#message_error').append('voy finish B ');
         //$.unblockUI();
 
 
@@ -408,7 +408,7 @@
 		        	$('#previous').hide();
                     $( "#finish" ).text('Siguiemte');
 
-                    $('#message_text').empty();
+                    $('#message_error').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {

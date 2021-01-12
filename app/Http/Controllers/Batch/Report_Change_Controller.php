@@ -162,7 +162,7 @@ class Report_Change_Controller extends BaseController
         loginfo('Regreso información');
         return json_encode( $req );
 
-    }
+    }//search_data_api
 
 
 

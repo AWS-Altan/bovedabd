@@ -86,7 +86,7 @@
                             <div align="center">
                                 <!-- Texto de Menajes -->
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="row" id="message_text">
+                                <div class="row" id="message_error">
 						        </div>
                             </div>
                         </div>
@@ -110,19 +110,19 @@
     // funcion para cambio de pestaña
     function ValidateNext() {
         //Validacion de campo de busqueda Input data del layou te busqueda
-        var dato=$('#cmd_searchdata').val();
+        var dato=$('#inputData').val();
 
         //REalizo validacion de que el dato este correcto
 		if (patrones[tipo_campo].test(dato)) {
-            //$('#message_text').append('sisfen voy 2');
+            //$('#message_error').append('sisfen voy 2');
 			fun_ejecuta_busqueda();
             return true;
 
 		} else {
-            //$('#message_text').append('sisfen voy 3');
-		    $("#cmd_searchdata").css({'border' : '1px solid #f73414'});
-			$("#message_text").css('color', '#f73414');
-			$("#message_text").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
+            //$('#message_error').append('sisfen voy 3');
+		    $("#inputData").css({'border' : '1px solid #f73414'});
+			$("#message_error").css('color', '#f73414');
+			$("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
             return false;
         }//else
 	}
@@ -130,7 +130,7 @@
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda(){
         //limpio los textos
-        $('#message_text').empty();
+        $('#message_error').empty();
         //realizo el bloqueo de pantalla
         $.blockUI({ message: 'Procesando ...',css: {
             border: 'none',
@@ -148,16 +148,16 @@
 			type: 'GET',
 		 	data: {
 		 		'type': tipo_campo,
-		 		'value': $('#cmd_searchdata').val()
+		 		'value': $('#inputData').val()
 		 	}
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            //$('#message_text').append('sisfen voy 4');
+            //$('#message_error').append('sisfen voy 4');
         })
         .fail(function() {
-	        	$('#message_text').empty();
-                $('#message_text').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');
+	        	$('#message_error').empty();
+                $('#message_error').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');
                 $( "#previous" ).trigger( "click" );
 	        	$.unblockUI();
 	        })
@@ -165,8 +165,8 @@
         	//console.log(obj);
         	if(obj.error){
         		$('#value').val('');
-				$('#message_text').empty();
-				$('#message_text').append('<label class="help-block mb-30 text-center"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
+				$('#message_error').empty();
+				$('#message_error').append('<label class="help-block mb-30 text-center"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
         	}else{
@@ -177,7 +177,7 @@
 
 
                 // configuro la siguiente pestaña
-        		$('#message_text').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Confirme el borrado del usuario</strong> ');
+        		$('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Confirme el borrado del usuario</strong> ');
                 // $('#previous').show();
                 $( "#finish" ).text('Borrar');
 
@@ -211,7 +211,7 @@
 		        	$('#previous').hide();
                     $( "#finish" ).text('Siguiemte');
 
-                    $('#message_text').empty();
+                    $('#message_error').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
