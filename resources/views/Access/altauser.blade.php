@@ -406,6 +406,7 @@
             glob = obj; 
             //console.log('offertas:');
             console.log(obj);
+            $( '#finish' ).hide();
             if (   (obj.stackTrace!=null && obj.stackTrace) 
                 || ( obj.status && obj.status=="no-ok" ) )  {
 
@@ -460,7 +461,7 @@
                 $.each( obj.perfil, function(index) {
                     
                     $('#perfil').append(
-                        $('<option></option>').val( obj.tipoUsuario[index].id ).html( obj.tipoUsuario[index].descripcion + ' - ' +  obj.tipoUsuario[index].descripcionTecnologia)
+                        $('<option></option>').val( obj.perfil[index].id ).html( obj.perfil[index].descripcion )
                     );
 
                 }); 
