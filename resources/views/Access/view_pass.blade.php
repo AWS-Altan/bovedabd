@@ -86,7 +86,7 @@
                             <div align="center">
                                 <!-- Texto de Menajes -->
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="row" id="message_text">
+                                <div class="row" id="message_error">
 						        </div>
                             </div>
                         </div>

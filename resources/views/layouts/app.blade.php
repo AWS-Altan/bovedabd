@@ -139,8 +139,8 @@
 		patrones['idPreregistro']=/^[1-9][0-9]{1,10}$/;
         patrones['nir']=/^[1-9][0-9]{1,4}$/;
         patrones['email']=/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
-        patrones['hostname']=/^[1-9][0-9]{50}$/;
-        patrones['IP']=/^[_0-9-]+(.[0-9-]+)+(.[0-9-]+)+(.[0-9-]+){17}$/;
+        patrones['hostname']=/^[_a-z0-9]{50}$/;
+        patrones['ip']=/^([0-9]{1,3}\.){3}[0-9]{1,3}$/;
         patrones['username']=/^[1-9][0-9]{50}$/;
 
 
@@ -153,7 +153,7 @@
         inputTope['idPreregistro']=10;
         inputTope['email']=100;
         inputTope['hostname']=50;
-        inputTope['IP']=17;
+        inputTope['ip']=17;
         inputTope['username']=50;
 
 		function bloqueo() {
@@ -168,15 +168,15 @@
 	        } });
 		}
 
-        //antes: function TipoDato4(valor){
-        function fun_tipodato(valor){
+
+		function TipoDato4(valor){
 			tipo_campo=valor;
-			$("#cmd_searchdata").prop('maxLength', inputTope[tipo_campo]);
-			$("#cmd_searchdata").attr('placeholder', 'Ingrese valor de '+tipo_campo.toUpperCase()+' a consultar')
-			$("#cmd_searchdata").val('');
-			$('#cmd_searchdata').focus();
-			$("#cmd_searchdata").css({'border' : '1px solid rgba(33, 33, 33, 0.12)'});
-			$("#message_text").text("");
+			$("#inputData").prop('maxLength', inputTope[tipo_campo]);
+			$("#inputData").attr('placeholder', 'Ingrese valor de '+tipo_campo.toUpperCase()+' a consultar')
+			$("#inputData").val('');
+			$('#inputData').focus();
+			$("#inputData").css({'border' : '1px solid rgba(33, 33, 33, 0.12)'});
+			$("#message_error").text("");
 		}
 
 		function TipoDatoIdPreregistro(valor){
@@ -200,7 +200,7 @@
 		}
 
 		function ValidateNext() {
-			var dato=$('#inputData').val();
+            var dato=$('#inputData').val();
 			if (patrones[tipo_campo].test(dato)) {
 				identify();
 				return true;
@@ -213,7 +213,7 @@
 		}
 
 		function validateSearchPreRegister() {
-			var dato=$('#inputData').val();
+            var dato=$('#inputData').val();
 			if (patrones[tipo_campo].test(dato)) {
 				searchPreRegister();
 				return true;
@@ -356,13 +356,14 @@
 						}
 					});
 
-					$("#inputData").keyup(function (e) {
+                    /*Se comento por que no dejaba escribir texto*/
+					/*$("#inputData").keyup(function (e) {
 						val = $("#inputData").val().replace(/^(0*)/,"");
 						$("#inputData").val(val.replace(/[^0-9]/g,''));
 						if ((event.which != 46 || $("#inputData").val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
 							event.preventDefault();
 						}
-					});
+					});*/
 
 					$("#secondstep").keyup(function (e) {
 						val = $("#secondstep").val().replace(/^(0*)/,"");

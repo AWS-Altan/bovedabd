@@ -55,7 +55,7 @@
 		        	$('#previous').hide();
                     $( "#finish" ).text('Siguiemte');
 
-                    $('#message_text').empty();
+                    $('#message_error').empty();
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {

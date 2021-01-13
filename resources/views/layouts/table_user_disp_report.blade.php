@@ -12,11 +12,13 @@
 										<th>Tipo Dispositivo</th>
 										<th>Grupo</th>
 										<th>Usuario</th>
-										<th>Tipo Usuario</th>
+                                        <th>Tipo Usuario</th>
+                                        <th>Status</th>
 										<th>Perfil</th>
-                                        <th>solicitante</th>
-                                        <th>status</th>
+                                        <th>Solicitante</th>
                                         <th>Fecha Ingreso</th>
+                                        <th>Fecha Termino</th>
+                                        <th>Opciones</th>
 									</tr>
 								</thead>
 							</table>

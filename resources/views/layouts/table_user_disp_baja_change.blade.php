@@ -8,15 +8,13 @@
 								<thead>
 									<tr>
 										<th>IP</th>
-										<th>Host</th>
-										<th>Tipo Dispositivo</th>
-										<th>Grupo</th>
-										<th>Usuario</th>
-										<th>Tipo Usuario</th>
-										<th>Perfil</th>
-                                        <th>solicitante</th>
+                                        <th>Tipo Dispositivo</th>
+                                        <th>Usuario</th>
                                         <th>status</th>
                                         <th>Fecha Ingreso</th>
+                                        <th>Fecha Actualización</th>
+										<th>Reintento</th>
+										<th>Estado Transacción</th>
 									</tr>
 								</thead>
 							</table>

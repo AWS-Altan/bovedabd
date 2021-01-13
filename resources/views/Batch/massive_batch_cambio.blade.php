@@ -10,7 +10,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta Masiva de Usuarios</span></h3>
+						<h3><span class="head-font capitalize-font">Cambios Masivos de Usuarios</span></h3>
 						<section>
                             <p>Seleccione el archivo a procesar:
                             <p>Archivos:
@@ -49,8 +49,6 @@
 </style>
 <script>
 
-    var bJL_successLoad=false; //variable para indicar que ya se realizo la carga
-
     function bloqueo()
     {
         //realizo el bloqueo de pantalla
@@ -67,15 +65,13 @@
 
     /******************************
      *  Historial Modificaciones
-     * 2020/12/30 - omicion de resultado de carga y redireccionamiento
+     * 2020/12/30 - modificacion de colores y omicion de resultado de carga
     ******************************/
     function loadfile($file_data){
         var form_data = new FormData();
         form_data.append("file", $file_data);
-
-
 	    $.ajax({
-            url: "{{ route('batch.masive_alta.load') }}",
+            url: "{{ route('batch.masive_change.load') }}",
             type: 'POST',
             dataType: 'text',  // what to expect back from the PHP script, if anything
             cache: false,
@@ -98,33 +94,26 @@
         });
     }//loadfile
 
-    /******************************
-     *  Historial Modificaciones
-     * 2020/12/30 - modificacion de colores y omicion de resultado de carga
-    ******************************/
     function executeCharge($file_data){
         var data = {};
         data.file  = $file_data.name;
 
         $.ajax({
-            url: "{{ route('batch.masive_alta.exec') }}",
+            url: "{{ route('batch.masive_change.exec') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(data)
         }).done(function (response)
         {
             jsJLresp = jQuery.parseJSON(response);
-            //$('#message_error').empty();
+            $('#message_error').empty();
             $('#result').empty();
             if(jsJLresp.details == "Success")
             {
                 $('#result').append('<label class="help-block mb-30 text-left" style="color: green"><strong>' + jsJLresp.details + '</strong>');
-                $("#finish" ).text('Ir a reporte');
-                bJL_successLoad = true;
             }else{
                 $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>' + jsJLresp.details + '</strong>');
             }//else
-
             $.unblockUI();
 		})
 		.fail(function() {
@@ -135,50 +124,37 @@
 		.always(function () {
             $('#inputErrors').append(response);
 			$.unblockUI();
-        });
+		});
     }//executeCharge
 
-
     // Funcion de Fin de Vista, ejecucion
-    function finished()
-    {
-        if(!bJL_successLoad)
-        {
-            $('#previous').hide();
-            if ($('#inputFileData').val() )
-            {
-                var file_data = $('#inputFileData')[0].files[0];
-                var extension = file_data.name.substr( 0,4);
-                if ( extension.toUpperCase() != 'ALTA')
-                {
+    function finished(){
+		$('#previous').hide();
+		if ($('#inputFileData').val() )
+		{
+            var file_data = $('#inputFileData')[0].files[0];
+			var extension = file_data.name.substr( 0,6);
+			if ( extension.toUpperCase() != 'CAMBIO')
+			{
+				$('#inputErrors').show();
+				$('#result').empty();
+				$('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de cambio</strong>');
+				return;
+			}//if
+            bloqueo();
+            loadfile(file_data);
+            // comienzo ejecución de carga
+            $.unblockUI();
 
-                    $('#inputErrors').show();
-                    $('#result').empty();
-                    $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de alta</strong>');
-                    return;
-                }//if
 
-                bloqueo();
-                loadfile(file_data);
 
-                // comienzo ejecución de carga
-                $.unblockUI();
-
-            } //if
-            else
-            {
-                $('#inputErrors').show();
-                $('#result').empty();
-                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Seleccione un archivo válido</strong>');
-            } //else
-        }//if
-        else
-        {
-            $('#message_error').text('sisfen redirect');
-            //sisfen aqui voy
-            //return redirect()->route('batch.altareport.index');
-
-        }//else
+		} //if
+		else
+		{
+			$('#inputErrors').show();
+			$('#result').empty();
+			$('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Seleccione un archivo válido</strong>');
+		} //else
     } //finished
     //Cargo comportmiento de inicio de pantalla
     $(window).on('load', function()

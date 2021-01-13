@@ -10,7 +10,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta Masiva de Usuarios</span></h3>
+						<h3><span class="head-font capitalize-font">Alta/Actualización Masiva Cátalogo Dispositivos</span></h3>
 						<section>
                             <p>Seleccione el archivo a procesar:
                             <p>Archivos:
@@ -75,7 +75,7 @@
 
 
 	    $.ajax({
-            url: "{{ route('batch.masive_alta.load') }}",
+            url: "{{ route('access.masive_dispcatalog.load') }}",
             type: 'POST',
             dataType: 'text',  // what to expect back from the PHP script, if anything
             cache: false,
@@ -107,7 +107,7 @@
         data.file  = $file_data.name;
 
         $.ajax({
-            url: "{{ route('batch.masive_alta.exec') }}",
+            url: "{{ route('access.masive_dispcatalog.exec') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(data)

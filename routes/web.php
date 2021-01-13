@@ -34,16 +34,34 @@ Route::group(['middleware' => ['auth']], function () {
     */
     Route::group(['prefix' => 'batch', 'namespace' => 'Batch'], function () {
 
-        // Menu de Reporte Batch
-        Route::resource('/Baja_access', 'Report_Batch_Controller', ['names' => ['index' => 'Batch.Report.index']])->only(['index']);
-        Route::get('/call/userdisp_search', 'Report_Batch_Controller@search_data')->name('batch.call.userdisp_search');
+        // Menu de Reporte Batch alta
+        Route::resource('/batch_alta_report', 'Report_Batch_Controller', ['names' => ['index' => 'batch.altareport.index']])->only(['index']);
+        Route::post('/call/batch_alta_report', 'Report_Batch_Controller@search_data_api')->name('batch.call.user_report_alta');
 
         // Menu de Alta Masiva usurios
-        Route::resource('/Massive_access', 'Massive_Batch_Controller', ['names' => ['index' => 'Batch.Masive_SignIn.index']])->only(['index']);
+        Route::resource('/massive_alta', 'Massive_Batch_Controller', ['names' => ['index' => 'batch.masive_alta.index']])->only(['index']);
+        Route::post('/batch-load-alta', 'Massive_Batch_Controller@load')->name('batch.masive_alta.load');
+        Route::post('/batch-exec-alta', 'Massive_Batch_Controller@execute')->name('batch.masive_alta.exec');
+
+        // Menu de Reporte Batch baja
+        Route::resource('/batch_baja_report', 'Report_Baja_Controller', ['names' => ['index' => 'batch.bajareport.index']])->only(['index']);
+        Route::post('/call/batch_baja_report', 'Report_Baja_Controller@search_data_api')->name('batch.call.user_report_baja');
+
+        // Menu de baja Masiva usurios
+        Route::resource('/massive_baja', 'Massive_Batch_Baja_Controller', ['names' => ['index' => 'batch.masive_baja.index']])->only(['index']);
+        Route::post('/batch-load-baja', 'Massive_Batch_Baja_Controller@load')->name('batch.masive_baja.load');
+        Route::post('/batch-exec-baja', 'Massive_Batch_Baja_Controller@execute')->name('batch.masive_baja.exec');
+
+        // Menu de Reporte Batch cambios
+        Route::resource('/batch_change_report', 'Report_Change_Controller', ['names' => ['index' => 'batch.changereport.index']])->only(['index']);
+        Route::post('/call/batch_change_report', 'Report_Change_Controller@search_data_api')->name('batch.call.user_report_change');
+
+        // Menu de cambios  Masiva usurios
+        Route::resource('/massive_change', 'Massive_Batch_Cambio_Controller', ['names' => ['index' => 'batch.masive_change.index']])->only(['index']);
+        Route::post('/batch-load-change', 'Massive_Batch_Cambio_Controller@load')->name('batch.masive_change.load');
+        Route::post('/batch-exec-change', 'Massive_Batch_Cambio_Controller@execute')->name('batch.masive_change.exec');
+
     }); //Route
-
-
-
 
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
 
@@ -85,10 +103,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'access', 'namespace' => 'Access'], function () {
 
-        
+
         // Menu de Alta de usuario Manager
-        Route::resource('/Manager_access', 'Alta_userMan_Controller', ['names' => ['index' => 'Access.alta_userman.index']])->only(['index']);
-        Route::get('/call/Manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
+        Route::resource('/manager_access', 'Alta_userMan_Controller', ['names' => ['index' => 'access.alta_userman.index']])->only(['index']);
+        Route::get('/call/manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
 
         Route::post('/call/catalogos', 'AltaAccessController@getCatalogosList')->name('access.call.catalogos');
 
@@ -97,21 +115,45 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/alta_access', 'AltaAccessController', ['names' => ['index' => 'access.alta_user.index']])->only(['index']);
         Route::get('/call/Alta_access', 'Alta_access_Controller@new_user')->name('Users.call.alta_access');
         // Menu de baja de usuario
-        Route::resource('/Baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);
+        Route::resource('/baja_access', 'Baja_access_Controller', ['names' => ['index' => 'Access.baja_user.index']])->only(['index']);
         // Menu de Modificación de  de usuario
-        Route::resource('/Modif_access', 'Modif_access_Controller', ['names' => ['index' => 'Access.modif_user.index']])->only(['index']);
+        Route::resource('/modif_access', 'Modif_access_Controller', ['names' => ['index' => 'Access.modif_user.index']])->only(['index']);
         // Menu de Consulta de password
         Route::resource('/view_access', 'View_access_Controller', ['names' => ['index' => 'Access.View_pass.index']])->only(['index']);
         // Menu de Activación de usuario
-        Route::resource('/Active_access', 'Active_access_Controller', ['names' => ['index' => 'Access.Active_user.index']])->only(['index']);
+        Route::resource('/active_access', 'Active_access_Controller', ['names' => ['index' => 'Access.Active_user.index']])->only(['index']);
         // Menu de Desactivación de usuario
-        Route::resource('/Deactive_access', 'Deactive_access_Controller', ['names' => ['index' => 'Access.Deactive_user.index']])->only(['index']);
+        Route::resource('/deactive_access', 'Deactive_access_Controller', ['names' => ['index' => 'Access.Deactive_user.index']])->only(['index']);
         // Menu de Cambiar Password de usuario
-        Route::resource('/Change_access', 'Change_access_Controller', ['names' => ['index' => 'Access.Change_pass.index']])->only(['index']);
+        Route::resource('/change_access', 'Change_access_Controller', ['names' => ['index' => 'Access.Change_pass.index']])->only(['index']);
         // Menu de Enviar Contraseña
-        Route::resource('/Send_access', 'Send_access_Controller', ['names' => ['index' => 'Access.Send_pass.index']])->only(['index']);
+        Route::resource('/send_access', 'Send_access_Controller', ['names' => ['index' => 'Access.Send_pass.index']])->only(['index']);
         // Menu de Alta Masiva usurios
-        Route::resource('/Massive_access', 'Massive_access_Controller', ['names' => ['index' => 'Access.Masive_Sign_in.index']])->only(['index']);
+        Route::resource('/massive_access', 'Massive_access_Controller', ['names' => ['index' => 'Access.Masive_Sign_in.index']])->only(['index']);
+
+        // Reporte de usuarios dispositivos
+        // 2021/01/04
+        Route::resource('/report_access_disp', 'Report_userdisp_Controller', ['names' => ['index' => 'access.report_userdisp.index']])->only(['index']);
+        Route::post('/call/access_user_report', 'Report_userdisp_Controller@search_data_api')->name('access.call.report_userdisp');
+
+
+        // Alta Catalogo dispositivos
+        // 2021/01/06
+        Route::resource('/insert_disp_catalog', 'Insert_dispcatalog_Controller', ['names' => ['index' => 'access.insert_dispcatalog.index']])->only(['index']);
+        Route::post('/call/insert_disp_catalog', 'Insert_dispcatalog_Controller@update_data_api')->name('access.call.insert_dispcatalog');
+        // Modificación Catalogo dispositivos
+        // 2021/01/04
+        Route::resource('/update_disp_catalog', 'Update_dispcatalog_Controller', ['names' => ['index' => 'access.update_dispcatalog.index']])->only(['index']);
+        Route::post('/call/search_disp_catalog', 'Update_dispcatalog_Controller@search_data_api')->name('access.call.search_dispcatalog');
+        Route::post('/call/update_disp_catalog', 'Update_dispcatalog_Controller@update_data_api')->name('access.call.update_dispcatalog');
+
+        // Carga Masiva Catalogo Dispositivos
+        // Modificación Catalogo dispositivos
+        // 2021/01/12
+        Route::resource('/massive_disp_catalog', 'Massive_update_dispcatalog_Controller', ['names' => ['index' => 'access.massive_dispcatalog.index']])->only(['index']);
+        Route::post('/access-load-dispcatalog', 'Massive_update_dispcatalog_Controller@load')->name('access.masive_dispcatalog.load');
+        Route::post('/acess-exec-dispcatalog', 'Massive_update_dispcatalog_Controller@execute')->name('access.masive_dispcatalog.exec');
+
     }); //Route
 
 

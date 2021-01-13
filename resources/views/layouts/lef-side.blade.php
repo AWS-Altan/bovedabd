@@ -12,27 +12,93 @@
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Batch</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="batch_dr" class="collapse collapse-level-1 two-col-list">
-
-
-                <!-- Adicion 2020/12/03 -->
-                @if ( !isset( $menu[35] ) )
-					<li>
-						<a href="{{ route('Batch.Report.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Reporte dispositivos</span></div>
-							<div class="clearfix"></div>
-						</a>
-					</li>
+                @if ( !isset( $menu[37] ))
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_alta">
+				        <div class="pull-left"></i><span class="right-nav-text">Alta</span></div>
+					    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+					    <div class="clearfix"></div>
+                    </a>
+                    <ul id="batch_alta" class="collapse collapse-level-1 two-col-list">
+                        <!-- Adicion 2020/12/03 -->
+                        @if ( !isset( $menu[35] ) )
+                            <li>
+                                <a href="{{ route('batch.altareport.index') }}">
+                                    <div class="pull-left"><span class="right-nav-text">Reporte Alta dispositivos</span></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </li>
+                        @endif
+                        <!-- Adicion 2020/12/03 -->
+                        @if ( !isset( $menu[36] ) )
+                            <li>
+                                <a href="{{ route('batch.masive_alta.index') }}">
+                                    <div class="pull-left"><span class="right-nav-text">Alta Masiva de Usuarios</span></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
                 @endif
-                <!-- Adicion 2020/12/03 -->
-                @if ( !isset( $menu[36] ) )
-					<li>
-						<a href="{{ route('Batch.Masive_SignIn.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Alta Masiva de Dispositivos</span></div>
-							<div class="clearfix"></div>
-						</a>
-					</li>
-				@endif
-
+                @if ( !isset( $menu[40] ))
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_baja">
+				        <div class="pull-left"></i><span class="right-nav-text">Baja</span></div>
+					    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+					    <div class="clearfix"></div>
+                    </a>
+                    <ul id="batch_baja" class="collapse collapse-level-1 two-col-list">
+                        <!-- Adicion 2020/12/03 -->
+                        @if ( !isset( $menu[38] ) )
+                            <li>
+                                <a href="{{ route('batch.bajareport.index') }}">
+                                    <div class="pull-left"><span class="right-nav-text">Reporte Baja dispositivos</span></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </li>
+                        @endif
+                        <!-- Adicion 2020/12/03 -->
+                        @if ( !isset( $menu[39] ) )
+                            <li>
+                                <a href="{{ route('batch.masive_baja.index') }}">
+                                    <div class="pull-left"><span class="right-nav-text">Baja Masiva de Usuarios</span></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
+                @if ( !isset( $menu[43] ))
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_cambio">
+				        <div class="pull-left"></i><span class="right-nav-text">Cambio</span></div>
+					    <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+					    <div class="clearfix"></div>
+                    </a>
+                    <ul id="batch_cambio" class="collapse collapse-level-1 two-col-list">
+                        <!-- Adicion 2020/12/03 -->
+                        @if ( !isset( $menu[41] ) )
+                            <li>
+                                <a href="{{ route('batch.changereport.index') }}">
+                                    <div class="pull-left"><span class="right-nav-text">Reporte Cambio en dispositivos</span></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </li>
+                        @endif
+                        <!-- Adicion 2020/12/03 -->
+                        @if ( !isset( $menu[42] ) )
+                            <li>
+                                <a href="{{ route('batch.masive_change.index') }}">
+                                    <div class="pull-left"><span class="right-nav-text">Cambios Masivos de Usuarios</span></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
 			</ul>
         </li>
 
@@ -43,17 +109,73 @@
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Usuarios Dispositivos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="acciones_dr" class="collapse collapse-level-1 two-col-list">
 
+
+
                 <!-- Alta usuarios -->
                 @if ( !isset( $menu[26] ) )
+                    <li>
+                        <a href="{{ route('access.alta_user.index') }}">
+                            <div class="pull-left"><span class="right-nav-text">Alta Usuarios Dispositivos</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
+
+                <!-- Reporte de Usuarios Dispositivos -->
+                <!-- modif 2021/01/04 -->
+                @if ( !isset( $menu[44] ) )
 					<li>
-						<a href="{{ route('Access.alta_userman.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Alta Relacion Accesos Usuarios</span></div>
+						<a href="{{ route('access.report_userdisp.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Reporte Usuarios Dispositivos</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
                 @endif
 
-				@if ( !isset( $menu[25] ))
+                @if ( !isset( $menu[45] ) or !isset( $menu[46] ) or !isset( $menu[47] )  )
+				<li>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#Cat_disp_man">
+						<div class="pull-left"></i><span class="right-nav-text">Catálogo Boveda Remedy</span></div>
+						<div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+						<div class="clearfix"></div>
+                    </a>
+
+					<ul id="Cat_disp_man" class="collapse collapse-level-1 two-col-list">
+                        <!-- Alta de Catalogo de dispositivos -->
+                        <!-- modif 2021/01/06 -->
+                        @if ( !isset( $menu[46] ) )
+					    <li>
+                            <a href="{{ route('access.insert_dispcatalog.index') }}">
+							    <div class="pull-left"><span class="right-nav-text">Alta Catálogo Dispositivos </span></div>
+							    <div class="clearfix"></div>
+						    </a>
+					    </li>
+                        @endif
+                        <!-- Modificación de Catalogo de Dispositivos -->
+                        <!-- modif 2021/01/04 -->
+                        @if ( !isset( $menu[45] ) )
+					    <li>
+                            <a href="{{ route('access.update_dispcatalog.index') }}">
+							    <div class="pull-left"><span class="right-nav-text">Modificaciones Catálogo Dispositivos </span></div>
+							    <div class="clearfix"></div>
+						    </a>
+					    </li>
+                        @endif
+                        <!-- Modificación de Masivo Catalogo de Dispositivos -->
+                        <!-- modif 2021/01/12 -->
+                        @if ( !isset( $menu[47] ) )
+					    <li>
+                            <a href="{{ route('access.massive_dispcatalog.index') }}">
+							    <div class="pull-left"><span class="right-nav-text">Masivo Catálogo Dispositivos </span></div>
+							    <div class="clearfix"></div>
+						    </a>
+					    </li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
+
+                @if ( !isset( $menu[25] ))
 				<li>
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#prereg_dr">
 						<div class="pull-left"></i><span class="right-nav-text">Usuarios Dispositivos</span></div>
@@ -61,16 +183,16 @@
 						<div class="clearfix"></div>
 					</a>
 					<ul id="prereg_dr" class="collapse collapse-level-1 two-col-list">
-                        <!-- Alta usuarios -->
-                        @if ( !isset( $menu[26] ) )
-                            <li>
-                                <a href="{{ route('access.alta_user.index') }}">
-                                    <div class="pull-left"><span class="right-nav-text">Alta Usuarios Dispositivos</span></div>
-                                    <div class="clearfix"></div>
-                                </a>
-                            </li>
-                        @endif
 
+                        <!-- Alta usuarios -->
+                    @if ( !isset( $menu[26] ) )
+					<li>
+						<a href="{{ route('access.alta_userman.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta Relacion Accesos Usuarios</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                    @endif
 
                         @if ( !isset( $menu[27] ) )
                             <li>
@@ -139,7 +261,7 @@
                         @if ( !isset( $menu[34] ) )
                             <li>
                                 <a href="{{ route('Access.Masive_Sign_in.index') }}">
-                                    <div class="pull-left"><span class="right-nav-text">Alta Masiva de usuarios</span></div>
+                                    <div class="pull-left"><span class="right-nav-text">Carga Masiva</span></div>
                                     <div class="clearfix"></div>
                                 </a>
                             </li>

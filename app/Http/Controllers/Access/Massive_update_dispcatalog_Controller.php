@@ -1,7 +1,7 @@
 <?php
 
 //cambio el namepace de acuerdo al directorio
-namespace App\Http\Controllers\Batch;
+namespace App\Http\Controllers\Access;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -17,7 +17,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\BadResponseException;
 use Carbon\Carbon;
 
-class Massive_Batch_Controller extends BaseController
+class Massive_update_dispcatalog_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
@@ -26,8 +26,7 @@ class Massive_Batch_Controller extends BaseController
     {
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_batchserv') ] );
 
-    }
-
+    }//construct
 
     /**
      * Show the Porta In.
@@ -40,7 +39,7 @@ class Massive_Batch_Controller extends BaseController
         if ( isset( $menu[23] ) )
             return redirect()->route('home.index');
 
-        return view('Batch.massive_batch')-> with('menu',$menu); // test 2
+        return view('Access.massive_update_dispcatalog')-> with('menu',$menu); // test 2
 
 
     }
@@ -69,7 +68,7 @@ class Massive_Batch_Controller extends BaseController
                             'name' => 'archivos[]',
                             'class'=> 'form-control',
                             'placeholder' => 'Archivo',
-                            'data-error' => 'Valor inválido',
+                            'data-error' => 'Valor invï¿½lido',
                             'filename' => $file->getClientOriginalName(),
                             'contents' => fopen($file, 'r')
                         ]
@@ -122,7 +121,7 @@ class Massive_Batch_Controller extends BaseController
         $responsexec = NULL;
         try {
             loginfo("sisten exec 2");
-            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi',
+            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.pl',
                 [
                     'headers'  => [ 'Content-type' => 'Application/json' ],
                     'json' => $json

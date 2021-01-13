@@ -67,94 +67,32 @@ class AltaAccessController extends BaseController
     /****************************
     *    Funcion de Creación de Usuario
     *************************/
-    public function new_user()
+    public function newUser()
     {
 
-        // Valido Sesion
-        //$this->loginResponse = $this->login();
+        loginfo('Obtiene catalogos para el formulario de alta de usuario');
 
-        //Escribo al log
-        loginfo('Alta de usuario');
-        // Escribo los datos de alta
-        loginfo('ip: ' . request()-> send_ip .
-                'host: ' . request()->send_host .
-                'idtipo_disp: ' . request()->send_idtipodisp .
-                'idgrupo: ' . request()->send_idgrupo .
-                'usuario: ' . request()->send_usuario .
-                'idtipo: ' . request()->send_idtipo .
-                'id_status: ' . request()->send_idstatus .
-                'idperfil: ' . request()->send_idperfil .
-                'flag_rota: ' . request()->send_idflag .
-                'id_solicitante: ' . request()->send_idsolicitante );
-                //'fecha_alta:' . request()->send_fechaalta .
-                //'fecha_rota:' . request()->send_fecharota .
-                //'fecha_termino:' . request()->send_fechaterm );
-
-        //Inserto al log de la base
-        Vwlogs::create([
-                        "vwuser_id" => app('auth')->user()->id,
-                        "actions" => 'Alta de usaurio',
-                        "responses" => 'test',
-                        "action_low" => 'test2',
-                        "resoponse_low" => 'test3'
-                    ]);
+        $json = request()->json()->all();
+        loginfo($json);
 
 
-        //Escribo al log
-        loginfo('inserte en logs');
+        try {
 
-        //traigo el maximo
-        try{
-            $max_id = Dispositivos::max('id_disp');
-            loginfo('Valor max');
-            loginfo($max_id);
-            $max_id++;
-        }catch (Exception $e) {
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_catalogos'). 'catalogos'
+                , [
+                    'json' => $json,
+                  ])->getBody());
 
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_catalogos') . 'catalogos', [$req]);
+
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_catalogos') .'catalogos'
+                , [ parse_exception( $e ) ]);
+
+            
         }
 
-        //Realizo insercion en el Catalogo
-        try {
-                $status_insert = Dispositivos::create([
-                        "id_disp" => $max_id,
-                        "ip" => request()-> send_ip,
-                        "host" => request()->send_host,
-                        "idtipo_disp" => intval (request()->send_idtipodisp),
-                        "idgrupo" => intval(request()->send_idgrupo),
-                        "usuario" => request()->send_usuario,
-                        "idtipo" => intval(request()->send_idtipo),
-                        "id_status" => intval(request()->send_idstatus),
-                        "idperfil" => intval(request()->send_idperfil),
-                        "flag_rota" => intval(request()->send_idflag),
-                        "id_solicitante" => intval(request()->send_idsolicitante)
-                        //"fecha_alta" => request()->send_fechaalta,
-                        //"fecha_rota" => request()->send_fecharota,
-                        //"fecha_termino" => request()->send_fechaterm
-
-                ]); //Insercion
-
-                //Escribo al log
-                loginfo('inserté usuario');
-
-                $this->reportable(function (CustomException $e) {
-                        loginfo('Error larabel '.$e);
-                });
-
-                $response = json_encode(['description' => 'ok',
-                                  'statusCode' => 200
-                    ]);//json encode
-            } catch (\Exception $e) {
-                loginfo('Error al dar de alta el usuario', [ $e->getMessage() ]);
-                $response = json_encode(['description' => 'ok',
-                                  'statusCode' => 200
-                    ]);//json encode
-                //Escribo al log
-                loginfo('Error en insercion');
-                loginfo($e->getMessage());
-            } //Try/Catch
-
-            //regreso respuesta
-        return $response;
+        return json_encode( $req );
 
     } // new_user
 

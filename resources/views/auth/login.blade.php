@@ -181,7 +181,8 @@
                                     );
                                 });
 
-                                if(obj.mvno.length == 1){
+                                //actualización 20201215 - solicitud Clau, retirar obtencion de MVNO
+                                /*if(obj.mvno.length == 1){
                                     mySelect.hide();
                                     $('#mvno_name').hide();
                                     $('#submit').prop('disabled', false);
@@ -192,7 +193,14 @@
                                     $('#mvno_name').show();
                                     $( "#consulta" ).hide();
                                      $('#submit').show();
-                                }
+                                }*/
+
+                                mySelect.hide();
+                                $('#mvno_name').hide();
+                                $('#submit').prop('disabled', false);
+                                $('#submit').trigger('click');
+                                $("#form_login").submit();
+                                //termina actualización 20201215
 
                                 $('#submit').prop('disabled', false);
                             }

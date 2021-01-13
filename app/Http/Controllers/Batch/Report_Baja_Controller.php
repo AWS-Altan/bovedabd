@@ -17,7 +17,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\BadResponseException;
 use Carbon\Carbon;
 
-class Report_Batch_Controller extends BaseController
+class Report_Baja_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
@@ -39,7 +39,7 @@ class Report_Batch_Controller extends BaseController
         if ( isset( $menu[23] ) )
             return redirect()->route('home.index');
 
-        return view('Batch.Report_batch_alta')-> with('menu',$menu); // test 2
+        return view('Batch.Report_batch_baja')-> with('menu',$menu); // test 2
 
 
     }
@@ -153,13 +153,13 @@ class Report_Batch_Controller extends BaseController
                   ])->getBody());
 
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);
-            loginfo('termina ejecución API');
+            loginfo('termina ejecuciÃ³n API');
         } catch (\Exception $e) {
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
 
 
         }
-        loginfo('Regreso información');
+        loginfo('Regreso informaciÃ³n');
         return json_encode( $req );
 
     }
@@ -168,3 +168,6 @@ class Report_Batch_Controller extends BaseController
 
 
 } //Report_Batch_Controller
+
+
+

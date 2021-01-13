@@ -96,7 +96,7 @@
                                 </div>
 
                                 <!-- Texto de Menajes -->
-                                <div class="row" id="message_text">
+                                <div class="row" id="message_error">
 								</div>
                             </form>
 						</section>
@@ -120,7 +120,7 @@
 
 
         // Limpio los mensajes de Error
-        $('#message_text' ).empty();
+        $('#message_error' ).empty();
 
         $('err_msg_name' ).empty();
         $('err_msg_app_pat' ).empty();
@@ -185,7 +185,7 @@
         .fail(function()
         {
 	        // $('#message').empty();
-			$('#message_text').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario  </label>');
+			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario  </label>');
 	        $.unblockUI();
 	    })
         .always(function()
@@ -193,14 +193,14 @@
             if ( obj2.statusCode!= null && obj2.statusCode!=200 )
             {
 				// $('#message').empty();
-				$('#message_text').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
+				$('#message_error').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
 				$.unblockUI();
             }else
             {
 			    $('#validar').hide();
 				$('#finish').hide();
 				//$('#message').empty();
-                $('#message_text').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+                $('#message_error').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
                 $('#cmd_IP_Host').val("");
                 $('#cmd_Host').val("");
                 $('#cmd_tipo_disp').val("");
@@ -215,7 +215,7 @@
 		})
         /// a aqui
 
-        $('#message_text').append('voy finish B ');
+        $('#message_error').append('voy finish B ');
         //$.unblockUI();
 
     } //finished
@@ -230,22 +230,22 @@
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-            $('#message_text').append('voy 1');
+            $('#message_error').append('voy 1');
 
         	return {
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Alta');
 
-                    $('#message_text').empty();
-				    $('#message_text').append('voy 2');
+                    $('#message_error').empty();
+				    $('#message_error').append('voy 2');
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        $('#message_text').append('voy 4');
+                        $('#message_error').append('voy 4');
                     });
-                    $('#message_text').append('voy 3');
+                    $('#message_error').append('voy 3');
 		        }
 		    };
         }
