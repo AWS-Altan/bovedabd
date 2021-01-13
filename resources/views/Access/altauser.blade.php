@@ -9,7 +9,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta de usuario Plataforma</span></h3>
+						<h3><span class="head-font capitalize-font">Alta de usuario Dispositivo</span></h3>
 						<section>
                             <!-- Contenedor -->
                             <form id="form_tabs" action="#">
@@ -31,7 +31,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
 														<input type="text" data-minlength="10" class="form-control" id="ipHost" placeholder="Ingrese La IP del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_IP"></div>
+													    <div class="help-block with-errors" id="ipHostError"></div>
 												    </div>
 
                                                     <!-- Campo de Host -->
@@ -40,7 +40,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="nameHost" placeholder="Ingrese el nombre del host" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_host"></div>
+                                                        <div class="help-block with-errors" id="nameHostError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="usuarioDispositivo" placeholder="Ingrese el usuario del dispositivo" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_usurioDispositivo"></div>
+                                                        <div class="help-block with-errors" id="usuarioDispositivoError"></div>
                                                     </div>
                                                     <!-- Contraseña del usuario del dispositivo-->
                                                     <div class="col-sm-2">
@@ -165,7 +165,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
 														<input type="text" data-minlength="10" class="form-control" id="nombreSolicitante" placeholder="Ingrese el nombre del solicitante" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_nombreSolicitante"></div>
+													    <div class="help-block with-errors" id="nombreSolicitanteError"></div>
 												    </div>
                                                 </div>
                                             </div>
@@ -181,7 +181,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="paternoSolicitante" placeholder="Ingrese el apellido paterno del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_paternoSolicitante"></div>
+                                                        <div class="help-block with-errors" id="paternoSolicitanteError"></div>
                                                     </div>
                                                      <!-- Apellido materno del solicitante -->
                                                     <div class="col-sm-2 mb-20">
@@ -189,7 +189,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="maternoSolicitante" placeholder="Ingrese el apellido materno del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_maternoSolicitante"></div>
+                                                        <div class="help-block with-errors" id="maternoSolicitanteError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -206,7 +206,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="movilSolicitante" placeholder="Ingrese el m&oacute; del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_movilSolicitante"></div>
+                                                        <div class="help-block with-errors" id="movilSolicitanteError"></div>
                                                     </div>
                                                      <!-- mail del solicitante -->
                                                     <div class="col-sm-2 mb-20">
@@ -214,7 +214,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="mailSolicitante" placeholder="Ingrese el mail del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_mailSolicitante"></div>
+                                                        <div class="help-block with-errors" id="mailSolicitanteError"></div>
                                                     </div>
                                                     <!-- organización del solicitante -->
                                                     <div class="col-sm-2 mb-20">
@@ -222,7 +222,7 @@
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
                                                         <input type="text" data-minlength="10" class="form-control" id="organizacionSolicitante" placeholder="Ingrese la organización del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_organizacionSolicitante"></div>
+                                                        <div class="help-block with-errors" id="organizacionSolicitanteError"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -231,8 +231,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Texto de Menajes -->
-                                <div class="row" id="message_text">
+                                <div class="row" id="message">
 								</div>
                             </form>
 						</section>
@@ -258,18 +257,16 @@
         // Limpio los mensajes de Error
         // $('#message' ).empty();
 
-        $('err_msg_IP' ).empty();
-        $('err_msg_host' ).empty();
-        $('err_msg_tipo_disp' ).empty();
-        $('err_msg_grupo' ).empty();
-        $('err_msg_nombreSolicitante' ).empty();
+        $('ipHostError' ).empty();
+        $('nameHostError' ).empty();
+        $('nombreSolicitanteError' ).empty();
         
-        $('err_msg_paternoSolicitante').empty();
-        $('err_msg_maternoSolicitante').empty();
-        $('err_msg_usurioDispositivo' ).empty();
-        $('err_msg_movilSolicitante' ).empty();
-        $('err_msg_mailSolicitante' ).empty();
-        $('err_msg_organizacionSolicitante' ).empty();
+        $('paternoSolicitanteError').empty();
+        $('maternoSolicitanteError').empty();
+        $('usuarioDispositivoError' ).empty();
+        $('movilSolicitanteError' ).empty();
+        $('mailSolicitanteError' ).empty();
+        $('organizacionSolicitanteError' ).empty();
 
 
 /*
@@ -336,7 +333,7 @@
         .fail(function()
         {
 	        // $('#message').empty();
-			$('#message_text').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario  </label>');
+			$('#message').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario  </label>');
 	        $.unblockUI();
 	    })
         .always(function()
@@ -344,14 +341,14 @@
             if ( obj2.statusCode!= null && obj2.statusCode!=200 )
             {
 				// $('#message').empty();
-				$('#message_text').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
+				$('#message').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
 				$.unblockUI();
             }else
             {
 			    $('#validar').hide();
 				$('#finish').hide();
 				//$('#message').empty();
-                $('#message_text').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+                $('#message').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
                 $('#ipHost').val("");
                 $('#nameHost').val("");
                 $('#usuarioDispositivo').val("");
@@ -368,7 +365,7 @@
 		})
         /// a aqui
 
-        //$('#message_text').append('voy finish B ');
+        //$('#message').append('voy finish B ');
         //$.unblockUI();
 
     } //finished
@@ -409,59 +406,84 @@
             glob = obj; 
             //console.log('offertas:');
             console.log(obj);
-            $('#grupo').append(
-                $('<option></option>').val( '' ).html( 'Seleccionar Grupo')
-            );
-            $.each( obj.grupo, function(index) {
-                
+            if (   (obj.stackTrace!=null && obj.stackTrace) 
+                || ( obj.status && obj.status=="no-ok" ) )  {
+
+                var errorInfo = ( obj.status && obj.status=="no-ok" )?obj.description:obj.stackTrace;
+                $('#message').empty();
+                $('#message').append('<label class="alert-danger mb-30 text-left">Se produjo un error al intentar obtener los datos de los catalogos:<br><strong>'+ errorInfo + '</strong> ');
+                $(":text").prop('disabled',true);
+                $(":password").prop('disabled',true);
+                $("#tipoDispositivo,#grupo,#tipoUsuario,#perfil,#solicitante").prop('disabled',true);
+                $( "#finish" ).hide();
+                $.unblockUI();
+            }    
+            else {   
                 $('#grupo').append(
-                    $('<option></option>').val( obj.grupo[index].id ).html( obj.grupo[index].descripcion + ' - '+ obj.grupo[index].descripcionConjunto )
+                    $('<option></option>').val( '' ).html( 'Seleccionar Grupo')
                 );
-
-            }); 
-
-
-            $('#tipoDispositivo').append(
-                $('<option></option>').val( '' ).html( 'Seleccionar tipo de dispositivo')
-            );
-            $.each( obj.tipoDispositivo, function(index) {
-                
-                $('#tipoDispositivo').append(
-                    $('<option></option>').val( obj.tipoDispositivo[index].id ).html( obj.tipoDispositivo[index].tipo +' ' +obj.tipoDispositivo[index].vendor +' '+obj.tipoDispositivo[index].descripcion )
-                );
-
-            }); 
-
-
-            $('#tipoUsuario').append(
-                $('<option></option>').val( '' ).html( 'Seleccionar tipo de usuario')
-            );
-            $.each( obj.tipoUsuario, function(index) {
-                
-                $('#tipoUsuario').append(
-                    $('<option></option>').val( obj.tipoUsuario[index].id ).html( obj.tipoUsuario[index].descripcion + ' - ' +  obj.tipoUsuario[index].descripcionTecnologia)
-                );
-
-            }); 
-
-            if(obj.isManager==='true'){
-                $('#solicitante').append(
-                    $('<option></option>').val( '' ).html( 'Seleccionar solicitante')
-                );
-                $.each( obj.solicitante, function(index) {
+                $.each( obj.grupo, function(index) {
                     
-                    $('#solicitante').append(
-                        $('<option></option>').val( obj.solicitante[index].id ).html( obj.solicitante[index].mail  )
+                    $('#grupo').append(
+                        $('<option></option>').val( obj.grupo[index].id ).html( obj.grupo[index].descripcion + ' - '+ obj.grupo[index].descripcionConjunto )
                     );
 
                 }); 
-            }else{
-                $('#solicitante').hide();
-                $('#solicitanteLabel').hide();
+
+
+                $('#tipoDispositivo').append(
+                    $('<option></option>').val( '' ).html( 'Seleccionar tipo de dispositivo')
+                );
+                $.each( obj.tipoDispositivo, function(index) {
+                    
+                    $('#tipoDispositivo').append(
+                        $('<option></option>').val( obj.tipoDispositivo[index].id ).html( obj.tipoDispositivo[index].tipo +' ' +obj.tipoDispositivo[index].vendor +' '+obj.tipoDispositivo[index].descripcion )
+                    );
+
+                }); 
+
+
+                $('#tipoUsuario').append(
+                    $('<option></option>').val( '' ).html( 'Seleccionar tipo de usuario')
+                );
+                $.each( obj.tipoUsuario, function(index) {
+                    
+                    $('#tipoUsuario').append(
+                        $('<option></option>').val( obj.tipoUsuario[index].id ).html( obj.tipoUsuario[index].descripcion + ' - ' +  obj.tipoUsuario[index].descripcionTecnologia)
+                    );
+
+                }); 
+
+                $('#perfil').append(
+                    $('<option></option>').val( '' ).html( 'Seleccionar perfil')
+                );
+                $.each( obj.perfil, function(index) {
+                    
+                    $('#perfil').append(
+                        $('<option></option>').val( obj.tipoUsuario[index].id ).html( obj.tipoUsuario[index].descripcion + ' - ' +  obj.tipoUsuario[index].descripcionTecnologia)
+                    );
+
+                }); 
+
+
+                if(obj.isManager==='true'){
+                    $('#solicitante').append(
+                        $('<option></option>').val( '' ).html( 'Seleccionar solicitante')
+                    );
+                    $.each( obj.solicitante, function(index) {
+                        
+                        $('#solicitante').append(
+                            $('<option></option>').val( obj.solicitante[index].id ).html( obj.solicitante[index].mail  )
+                        );
+
+                    }); 
+                }else{
+                    $('#solicitante').hide();
+                    $('#solicitanteLabel').hide();
+
+                }
 
             }
-
-
             $.unblockUI();
             
         })
@@ -499,20 +521,20 @@
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-            $('#message_text').append('voy 1');
+            $('#message').append('voy 1');
 
         	return {
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Alta');
 
-                    $('#message_text').empty();
+                    $('#message').empty();
 				    
                     //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        $('#message_text').append('voy 4');
+                        $('#message').append('voy 4');
                     });
                     
 		        }
