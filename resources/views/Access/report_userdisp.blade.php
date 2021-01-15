@@ -40,7 +40,7 @@
                                     <br><br>
                                     <div class="col-sm-1">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio5" value="option1" checked="checked" Onclick="TipoDato4('ip')">
+                                            <input type="radio" name="radio1" id="radio5" value="option1" Onclick="TipoDato4('ip')">
                                             <label for="radio5" style="margin-bottom: 0px;">
                                                 IP
                                             </label>
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio8" value="option4" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio9" value="option5" Onclick="TipoDato4('hostname')">
                                             <label for="radio8" style="margin-bottom: 0px;">
                                                 STATUS
                                             </label>
@@ -150,7 +150,26 @@
             data.fecha_ini = $('#txtDateini' ).val();
             data.fecha_fin = $('#txtDatefin' ).val()
         }
-
+        if(document.getElementById('radio5').checked)
+        {
+            data.IP = $('#inputData').val();
+        }//if
+        if(document.getElementById('radio6').checked)
+        {
+            data.hostname = $('#inputData').val();
+        }//if
+        if(document.getElementById('radio7').checked)
+        {
+            data.user = $('#inputData').val();
+        }//if
+        if(document.getElementById('radio8').checked)
+        {
+            data.solicitante = $('#inputData').val();
+        }//if
+        if(document.getElementById('radio9').checked)
+        {
+            data.status = $('#inputData').val();
+        }//if
 
         //Hago el manejo de la tabla
         $.ajax({
