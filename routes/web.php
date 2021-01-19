@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/call/Manager_access', 'Alta_userMan_Controller@new_user')->name('Access.call.alta_userman');
 
         Route::post('/call/catalogos', 'AltaAccessController@getCatalogosList')->name('access.call.catalogos');
+        Route::get('/call/new_access_add', 'AltaAccessController@newUser')->name('users.call.alta_access');
 
 
         // Menu de Alta de usuario

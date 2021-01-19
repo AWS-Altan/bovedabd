@@ -53,6 +53,8 @@ class AltaAccessController extends BaseController
         return view('Access.altauser')-> with('menu',$menu); // test 2
     } // index
 
+
+
     /****************************
     Validación de sesion, si no esta logeado, lo manda a login
     *************************/
@@ -67,94 +69,46 @@ class AltaAccessController extends BaseController
     /****************************
     *    Funcion de Creación de Usuario
     *************************/
-    public function new_user()
+    public function newUser()
     {
+        $this->loginResponse = $this->login();
+        
+        $req = null;
 
-        // Valido Sesion
-        //$this->loginResponse = $this->login();
+        loginfo("Entra a Alta de  Usuario Dispositivos ...");
+        //$json = request()->json()->all();
+        loginfo ("parametros de usuario");
+        
 
-        //Escribo al log
-        loginfo('Alta de usuario');
-        // Escribo los datos de alta
-        loginfo('ip: ' . request()-> send_ip .
-                'host: ' . request()->send_host .
-                'idtipo_disp: ' . request()->send_idtipodisp .
-                'idgrupo: ' . request()->send_idgrupo .
-                'usuario: ' . request()->send_usuario .
-                'idtipo: ' . request()->send_idtipo .
-                'id_status: ' . request()->send_idstatus .
-                'idperfil: ' . request()->send_idperfil .
-                'flag_rota: ' . request()->send_idflag .
-                'id_solicitante: ' . request()->send_idsolicitante );
-                //'fecha_alta:' . request()->send_fechaalta .
-                //'fecha_rota:' . request()->send_fecharota .
-                //'fecha_termino:' . request()->send_fechaterm );
+        $json = [   'ip'            => request()->ip,
+                    'usuario'       => request()->usuario,
+                    'password'      => request()->password,
+                    'idtipo_disp'   => request()->idTipoDispositivo,
+                    'id_grupo'      => request()->idGrupo,
+                    'flag_rota'     => request()->flagRotacionPassword,
+                    'id_solicitante'=> reqVigenciauest()->idSolicitante,
+                    'id_tipo'       => request()->idTipoUsuario,
+                    'id_perfil'     => request()->idPerfil,
+                    'fecha_termino' => request()->fechaTermino,
+                    'operacion'     => request()->operacion
+                    ];
+        
+        loginfo($json);
 
-        //Inserto al log de la base
-        Vwlogs::create([
-                        "vwuser_id" => app('auth')->user()->id,
-                        "actions" => 'Alta de usaurio',
-                        "responses" => 'test',
-                        "action_low" => 'test2',
-                        "resoponse_low" => 'test3'
-                    ]);
-
-
-        //Escribo al log
-        loginfo('inserte en logs');
-
-        //traigo el maximo
-        try{
-            $max_id = Dispositivos::max('id_disp');
-            loginfo('Valor max');
-            loginfo($max_id);
-            $max_id++;
-        }catch (Exception $e) {
-
+        try {
+            $req = $this->httpClient->request('POST', config('conf.url_boveda_user'), [
+                'headers' => ['Authorization' => sprintf('Bearer %s', $this->loginResponse->accessToken)],
+                'json' => $json,
+            ])->getBody();
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_boveda_user') , [$req]);
+        } catch (\Exception $e) {
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_boveda_user') , [parse_exception($e)]);
+            $error = json_encode(['error' => parse_exception($e)]);
+            return $error;
         }
 
-        //Realizo insercion en el Catalogo
-        try {
-                $status_insert = Dispositivos::create([
-                        "id_disp" => $max_id,
-                        "ip" => request()-> send_ip,
-                        "host" => request()->send_host,
-                        "idtipo_disp" => intval (request()->send_idtipodisp),
-                        "idgrupo" => intval(request()->send_idgrupo),
-                        "usuario" => request()->send_usuario,
-                        "idtipo" => intval(request()->send_idtipo),
-                        "id_status" => intval(request()->send_idstatus),
-                        "idperfil" => intval(request()->send_idperfil),
-                        "flag_rota" => intval(request()->send_idflag),
-                        "id_solicitante" => intval(request()->send_idsolicitante)
-                        //"fecha_alta" => request()->send_fechaalta,
-                        //"fecha_rota" => request()->send_fecharota,
-                        //"fecha_termino" => request()->send_fechaterm
 
-                ]); //Insercion
-
-                //Escribo al log
-                loginfo('inserté usuario');
-
-                $this->reportable(function (CustomException $e) {
-                        loginfo('Error larabel '.$e);
-                });
-
-                $response = json_encode(['description' => 'ok',
-                                  'statusCode' => 200
-                    ]);//json encode
-            } catch (\Exception $e) {
-                loginfo('Error al dar de alta el usuario', [ $e->getMessage() ]);
-                $response = json_encode(['description' => 'ok',
-                                  'statusCode' => 200
-                    ]);//json encode
-                //Escribo al log
-                loginfo('Error en insercion');
-                loginfo($e->getMessage());
-            } //Try/Catch
-
-            //regreso respuesta
-        return $response;
+        return $req;
 
     } // new_user
 

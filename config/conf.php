@@ -12,5 +12,6 @@ return [
 
 	
 	'url_catalogos' => 'https://czo8mqimp7.execute-api.us-east-1.amazonaws.com/prod/',
+	'url_boveda_user' => 'https://hxzd601w08.execute-api.us-east-1.amazonaws.com/prod/',
 
 ];
