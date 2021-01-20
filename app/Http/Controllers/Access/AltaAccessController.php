@@ -86,7 +86,7 @@ class AltaAccessController extends BaseController
                     'idtipo_disp'   => request()->idTipoDispositivo,
                     'id_grupo'      => request()->idGrupo,
                     'flag_rota'     => request()->flagRotacionPassword,
-                    'id_solicitante'=> reqVigenciauest()->idSolicitante,
+                    'id_solicitante'=> request()->idSolicitante,
                     'id_tipo'       => request()->idTipoUsuario,
                     'id_perfil'     => request()->idPerfil,
                     'fecha_termino' => request()->fechaTermino,

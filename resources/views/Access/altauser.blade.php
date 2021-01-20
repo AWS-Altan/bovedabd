@@ -267,7 +267,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row" id="message">
+                                <div class="row" id="message" style="height:80px; width:103%;">
 								</div>
                             </form>
 						</section>
@@ -480,8 +480,8 @@
                 else {    
                     $('#validar').hide();
     				$('#finish').hide();
-    				//$('#message').empty();
-                    $('#message').append('<label class="alert-success  mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+    				$('#message').empty();
+                    $('#message').append('<label class="alert-success  mb-30 text-center" style="height:80px; width:103%;">Alta de usuario <strong>&nbsp;&eacutexitosa</strong></label>');
                 }
 				$.unblockUI();
             }
@@ -516,6 +516,9 @@
                     },1000);
         });
 
+        $('#nombreSolicitante, #paternoSolicitante ,#maternoSolicitante').prop('disabled',true);
+        $('#movilSolicitante, #mailSolicitante, #organizacionSolicitante').prop('disabled',true);
+ 
 
         bloqueo();
         var data = {};
@@ -611,20 +614,15 @@
                         $('<option></option>').val( obj.solicitante[index].id ).html( obj.solicitante[index].mail  )
                     );
 
-                    if(    (obj.isManager==="false" ) 
-                        && ( obj.solicitante[index].mail ==="{{ app('auth')->user()->email }}") ){
+                    if( ( obj.solicitante[index].mail ==="{{ app('auth')->user()->email }}") ){
                             $('#solicitante option').eq(index+1).prop('selected',true).trigger('change');
-                            $('#solicitante').prop('disabled',true);
-                            $('#nombreSolicitante').prop('disabled',true);
-                            $('#paternoSolicitante').prop('disabled',true);
-                            $('#maternoSolicitante').prop('disabled',true);
-                            $('#movilSolicitante').prop('disabled',true);
-                            $('#mailSolicitante').prop('disabled',true);
-                            $('#organizacionSolicitante').prop('disabled',true);
+                            
                     }
 
-
                 }); 
+                if ( obj.isManager==="false" ) {
+                        $('#solicitante').prop('disabled',true);
+                }
 
 
             }
