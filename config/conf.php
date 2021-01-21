@@ -14,8 +14,7 @@ return [
     'url_repbatch'     => 'https://jrqd67i07j.execute-api.us-east-1.amazonaws.com/v1/pre/',
     'url_batchserv'    => 'http://bovedalaravelprod-745519943.us-east-1.elb.amazonaws.com/',
     'url_cat_disp'     => 'https://auju8kt8a2.execute-api.us-east-1.amazonaws.com/prod/',
-    'url_catupd_disp'  => 'https://73170bjvk0.execute-api.us-east-1.amazonaws.com/prod/'
+    'url_catupd_disp'  => 'https://73170bjvk0.execute-api.us-east-1.amazonaws.com/prod/',
+    'url_boveda_user' => 'https://hxzd601w08.execute-api.us-east-1.amazonaws.com/prod/',
 
 ];
-
-
