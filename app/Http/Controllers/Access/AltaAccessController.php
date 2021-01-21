@@ -35,7 +35,7 @@ class AltaAccessController extends BaseController
     public function __construct()
     {
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_catalogos') ] );
-        
+
     }
 
 
@@ -53,6 +53,8 @@ class AltaAccessController extends BaseController
         return view('Access.altauser')-> with('menu',$menu); // test 2
     } // index
 
+
+
     /****************************
     Validación de sesion, si no esta logeado, lo manda a login
     *************************/
@@ -69,30 +71,44 @@ class AltaAccessController extends BaseController
     *************************/
     public function newUser()
     {
+        $this->loginResponse = $this->login();
 
-        loginfo('Obtiene catalogos para el formulario de alta de usuario');
+        $req = null;
 
-        $json = request()->json()->all();
+        loginfo("Entra a Alta de  Usuario Dispositivos ...");
+        //$json = request()->json()->all();
+        loginfo ("parametros de usuario");
+
+
+        $json = [   'ip'            => request()->ip,
+                    'usuario'       => request()->usuario,
+                    'password'      => request()->password,
+                    'idtipo_disp'   => request()->idTipoDispositivo,
+                    'id_grupo'      => request()->idGrupo,
+                    'flag_rota'     => request()->flagRotacionPassword,
+                    'id_solicitante'=> request()->idSolicitante,
+                    'id_tipo'       => request()->idTipoUsuario,
+                    'id_perfil'     => request()->idPerfil,
+                    'fecha_termino' => request()->fechaTermino,
+                    'operacion'     => request()->operacion
+                    ];
+
         loginfo($json);
 
-
         try {
-
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_catalogos'). 'catalogos'
-                , [
-                    'json' => $json,
-                  ])->getBody());
-
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_catalogos') . 'catalogos', [$req]);
-
+            $req = $this->httpClient->request('POST', config('conf.url_boveda_user'), [
+                'headers' => ['Authorization' => sprintf('Bearer %s', $this->loginResponse->accessToken)],
+                'json' => $json,
+            ])->getBody();
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_boveda_user') , [$req]);
         } catch (\Exception $e) {
-            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_catalogos') .'catalogos'
-                , [ parse_exception( $e ) ]);
-
-            
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_boveda_user') , [parse_exception($e)]);
+            $error = json_encode(['error' => parse_exception($e)]);
+            return $error;
         }
 
-        return json_encode( $req );
+
+        return $req;
 
     } // new_user
 
@@ -120,7 +136,7 @@ class AltaAccessController extends BaseController
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_catalogos') .'catalogos'
                 , [ parse_exception( $e ) ]);
 
-            
+
         }
 
         return json_encode( $req );
