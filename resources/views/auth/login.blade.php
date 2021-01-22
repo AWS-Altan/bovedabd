@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Altán Boveda - Iniciar Sesi&oacute;n</title>
+    <title>Altán Boveda Manager SGI - Iniciar Sesi&oacute;n</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="mb-30">
-                                        <h3 class="text-center txt-dark mb-10">Boveda</h3>
+                                        <h3 class="text-center txt-dark mb-10">Boveda <br> Manager SGI</h3>
                                     </div>
                                     <div class="form-wrap">
                                          <form id="form_login" method="POST" action="{{ route('login') }}">

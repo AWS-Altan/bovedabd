@@ -108,12 +108,14 @@
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <style type="text/css">
 	.wizard > .steps > ul > li{
 		    width: 45%;
 	}
 </style>
 <script>
+
 
 
     // funcion para cambio de pestaña
@@ -200,52 +202,75 @@
                         "columns": [
                             {
                                 //Campo de IP
+                                "name": "cols_IP",
                                 "data": "send_ip"
                             },
                             {
                                 //Campo de HOST
+                                "name": "cols_host",
                                 "data": "send_host"
                             },
                             {
                                 //Tipo Dispositivo
+                                "name": "cols_tipdisp",
                                 "data": "send_idtipodisp"
                             },
                             {
                                 //GRUPO
+                                "name": "cols_grupo",
                                 "data": "send_idgrupo"
                             },
                             {
                                 //USUARIO
+                                "name": "cols_user",
                                 "data": "send_usuario"
                             },
                             {
                                 //TIPO USUARIO
+                                "name": "cols_tipuser",
                                 "data": "send_idtipo"
                             },
                             {
                                 //STATUS
+                                "name": "cols_status",
                                 "data": "send_idstatus"
                             },
                             {
                                 //PERFIL
+                                "name": "cols_",
                                 "data": "send_idperfil"
                             },
                             {
                                 //SOLICITANTE
+                                "name": "cols_soli",
                                 "data": "send_idsolicitante"
                             },
                             {
                                 //FECHA INGRESO
+                                "name": "cols_feching",
                                 "data": "send_fechaIngreso"
                             },
                             {
-                                //FECHA INGRESO
+                                //FECHA Termino
+                                "name": "cols_fechter",
                                 "data": "send_fechaTermino"
                             },
                             {
                                 data: null,
                                 className: "center",
-                                defaultContent: '<a href="" class="editor_alta">Alta</a> / <a href="" class="editor_edit">Cambio</a> / <a href="" class="editor_remove">Baja</a>'
+                                defaultContent: '<a href="" class="editor_alta">Rotar Password</a> / <a href="" class="editor_edit">Cambio</a> / <a href="" class="editor_remove">Baja</a>'
+                            },
+                            {
+                                //id_tipo dispositivo
+                                "name": "cols_idtipodisp2",
+                                "data": "send_idtipodisp2",
+                                "visible": false
+                            },
+                            {
+                                //id perfil
+                                "name": "cols_idperfil2",
+                                "data": "send_idperfil2",
+                                "visible": false
                             }
                         ],
                         dom: 'Bfrtip',
@@ -259,24 +284,83 @@
                     //$('#example').on('click', 'a.editor_remove', function (e) {
                     $('table#Tbl_usrdisp').on('click', 'a.editor_remove', function (e) {
                         e.preventDefault(); //para eviar redirect
-                        $('#message_error').append("sisfen DELETE 01 ");
-                        //var dataJL = datatableInstance.row($(this).parents('tr')).data();
-                        //var dataJL = table.row($(this).parents('tr')).data();
-                        $('#message_error').append("sisfen DELETE 02 " + dataJL);
-                        //alert(dataJL[0]);
-                        //$(this).closest('tr')
+                        var row = datatableInstance.row($(this).closest('tr'));
+                        console.log('row '+row);
+                        var IP_value = row.data()['send_ip'];
+                        console.log('apple '+ IP_value);
+                        //alert(IP_value);
+                        $.confirm({
+                            title: 'Confirm!',
+                            content: 'Simple confirm!',
+                            buttons: {
+                                confirm: function () {
+                                    $.alert('Confirmed!');
+                                },
+                                cancel: function () {
+                                    $.alert('Canceled!');
+                                },
+                                somethingElse: {
+                                    text: 'Something else',
+                                    btnClass: 'btn-blue',
+                                    keys: ['enter', 'shift'],
+                                    action: function(){
+                                        $.alert('Something else?');
+                                    }
+                                }
+                            }
+                        });
+                        $('#message_error').append("sisfen DELETE 01 "+ IP_value);
+
                     } );
 
                     // Edit record
                     $('table#Tbl_usrdisp').on('click', 'a.editor_edit', function (e) {
                         e.preventDefault();
-                        $('#message_error').append("sisfen EDIT");
+                        var row = datatableInstance.row($(this).closest('tr'));
+                        console.log('row '+row);
+                        var IP_value = row.data()['send_ip'];
+                        console.log('apple '+ IP_value);
+                        $.confirm({
+                            title: 'Confirm!',
+                            content: 'Simple confirm!',
+                            draggable: true,
+                            resizable: false,
+                            modal: true,
+                            width:'auto',
+                            position: { at: "tight top" },
+                            buttons: {
+                                confirm: function () {
+                                    $.alert('Confirmed!');
+                                },
+                                cancel: function () {
+                                    $.alert('Canceled!');
+                                },
+                                somethingElse: {
+                                    text: 'Something else',
+                                    btnClass: 'btn-blue',
+                                    keys: ['enter', 'shift'], // trigger when enter or shift is pressed
+                                    action: function(){
+                                        $.alert('Something else?');
+                                    }
+                                }
+                            }
+                            //create: function (event, ui) {
+                            //    $(event.target).parent().css('position', 'relative').css("left",null).css("top",null);
+                            //}
+                        });
+                        $('#message_error').append("sisfen Edit 01 "+ IP_value);
                     } );
 
                     // Alta record
                     $('table#Tbl_usrdisp').on('click', 'a.editor_alta', function (e) {
                         e.preventDefault();
-                        $('#message_error').append("sisfen Alta");
+                        var row = datatableInstance.row($(this).closest('tr'));
+                        console.log('row '+row);
+                        var IP_value = row.data()['send_ip'];
+                        console.log('apple '+ IP_value);
+                        $('#message_error').append("sisfen Rotar PAssw 01 "+ IP_value);
+                        //var column = datatableInstance.column($(this).attr('data-column'));
+                        //column.visible( ! column.visible() );
                     } );
 
                 }else {

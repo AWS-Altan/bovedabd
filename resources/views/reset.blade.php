@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Boveda - Cambio de Contraseña</title>
+    <title>Boveda Manager SGI - Cambio de Contraseña</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="mb-30">
-                                        <h3 class="text-center txt-dark mb-10">Boveda</h3>
+                                        <h3 class="text-center txt-dark mb-10">Boveda <br> Manager SGI</h3>
                                         <h6 class="text-center txt-dark mb-10">Por seguridad es necesario un cambio de contraseña</h6>
 
                                     </div>

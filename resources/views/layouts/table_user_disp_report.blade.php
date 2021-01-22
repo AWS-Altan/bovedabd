@@ -19,6 +19,8 @@
                                         <th>Fecha Ingreso</th>
                                         <th>Fecha Termino</th>
                                         <th>Opciones</th>
+                                        <th>id tipo disp</th>
+                                        <th>id perfil</th>
 									</tr>
 								</thead>
 							</table>

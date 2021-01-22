@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>Altán Boveda</title>
+	<title>Altán Boveda Manager SGI </title>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
