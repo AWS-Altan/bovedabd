@@ -37,36 +37,55 @@ class SupportController extends BaseController
 
     }
 
+
     public function mvo(    )
     {
         loginfo('Validando....');
+
+        $json = [
+            'mail' => request()->mail,
+            'passwd' => request()->passwd
+        ];
+
+
         try {
 
-
-
-            // actualización 2021/01/22 validación login
-
-            $sJLmail = request()->email;
-            $sJLpass = request()->password;
-            $json = json_encode([
-                        'mail' => base64_encode($sJLmail),
-                        'passwd' => base64_encode($sJLpass)
-                    ]);//json encode
-
-            //json_encode()
-            loginfo('json ' . $json);
-
-            //sisfen aqui voy login
-            /*$req = json_decode($this->httpClient->request('POST',config('conf.url_login'). 'boveda-login'
-                , [
-                    'json' => $json,
-                  ])->getBody());
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_login'). 'boveda-login', [
+                    'json' => $json
+                  ])->getBody(),true);
 
             loginfo('Login response' . config('conf.url_login') . 'boveda-login', [$req]);
-            loginfo('termina ejecución API');*/
+            $sJLstring = implode(",", [$req][0]);
+            $arrJLlogin = explode(',', $sJLstring);
+            $sJLstatus = $arrJLlogin[0];
+            $sJLnivel = $arrJLlogin[1];
+            $sJLdetails = $arrJLlogin[4];
+            $sJLnombre = $arrJLlogin[5];
+
+            loginfo("Acceso: " .  $sJLstatus . " level:" . $sJLnivel . " detalle:" . $sJLdetails . " nombre:" . $sJLnombre);
 
             $resp = Vwuser::where( 'email', request()->email )->first();
-            if(Hash::check(request()->password, $resp->password)){
+/*            if ($sJLstatus == "ok")
+            {
+                loginfo('Login exitoso del usuario ', [request()->email]);
+                $new_session = \Session::getId();
+                $resp->last_session_id = $new_session;
+                $resp->save();
+
+                $new_session = \Session::getId();
+
+                session()->put('idsession', $new_session);
+                session()->put('email',request()->email);
+
+                if (is_null($resp->mvno_id)) {
+                    return json_encode( [ 'mvno' => mvno::all() ]) ;
+                }
+                return  json_encode( [ 'mvno' => [mvno::find($resp->mvno_id)] ] );
+
+            } //if
+*/
+        if(Hash::check(request()->password, $resp->password)){
+
                 loginfo('Login exitoso del usuario ', [request()->email]);
                 $new_session = \Session::getId();
                 $resp->last_session_id = $new_session;
@@ -84,13 +103,14 @@ class SupportController extends BaseController
 
             }
 
+
         } catch (\Exception $e) {
             loginfo($e);
         }
-        loginfo('Login fail con los datos ', [ request()->email, request()->password ]);
+        loginfo('Login fail con los datos ', [ request()->email, request()->password]);
         return json_encode(['error' => 'fail']);
 
-    }
+    }//mvo
 
     public function parameters()
     {

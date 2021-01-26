@@ -25,7 +25,8 @@ class Report_userdisp_Controller extends BaseController
     public function __construct()
     {
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
-
+        $this->httpRepBaja      = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
+        $this->httpRepCamb      = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
     }
 
     /**
@@ -79,10 +80,71 @@ class Report_userdisp_Controller extends BaseController
         loginfo('Regreso información');
         return json_encode( $req );
 
-    }
+    }//search_data_api
+
+    /*********************************
+    *
+    **********************************/
+    public function baja_api_call()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para la solicitud de Baja: ');
+
+        $json = request()->data;
+        loginfo($json);
 
 
+        try {
+            $req = json_decode($this->httpRepBaja->request('POST',config('conf.url_repbatc_baja')
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
 
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatc_baja') , [$req]);
+            loginfo('termina ejecución API de baja');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatc_baja') , [ $e ]);
+
+
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+
+    }//baja_api_call
+
+    /*********************************
+    *
+    **********************************/
+    public function cambio_api_call()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para la solicitud de cambio: ');
+
+        $json = request()->data;
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpRepCamb->request('POST',config('conf.url_repbat_cambio')
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbat_cambio') , [$req]);
+            loginfo('termina ejecución API de Cambio');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbat_cambio') , [ $e ]);
+
+
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+
+    }//cambio_api_call
 
 } //Report_Batch_Controller
 

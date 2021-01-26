@@ -134,14 +134,26 @@
               }
             });
 
+
             var Login = function () {
 
                 var initializePlugins = function initializePlugins() {
                     $('#mvno_name').hide();
                     $('#mvno').hide();
                     $('#submit').hide();
-
                     $( "#consulta" ).click(function() {
+
+                        var sJL_login = $('#email').val();
+                        console.log("sisfen user original:" + sJL_login);
+                        var sJL_password = $('#password').val()
+                        console.log("sisfen password original:" + sJL_password);
+
+                        login64encode = window.btoa(sJL_login);
+                        console.log("sisfen user 64 : " + login64encode);
+
+                        pass64code = window.btoa(sJL_password);
+                        console.log("sisfen password " + pass64code);
+
                         $.blockUI({ message: 'Procesando ...',css: {
                             border: 'none',
                             padding: '15px',
@@ -156,6 +168,8 @@
                             url: "{{ route('support.call.mvo') }}",
                             type: 'GET',
                             data: {
+                                'mail': login64encode,
+                                'passwd': pass64code,
                                 'email': $('#email').val(),
                                 'password': $('#password').val()
                             }
@@ -170,6 +184,7 @@
                                 $("#alert").css('color', '#f73414');
                                 $('#alert').append('Credenciales no válidas');
                                 $('#email').focus();
+                                console.log("sisfen error ");
                             }else{
                                 var mySelect = $('#mvno');
                                 //console.log(obj.mvno.length);
@@ -180,6 +195,8 @@
                                         $('<option></option>').val(text.id).html(text.name)
                                     );
                                 });
+
+                                console.log("sisfen pase 01 ");
 
                                 //actualización 20201215 - solicitud Clau, retirar obtencion de MVNO
                                 /*if(obj.mvno.length == 1){

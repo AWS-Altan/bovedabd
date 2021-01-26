@@ -136,6 +136,8 @@ Route::group(['middleware' => ['auth']], function () {
         // 2021/01/04
         Route::resource('/report_access_disp', 'Report_userdisp_Controller', ['names' => ['index' => 'access.report_userdisp.index']])->only(['index']);
         Route::post('/call/access_user_report', 'Report_userdisp_Controller@search_data_api')->name('access.call.report_userdisp');
+        Route::post('/call/access_user_baja', 'Report_userdisp_Controller@baja_api_call')->name('access.call.report_baja');
+        Route::post('/call/access_user_camb', 'Report_userdisp_Controller@cambio_api_call')->name('access.call.report_camb');
 
 
         // Alta Catalogo dispositivos
@@ -235,4 +237,3 @@ Auth::routes([
 Route::get('/logout' , 'Auth\LoginController@logout');
 
 Route::get('/support/call/mvo', 'Support\SupportController@mvo')->name('support.call.mvo');
-

@@ -109,12 +109,19 @@
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<!--librerias para los botones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
 <style type="text/css">
 	.wizard > .steps > ul > li{
 		    width: 45%;
-	}
+    }
+
+
 </style>
 <script>
+
 
 
 
@@ -122,7 +129,80 @@
     function ValidateNext() {
         fun_ejecuta_busqueda();
         return true;
-	}
+    }
+
+    //funcion que mando a llamar para poder mandar la peticion debaja en el boton de baja de la tabla
+    function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value){
+
+        console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
+
+        var jsonborra = {
+            "ip": sJLip_value,
+            "usuario": sJLuser_value,
+            "idtipo_disp": sJLipodisp_value,
+            "operacion": "online"
+        };
+
+        $.ajax({
+            url: "{{ route('access.call.report_baja') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: jsonborra
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+            console.log("sisfen DELETE 01 " + obj.status);
+
+        })
+        .fail(function() {
+            //algo
+            console.log("sisfen DELETE 02 ");
+        })
+        .always(function() {
+            //algo
+            console.log("sisfen DELETE 03 ");
+        });
+        return obj;
+
+    }//fun_report_baja
+
+
+    function fun_report_cambio( sJLip_value, sJLuser_value, sJLipodisp_value,sJLidperf_value){
+        // sisfen falta el perfil
+        console.log(' mando a API IP_Camio '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
+
+        var jsonchange = {
+            "ip": sJLip_value,
+            "usuario": sJLuser_value,
+            "idtipo_disp": sJLipodisp_value,
+            "id_perfil": sJLidperf_value,
+            "operacion": "online"
+        };
+
+        $.ajax({
+            url: "{{ route('access.call.report_camb') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: jsonchange
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+            console.log("sisfen CHANGE 01 " + obj.status);
+
+        })
+        .fail(function() {
+            //algo
+            console.log("sisfen CHANGE 02 ");
+        })
+        .always(function() {
+            //algo
+            console.log("sisfen CHANGE 03 ");
+        });
+        return obj;
+
+    }//fun_report_cambio
+
+
 
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
@@ -193,6 +273,7 @@
                         datatableInstance.destroy();
                     } //if
 
+                    var datatableInstance
                     datatableInstance = $('table#Tbl_usrdisp').DataTable({
                         "data": data,
                         "pageLength": 10,
@@ -258,7 +339,7 @@
                             {
                                 data: null,
                                 className: "center",
-                                defaultContent: '<a href="" class="editor_alta">Rotar Password</a> / <a href="" class="editor_edit">Cambio</a> / <a href="" class="editor_remove">Baja</a>'
+                                defaultContent: '<a href="" class="editor_rotar">Rotar Password</a> / <a href="" class="editor_edit">Cambio</a> / <a href="" class="editor_remove">Baja</a>'
                             },
                             {
                                 //id_tipo dispositivo
@@ -280,36 +361,42 @@
                     });
 
                     // Opcion de Borrado
-                    var editor;
-                    //$('#example').on('click', 'a.editor_remove', function (e) {
+
                     $('table#Tbl_usrdisp').on('click', 'a.editor_remove', function (e) {
                         e.preventDefault(); //para eviar redirect
                         var row = datatableInstance.row($(this).closest('tr'));
-                        console.log('row '+row);
-                        var IP_value = row.data()['send_ip'];
-                        console.log('apple '+ IP_value);
-                        //alert(IP_value);
+                        //console.log('row '+row);
+
+                        //Obtengo los datos para el borrado
+                        var sJLip_value = row.data()['send_ip'];
+                        var sJLuser_value = row.data()['send_usuario'];
+                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                        console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
+
+
                         $.confirm({
-                            title: 'Confirm!',
-                            content: 'Simple confirm!',
+                            title: 'Borrado de Registro',
+                            content: '¿Desea Enviar la solucitud de borrado de Registro para la IP ' + sJLip_value + '?',
                             buttons: {
-                                confirm: function () {
-                                    $.alert('Confirmed!');
-                                },
-                                cancel: function () {
-                                    $.alert('Canceled!');
-                                },
-                                somethingElse: {
-                                    text: 'Something else',
-                                    btnClass: 'btn-blue',
+                                Confirmar: {
+                                    text: 'Confirmar',
+                                    btnClass: 'btn-red',
                                     keys: ['enter', 'shift'],
-                                    action: function(){
-                                        $.alert('Something else?');
-                                    }
+                                    action: function()
+                                    {
+                                        obj = fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value);
+                                        $.alert('Confirmación de Aplicación Status: ' + obj.status + " Descripción: " + obj.description);
+                                    } //action
+                                },
+                                Cancelar: {
+                                    text: 'Cancelar',
+                                    btnClass: 'btn-red',
+                                    keys: ['enter', 'shift'],
                                 }
                             }
                         });
-                        $('#message_error').append("sisfen DELETE 01 "+ IP_value);
+
+                        $('#message_error').append("sisfen DELETE 04 "+ sJLip_value);
 
                     } );
 
@@ -318,47 +405,91 @@
                         e.preventDefault();
                         var row = datatableInstance.row($(this).closest('tr'));
                         console.log('row '+row);
-                        var IP_value = row.data()['send_ip'];
-                        console.log('apple '+ IP_value);
+
+                        var sJLip_value = row.data()['send_ip'];
+                        var sJLuser_value = row.data()['send_usuario'];
+                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                        var sJLidperf_value = row.data()['send_idperfil2'];
+                        console.log('IP '+ sJLip_value + 'user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' id perfil ' + sJLidperf_value);
+
+                        //inicia boton
                         $.confirm({
-                            title: 'Confirm!',
-                            content: 'Simple confirm!',
-                            draggable: true,
-                            resizable: false,
-                            modal: true,
-                            width:'auto',
-                            position: { at: "tight top" },
+                            title: 'Proporione los siguientes datos',
+                            content: '' +
+                            '<form action="" class="formName">' +
+                            '<div class="form-group">' +
+                            '<label>Tipo Dispositivo</label>' +
+                            '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />' +
+                            '<label>Perfil</label>' +
+                            '<input type="text" placeholder="Perfil" class="txtperf form-control" required />' +
+                            '</div>' +
+                            '</form>',
                             buttons: {
-                                confirm: function () {
-                                    $.alert('Confirmed!');
-                                },
-                                cancel: function () {
-                                    $.alert('Canceled!');
-                                },
-                                somethingElse: {
-                                    text: 'Something else',
+                                formSubmit: {
+                                    text: 'Actualizar',
                                     btnClass: 'btn-blue',
-                                    keys: ['enter', 'shift'], // trigger when enter or shift is pressed
-                                    action: function(){
-                                        $.alert('Something else?');
+                                    action: function () {
+                                        var txtJLdisp = this.$content.find('.txtdisp').val();
+                                        var txtJLperf = this.$content.find('.txtperf').val();
+                                        if(!txtJLdisp || !txtJLperf){
+                                            $.alert('Coloque información valida');
+                                            return false;
+                                        }
+                                        obj = fun_report_cambio( sJLip_value, sJLuser_value, sJLipodisp_value,sJLidperf_value)
+                                        $.alert('Confirmación de Aplicación Status: ' + obj.status );
                                     }
-                                }
+                                },
+                                Cancelar: function () {
+                                    //close
+                                },
+                            },
+                            onContentReady: function () {
+                                // bind to events
+                                var jc = this;
+                                this.$content.find('form').on('submit', function (e) {
+                                    // if the user submits the form by pressing enter in the field.
+                                    e.preventDefault();
+                                    jc.$$formSubmit.trigger('click'); // reference the button and click it
+                                });
                             }
-                            //create: function (event, ui) {
-                            //    $(event.target).parent().css('position', 'relative').css("left",null).css("top",null);
-                            //}
-                        });
-                        $('#message_error').append("sisfen Edit 01 "+ IP_value);
+                        }); // Boton
+
+                        $('#message_error').append("sisfen Edit 01 "+ sJLip_value);
                     } );
 
-                    // Alta record
-                    $('table#Tbl_usrdisp').on('click', 'a.editor_alta', function (e) {
+                    // Rotar Password
+                    $('table#Tbl_usrdisp').on('click', 'a.editor_rotar', function (e) {
+                        //prevengo de que no se rellame la pantalla
                         e.preventDefault();
+                        //obtengo los datos
                         var row = datatableInstance.row($(this).closest('tr'));
                         console.log('row '+row);
-                        var IP_value = row.data()['send_ip'];
-                        console.log('apple '+ IP_value);
-                        $('#message_error').append("sisfen Rotar PAssw 01 "+ IP_value);
+                        var sJLip_value = row.data()['send_ip'];
+                        var sJLuser_value = row.data()['send_usuario'];
+                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                        console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
+                        //inicio de boton
+                        $.confirm({
+                            title: 'Rotación de Password',
+                            content: 'Desea solicitar el rotado de password?',
+                            buttons: {
+                                Confirmar: {
+                                    text: 'Confirmar',
+                                    btnClass: 'btn-red',
+                                    keys: ['enter', 'shift'],
+                                    action: function(){
+                                        $.alert('Confirmación');
+                                    }
+                                },
+                                Cancelar: {
+                                    text: 'Cancelar',
+                                    btnClass: 'btn-red',
+                                    keys: ['enter', 'shift'],
+                                }
+                            }
+                        }); //fin de boton
+
+                        $('#message_error').append("sisfen Rotar PAssw 01 "+ sJLip_value);
                         //var column = datatableInstance.column($(this).attr('data-column'));
                         //column.visible( ! column.visible() );
                     } );
