@@ -64,6 +64,7 @@ class SupportController extends BaseController
 
             loginfo("Acceso: " .  $sJLstatus . " level:" . $sJLnivel . " detalle:" . $sJLdetails . " nombre:" . $sJLnombre);
 
+
             $resp = Vwuser::where( 'email', request()->email )->first();
 /*            if ($sJLstatus == "ok")
             {
