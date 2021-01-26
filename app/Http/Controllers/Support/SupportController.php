@@ -50,7 +50,7 @@ class SupportController extends BaseController
 
         try {
 
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_login'). 'boveda-login', [
+            /*$req = json_decode($this->httpClient->request('POST',config('conf.url_login'). 'boveda-login', [
                     'json' => $json
                   ])->getBody(),true);
 
@@ -63,7 +63,7 @@ class SupportController extends BaseController
             $sJLnombre = $arrJLlogin[5];
 
             loginfo("Acceso: " .  $sJLstatus . " level:" . $sJLnivel . " detalle:" . $sJLdetails . " nombre:" . $sJLnombre);
-
+*/
 
             $resp = Vwuser::where( 'email', request()->email )->first();
 /*            if ($sJLstatus == "ok")
