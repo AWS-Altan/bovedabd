@@ -33,7 +33,7 @@ class SupportController extends BaseController
 
     public function __construct()
     {
-        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_login') ] );
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_login_bob') ] );
 
     }
 
@@ -50,11 +50,11 @@ class SupportController extends BaseController
 
         try {
 
-            /*$req = json_decode($this->httpClient->request('POST',config('conf.url_login'). 'boveda-login', [
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'boveda-login', [
                     'json' => $json
                   ])->getBody(),true);
 
-            loginfo('Login response' . config('conf.url_login') . 'boveda-login', [$req]);
+            loginfo('Login response' . config('conf.url_login_bob') . 'boveda-login', [$req]);
             $sJLstring = implode(",", [$req][0]);
             $arrJLlogin = explode(',', $sJLstring);
             $sJLstatus = $arrJLlogin[0];
@@ -63,7 +63,7 @@ class SupportController extends BaseController
             $sJLnombre = $arrJLlogin[5];
 
             loginfo("Acceso: " .  $sJLstatus . " level:" . $sJLnivel . " detalle:" . $sJLdetails . " nombre:" . $sJLnombre);
-*/
+
 
             $resp = Vwuser::where( 'email', request()->email )->first();
 /*            if ($sJLstatus == "ok")

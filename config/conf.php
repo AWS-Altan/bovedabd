@@ -16,7 +16,7 @@ return [
     'url_cat_disp'     => 'https://auju8kt8a2.execute-api.us-east-1.amazonaws.com/prod/',
     'url_catupd_disp'  => 'https://73170bjvk0.execute-api.us-east-1.amazonaws.com/prod/',
     'url_boveda_user'  => 'https://hxzd601w08.execute-api.us-east-1.amazonaws.com/prod/',
-    'url_login'        => 'https://ch9o1fia6l.execute-api.us-east-1.amazonaws.com/test/',
+    'url_login_bob'    => 'https://ch9o1fia6l.execute-api.us-east-1.amazonaws.com/test/',
     'url_repbatc_baja' => 'https://gh4jl4g2k8.execute-api.us-east-1.amazonaws.com/prod/',
     'url_repbat_cambio'=> 'https://tzikvzln04.execute-api.us-east-1.amazonaws.com/prod/',
 
