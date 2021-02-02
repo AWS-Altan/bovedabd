@@ -54,8 +54,8 @@ class SupportController extends BaseController
         loginfo('Version 2020/02/02 ');
 
         try {
-
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'boveda-login', [
+            //$req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'boveda-login', [
+            $req = json_decode($this->httpClient->request('POST','https://ch9o1fia6l.execute-api.us-east-1.amazonaws.com/test/boveda-login', [
                     'json' => $json
                   ])->getBody(),true);
 
@@ -130,12 +130,10 @@ class SupportController extends BaseController
 
         } catch (\Exception $e) {
             loginfo($e);
-            loginfo('user '.app('auth')->user()->name.' error '.config('conf.url_login_bob').'boveda-login'
-                .'statusCode '. $e
-                , $e );
+            loginfo(config('conf.url_login_bob').'boveda-login');
         }
         loginfo('Login fail con los datos ', [ request()->email, request()->password]);
-        
+   
                 
 
         return json_encode(['error' => 'fail']);
