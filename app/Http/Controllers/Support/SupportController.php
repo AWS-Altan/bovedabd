@@ -51,6 +51,7 @@ class SupportController extends BaseController
             'passwd' => $sJL_pass64
         ];
 
+        loginfo('Version 2020/02/02 ');
 
         try {
 

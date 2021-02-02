@@ -154,7 +154,7 @@
                             opacity: .5,
                             color: '#fff'
                         } });
-
+                        console.log("Version  2021/02/02");
                         $.ajax({
                             url: "{{ route('support.call.mvo') }}",
                             type: 'GET',
