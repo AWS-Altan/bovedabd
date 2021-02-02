@@ -130,8 +130,14 @@ class SupportController extends BaseController
 
         } catch (\Exception $e) {
             loginfo($e);
+            loginfo('user '.app('auth')->user()->name.' error '.config('conf.url_login_bob').'boveda-login'
+                .'statusCode '. $e
+                , $e );
         }
         loginfo('Login fail con los datos ', [ request()->email, request()->password]);
+        
+                
+
         return json_encode(['error' => 'fail']);
 
     }//mvo
