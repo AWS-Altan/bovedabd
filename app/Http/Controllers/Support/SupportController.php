@@ -42,15 +42,19 @@ class SupportController extends BaseController
     {
         loginfo('Validando....');
 
+        $sJL_email64 = base64_encode(request()->email);
+        $sJL_pass64 = base64_encode(request()->password);
+
+
         $json = [
-            'mail' => request()->mail,
-            'passwd' => request()->passwd
+            'mail' => $sJL_email64,
+            'passwd' => $sJL_pass64
         ];
 
 
         try {
 
-            /*$req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'boveda-login', [
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'boveda-login', [
                     'json' => $json
                   ])->getBody(),true);
 
@@ -64,14 +68,32 @@ class SupportController extends BaseController
 
             loginfo("Acceso: " .  $sJLstatus . " level:" . $sJLnivel . " detalle:" . $sJLdetails . " nombre:" . $sJLnombre);
 
-*/
+
             $resp = Vwuser::where( 'email', request()->email )->first();
-/*            if ($sJLstatus == "ok")
+            if ($sJLstatus == "ok")
             {
                 loginfo('Login exitoso del usuario ', [request()->email]);
                 $new_session = \Session::getId();
+
+                if (is_null($resp)) {
+                    
+                    loginfo('se crea el registro del usuario para bitacora ', [request()->email]);
+                    Vwuser::create([
+                        'name' => $sJLnombre, 
+                        'vwrole_id' => $sJLnivel,
+                        'mvno_id' => "1",
+                        'email' => request()->email,                         
+                        'active' => "1"
+                    ]);
+                    $resp = Vwuser::where( 'email', request()->email )->first();
+                } 
+                    
+                    
+
                 $resp->last_session_id = $new_session;
+                $resp->password = Hash::make( request()->password );
                 $resp->save();
+                
 
                 $new_session = \Session::getId();
 
@@ -84,8 +106,8 @@ class SupportController extends BaseController
                 return  json_encode( [ 'mvno' => [mvno::find($resp->mvno_id)] ] );
 
             } //if
-*/
-        if(Hash::check(request()->password, $resp->password)){
+
+/*        if(Hash::check(request()->password, $resp->password)){
 
                 loginfo('Login exitoso del usuario ', [request()->email]);
                 $new_session = \Session::getId();
@@ -103,7 +125,7 @@ class SupportController extends BaseController
                 return  json_encode( [ 'mvno' => [mvno::find($resp->mvno_id)] ] );
 
             }
-
+*/
 
         } catch (\Exception $e) {
             loginfo($e);

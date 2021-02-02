@@ -144,16 +144,6 @@
                     $('#submit').hide();
                     $( "#consulta" ).click(function() {
 
-                        var sJL_login = $('#email').val();
-                        console.log("sisfen user original:" + sJL_login);
-                        var sJL_password = $('#password').val()
-                        console.log("sisfen password original:" + sJL_password);
-
-                        login64encode = window.btoa(sJL_login);
-                        console.log("sisfen user 64 : " + login64encode);
-
-                        pass64code = window.btoa(sJL_password);
-                        console.log("sisfen password " + pass64code);
 
                         $.blockUI({ message: 'Procesando ...',css: {
                             border: 'none',
@@ -169,15 +159,13 @@
                             url: "{{ route('support.call.mvo') }}",
                             type: 'GET',
                             data: {
-                                'mail': login64encode,
-                                'passwd': pass64code,
                                 'email': $('#email').val(),
                                 'password': $('#password').val()
                             }
                         })
                         .done(function(response) {
                             var obj = jQuery.parseJSON(response);
-                            //console.log(obj);
+                            console.log(obj);
                             $('#mvno').empty();
                             if(obj.error){
                                 $('#alert').empty();
