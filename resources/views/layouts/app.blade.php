@@ -129,7 +129,7 @@
 		var patrones = new Array();
 		patrones['msisdn']=/^[1-9][0-9]{9}$/;
 		patrones['imsi']=/^[1-9][0-9]{14}$/;
-		patrones['imei']=/^[1-9][0-9]{13,15}$/;
+		patrones['imei']=/^[0-9][0-9]{13,15}$/;
 		patrones['icc']=/^(8952140)[0-9]{12}$/;
 		patrones['coordenadas']=/^([-+]?\d{1,2}[.]\d+),\s*([-+]?\d{1,3}[.]\d+)$/;
 		patrones['latitud']=/^([-+]?\d{1,2}[.]\d+)$/;

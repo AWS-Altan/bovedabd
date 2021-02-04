@@ -12,7 +12,7 @@
         <!-- modif 2021/01/18 Renombre - Menu Administración Equipos -->
         <li><hr class="light-grey-hr mb-10"/></li>
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Administración de Equipos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Admin de Equipos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="acciones_dr" class="collapse collapse-level-1 two-col-list">
 
                 <!-- Modificación de Catalogo de Dispositivos -->
@@ -159,7 +159,7 @@
         <!-- modif 2021/01/12 renombre - Administración de Usuarios -->
         <li><hr class="light-grey-hr mb-10"/></li>
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Administración de Usuarios</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Admin de Usuarios</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="batch_dr" class="collapse collapse-level-1 two-col-list">
 
                 <!-- Adicion 2020/12/03 -->
