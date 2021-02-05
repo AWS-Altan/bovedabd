@@ -47,7 +47,7 @@ return [
         ],
         'custom' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/view360.log'),
+            'path' => storage_path('logs/Boveda.log'),
             'level' => 'debug',
         ],
 

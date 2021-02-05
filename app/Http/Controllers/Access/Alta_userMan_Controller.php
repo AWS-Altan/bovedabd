@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Usermana, Vwcredential, VwfileTemplates, Vwlogs};
+use App\Entities\{Usermana, VwfileTemplates, Vwlogs};
 
 use Hash; //para el password
 
@@ -46,9 +46,7 @@ class Alta_userMan_Controller extends BaseController
     *************************/
     protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), ['headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
     } //Login
 
 

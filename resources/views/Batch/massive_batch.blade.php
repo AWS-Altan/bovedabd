@@ -174,8 +174,7 @@
         }//if
         else
         {
-            $('#message_error').text('sisfen redirect');
-            //sisfen aqui voy
+            $('#message_error').text('Ejecución Correcta');
             //return redirect()->route('batch.altareport.index');
 
         }//else

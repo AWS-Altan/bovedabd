@@ -73,12 +73,10 @@
 
         //REalizo validacion de que el dato este correcto
 		if (patrones[tipo_campo].test(dato)) {
-            //$('#message_error').append('sisfen voy 2');
 			fun_ejecuta_busqueda();
             return true;
 
 		} else {
-            //$('#message_error').append('sisfen voy 3');
 		    $("#inputData").css({'border' : '1px solid #f73414'});
 			$("#message_error").css('color', '#f73414');
 			$("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
@@ -112,7 +110,6 @@
 		})
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            //$('#message_error').append('sisfen voy 4');
         })
         .fail(function() {
 	        	$('#message_error').empty();
@@ -129,7 +126,7 @@
 				$.unblockUI();
         	}else{
                 // inserto los datos y configuro la siguiente pestaña
-                $('#message_error').append('sisfen voy ').append(obj.name);
+                $('#message_error').append('Ejecución Correcta ');
         		/*$("#msisdn").text( ' '+changenull(obj.msisdn) );
         		$("#imsi").text( ' '+changenull(obj.imsi) );
         		$("#icc").text( ' '+changenull(obj.iccid) );

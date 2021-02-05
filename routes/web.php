@@ -15,19 +15,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('/', 'HomeController', ['names' => ['index' => 'home.index']])->only(['index']);
 	Route::resource('/consulta/{isMob}/', 'ConsultaController', ['names' => ['index' => 'consulta.index']])->only(['index']);
 
-	Route::post('/view360', 'View360Controller@index')->name('view360.home');
-	Route::get('/view360', 'View360Controller@index');
 
-	Route::get('/historyoperations', 'View360Controller@historyoperations')->name('history.operations');
-	Route::get('/historyofferts', 'View360Controller@historyoffert')->name('history.offerts');
-	Route::get('/historyconsumos', 'View360Controller@historyconsumo')->name('history.consumos');
-	Route::get('/historysim', 'View360Controller@historysim')->name('history.sim');
-	Route::get('/historystatus', 'View360Controller@historystatus')->name('history.status');
-	Route::get('/historymovilidad', 'View360Controller@historymovilidad')->name('history.movilidad');
-	Route::get('/historyequipo', 'View360Controller@historyequipos')->name('history.equipo');
-	Route::get('/historyequipow', 'View360Controller@historyequipow')->name('history.equipow');
-
-	Route::get('/historyperfil', 'View360Controller@perfil')->name('history.perfil');
 
     /* Modificación Boveda
         Controladores usados en los Menus de Boveda por cada una de sus separaciones

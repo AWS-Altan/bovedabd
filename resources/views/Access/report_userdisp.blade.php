@@ -151,16 +151,16 @@
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            console.log("sisfen DELETE 01 " + obj.status);
+            console.log("ejecución boton de borrado " + obj.status);
 
         })
         .fail(function() {
             //algo
-            console.log("sisfen DELETE 02 ");
+            console.log("Falla boton borrado ");
         })
         .always(function() {
             //algo
-            console.log("sisfen DELETE 03 ");
+            console.log("Boton Borrado allways ");
         });
         return obj;
 
@@ -168,7 +168,6 @@
 
 
     function fun_report_cambio( sJLip_value, sJLuser_value, sJLipodisp_value,sJLidperf_value){
-        // sisfen falta el perfil
         console.log(' mando a API IP_Camio '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
 
         var jsonchange = {
@@ -187,16 +186,16 @@
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            console.log("sisfen CHANGE 01 " + obj.status);
+            console.log("Ejecución Boton Cambio " + obj.status);
 
         })
         .fail(function() {
             //algo
-            console.log("sisfen CHANGE 02 ");
+            console.log("Error Boton cambio ");
         })
         .always(function() {
             //algo
-            console.log("sisfen CHANGE 03 ");
+            console.log("Boton cambio always ");
         });
         return obj;
 
@@ -396,7 +395,6 @@
                             }
                         });
 
-                        $('#message_error').append("sisfen DELETE 04 "+ sJLip_value);
 
                     } );
 
@@ -454,7 +452,6 @@
                             }
                         }); // Boton
 
-                        $('#message_error').append("sisfen Edit 01 "+ sJLip_value);
                     } );
 
                     // Rotar Password
@@ -489,7 +486,6 @@
                             }
                         }); //fin de boton
 
-                        $('#message_error').append("sisfen Rotar PAssw 01 "+ sJLip_value);
                         //var column = datatableInstance.column($(this).attr('data-column'));
                         //column.visible( ! column.visible() );
                     } );
