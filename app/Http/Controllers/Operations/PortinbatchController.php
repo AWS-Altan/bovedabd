@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser, VwfileTemplates};
+use App\Entities\{Vwuser};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -66,7 +66,6 @@ class PortinbatchController extends BaseController
         loginfo('Entra a descarga de archivo');
         //loginfo("app_path::". app_path() );
 
-        $template = VwfileTemplates::where( 'id',1 )->first();
 
         $file = json_decode( $template->archivo )[0]->download_link;
 

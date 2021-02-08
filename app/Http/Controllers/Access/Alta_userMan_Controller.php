@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Usermana, VwfileTemplates, Vwlogs};
+use App\Entities\{Usermana, Vwlogs};
 
 use Hash; //para el password
 

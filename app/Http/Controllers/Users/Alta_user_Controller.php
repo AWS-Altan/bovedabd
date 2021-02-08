@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Vwuser, VwfileTemplates, Vwlogs};
+use App\Entities\{Vwuser, Vwlogs};
 
 use Hash; //para el password
 
@@ -104,7 +104,7 @@ class Alta_user_Controller extends BaseController
                         "email" => request()->send_email,
                         "password" => Hash::make( request()->send_password),
                         "phone" => request()->send_Telefono,
-                        "active" => "0",                       
+                        "active" => "0",
                         "last_session_id" => session()->get('idsession'),
                         "created_by" => request()->send_id_createdby,
                         "id_company" => request()->send_id_company,
