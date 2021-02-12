@@ -166,7 +166,6 @@
 
     }//fun_report_baja
 
-
     function fun_report_cambio( sJLip_value, sJLuser_value, sJLipodisp_value,sJLidperf_value){
         console.log(' mando a API IP_Camio '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
 
@@ -201,7 +200,38 @@
 
     }//fun_report_cambio
 
+    function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr){
 
+        console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
+
+        var jsonrota = {
+            "ip": sJLip_value,
+            "user": sJLuser_value,
+            "id_disp": sJLipodisp_value,
+            "passw": txtJLcontr
+        };
+
+        $.ajax({
+            url: "{{ route('access.call.report_rotate') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: jsonrota
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+            console.log("ejecución boton de rotado " + obj.status);
+
+        })
+        .fail(function() {
+            //algo
+            console.log("Falla boton Rotación ");
+        })
+        .always(function() {
+            //algo
+            console.log("Boton rotado allways ");
+        });
+        return obj;
+    }//fun_report_rotar
 
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
@@ -338,7 +368,7 @@
                             {
                                 data: null,
                                 className: "center",
-                                defaultContent: '<a href="" class="editor_rotar">Rotar Password</a> / <a href="" class="editor_edit">Cambio</a> / <a href="" class="editor_remove">Baja</a>'
+                                defaultContent: '<a href="" class="editor_rotar">Rotar Password</a> / <a href="" class="editor_edit">Cambio</a> / <a href="" class="editor_remove">Baja</a>/ <a href="" class="editor_force">Forzado Sesión</a>'
                             },
                             {
                                 //id_tipo dispositivo
@@ -469,18 +499,75 @@
                         $.confirm({
                             title: 'Rotación de Password',
                             content: 'Desea solicitar el rotado de password?',
+                            content: '' +
+                            '<form action="" class="formName">' +
+                            '<div class="form-group">' +
+                            '<label>Proporcione la nueva contraseña</label>' +
+                            '<input type="text" placeholder="Contraseña" class="txtcontr form-control" required />' +
+                            '</div>' +
+                            '</form>',
                             buttons: {
                                 Confirmar: {
                                     text: 'Confirmar',
-                                    btnClass: 'btn-red',
+                                    btnClass: 'btn-blue',
                                     keys: ['enter', 'shift'],
                                     action: function(){
-                                        $.alert('Confirmación');
+                                        var txtJLcontr = this.$content.find('.txtcontr').val();
+                                        if(!txtJLcontr){
+                                            $.alert('Coloque información valida');
+                                            return false;
+                                        }
+                                        obj = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr)
+                                        $.alert('Confirmación de Aplicación Status: ' + obj.status );
                                     }
                                 },
                                 Cancelar: {
                                     text: 'Cancelar',
-                                    btnClass: 'btn-red',
+                                    btnClass: 'btn-blue',
+                                    keys: ['enter', 'shift'],
+                                }
+                            }
+                        }); //fin de boton
+
+                        //var column = datatableInstance.column($(this).attr('data-column'));
+                        //column.visible( ! column.visible() );
+                    } );
+
+                    // Termino de seson
+                    $('table#Tbl_usrdisp').on('click', 'a.editor_force', function (e) {
+                        //prevengo de que no se rellame la pantalla
+                        e.preventDefault();
+                        //obtengo los datos
+                        var row = datatableInstance.row($(this).closest('tr'));
+                        console.log('row '+row);
+                        var sJLip_value = row.data()['send_ip'];
+                        var sJLuser_value = row.data()['send_usuario'];
+                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                        console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
+                        //inicio de boton
+                        $.confirm({
+                            title: 'Cierre de Sesion',
+                            content: 'Desea solicitar el cierre de la sesión?',
+                            content: '' +
+                            '<label>Favor e confirmar</label>',
+                            buttons: {
+                                Confirmar: {
+                                    text: 'Confirmar',
+                                    btnClass: 'btn-blue',
+                                    keys: ['enter', 'shift'],
+                                    action: function(){
+                                        //var txtJLcontr = this.$content.find('.txtcontr').val();
+                                        //if(!txtJLcontr){
+                                        //    $.alert('Coloque información valida');
+                                        //    return false;
+                                        //}
+                                        //obj = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr)
+                                        $.alert('Confirmación de de cierre de seción: ' ); //+ obj.status
+                                    }
+                                },
+                                Cancelar: {
+                                    text: 'Cancelar',
+                                    btnClass: 'btn-blue',
                                     keys: ['enter', 'shift'],
                                 }
                             }

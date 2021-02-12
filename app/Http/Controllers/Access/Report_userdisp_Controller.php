@@ -27,6 +27,7 @@ class Report_userdisp_Controller extends BaseController
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
         $this->httpRepBaja      = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
         $this->httpRepCamb      = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
+        $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
     }
 
     /**
@@ -142,6 +143,34 @@ class Report_userdisp_Controller extends BaseController
         return json_encode( $req );
 
     }//cambio_api_call
+
+    public function rotate_api_call()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para la solicitud de rotado: ');
+
+        $json = request()->data;
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_repbat_rotate').'bv-rotate'
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbat_rotate').'bv-rotate' , [$req]);
+            loginfo('termina ejecución API de rotado');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbat_rotate').'bv-rotate' , [ $e ]);
+
+
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+    }//rotate_api_call
 
 } //Report_Batch_Controller
 

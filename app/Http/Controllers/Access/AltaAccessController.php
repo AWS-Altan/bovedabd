@@ -95,7 +95,7 @@ class AltaAccessController extends BaseController
 
         try {
             $req = $this->httpClient->request('POST', config('conf.url_boveda_user'), [
-                'headers' => ['Authorization' => sprintf('Bearer %s', $this->loginResponse->accessToken)],
+                //'headers' => ['Authorization' => sprintf('Bearer %s', $this->loginResponse->accessToken)],
                 'json' => $json,
             ])->getBody();
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_boveda_user') , [$req]);
