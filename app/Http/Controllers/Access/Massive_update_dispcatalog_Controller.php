@@ -118,14 +118,14 @@ class Massive_update_dispcatalog_Controller extends BaseController
         $responsexec = NULL;
         try {
             loginfo("sisten exec 2");
-            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.pl',
+            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.cgi',
                 [
                     'headers'  => [ 'Content-type' => 'Application/json' ],
                     'json' => $json
                 ]);
 
             loginfo("sisten exec 3");
-            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi', [$responsexec->getBody()]);
+            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.cgi', [$responsexec->getBody()]);
 
             //inicio
             loginfo("sisten exec 4");
