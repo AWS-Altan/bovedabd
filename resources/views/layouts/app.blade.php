@@ -142,6 +142,7 @@
         patrones['hostname']=/^[_a-z0-9]{50}$/;
         patrones['ip']=/^([0-9]{1,3}\.){3}[0-9]{1,3}$/;
         patrones['username']=/^[1-9][0-9]{50}$/;
+        patrones['cr']=/^((CRQ)|(crq))[0-9]{12}$/;
 
 
 		var inputTope = new Array();
@@ -155,6 +156,7 @@
         inputTope['hostname']=50;
         inputTope['ip']=17;
         inputTope['username']=50;
+        inputTope['cr']=15;
 
 		function bloqueo() {
 			$.blockUI({ message: 'Procesando ...',css: {

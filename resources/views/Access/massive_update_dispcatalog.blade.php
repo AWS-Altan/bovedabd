@@ -148,13 +148,13 @@
             if ($('#inputFileData').val() )
             {
                 var file_data = $('#inputFileData')[0].files[0];
-                var extension = file_data.name.substr( 0,4);
-                if ( extension.toUpperCase() != 'ALTA')
+                var extension = file_data.name.substr( 0,8);
+                if ( extension.toUpperCase() != 'CATALOGO')
                 {
 
                     $('#inputErrors').show();
                     $('#result').empty();
-                    $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de alta</strong>');
+                    $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de CATALOGO</strong>');
                     return;
                 }//if
 

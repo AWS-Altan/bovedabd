@@ -206,9 +206,10 @@
 
         var jsonrota = {
             "ip": sJLip_value,
-            "user": sJLuser_value,
-            "id_disp": sJLipodisp_value,
-            "passw": txtJLcontr
+            "usuario": sJLuser_value,
+            "idtipo_disp": sJLipodisp_value,
+            "passwd": txtJLcontr,
+            "operacion": "online"
         };
 
         $.ajax({

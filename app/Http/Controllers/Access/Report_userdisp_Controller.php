@@ -21,13 +21,12 @@ class Report_userdisp_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
-
     public function __construct()
     {
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
         $this->httpRepBaja      = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
         $this->httpRepCamb      = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
-        $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
+        $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_batchserv') ] );
     }
 
     /**
@@ -155,16 +154,16 @@ class Report_userdisp_Controller extends BaseController
 
 
         try {
-            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_repbat_rotate').'bv-rotate'
+            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi'
                 , [
                     'headers'  => [ 'Content-Type' => 'application/json' ],
                     'json' => $json
                   ])->getBody());
 
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbat_rotate').'bv-rotate' , [$req]);
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi' , [$req]);
             loginfo('termina ejecución API de rotado');
         } catch (\Exception $e) {
-            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbat_rotate').'bv-rotate' , [ $e ]);
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi' , [ $e ]);
 
 
         }
