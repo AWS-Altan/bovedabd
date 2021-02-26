@@ -19,5 +19,6 @@ return [
     'url_repbatc_baja' => 'https://gh4jl4g2k8.execute-api.us-east-1.amazonaws.com/prod/',
     'url_repbat_cambio'=> 'https://tzikvzln04.execute-api.us-east-1.amazonaws.com/prod/',
     'url_repbat_rotate'=> 'https://dyt40rqtyb.execute-api.us-east-1.amazonaws.com/prod/',
+    'url_repbat_force' => 'https://skwwvweq7g.execute-api.us-east-1.amazonaws.com/prod/',
 
 ];
