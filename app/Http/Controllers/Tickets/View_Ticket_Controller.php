@@ -20,6 +20,10 @@ class View_Ticket_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
+    public function __construct()
+    {
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_remedy_cons') ] );
+    }
     /**
      * Show the Porta In.
      *
@@ -35,12 +39,38 @@ class View_Ticket_Controller extends BaseController
         return view('Tickets.View_Ticket')-> with('menu',$menu);
     }
 
-       protected function login()
+    protected function login()
     {
 
     }
 
+    public function search_data_api()
+    {
+        //$this->loginResponse = $this->login();
 
+        loginfo('Obtiene Datos del API para el INC: ');
+
+        $json = request()->json()->all();
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_remedy_cons'). 'consulta_inc'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_remedy_cons') . 'consulta_inc', [$req]);
+            loginfo('termina ejecución API');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_remedy_cons') .'consulta_inc', [ $e ]);
+
+
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+
+    }//search_data_api
 
 
 }

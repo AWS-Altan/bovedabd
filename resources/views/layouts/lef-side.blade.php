@@ -353,6 +353,18 @@
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Configuración</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="operaciones_dr" class="collapse collapse-level-1 two-col-list">
 
+
+                <!-- Alta usuarios -->
+                @if ( !isset( $menu[47] ) )
+					<li>
+						<a href="{{ route('Users.alta_solicitantes.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta de solicitantes</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+
                 <!-- Alta usuarios -->
                 @if ( !isset( $menu[2] ) )
 					<li>

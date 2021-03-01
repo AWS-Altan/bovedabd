@@ -67,6 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/call/Modif_user_search', 'Modif_user_Controller@search_user')->name('Users.call.search_complete');
         Route::get('/call/Modif_user', 'Modif_user_Controller@modif_user')->name('Users.call.modif_user');
 
+        //Menu de Alta de solicitantes -- Users.alta_solicitantes.index
+        Route::resource('/Alta_Soliciante', 'Alta_solicitante_Controller', ['names' => ['index' => 'Users.alta_solicitantes.index']])->only(['index']);
+        Route::post('/call/Alta_Soliciante', 'Alta_solicitante_Controller@new_user')->name('Users.call.alta_user');
 
         // Menu de Consulta de password
         //Route::resource('/view_password', 'View_pass_Controller', ['names' => ['index' => 'Users.View_pass.index']])->only(['index']);
@@ -164,6 +167,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'actividades', 'namespace' => 'Actividades'], function () {
         // Menu de Consulta de Actividades
         Route::resource('/View_Activ', 'View_activ_Controller', ['names' => ['index' => 'Actividades.View_activ.index']])->only(['index']);
+        Route::post('/call/View_Activ', 'View_activ_Controller@search_data_api')->name('actividades.call.view_activ');
         // Menu de Modificación de Actividades
         Route::resource('/Modif_Activ', 'Modif_activ_Controller', ['names' => ['index' => 'Actividades.Modif_activ.index']])->only(['index']);
         // Menu de Revisión de Parametros Remedy
@@ -179,6 +183,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['tickets' => 'actividades', 'namespace' => 'Tickets'], function () {
         // Menu de Consulta de tickets
         Route::resource('/View_Ticket', 'View_Ticket_Controller', ['names' => ['index' => 'Tickets.View_ticket.index']])->only(['index']);
+        Route::post('/call/View_Ticket', 'View_Ticket_Controller@search_data_api')->name('actividades.call.view_ticket');
     }); //Route
 
 
