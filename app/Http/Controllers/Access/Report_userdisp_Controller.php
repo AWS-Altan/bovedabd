@@ -21,12 +21,15 @@ class Report_userdisp_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
+
     public function __construct()
     {
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
         $this->httpRepBaja      = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
         $this->httpRepCamb      = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
-        $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_batchserv') ] );
+        $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
+        $this->httpRepForce      = new Client( [ 'base_uri' => config('conf.url_repbat_force') ] );
+
     }
 
     /**
@@ -154,16 +157,16 @@ class Report_userdisp_Controller extends BaseController
 
 
         try {
-            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi'
+            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_repbat_rotate').'bv-rotate'
                 , [
                     'headers'  => [ 'Content-Type' => 'application/json' ],
                     'json' => $json
                   ])->getBody());
 
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi' , [$req]);
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbat_rotate').'bv-rotate' , [$req]);
             loginfo('termina ejecución API de rotado');
         } catch (\Exception $e) {
-            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi' , [ $e ]);
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbat_rotate').'bv-rotate' , [ $e ]);
 
 
         }
@@ -184,7 +187,7 @@ class Report_userdisp_Controller extends BaseController
 
 
         try {
-            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_repbat_force').'bv_endsession'
+            $req = json_decode($this->httpRepForce->request('POST',config('conf.url_repbat_force').'bv_endsession'
                 , [
                     'headers'  => [ 'Content-Type' => 'application/json' ],
                     'json' => $json
@@ -202,6 +205,3 @@ class Report_userdisp_Controller extends BaseController
 
 
 } //Report_Batch_Controller
-
-
-
