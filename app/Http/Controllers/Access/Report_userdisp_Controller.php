@@ -28,6 +28,8 @@ class Report_userdisp_Controller extends BaseController
         $this->httpRepBaja      = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
         $this->httpRepCamb      = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
         $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
+        $this->httpRepForce      = new Client( [ 'base_uri' => config('conf.url_repbat_force') ] );
+
     }
 
     /**
@@ -185,7 +187,7 @@ class Report_userdisp_Controller extends BaseController
 
 
         try {
-            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_repbat_force').'bv_endsession'
+            $req = json_decode($this->httpRepForce->request('POST',config('conf.url_repbat_force').'bv_endsession'
                 , [
                     'headers'  => [ 'Content-Type' => 'application/json' ],
                     'json' => $json
