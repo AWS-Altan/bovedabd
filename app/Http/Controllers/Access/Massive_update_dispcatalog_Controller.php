@@ -9,7 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates};
+use App\Entities\{Vwuser};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -46,10 +46,7 @@ class Massive_update_dispcatalog_Controller extends BaseController
 
        protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), [
-                'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
     }
 
     public function load()
@@ -121,14 +118,14 @@ class Massive_update_dispcatalog_Controller extends BaseController
         $responsexec = NULL;
         try {
             loginfo("sisten exec 2");
-            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.pl',
+            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.cgi',
                 [
                     'headers'  => [ 'Content-type' => 'Application/json' ],
                     'json' => $json
                 ]);
 
             loginfo("sisten exec 3");
-            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi', [$responsexec->getBody()]);
+            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.cgi', [$responsexec->getBody()]);
 
             //inicio
             loginfo("sisten exec 4");

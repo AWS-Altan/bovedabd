@@ -9,7 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates};
+use App\Entities\{Vwuser};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -47,10 +47,7 @@ class Massive_Batch_Controller extends BaseController
 
        protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), [
-                'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
     }
 
     public function load()
@@ -85,17 +82,13 @@ class Massive_Batch_Controller extends BaseController
             //$sJL_resupload = implode([]);
             $sJL_resupload = implode([html_entity_decode(utf8_decode($response->getBody()))]);
 
-
-            loginfo("sisfen test1");
             loginfo($sJL_resupload);
-            loginfo("sisfen test2");
             //remove
 
             /*$result_data[]= array(
                 'result_opp' => $sJL_resupload
                 );*/
 
-            loginfo("sisfen test3");
             //return json_encode();
             return $sJL_resupload;
 
@@ -116,28 +109,23 @@ class Massive_Batch_Controller extends BaseController
     {
         loginfo('Obtiene Datos del API para el reporte: ');
 
-        loginfo("sisfen exec 1");
         $json = request()->json()->all();
         loginfo($json);
 
 
         $responsexec = NULL;
         try {
-            loginfo("sisfen exec 2");
             $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi',
                 [
                     'headers'  => [ 'Content-type' => 'Application/json' ],
                     'json' => $json
                 ]);
 
-            loginfo("sisfen exec 3");
             loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi', [$responsexec->getBody()]);
 
             //inicio
-            loginfo("sisfen exec 4");
             $sJL_resupload = implode([html_entity_decode(utf8_decode($responsexec->getBody()))]);
             loginfo($sJL_resupload);
-            loginfo("sisfen exec 5");
             //fin
 
             //return json_encode([$responsexec->getBody()]);
@@ -146,14 +134,12 @@ class Massive_Batch_Controller extends BaseController
 
 
         }catch(\Exception $exception){
-            loginfo("sisfen exec 5");
             loginfo('Exception http code: '.$exception->getMessage() );
             //$responsexec = $exception->getResponse();
             loginfo('user '.app('auth')->user()->name.' error '.config('conf.url_batchserv').'upload.php'
                 .'statusCode '. $exception
                 , $exception );
 
-            loginfo("sisfen exec 6");
             return json_encode([ 'error' => parse_exception( $exception ),
                 'statusCode' => $exception
             ]);

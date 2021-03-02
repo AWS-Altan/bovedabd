@@ -15,10 +15,10 @@ class Vwuser extends Model
 {
     //
 
-    public function mvno()
-    {
-        return $this->belongsTo(mvno::class, 'mvno_id');
-    }
+    //public function mvno()
+    //{
+    //    return $this->belongsTo(mvno::class, 'mvno_id');
+    //}
 
     //programación para el insert
     protected $fillable = [

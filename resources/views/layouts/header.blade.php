@@ -13,7 +13,8 @@
 	<div id="mobile_only_nav" class="mobile-only-nav pull-right">
 		<ul class="nav navbar-right top-nav pull-right">
 			<li class="dropdown auth-drp">
-				<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span class="user-auth-name inline-block">{{ app('session')->get('choose_mvno')->name }} / {{app('auth')->user()->name}}</span><img src="{{ config('conf.url_miniature').app('session')->get('choose_mvno')->logo }}" class="user-auth-img ml-20"/></a>
+				
+				<a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><span class="user-auth-name inline-block">Boveda / {{app('auth')->user()->name}}</span></a>
 			</li>
 		</ul>
 	</div> 

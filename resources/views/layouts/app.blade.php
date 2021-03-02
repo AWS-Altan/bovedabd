@@ -129,7 +129,7 @@
 		var patrones = new Array();
 		patrones['msisdn']=/^[1-9][0-9]{9}$/;
 		patrones['imsi']=/^[1-9][0-9]{14}$/;
-		patrones['imei']=/^[1-9][0-9]{13,15}$/;
+		patrones['imei']=/^[0-9][0-9]{13,15}$/;
 		patrones['icc']=/^(8952140)[0-9]{12}$/;
 		patrones['coordenadas']=/^([-+]?\d{1,2}[.]\d+),\s*([-+]?\d{1,3}[.]\d+)$/;
 		patrones['latitud']=/^([-+]?\d{1,2}[.]\d+)$/;
@@ -142,6 +142,8 @@
         patrones['hostname']=/^[_a-z0-9]{50}$/;
         patrones['ip']=/^([0-9]{1,3}\.){3}[0-9]{1,3}$/;
         patrones['username']=/^[1-9][0-9]{50}$/;
+        patrones['cr']=/^((CRQ)|(crq))[0-9]{12}$/;
+        patrones['inc']=/^((INC)|(inc))[0-9]{12}$/;
 
 
 		var inputTope = new Array();
@@ -155,6 +157,8 @@
         inputTope['hostname']=50;
         inputTope['ip']=17;
         inputTope['username']=50;
+        inputTope['cr']=15;
+        inputTope['inc']=15;
 
 		function bloqueo() {
 			$.blockUI({ message: 'Procesando ...',css: {

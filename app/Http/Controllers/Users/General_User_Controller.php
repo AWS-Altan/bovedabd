@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 use App\Exceptions\CustomException;
 
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates};
+use App\Entities\{Vwuser};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;

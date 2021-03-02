@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Dispositivos, Vwcredential, VwfileTemplates, Vwlogs};
+use App\Entities\{Dispositivos, Vwlogs};
 
 use Hash; //para el password
 
@@ -60,9 +60,7 @@ class AltaAccessController extends BaseController
     *************************/
     protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), ['headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
     } //Login
 
 
@@ -97,7 +95,7 @@ class AltaAccessController extends BaseController
 
         try {
             $req = $this->httpClient->request('POST', config('conf.url_boveda_user'), [
-                'headers' => ['Authorization' => sprintf('Bearer %s', $this->loginResponse->accessToken)],
+                //'headers' => ['Authorization' => sprintf('Bearer %s', $this->loginResponse->accessToken)],
                 'json' => $json,
             ])->getBody();
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_boveda_user') , [$req]);

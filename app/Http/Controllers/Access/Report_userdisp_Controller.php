@@ -9,7 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates, Userplat};
+use App\Entities\{Vwuser, Userplat};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -21,11 +21,12 @@ class Report_userdisp_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
-
     public function __construct()
     {
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
-
+        $this->httpRepBaja      = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
+        $this->httpRepCamb      = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
+        $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_batchserv') ] );
     }
 
     /**
@@ -46,10 +47,7 @@ class Report_userdisp_Controller extends BaseController
 
     protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), [
-                'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
     }
 
 
@@ -79,9 +77,128 @@ class Report_userdisp_Controller extends BaseController
         loginfo('Regreso información');
         return json_encode( $req );
 
+    }//search_data_api
+
+    /*********************************
+    *
+    **********************************/
+    public function baja_api_call()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para la solicitud de Baja: ');
+
+        $json = request()->data;
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpRepBaja->request('POST',config('conf.url_repbatc_baja')
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatc_baja') , [$req]);
+            loginfo('termina ejecución API de baja');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatc_baja') , [ $e ]);
+
+
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+
+    }//baja_api_call
+
+    /*********************************
+    *
+    **********************************/
+    public function cambio_api_call()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para la solicitud de cambio: ');
+
+        $json = request()->data;
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpRepCamb->request('POST',config('conf.url_repbat_cambio')
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbat_cambio') , [$req]);
+            loginfo('termina ejecución API de Cambio');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbat_cambio') , [ $e ]);
+
+
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+
+    }//cambio_api_call
+
+    public function rotate_api_call()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para la solicitud de rotado: ');
+
+        $json = request()->data;
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi'
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi' , [$req]);
+            loginfo('termina ejecución API de rotado');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_batchserv').'cgi-bin/boveda/validarotate_online.cgi' , [ $e ]);
+
+
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+    }//rotate_api_call
+
+
+        public function session_force_call()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del API para la rotación de sesion: ');
+
+        //$json = request()->data;
+        $json = request()->json()->all();
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpRepRota->request('POST',config('conf.url_repbat_force').'bv_endsession'
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbat_force').'bv_endsession' , [$req]);
+            loginfo('termina ejecución API de forzado de sesion');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbat_force').'bv_endsession' , [ $e ]);
+
+
+        }
+        return json_encode( $req );
     }
-
-
 
 
 } //Report_Batch_Controller

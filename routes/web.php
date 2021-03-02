@@ -15,19 +15,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('/', 'HomeController', ['names' => ['index' => 'home.index']])->only(['index']);
 	Route::resource('/consulta/{isMob}/', 'ConsultaController', ['names' => ['index' => 'consulta.index']])->only(['index']);
 
-	Route::post('/view360', 'View360Controller@index')->name('view360.home');
-	Route::get('/view360', 'View360Controller@index');
 
-	Route::get('/historyoperations', 'View360Controller@historyoperations')->name('history.operations');
-	Route::get('/historyofferts', 'View360Controller@historyoffert')->name('history.offerts');
-	Route::get('/historyconsumos', 'View360Controller@historyconsumo')->name('history.consumos');
-	Route::get('/historysim', 'View360Controller@historysim')->name('history.sim');
-	Route::get('/historystatus', 'View360Controller@historystatus')->name('history.status');
-	Route::get('/historymovilidad', 'View360Controller@historymovilidad')->name('history.movilidad');
-	Route::get('/historyequipo', 'View360Controller@historyequipos')->name('history.equipo');
-	Route::get('/historyequipow', 'View360Controller@historyequipow')->name('history.equipow');
-
-	Route::get('/historyperfil', 'View360Controller@perfil')->name('history.perfil');
 
     /* Modificación Boveda
         Controladores usados en los Menus de Boveda por cada una de sus separaciones
@@ -79,6 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/call/Modif_user_search', 'Modif_user_Controller@search_user')->name('Users.call.search_complete');
         Route::get('/call/Modif_user', 'Modif_user_Controller@modif_user')->name('Users.call.modif_user');
 
+        //Menu de Alta de solicitantes -- Users.alta_solicitantes.index
+        Route::resource('/Alta_Soliciante', 'Alta_solicitante_Controller', ['names' => ['index' => 'Users.alta_solicitantes.index']])->only(['index']);
+        Route::post('/call/Alta_Soliciante', 'Alta_solicitante_Controller@new_user')->name('Users.call.alta_user');
 
         // Menu de Consulta de password
         //Route::resource('/view_password', 'View_pass_Controller', ['names' => ['index' => 'Users.View_pass.index']])->only(['index']);
@@ -136,6 +127,10 @@ Route::group(['middleware' => ['auth']], function () {
         // 2021/01/04
         Route::resource('/report_access_disp', 'Report_userdisp_Controller', ['names' => ['index' => 'access.report_userdisp.index']])->only(['index']);
         Route::post('/call/access_user_report', 'Report_userdisp_Controller@search_data_api')->name('access.call.report_userdisp');
+        Route::post('/call/access_user_baja', 'Report_userdisp_Controller@baja_api_call')->name('access.call.report_baja');
+        Route::post('/call/access_user_camb', 'Report_userdisp_Controller@cambio_api_call')->name('access.call.report_camb');
+        Route::post('/call/access_user_rotate', 'Report_userdisp_Controller@rotate_api_call')->name('access.call.report_rotate');
+        Route::post('/call/session_force', 'Report_userdisp_Controller@session_force_call')->name('access.call.session_force');
 
 
         // Alta Catalogo dispositivos
@@ -173,6 +168,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'actividades', 'namespace' => 'Actividades'], function () {
         // Menu de Consulta de Actividades
         Route::resource('/View_Activ', 'View_activ_Controller', ['names' => ['index' => 'Actividades.View_activ.index']])->only(['index']);
+        Route::post('/call/View_Activ', 'View_activ_Controller@search_data_api')->name('actividades.call.view_activ');
         // Menu de Modificación de Actividades
         Route::resource('/Modif_Activ', 'Modif_activ_Controller', ['names' => ['index' => 'Actividades.Modif_activ.index']])->only(['index']);
         // Menu de Revisión de Parametros Remedy
@@ -188,6 +184,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['tickets' => 'actividades', 'namespace' => 'Tickets'], function () {
         // Menu de Consulta de tickets
         Route::resource('/View_Ticket', 'View_Ticket_Controller', ['names' => ['index' => 'Tickets.View_ticket.index']])->only(['index']);
+        Route::post('/call/View_Ticket', 'View_Ticket_Controller@search_data_api')->name('actividades.call.view_ticket');
     }); //Route
 
 
@@ -235,4 +232,3 @@ Auth::routes([
 Route::get('/logout' , 'Auth\LoginController@logout');
 
 Route::get('/support/call/mvo', 'Support\SupportController@mvo')->name('support.call.mvo');
-
