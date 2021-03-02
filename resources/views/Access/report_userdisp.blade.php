@@ -115,7 +115,7 @@
 
 <style type="text/css">
 	.wizard > .steps > ul > li{
-		    width: 45%;
+		    width: 100%;
     }
 
 
@@ -233,6 +233,53 @@
         });
         return obj;
     }//fun_report_rotar
+
+    function fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value){
+
+        console.log('forzado sesion IP:'+ sJLip_value + ' user: ' + sJLuser_value + ' id_disp:' + sJLipodisp_value);
+
+
+        var json = {};
+            json.ip= sJLip_value;
+            json.usuario= sJLuser_value;
+            json.idtipo_disp= ""+sJLipodisp_value+"";
+            json.operacion= "batch";
+        
+        $.blockUI({ message: 'Procesando ...',css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } });
+
+        $.ajax({
+            url: "{{ route('access.call.session_force') }}",
+            async: false,
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(json)
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+
+            console.log("ejecución boton de forzado de sesion " + obj.status);
+            console.log(obj);
+
+        })
+        .fail(function() {
+            console.log("Falla boton forzado de sesion ");
+            $.unblockUI();
+        })
+        .always(function() {
+            console.log("Boton forzado de sesion ");
+            $.unblockUI();
+        });
+        return obj;
+    }
+
 
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
@@ -369,7 +416,7 @@
                             {
                                 data: null,
                                 className: "center",
-                                defaultContent: '<a href="" class="editor_rotar">Rotar Password</a> / <a href="" class="editor_edit">Cambio</a> / <a href="" class="editor_remove">Baja</a>/ <a href="" class="editor_force">Forzado Sesión</a>'
+                                defaultContent: '<a href="" class="editor_rotar"><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>'
                             },
                             {
                                 //id_tipo dispositivo
@@ -540,30 +587,29 @@
                         e.preventDefault();
                         //obtengo los datos
                         var row = datatableInstance.row($(this).closest('tr'));
-                        console.log('row '+row);
+                        console.log('Forzado cierre row '+row);
                         var sJLip_value = row.data()['send_ip'];
                         var sJLuser_value = row.data()['send_usuario'];
                         var sJLipodisp_value = row.data()['send_idtipodisp2'];
                         console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
                         //inicio de boton
                         $.confirm({
-                            title: 'Cierre de Sesion',
-                            content: 'Desea solicitar el cierre de la sesión?',
+                            title: 'Forzado de Sesion',
+                            content: '¿Desea solicitar el cierre forzado de la sesión?',
                             content: '' +
-                            '<label>Favor e confirmar</label>',
+                            '<label>Favor de confirmar</label>',
                             buttons: {
                                 Confirmar: {
                                     text: 'Confirmar',
-                                    btnClass: 'btn-blue',
+                                    btnClass: 'btn-red',
                                     keys: ['enter', 'shift'],
                                     action: function(){
-                                        //var txtJLcontr = this.$content.find('.txtcontr').val();
-                                        //if(!txtJLcontr){
-                                        //    $.alert('Coloque información valida');
-                                        //    return false;
-                                        //}
-                                        //obj = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr)
-                                        $.alert('Confirmación de de cierre de seción: ' ); //+ obj.status
+
+                                        obj22 = fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
+                                        console.log('obj22');
+                                        console.log(obj22);
+                                        $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() ); 
+                                        
                                     }
                                 },
                                 Cancelar: {

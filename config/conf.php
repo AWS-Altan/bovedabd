@@ -21,5 +21,6 @@ return [
     'url_cat_info_sol' => 'https://jlejgibc88.execute-api.us-east-1.amazonaws.com/dev/pre/',
     'url_remedy_cons'  => 'https://ubl1v3arjh.execute-api.us-east-1.amazonaws.com/prod/',
     'url_repbat_rotate'=> 'https://dyt40rqtyb.execute-api.us-east-1.amazonaws.com/prod/',
+    'url_repbat_force' => 'https://skwwvweq7g.execute-api.us-east-1.amazonaws.com/prod/',
 
 ];
