@@ -86,6 +86,8 @@
         {
             executeCharge($file_data);
             $.unblockUI();
+            console.log(response);
+            // $('#inputErrors').append(response);
 	    })
 	    .fail(function() {
             $('#result').empty();
@@ -93,7 +95,7 @@
 			$.unblockUI();
 	    })
 	    .always(function () {
-            $('#inputErrors').append(response);
+
 			$.unblockUI();
         });
     }//loadfile
@@ -113,16 +115,30 @@
             data: JSON.stringify(data)
         }).done(function (response)
         {
-            jsJLresp = jQuery.parseJSON(response);
-            //$('#message_error').empty();
+            console.log(response);
+
+            $('#message_error').empty();
+            $('#inputErrors').empty();
             $('#result').empty();
-            if(jsJLresp.details == "Success")
+
+            jsJLresp = jQuery.parseJSON(response);
+            console.log('jsJLresp');
+            console.log(jsJLresp);
+            console.log('details');
+            sJLdetails = jQuery.parseJSON(jsJLresp);
+            console.log('json');
+            console.log(sJLdetails);
+
+            //console.log(jsJLresp.details.status);
+            if(sJLdetails.status == "ok")
             {
-                $('#result').append('<label class="help-block mb-30 text-left" style="color: green"><strong>' + jsJLresp.details + '</strong>');
+                console.log("caso de Success");
+                $('#inputErrors').append('<label class="help-block mb-30 text-left" style="color: green"><strong> ' + sJLdetails.details.details + ' ejecutadas: ' +  sJLdetails.details.ejecutadas + '</strong>');
                 $("#finish" ).text('Ir a reporte');
                 bJL_successLoad = true;
             }else{
-                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>' + jsJLresp.details + '</strong>');
+                console.log("Diferente a Success");
+                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>' + sJLdetails.details + '</strong>');
             }//else
 
             $.unblockUI();
@@ -133,7 +149,6 @@
 			$.unblockUI();
 		})
 		.always(function () {
-            $('#inputErrors').append(response);
 			$.unblockUI();
         });
     }//executeCharge

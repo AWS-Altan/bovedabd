@@ -65,7 +65,7 @@ class Massive_update_dispcatalog_Controller extends BaseController
                             'name' => 'archivos[]',
                             'class'=> 'form-control',
                             'placeholder' => 'Archivo',
-                            'data-error' => 'Valor inv�lido',
+                            'data-error' => 'Valor invalido',
                             'filename' => $file->getClientOriginalName(),
                             'contents' => fopen($file, 'r')
                         ]
@@ -131,11 +131,15 @@ class Massive_update_dispcatalog_Controller extends BaseController
             loginfo("sisten exec 4");
             $sJL_resupload = implode([html_entity_decode(utf8_decode($responsexec->getBody()))]);
             loginfo($sJL_resupload);
+            $sJL_resupload = str_replace('"{','{',$sJL_resupload);
+            $sJL_result = str_replace('}"','}',$sJL_resupload);
+
             loginfo("sisten exec 5");
+            loginfo($sJL_result);
             //fin
 
             //return json_encode([$responsexec->getBody()]);
-            return $sJL_resupload;
+            return json_encode($sJL_result);
 
 
 
