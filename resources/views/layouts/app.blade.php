@@ -16,6 +16,8 @@
  	<link href="/vendors/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
 	<!-- jquery-steps css -->
 	<link rel="stylesheet" href="/vendors/bower_components/jquery.steps/demo/css/jquery.steps.css">
+	<!-- checkboxes in dataTable -->
+	<link type="text/css" href="/vendors/bower_components/jquery-datatables-checkboxes-1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
 	<!-- bootstrap-touchspin CSS -->
 	<link href="/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
 	<!-- Custom CSS -->
@@ -103,6 +105,13 @@
 	<script src="/vendors/bower_components/jquery-ui/ui/widgets/datepicker.js"></script>
 	<script type="text/javascript" src="/dist/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/dist/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons in dataTable -->
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<!-- check boxes in dataTable -->
+	<script type="text/javascript" src="/vendors/bower_components/jquery-datatables-checkboxes-1.2.12/js/dataTables.checkboxes.min.js"></script>
+
 	<!-- Form Picker Init JavaScript -->
 	<script src="/dist/js/form-picker-data.js"></script>
 	<!-- Starrr JavaScript -->

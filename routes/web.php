@@ -178,8 +178,11 @@ Route::group(['middleware' => ['auth']], function () {
     }); //Route
 
     Route::group(['tickets' => 'actividades', 'namespace' => 'Tickets'], function () {
-        // Menu de Consulta de tickets
+        // Menu de Consulta de tickets- para boton rojo
         Route::resource('/View_Ticket', 'View_Ticket_Controller', ['names' => ['index' => 'Tickets.View_ticket.index']])->only(['index']);
+        Route::post('/call/ticket-list', 'View_Ticket_Controller@getList')->name('tickets.call.list');
+
+
     }); //Route
 
 
