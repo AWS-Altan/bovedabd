@@ -319,12 +319,12 @@
         <!-- modif 2021/01/18 Renombre - Incidentes -->
         @if ( !isset( $menu[37] )  )
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Boton rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Bot&oacute;n rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="Bton_red" class="collapse collapse-level-1 two-col-list">
 
                @if ( !isset( $menu[38] ) )
 				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
+					<a href="{{ route('Tickets.View_ticket.index') }}">
 						<div class="pull-left"><span class="right-nav-text">Actividades Actuales</span></div>
 						<div class="clearfix"></div></a>
 				</li>

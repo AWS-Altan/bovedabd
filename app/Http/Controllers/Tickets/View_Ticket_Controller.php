@@ -20,10 +20,15 @@ class View_Ticket_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
+    protected $httpClient;
+
     public function __construct()
     {
-        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_remedy_cons') ] );
+        $this->httpClient = new Client( [ 'base_uri' => config('conf.url_activity_list') ] );
+
     }
+
+
     /**
      * Show the Porta In.
      *
@@ -39,38 +44,42 @@ class View_Ticket_Controller extends BaseController
         return view('Tickets.View_Ticket')-> with('menu',$menu);
     }
 
-    protected function login()
+       protected function login()
     {
 
     }
 
-    public function search_data_api()
+    
+        public function getList()
     {
         //$this->loginResponse = $this->login();
 
-        loginfo('Obtiene Datos del API para el INC: ');
+        loginfo('Obtiene lista de actividades en curso');
 
         $json = request()->json()->all();
         loginfo($json);
 
 
         try {
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_remedy_cons'). 'consulta_inc'
+
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_activity_list'). 'bv_button_query'
                 , [
                     'json' => $json,
                   ])->getBody());
 
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_remedy_cons') . 'consulta_inc', [$req]);
-            loginfo('termina ejecución API');
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_activity_list') . 'bv_button_query', [$req]);
+
         } catch (\Exception $e) {
-            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_remedy_cons') .'consulta_inc', [ $e ]);
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_activity_list') .'bv_button_query'
+                , [ parse_exception( $e ) ]);
 
 
         }
-        loginfo('Regreso información');
-        return json_encode( $req );
 
-    }//search_data_api
+        return json_encode( $req );
+    }
+
+
 
 
 }

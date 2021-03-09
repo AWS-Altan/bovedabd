@@ -1,357 +1,328 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-sm-12">
-		<div class="panel panel-default card-view">
-			<div class="panel-heading">
-				<div class="clearfix"></div>
-			</div>
-			<div class="panel-wrapper collapse in">
-				<div class="panel-body">
-					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Busqueda de Tickets</span></h3>
-						<section>
-                            <form id="step_one">
-                                <!-- Template busqueda Actividad -->
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div id="example-basic">
+                        <h3><span class="head-font capitalize-font">Lista de Actividades en curso</span></h3>
+                        <section>
+                            <form id="form_tabs" action="#">
                                 <div class="row">
-								    <div class="col-sm-12">
-									    <div class="form-group mb-0">
-										    <div class="row">
-											     @include('layouts.Search_INC')
-										    </div>
-									    </div>
-								    </div>
-							    </div>
-
-                            </form>
-						</section>
-						<h3><span class="head-font capitalize-font">Consulta de Incidente</span></h3>
-						<section>
-                            <form id="step_two">
-                                <!-- Contenedor -->
-                                <form id="form_tabs" action="#">
-                                    <div class="panel panel-default">
-                                        <!-- Header Subseccion -->
-                                        <div class="panel-heading">
-    		    						    Información del CRQ
-                                        </div>
-                                        <div class="card-body">
-                                            <!--renglon-->
-                                            <div class="row">
-                                                <!-- columnas Fecha inicio - Fecha Termino -->
-                                                <div class="col-sm-12">
-                                                    <div class="form-group mt-12">
-                                                        <div><br></div>
-                                                        <!--campo-->
-                                                        <div class="col-sm-2 mb-20">
-                                                            <label class="help-block text-left">Fecha de Inicio INC</label>
-                                                        </div>
-                                                        <div class="col-sm-4 mb-20 select select-group" >
-                                                            <input type="text" data-minlength="10" class="form-control" id="id_fechaIni" placeholder="Ingrese la Fecha de inicio " data-error="Valor inválido" maxlength="150" readonly="false" disabled="true">
-                                                            <div class="help-block with-errors" id="txtfechaIniError"></div>
-                                                        </div>
-                                                        <!--campo-->
-                                                        <div class="col-sm-2 mb-20">
-                                                            <label class="help-block text-left">Fecha Termino INC</label>
-                                                        </div>
-                                                        <div class="col-sm-4 mb-20">
-                                                            <input type="text" data-minlength="10" class="form-control" id="id_fechaFin" placeholder="Ingrese la Fecha de finalización" data-error="Valor inválido" maxlength="150" readonly="false" disabled="true">
-                                                            <div class="help-block with-errors" id="txtfechaFinError"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- columna Descripción - id ticket -->
-                                                <div class="col-sm-12">
-                                                    <div class="form-group mt-12">
-                                                        <div><br></div>
-                                                        <!--campo-->
-                                                        <div class="col-sm-2 mb-20">
-                                                            <label class="help-block text-left">Descripción</label>
-                                                        </div>
-                                                        <div class="col-sm-4 mb-20 select select-group" >
-                                                            <input type="text" data-minlength="10" class="form-control" id="id_DescripcionCR" placeholder="Ingrese la descripción del CR" data-error="Valor inválido" maxlength="150" readonly="false" disabled="true">
-                                                            <div class="help-block with-errors" id="txtDescripcionError"></div>
-                                                        </div>
-                                                        <!--campo-->
-                                                        <div class="col-sm-2 mb-20">
-                                                            <label class="help-block text-left">Ticket </label>
-                                                        </div>
-                                                        <div class="col-sm-4 mb-20 select select-group" >
-                                                            <input type="text" data-minlength="10" class="form-control" id="id_Ticket" placeholder="Ingrese el número de ticket" data-error="Valor inválido" maxlength="150" readonly="false" disabled="true">
-                                                            <div class="help-block with-errors" id="txtidTicketError"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- columna ID Acceso -->
-                                                <div class="col-sm-12">
-                                                    <div class="form-group mt-12">
-                                                        <div><br></div>
-                                                        <!--campo-->
-                                                        <div class="col-sm-2 mb-20">
-                                                            <label class="help-block text-left">ID Acceso </label>
-                                                        </div>
-                                                        <div class="col-sm-4 mb-20 select select-group" >
-                                                            <input type="text" data-minlength="10" class="form-control" id="id_Acceso" placeholder="Ingrese el identificador de Acceso" data-error="Valor inválido" maxlength="150" readonly="false" disabled="true">
-                                                            <div class="help-block with-errors" id="txtAccesoError"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-12">
+                                        @include('layouts.tableticketsoncurse')
                                     </div>
-                                </form>
-                                <!-- Contenedor -->
-                                <form id="form_tabs" action="#">
-                                    <div class="panel panel-default">
-                                        <!-- Header Subseccion -->
-                                        <div class="panel-heading">
-    		    						    Detalles equipos
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group mt-12">
-                                                    <div class="panel-wrapper collapse in">
-                                                        <div class="panel-body">
-                                                            <div class="table-wrap">
-                                                                <div class="table-responsive">
-                                                                    <table id="Tbl_usrdisp" class="table table-hover display">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Site</th>
-                                                                                <th>IP</th>
-                                                                                <th>Usuario</th>
-                                                                                <th>Task</th>
-                                                                                <th>Solicitante</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
+                                </div>
+                                <!-- /Row -->
+                                <br>
+                                <div class="row">
+                                    <div id="message" class="col-sm-12">
                                     </div>
-                                </form>
+                                </div>
                             </form>
                         </section>
-                        <!-- Texto de Menajes -->
-                        <div class="row" id="message_error">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
-
-<!-- Inicio la programación del estilo -->
 @section('jsfree')
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-<!--librerias para los botones -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-
 <style type="text/css">
-	.wizard > .steps > ul > li{
-		    width: 45%;
+    .wizard > .steps > ul > li{
+            width: 45%;
     }
 </style>
 <script>
-
-
-    // funcion para cambio de pestaña
-    function ValidateNext() {
-        //Validacion de campo de busqueda Input data del layou te busqueda
-        var dato=$('#inputData').val();
-        console.log('voy a evaluar el dato');
-        console.log(tipo_campo);
-        console.log(dato);
-        //REalizo validacion de que el dato este correcto
-		if (patrones[tipo_campo].test(dato)) {
-            console.log('voy a buscar el dato');
-			bJL_return = fun_ejecuta_busqueda(dato);
-            return true;
-		} else {
-		    $("#inputData").css({'border' : '1px solid #f73414'});
-			$("#message_error").css('color', '#f73414');
-			$("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
+    function finished(){
+        $('#message' ).empty();
+        
+        if ( $('#usuarioReset' ).val()=='' ){
+            $('#message').append('<label class="alert-danger mb-30 text-left"><strong>Error:</strong>&nbsp; capture el correo del usuario a dar reset</label>');
             return false;
-        }//else
-	}
+        }
+        
+        if (!patrones['email'].test($('#usuarioReset').val())) {
+            $('#message').empty();
+            $('#message').append('<label class="alert-danger mb-30 text-left"><strong>Error en email:</strong>&nbsp;El formato no es v&aacute;lido</label>');
+            return false;
+        }
 
-    // furncion para ejecutar busqueda
-    function fun_ejecuta_busqueda(sJL_crSearch){
-        //limpio los textos
-        $('#message_error').empty();
-        //realizo el bloqueo de pantalla
-        $.blockUI({ message: 'Procesando ...',css: {
-            border: 'none',
-            padding: '15px',
-            backgroundColor: '#000',
-            '-webkit-border-radius': '10px',
-            '-moz-border-radius': '10px',
-            opacity: .5,
-            color: '#fff'
+        if ( $('#passUsuarioReset' ).val()=='' ){
+            
+            $('#message').append('<label class="alert-danger mb-30 text-left"><strong>Error:</strong>&nbsp; capture la contrase&ntilde;a fijar al usuario de View360</label>');
+            return false;
+        }
+
+        if ( $('#passAdmin' ).val()=='' ){
+            
+            $('#message').append('<label class="alert-danger mb-30 text-left"><strong>Error:</strong>&nbsp; capture la contrase&ntilde;a que utiliza el usuario para acceder a  View360</label>');
+            return false;
+        }
+
+
+        //bloqueo();
+        $.blockUI({ message: 'Validando password ...',css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
         } });
-
-        sJL_nextstep = false;
-
-        var jsonrota = {
-                    "inc"                     :sJL_crSearch
-                };
-
-        console.log(jsonrota);
-
-        //Ejecuto la busqueda del dato
         $.ajax({
-			url: "{{ route('actividades.call.view_ticket') }}",
-			type: 'POST',
-            data:JSON.stringify(jsonrota),
-            contentType: "application/json",
-		})
+            url: "{{ route('access.call.report_userdisp') }}",
+            type: 'GET',
+            data: {
+                'value': $('#passAdmin').val()
+                
+            }
+        })
         .done(function(response) {
-            obj = jQuery.parseJSON(response);
-            console.log(obj);
-            if(obj.status=="ok")
+            obj2 = jQuery.parseJSON(response);
+            console.log(obj2);
+            
+
+        })
+        .fail(function() {
+                $('#message').empty();
+                $('#message').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> al validar su contrase&ntilde;a para acceder a  View360 </label>');
+                $.unblockUI();
+            })
+        .always(function() {
+            
+
+            if ( obj2.statusCode!= null && obj2.statusCode!=200 )  {    
+                $('#message').empty();
+                $('#message').append('<label class="alert-danger mb-30 text-left">Validaci&oacute;n de contrase&ntilde;a administrador<strong> no  exitosa </strong><br> No corresponde al valor que utiliza el usuario para acceder a  View360</label>');
+                $.unblockUI();
+
+            }else{
+
+            }
+
+            //$.unblockUI();
+        });
+
+    }
+
+    
+
+    $(window).on('load', function() {
+        var datatableInstance    = null;
+
+        var initializeDatatable = function initializeDatatable(check) {
+            //bloqueo();
+            console.log('inicia consulta operaciones'+moment().format('YYYY-MM-DD HH:mm:ss'))
+
+            //Ejecuto la busqueda del dato, armo la busqueda
+            var sJL_mail = '{{app('auth')->user()->email}}';
+
+            var data = {};
+            data.operacion   = "consulta";
+/*           
+            if( $('#initialDate' ).val() != '' && $('#finalDate' ).val() != '')
             {
-                console.log("voy a hacer algo");
+                data.fecha_ini = $('#initialDate' ).val();
+                data.fecha_fin = $('#finalDate' ).val()
+            }
 
+           
+           if(document.getElementById('radio5').checked)
+            {
+                data.IP = $('#inputData').val();
+            }
+            if(document.getElementById('radio6').checked)
+            {
+                data.hostname = $('#inputData').val();
+            }
+            if(document.getElementById('radio7').checked)
+            {
+                data.user = $('#inputData').val();
+            }
+            if(document.getElementById('radio8').checked)
+            {
+                data.solicitante = $('#inputData').val();
+            }
+            if(document.getElementById('radio9').checked)
+            {
+                data.status = $('#inputData').val();
+            }
+*/            
+            
+            $.ajax({
+                url: "{{ route('tickets.call.list') }}",
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify(data)
+            }).done(function (response) {
+                obj = jQuery.parseJSON(response);
+                console.log("obj");
+                console.log(obj);
+                $('#msg_operations').hide();
+                $('#msg_operations').empty();
+                $('#msg_operations').css('color', '#9E1D23');
+                $('#msg_operations').css("text-align", "center");
+                if ( obj.status !== "ok" ){
+                    $('#msg_operations').show();
+                    $('#msg_operations').append('</br><strong>Respuesta: </strong></br>'+response.description);
+                    $('#operations_history_panel').hide();
+                }else{
+                    console.log('termina consulta actividades'+moment().format('YYYY-MM-DD HH:mm:ss'))
+                    
+                    data = obj.actividades;
+                    console.log('DATA');
+                    console.log(data);
 
-                $('#id_fechaIni').val(obj.details.fecha_inicio);
-                //$('#id_fechaIni').prop("readonly",false);
+                    if (datatableInstance) {
+                        datatableInstance.destroy();
+                    }
+                    //var datatableInstance
+                    datatableInstance = $('table#Tbl_usrdisp').DataTable({
+                        "data": data,
+                        "pageLength": 5,
 
-                $('#id_fechaFin').val(obj.details.fecha_termino);
-                //$('#id_fechaFin').prop("readonly",false);
-
-                $('#id_DescripcionCR').val(obj.details.descripcion);
-                //$('#id_DescripcionCR').prop("readonly",false);
-
-                $('#id_Ticket').val(obj.details.id_ticket);
-                //$('#id_Ticket').prop("readonly",false);
-
-                $('#id_Acceso').val(obj.details.id_acceso);
-                //$('#id_nombre').prop("readonly",false);
-
-                data = obj.details.info;
-                if (typeof(datatableInstance)!== 'undefined')
-                {
-                    datatableInstance.destroy();
-                } //if
-
-                var datatableInstance
-                datatableInstance = $('table#Tbl_usrdisp').DataTable({
-                    "data": data,
-                    "pageLength": 10,
-                    "order": [
-                            [0, "desc"]
-                    ],
-                    "columns": [
+                        "order": [
+                            [1, "desc"]
+                        ],
+                        "columnDefs": [
+                          {
+                             "targets": 0,
+                             "checkboxes": {
+                                "selectRow": true
+                             }
+                          }
+                        ],
+                        "select": {
+                            "style": 'multi'
+                        },
+                        "columns": [
                             {
-                                //id_site
-                                "name": "id_site",
-                                "data": "id_site"
+                                "data": "id_acceso"
+                                
                             },
                             {
-                                //ip
-                                "name": "ip",
-                                "data": "ip"
+                                "data": "ticket"
                             },
                             {
-                                //usuario
-                                "name": "user",
-                                "data": "user"
+                                "data": "descripcion"
                             },
                             {
-                                //id_task
-                                "name": "id_task",
-                                "data": "id_task"
+                                "data": "fecha_inicio"
                             },
                             {
-                                //id_solicitante
-                                "name": "id_solicitante",
-                                "data": "id_solicitante"
+                                "data": "fecha_termino",
+                                "render": function ( data, type, row ) {
+                                        if (row.fecha_termino!=='null') {return row.fecha_termino;}
+                                        return ' ';
+                                }
+
+                            },
+                            {
+                                "data": "fecha_pausa",
+                                "render": function ( data, type, row ) {
+                                        if (row.fecha_pausa!=='null') {return row.fecha_pausa;}
+                                        return ' ';
+                                }
+
+                            },
+                            {
+                                "data": "fecha_reanuda",
+                                "render": function ( data, type, row ) {
+                                        if (row.fecha_reanuda!=='null') {return row.fecha_reanuda;}
+                                        return ' ';
+                                }
+
                             }
-                    ],
-                    dom: 'Bfrtip',
-                    buttons: [
+                        ],
+                        dom: 'Bfrtip',
+                        buttons: [
                             'csv'
-                    ]
+                        ]
+                    });
+
+                }
+
+            })
+            .fail(function() {
+               // $.unblockUI();
+            })
+            .always(function () {
+                //if (check == 1) {$.unblockUI();}
+            })
+        };
+
+
+
+        var Consulta = function () {
+
+            var initializePlugins2 = function initializePlugins2() {
+                
+                initializeDatatable(1);
+
+
+                $("#consult_operations").click(function (e) {
+                    f1 = $("#initialDate").val();
+                    f2 = $("#finalDate").val();
+                    $('#msg_operations').empty();
+                    if ( f1.length < 1 || f2.length < 1 ) {
+                        $('#msg_operations').append('<label class="help-block mb-30 text-left"><strong>Las fechas son obligatorias</strong> ');
+                        return false;
+                    }
+
+                    initializeDatatable(1);
+                });
+
+
+                $("#stop_operations").click(function (e) {
+                    //alert ("entra");
+                      //var form = this;
+
+                      var rows_selected = datatableInstance.column(0).checkboxes.selected();
+
+
+                      // Iterate over all selected checkboxes
+                        //datatableInstance.$('input[type="checkbox"]').each(function(){
+                       $.each(rows_selected, function(index, rowId){  
+                        alert("Seleccionado" +  rowId );
+                         // Create a hidden element
+                         // $(form).append(
+                         //     $('<input>')
+                         //        .attr('type', 'hidden')
+                         //        .attr('name', 'id[]')
+                         //        .val(rowId)
+                         // );
+                      });
+                   
                 });
 
 
 
-                $('#previous').hide();
-                $('#finish').hide();
-                $.unblockUI();
-                sJL_nextstep = true;
-            }//if
-            else
-            {
-                console.log("dato incorecto");
-                $('#value').val('');
-				$('#message_error').empty();
-                $("#message_error").css('color', 'red');
-				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar: </strong> ' + obj.details);
-				$( "#previous" ).trigger( "click" );
-				$.unblockUI();
-                sJL_nextstep = false;
-            }
+            };
 
-        })
-        .fail(function() {
-	        	$('#message_error').empty();
-				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>Time Out</strong>');
-	        	$.unblockUI();
-	        })
-        .always(function() {
-            console.log("CR always:" + sJL_nextstep);
-            $.unblockUI();
-            return sJL_nextstep;
-        });
-        return sJL_nextstep;
+            
 
-    }//fun_ejecuta_busqueda
-
-
-
-    // Funcion de Fin de Vista, ejecucion
-    function finished(){
-
-    } //finished
-    //Cargo comportmiento de inicio de pantalla
-    $(window).on('load', function()
-    {
-
-        // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
-
-        var Operations2 = function ()
-        {
-            //Inicio el comporatamiento de la ventana
-
-
-        	return {
-		        init: function() {
-		        	$('#previous').hide();
-                    TipoDato4('inc');
-                    $( "#finish" ).text('Siguiente');
-
-                    $('#message_error').empty();
-				    //initializePlugins2();
-
-				    $( "#finish" ).click(function() {
-                        //Aqui va el codigo de cuando se presiona el boton
-                        //$('#message').append('voy 4');
-                    });
-                    //$('#message').append('voy 3');
-		        }
-		    };
+            return {
+                init: function() {
+                    $('#previous').hide();
+                    $('#finish').text('Consultar');
+                    $('#finish').hide();
+                    initializePlugins2();
+                    
+                }
+            };
         }
-        Operations2().init();
-    });// fin de inicio de pantall
+        Consulta().init();
 
+    });
+    
 </script>
 @endsection
+
+
