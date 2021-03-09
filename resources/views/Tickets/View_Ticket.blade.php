@@ -155,7 +155,7 @@
                 data.status = $('#inputData').val();
             }
 */            
-            
+            bloqueo();
             $.ajax({
                 url: "{{ route('tickets.call.list') }}",
                 type: 'POST',
@@ -251,10 +251,10 @@
 
             })
             .fail(function() {
-               // $.unblockUI();
+                $.unblockUI();
             })
             .always(function () {
-                //if (check == 1) {$.unblockUI();}
+                if (check == 1) {$.unblockUI();}
             })
         };
 
@@ -267,7 +267,7 @@
                 initializeDatatable(1);
 
 
-                $("#consult_operations").click(function (e) {
+                $("#consultaActividades").click(function (e) {
                     f1 = $("#initialDate").val();
                     f2 = $("#finalDate").val();
                     $('#msg_operations').empty();
@@ -280,7 +280,7 @@
                 });
 
 
-                $("#stop_operations").click(function (e) {
+                $("#pausarActividades").click(function (e) {
                     //alert ("entra");
                       //var form = this;
 

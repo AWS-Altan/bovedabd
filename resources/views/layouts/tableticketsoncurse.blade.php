@@ -1,10 +1,10 @@
     <div class="mb-10">
-        <h6 class="txt-dark capitalize-font">Periodo – Fecha solicitud.</h6>
+        <h6 class="txt-dark capitalize-font">Per&iacute;odo – Fecha Ingreso.</h6>
     </div>
     <div class="row">
         <div class="form-fecha" style=" display:flex; align-items:flex-end;">
-            <div class="col-sm-4">
-                <label class="control-label mb-5">Fecha Inicial</label>
+            <div class="col-sm-2">
+                <label class="control-label mb-5">Inicial</label>
                 <div class='input-group date' id = "dateInicioOperaciones">
                     <input id="initialDate" type='text' class="form-control" placeholder="MM/DD/AÑO"/>
                     <span class="input-group-addon">
@@ -12,8 +12,8 @@
                     </span>
                </div>
             </div>
-            <div class="col-sm-4">
-                <label class="control-label mb-5">Fecha Final</label>
+            <div class="col-sm-2">
+                <label class="control-label mb-5">Final</label>
                 <div class='input-group date' id = "dateFinOperaciones">
                     <input id="finalDate" type='text' class="form-control" placeholder="MM/DD/AÑO"/>
                     <span class="input-group-addon">
@@ -22,10 +22,13 @@
                 </div>
             </div>
             <div class="col-sm-1">
-                <a id="consult_operations" type="button" class="btn btn-primary">Buscar</a>
+                <a id="consultaActividades" type="button" class="btn btn-primary">Buscar</a>
             </div>
-            <div class="col-sm-2">
-                <a id="stop_operations" type="button" class="btn btn-primary">Detener Actividades</a>
+            <div class="col-sm-1">
+                <a id="pausarActividades" type="button" class="btn btn-primary">Pausar</a>
+            </div>
+            <div class="col-sm-1">
+                <a id="reanudarActividades" type="button" class="btn btn-primary">Reanudar</a>
             </div>
 
         </div>
