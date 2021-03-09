@@ -173,6 +173,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/Modif_Activ', 'Modif_activ_Controller', ['names' => ['index' => 'Actividades.Modif_activ.index']])->only(['index']);
         // Menu de Revisión de Parametros Remedy
         Route::resource('/View_remedy', 'View_Remedy_Controller', ['names' => ['index' => 'Actividades.View_Remedy.index']])->only(['index']);
+        Route::post('/call/View_remedy_report', 'View_Remedy_Controller@search_data_api')->name('actividades.call.view_remedy');
+
+
+
+
         // Menu de Calendarización de Actividades
         Route::resource('/Calden_activ', 'Calendar_activ_Controller', ['names' => ['index' => 'Actividades.Calendar_activ.index']])->only(['index']);
         // Menu de Reprogramación de Actividades
@@ -182,6 +187,10 @@ Route::group(['middleware' => ['auth']], function () {
     }); //Route
 
     Route::group(['tickets' => 'actividades', 'namespace' => 'Tickets'], function () {
+        // Menu de Consulta de tickets
+        Route::resource('/View_Ticket_Cons', 'View_Ticket_Rel_Controller', ['names' => ['index' => 'Tickets.View_ticket_cons.index']])->only(['index']);
+        Route::post('/call/View_Ticket_Cons', 'View_Ticket_Rel_Controller@search_data_api')->name('actividades.call.view_ticket');
+
         // Menu de Consulta de tickets- para boton rojo
         Route::resource('/View_Ticket', 'View_Ticket_Controller', ['names' => ['index' => 'Tickets.View_ticket.index']])->only(['index']);
         Route::post('/call/ticket-list', 'View_Ticket_Controller@getList')->name('tickets.call.list');

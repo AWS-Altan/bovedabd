@@ -245,7 +245,7 @@
                 @if ( !isset( $menu[17] )  )
 					<li>
 						<a href="{{ route('Actividades.View_Remedy.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Revision de parametros Remedy</span></div>
+							<div class="pull-left"><span class="right-nav-text">Revision de actividades vigentes Remedy</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
@@ -301,7 +301,7 @@
 
                @if ( !isset( $menu[22] ) )
 				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
+					<a href="{{ route('Tickets.View_ticket_cons.index' , array('isMob'=>'false') ) }}">
 						<div class="pull-left"><span class="right-nav-text">Consulta de Tickets</span></div>
 						<div class="clearfix"></div></a>
 				</li>
