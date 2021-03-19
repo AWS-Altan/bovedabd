@@ -9,7 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates, Userplat};
+use App\Entities\{Vwuser, Userplat};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -46,10 +46,7 @@ class Report_Batch_Controller extends BaseController
 
     protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), [
-                'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
     }
 
     public function search_data()
@@ -93,7 +90,6 @@ class Report_Batch_Controller extends BaseController
                 loginfo('Voy a consultar los datos');
 
                 foreach ($boveda_userdisp as $user_bob) {
-                    loginfo('sisfen registro');
                     $result_data[]= array(
                                 'description' => 'ok',
                                 'statusCode' => 200,
@@ -153,13 +149,13 @@ class Report_Batch_Controller extends BaseController
                   ])->getBody());
 
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);
-            loginfo('termina ejecución API');
+            loginfo('termina ejecuciÃ³n API');
         } catch (\Exception $e) {
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
 
 
         }
-        loginfo('Regreso información');
+        loginfo('Regreso informaciÃ³n');
         return json_encode( $req );
 
     }

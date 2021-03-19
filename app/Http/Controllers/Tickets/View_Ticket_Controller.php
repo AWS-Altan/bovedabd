@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates};
+use App\Entities\{Vwuser};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -19,6 +19,15 @@ use Carbon\Carbon;
 class View_Ticket_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
+
+    protected $httpClient;
+
+    public function __construct()
+    {
+        $this->httpClient = new Client( [ 'base_uri' => config('conf.url_activity_list') ] );
+
+    }
+
 
     /**
      * Show the Porta In.
@@ -37,10 +46,37 @@ class View_Ticket_Controller extends BaseController
 
        protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), [
-                'headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
+    }
+
+    
+        public function getList()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene lista de actividades en curso');
+
+        $json = request()->json()->all();
+        loginfo($json);
+
+
+        try {
+
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_activity_list'). 'bv_button_query'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_activity_list') . 'bv_button_query', [$req]);
+
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_activity_list') .'bv_button_query'
+                , [ parse_exception( $e ) ]);
+
+
+        }
+
+        return json_encode( $req );
     }
 
 

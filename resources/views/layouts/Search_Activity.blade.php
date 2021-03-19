@@ -1,8 +1,6 @@
 <!-- Blade de busquedas de usuario-->
-<!-- -->
-<!-- -->
 
-<!-- sisfen - falta arreglar los tipos de datos -->
+
 
 <div class="col-sm-1">
 </div>
@@ -24,7 +22,6 @@
 	</div>
 </div>
 
-<!-- sisfen - falta cambiar este: -->
 <div class="col-sm-2">
 	<div class="radio radio-info" style="padding-top: 10px;">
 		<input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('imsi')">

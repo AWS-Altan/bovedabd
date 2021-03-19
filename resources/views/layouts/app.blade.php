@@ -16,6 +16,8 @@
  	<link href="/vendors/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
 	<!-- jquery-steps css -->
 	<link rel="stylesheet" href="/vendors/bower_components/jquery.steps/demo/css/jquery.steps.css">
+	<!-- checkboxes in dataTable -->
+	<link type="text/css" href="/vendors/bower_components/jquery-datatables-checkboxes-1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
 	<!-- bootstrap-touchspin CSS -->
 	<link href="/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
 	<!-- Custom CSS -->
@@ -103,6 +105,13 @@
 	<script src="/vendors/bower_components/jquery-ui/ui/widgets/datepicker.js"></script>
 	<script type="text/javascript" src="/dist/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/dist/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons in dataTable -->
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<!-- check boxes in dataTable -->
+	<script type="text/javascript" src="/vendors/bower_components/jquery-datatables-checkboxes-1.2.12/js/dataTables.checkboxes.min.js"></script>
+
 	<!-- Form Picker Init JavaScript -->
 	<script src="/dist/js/form-picker-data.js"></script>
 	<!-- Starrr JavaScript -->
@@ -129,7 +138,7 @@
 		var patrones = new Array();
 		patrones['msisdn']=/^[1-9][0-9]{9}$/;
 		patrones['imsi']=/^[1-9][0-9]{14}$/;
-		patrones['imei']=/^[1-9][0-9]{13,15}$/;
+		patrones['imei']=/^[0-9][0-9]{13,15}$/;
 		patrones['icc']=/^(8952140)[0-9]{12}$/;
 		patrones['coordenadas']=/^([-+]?\d{1,2}[.]\d+),\s*([-+]?\d{1,3}[.]\d+)$/;
 		patrones['latitud']=/^([-+]?\d{1,2}[.]\d+)$/;
@@ -142,6 +151,8 @@
         patrones['hostname']=/^[_a-z0-9]{50}$/;
         patrones['ip']=/^([0-9]{1,3}\.){3}[0-9]{1,3}$/;
         patrones['username']=/^[1-9][0-9]{50}$/;
+        patrones['cr']=/^((CRQ)|(crq))[0-9]{12}$/;
+        patrones['inc']=/^((INC)|(inc))[0-9]{12}$/;
 
 
 		var inputTope = new Array();
@@ -155,6 +166,8 @@
         inputTope['hostname']=50;
         inputTope['ip']=17;
         inputTope['username']=50;
+        inputTope['cr']=15;
+        inputTope['inc']=15;
 
 		function bloqueo() {
 			$.blockUI({ message: 'Procesando ...',css: {

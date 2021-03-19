@@ -79,11 +79,6 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            <div class="form-group mb-10">
-                                                <label id="mvno_name" class="control-label mb-10 text-left">Plataforma a Consultar</label>
-                                                <select id="mvno" name="mvno" class="form-control" required>
-                                                </select>
-                                            </div>
                                             <div class="form-group">
                                                 <div class="checkbox checkbox-primary pr-10 pull-left">
                                                     <input id="checkbox_2" type="checkbox">
@@ -137,10 +132,7 @@
             var Login = function () {
 
                 var initializePlugins = function initializePlugins() {
-                    $('#mvno_name').hide();
-                    $('#mvno').hide();
                     $('#submit').hide();
-
                     $( "#consulta" ).click(function() {
                         $.blockUI({ message: 'Procesando ...',css: {
                             border: 'none',
@@ -151,7 +143,7 @@
                             opacity: .5,
                             color: '#fff'
                         } });
-
+                        console.log("Version  2021/02/02");
                         $.ajax({
                             url: "{{ route('support.call.mvo') }}",
                             type: 'GET',
@@ -162,41 +154,18 @@
                         })
                         .done(function(response) {
                             var obj = jQuery.parseJSON(response);
-                            //console.log(obj);
-                            $('#mvno').empty();
+                            console.log(obj);
                             if(obj.error){
                                 $('#alert').empty();
                                 $('#email, #password').val('');
                                 $("#alert").css('color', '#f73414');
                                 $('#alert').append('Credenciales no válidas');
                                 $('#email').focus();
+                                console.log("Credenciales no validas ");
                             }else{
-                                var mySelect = $('#mvno');
-                                //console.log(obj.mvno.length);
 
-                                $.each(obj.mvno, function(val, text) {
-                                    //console.log(text.name);
-                                    mySelect.append(
-                                        $('<option></option>').val(text.id).html(text.name)
-                                    );
-                                });
-
-                                //actualización 20201215 - solicitud Clau, retirar obtencion de MVNO
-                                /*if(obj.mvno.length == 1){
-                                    mySelect.hide();
-                                    $('#mvno_name').hide();
-                                    $('#submit').prop('disabled', false);
-                                    $('#submit').trigger('click');
-                                    $("#form_login").submit();
-                                }else{
-                                    mySelect.show();
-                                    $('#mvno_name').show();
-                                    $( "#consulta" ).hide();
-                                     $('#submit').show();
-                                }*/
-
-                                mySelect.hide();
-                                $('#mvno_name').hide();
+                                console.log("Credenciales validas ");
+                                
                                 $('#submit').prop('disabled', false);
                                 $('#submit').trigger('click');
                                 $("#form_login").submit();

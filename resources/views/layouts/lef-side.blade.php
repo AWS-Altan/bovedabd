@@ -12,7 +12,7 @@
         <!-- modif 2021/01/18 Renombre - Menu Administración Equipos -->
         <li><hr class="light-grey-hr mb-10"/></li>
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Administración de Equipos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Admin de Equipos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="acciones_dr" class="collapse collapse-level-1 two-col-list">
 
                 <!-- Modificación de Catalogo de Dispositivos -->
@@ -50,106 +50,6 @@
                 @endif
 
 
-
-
-                <!-- sisfen - quitar -->
-                <!--@if ( !isset( $menu[25] )) -->
-				<!--<li> -->
-				<!--	<a href="javascript:void(0);" data-toggle="collapse" data-target="#prereg_dr"> -->
-				<!--		<div class="pull-left"></i><span class="right-nav-text">Usuarios Dispositivos</span></div> -->
-				<!--		<div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div> -->
-				<!--		<div class="clearfix"></div> -->
-				<!--	</a> -->
-				<!--	<ul id="prereg_dr" class="collapse collapse-level-1 two-col-list"> -->
-
-                        <!-- Alta usuarios -->
-                <!--    @if ( !isset( $menu[26] ) ) -->
-				<!--	<li> -->
-				<!--		<a href="{{ route('access.alta_userman.index') }}"> -->
-				<!--			<div class="pull-left"><span class="right-nav-text">Alta Relacion Accesos Usuarios</span></div> -->
-				<!--			<div class="clearfix"></div> -->
-				<!--		</a> -->
-				<!--	</li> -->
-                <!--    @endif -->
-
-                <!--        @if ( !isset( $menu[27] ) ) -->
-                <!--            <li>
-                <!--                <a href="{{ route('Access.baja_user.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Baja Accesos Usuario</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                <!--        @if ( !isset( $menu[28] ) ) -->
-                <!--            <li> -->
-                <!--                <a href="{{ route('Access.modif_user.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Modificación de Accesos Usuario</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                <!--        @if ( !isset( $menu[29] ) ) -->
-                <!--            <li> -->
-                <!--                <a href="{{ route('Access.View_pass.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Consulta de Password</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                <!--        @if ( !isset( $menu[30] ) ) -->
-                <!--            <li> -->
-                <!--                <a href="{{ route('Access.Active_user.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Activación de usuarios</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                <!--        @if ( !isset( $menu[31] ) ) -->
-                <!--            <li> -->
-                <!--                <a href="{{ route('Access.Deactive_user.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Desactivación de usuarios</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                <!--        @if ( !isset( $menu[32] ) ) -->
-                <!--            <li> -->
-                <!--                <a href="{{ route('Access.Change_pass.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Cambiar / Rotar Passwords</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                <!--        @if ( !isset( $menu[33] ) ) -->
-                <!--            <li> -->
-                <!--                <a href="{{ route('Access.Send_pass.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Envio de Contraseñas</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                        <!-- Adicion 2020/11/26 -->
-                <!--        @if ( !isset( $menu[34] ) ) -->
-                <!--            <li> -->
-                <!--                <a href="{{ route('Access.Masive_Sign_in.index') }}"> -->
-                <!--                    <div class="pull-left"><span class="right-nav-text">Carga Masiva</span></div> -->
-                <!--                    <div class="clearfix"></div> -->
-                <!--                </a> -->
-                <!--            </li> -->
-                <!--        @endif -->
-
-                <!--    </ul> -->
-				<!--</li> -->
-				<!--@endif -->
-
 			</ul>
         </li>
 
@@ -159,7 +59,7 @@
         <!-- modif 2021/01/12 renombre - Administración de Usuarios -->
         <li><hr class="light-grey-hr mb-10"/></li>
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Administración de Usuarios</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Admin de Usuarios</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="batch_dr" class="collapse collapse-level-1 two-col-list">
 
                 <!-- Adicion 2020/12/03 -->
@@ -300,8 +200,6 @@
 <!--					</li>-->
 <!--				@endif-->
 
-                <!-- sisfen - falta gestion de credenciales del elemento -->
-
 
 <!--                @if ( !isset( $menu[52] )  )-->
 <!--					<li>-->
@@ -347,7 +245,7 @@
                 @if ( !isset( $menu[17] )  )
 					<li>
 						<a href="{{ route('Actividades.View_Remedy.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Revision de parametros Remedy</span></div>
+							<div class="pull-left"><span class="right-nav-text">Revision de actividades vigentes Remedy</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
@@ -403,7 +301,7 @@
 
                @if ( !isset( $menu[22] ) )
 				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
+					<a href="{{ route('Tickets.View_ticket_cons.index' , array('isMob'=>'false') ) }}">
 						<div class="pull-left"><span class="right-nav-text">Consulta de Tickets</span></div>
 						<div class="clearfix"></div></a>
 				</li>
@@ -421,12 +319,12 @@
         <!-- modif 2021/01/18 Renombre - Incidentes -->
         @if ( !isset( $menu[37] )  )
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Boton rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Bot&oacute;n rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="Bton_red" class="collapse collapse-level-1 two-col-list">
 
                @if ( !isset( $menu[38] ) )
 				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
+					<a href="{{ route('Tickets.View_ticket.index') }}">
 						<div class="pull-left"><span class="right-nav-text">Actividades Actuales</span></div>
 						<div class="clearfix"></div></a>
 				</li>
@@ -454,6 +352,18 @@
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Configuración</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="operaciones_dr" class="collapse collapse-level-1 two-col-list">
+
+
+                <!-- Alta usuarios -->
+                @if ( !isset( $menu[47] ) )
+					<li>
+						<a href="{{ route('Users.alta_solicitantes.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta de solicitantes</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
 
                 <!-- Alta usuarios -->
                 @if ( !isset( $menu[2] ) )
@@ -520,30 +430,6 @@
 						</a>
 					</li>
 				@endif
-
-
-
-                <!-- @if ( !isset( $menu[51] ) ) -->
-				<!-- 	<li>-->
-				<!-- 		<a href="{{ route('portinbatch.index') }}">-->
-				<!-- 			<div class="pull-left"><span class="right-nav-text">Prueba Pantalla con Busqueda</span></div>-->
-				<!-- 			<div class="clearfix"></div>-->
-				<!-- 		</a>-->
-				<!-- 	</li>-->
-				<!-- @endif-->
-
-
-
-
-                <!-- Sisfen - aqui  -->
-				<!--@if ( !isset( $menu[50] ) )-->
-				<!--<li>-->
-				<!--	<a href="{{ route('batch.index') }}">-->
-				<!--		<div class="pull-left"></i><span class="right-nav-text">Pantalla con seleccion</span></div>-->
-				<!--		<div class="clearfix"></div>-->
-				<!--	</a>-->
-				<!--</li>-->
-				<!--@endif-->
 
 			</ul>
 		</li>

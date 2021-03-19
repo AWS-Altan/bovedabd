@@ -132,8 +132,6 @@
             var Login = function () {
 
                 var initializePlugins = function initializePlugins() {
-                    $('#mvno_name').hide();
-                    $('#mvno').hide();
                     $('#submit').hide();
 
                     $( "#consulta" ).click(function() {

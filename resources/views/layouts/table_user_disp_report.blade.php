@@ -7,20 +7,20 @@
 							<table id="Tbl_usrdisp" class="table table-hover display">
 								<thead>
 									<tr>
-										<th>IP</th>
-										<th>Host</th>
-										<th>Tipo Dispositivo</th>
-										<th>Grupo</th>
-										<th>Usuario</th>
-                                        <th>Tipo Usuario</th>
-                                        <th>Status</th>
-										<th>Perfil</th>
-                                        <th>Solicitante</th>
-                                        <th>Fecha Ingreso</th>
-                                        <th>Fecha Termino</th>
-                                        <th>Opciones</th>
-                                        <th>id tipo disp</th>
-                                        <th>id perfil</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">IP</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Host</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Tipo Dispositivo</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Grupo</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Usuario</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Tipo Usuario</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Status</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Perfil</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Solicitante</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Fecha Ingreso</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Fecha Termino</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Opciones</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">id tipo disp</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">id perfil</th>
 									</tr>
 								</thead>
 							</table>

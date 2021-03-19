@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use Closure;
 
-use App\Entities\{Vwuser, mvno, Vwcredential};
+use App\Entities\{Vwuser};
 
-class Check360Session 
+class Check360Session
 {
     /**
      * Handle an incoming request, check that the current session is the same that stored in vwusers.last_session_id.

@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Vwuser, mvno, Vwcredential, VwfileTemplates, Vwlogs};
+use App\Entities\{Vwuser, Vwlogs};
 
 use Hash; //para el password
 
@@ -47,9 +47,7 @@ class Alta_user_Controller extends BaseController
     *************************/
     protected function login()
     {
-        $credential = Vwcredential::where('vwrole_id', app('auth')->user()->vwrole_id)->where('mvno_id', app('session')->get('choose_mvno')->id)->first();
-        $Authorization =  "Basic ".base64_encode($credential->ClientId.":".$credential->SecretKey) ;
-        return json_decode($this->httpClient->request('POST', config('conf.url_login'), ['headers'  => [ 'Authorization' => $Authorization ] ] )->getBody());
+
     } //Login
 
 
@@ -107,7 +105,6 @@ class Alta_user_Controller extends BaseController
                         "password" => Hash::make( request()->send_password),
                         "phone" => request()->send_Telefono,
                         "active" => "0",
-                        // "MVNO_ID" => NULL,
                         "last_session_id" => session()->get('idsession'),
                         "created_by" => request()->send_id_createdby,
                         "id_company" => request()->send_id_company,
