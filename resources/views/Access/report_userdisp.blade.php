@@ -204,18 +204,28 @@
 
         console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
 
+        /*
         var jsonrota = {
             "ip": sJLip_value,
             "user": sJLuser_value,
             "id_disp": sJLipodisp_value,
             "passw": txtJLcontr
         };
+        */
+
+        var json = {};
+            json.ip= sJLip_value;
+            json.usuario= sJLuser_value;
+            json.idtipo_disp= ""+sJLipodisp_value+"";
+            json.passw= txtJLcontr;
+            json.operacion= "online";
 
         $.ajax({
             url: "{{ route('access.call.report_rotate') }}",
+            async: false,
             type: 'POST',
             contentType: "application/json",
-            data: jsonrota
+            data: JSON.stringify(json)
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
@@ -564,8 +574,10 @@
                                             $.alert('Coloque información valida');
                                             return false;
                                         }
-                                        obj = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr)
-                                        $.alert('Confirmación de Aplicación Status: ' + obj.status );
+                                        obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr)
+                                        console.log('obj21');
+                                        console.log(obj21);
+                                        $.alert('Confirmación de Aplicación Status: ' + obj21.status );
                                     }
                                 },
                                 Cancelar: {
