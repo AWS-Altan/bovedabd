@@ -24,11 +24,11 @@ class Report_userdisp_Controller extends BaseController
 
     public function __construct()
     {
-        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
-        $this->httpRepBaja      = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
-        $this->httpRepCamb      = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
-        $this->httpRepRota      = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
-        $this->httpRepForce      = new Client( [ 'base_uri' => config('conf.url_repbat_force') ] );
+        $this->httpClient   = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
+        $this->httpRepBaja  = new Client( [ 'base_uri' => config('conf.url_repbatc_baja') ] );
+        $this->httpRepCamb  = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
+        $this->httpRepForce = new Client( [ 'base_uri' => config('conf.url_repbat_force') ] );
+        $this->httpRepRota = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
 
     }
 
@@ -152,9 +152,9 @@ class Report_userdisp_Controller extends BaseController
 
         loginfo('Obtiene Datos del API para la solicitud de rotado: ');
 
-        $json = request()->data;
+        //$json = request()->data;
+        $json = request()->json()->all();
         loginfo($json);
-
 
         try {
             $req = json_decode($this->httpRepRota->request('POST',config('conf.url_repbat_rotate').'bv-rotate'
@@ -164,22 +164,22 @@ class Report_userdisp_Controller extends BaseController
                   ])->getBody());
 
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbat_rotate').'bv-rotate' , [$req]);
-            loginfo('termina ejecución API de rotado');
+            loginfo('termina ejecución API de forzado de sesion');
         } catch (\Exception $e) {
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbat_rotate').'bv-rotate' , [ $e ]);
 
 
         }
-        loginfo('Regreso información');
         return json_encode( $req );
-    }//rotate_api_call
+
+    }
 
 
         public function session_force_call()
     {
         //$this->loginResponse = $this->login();
 
-        loginfo('Obtiene Datos del API para la rotación de sesion: ');
+        loginfo('Obtiene Datos del API para el forzado de la sesion: ');
 
         //$json = request()->data;
         $json = request()->json()->all();
@@ -204,7 +204,7 @@ class Report_userdisp_Controller extends BaseController
     }
 
 
-} //Report_Batch_Controller
+} 
 
 
 
