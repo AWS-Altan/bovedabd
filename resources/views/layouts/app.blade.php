@@ -153,6 +153,9 @@
         patrones['username']=/^[1-9][0-9]{50}$/;
         patrones['cr']=/^((CRQ)|(crq))[0-9]{12}$/;
         patrones['inc']=/^((INC)|(inc))[0-9]{12}$/;
+        patrones['nombre']=/^[_a-z0-9]{50}$/;
+        patrones['apellido']=/^[_a-z0-9]{50}$/;
+        patrones['usuario']=/^[_a-z0-9]{50}$/;
 
 
 		var inputTope = new Array();
@@ -168,6 +171,9 @@
         inputTope['username']=50;
         inputTope['cr']=15;
         inputTope['inc']=15;
+        inputTope['nombre']=50;
+        inputTope['apellido']=50;
+        inputTope['usuario']=50;
 
 		function bloqueo() {
 			$.blockUI({ message: 'Procesando ...',css: {

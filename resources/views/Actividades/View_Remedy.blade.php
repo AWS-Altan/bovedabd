@@ -37,7 +37,7 @@
                                     <br><br>
                                     <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio5" value="option1" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio5" value="option1" Onclick="TipoDato4('nombre')">
                                             <label for="radio5" style="margin-bottom: 0px;">
                                                 Nombre
                                             </label>
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio6" value="option2" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio6" value="option2" Onclick="TipoDato4('apellido')">
                                             <label for="radio6" style="margin-bottom: 0px;">
                                                 Apellido
                                             </label>
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('usuario')">
                                             <label for="radio7" style="margin-bottom: 0px;">
                                                 Usuario
                                             </label>
@@ -68,14 +68,6 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
-                                        <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio9" value="option5" Onclick="TipoDato4('hostname')">
-                                            <label for="radio8" style="margin-bottom: 0px;">
-                                                Hostname
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
                                         <div class="form-wrap" style="display: inline-block; width: 320px">
                                                 <form id="form_identify">
                                                     <div class="form-group">
@@ -85,7 +77,9 @@
                                                 </form>
                                             </div>
                                     </div>
-
+                                    <div class="col-sm-3">
+                                        <a id="consult_remedy" type="button" class="btn btn-primary">Buscar</a>
+                                    </div>
                                 <!--   -->
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -167,6 +161,10 @@
     {
         var dialog_CR, form, dialog_IN;
 
+        $("#consult_remedy").click(function (e) {
+			console.log("inicializando boton busqueda con filtro")
+			fun_ejecuta_busqueda();
+		});
 
         fu_display_CR = function (sjl_crtext)
         {
@@ -272,7 +270,7 @@
             console.log(response);
             obj = jQuery.parseJSON(response);
             console.log(obj);
-            if (obj.status = "ok")
+            if (obj.status == "ok")
             {
                 if(obj.data != "No Data Return")
                 {
@@ -348,9 +346,15 @@
 
                 }//iff
             }//if
+            else
+            {
+                $("#message_error_CR").css('color', '#f73414');
+                $('#message_error_CR').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
+            }//else
         })
         .fail(function() {
-            $("#txtCPError").text("Error al cargar datos del CR");
+            $("#message_error_CR").css('color', '#f73414');
+            $('#message_error_CR').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
         })
         .always(function () {
             console.log('CR always');
@@ -392,7 +396,7 @@
             console.log(response);
             obj = jQuery.parseJSON(response);
             console.log(obj);
-            if (obj.status = "ok")
+            if (obj.status == "ok")
             {
                 if(obj.data != "No Data Return")
                 {
@@ -468,9 +472,16 @@
 
                 }//iff
             }//if
+            else
+            {
+                $("#message_error_INC").css('color', '#f73414');
+                $('#message_error_INC').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
+            }//else
         })
-        .fail(function() {
-            $("#txtCPError").text("Error al cargar datos del CR");
+        .fail(function()
+        {
+            $("#message_error_INC").css('color', '#f73414');
+            $('#message_error_INC').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
         })
         .always(function () {
             console.log('CR always');
@@ -503,9 +514,12 @@
         data.type   = "gral";
         //data.mail   = sJL_mail;
 
-        if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
+        if( $('#txtDateini' ).val() != '')
         {
             data.fecha_ini = $('#txtDateini' ).val();
+        }
+        if($('#txtDatefin' ).val() != '')
+        {
             data.fecha_fin = $('#txtDatefin' ).val()
         }
         if(document.getElementById('radio5').checked)
@@ -524,10 +538,6 @@
         {
             data.ip = $('#inputData').val();
         }//if
-        if(document.getElementById('radio9').checked)
-        {
-            data.hostname = $('#inputData').val();
-        }//if
 
         //Hago el manejo de la tabla
         $.ajax({
@@ -541,7 +551,7 @@
             console.log(response);
             obj = jQuery.parseJSON(response);
 
-            if (obj.status = "ok")
+            if (obj.status == "ok")
             {
                 if(obj.data != "No Data Return")
                 {
@@ -645,7 +655,14 @@
             } else
             {
 			    $("#message_error").css('color', '#f73414');
-                $("#message_error").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+                $("#message_error").text("La busqueda no regreso ningun registro con ese filtro");
+
+                if (typeof($datatableInstance)!== 'undefined')
+                    {
+                        console.log("Borro la tabla");
+                        $('table#Tbl_usrdisp').DataTable().clear().draw();
+
+                    } //if
 
             } //else
 
@@ -659,6 +676,9 @@
         .always(function() {
         	//console.log(obj);
 			$.unblockUI();
+            document.getElementById('radio5').checked = true;
+            $('#inputData').val('');
+
         });
 
     }//fun_ejecuta_busqueda
@@ -678,6 +698,21 @@
 
         // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
         var $datatableInstance = null;
+
+        var txJL_input = document.getElementById("inputData");
+
+        /*txJL_input.onchange = function()
+        {
+            fun_ejecuta_busqueda();
+        };*/
+
+        txJL_input.addEventListener("keyup", function (event) {
+            if (event.keyCode == 13) {
+                preventDefault();
+                fun_ejecuta_busqueda();
+            }
+        });
+
 
         var Operations2 = function ()
         {

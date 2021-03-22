@@ -23,5 +23,7 @@
 					</div>
 				</div>
 			</div>
+            <!-- Texto de Menajes -->
+            <div class="row" id="message_error_CR">
 	</div>
 </div>
