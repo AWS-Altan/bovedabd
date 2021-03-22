@@ -62,13 +62,13 @@ class View_activ_Controller extends BaseController
                   ])->getBody());
 
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_remedy_cons') . 'consulta_crq', [$req]);
-            loginfo('termina ejecuciÃ³n API');
+            loginfo('termina ejecución API');
         } catch (\Exception $e) {
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_remedy_cons') .'consulta_crq', [ $e ]);
 
 
         }
-        loginfo('Regreso informaciÃ³n');
+        loginfo('Regreso información');
         return json_encode( $req );
 
     }//search_data_api
