@@ -40,7 +40,6 @@
 
         </header>
 
-
         <!-- Main Content -->
         <div class="page-wrapper pa-0 ma-0 auth-page">
             <div class="container-fluid">
@@ -130,14 +129,11 @@
               }
             });
 
-
             var Login = function () {
 
                 var initializePlugins = function initializePlugins() {
                     $('#submit').hide();
                     $( "#consulta" ).click(function() {
-
-
                         $.blockUI({ message: 'Procesando ...',css: {
                             border: 'none',
                             padding: '15px',

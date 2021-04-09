@@ -1,7 +1,7 @@
 <?php
 
 //cambio el namepace de acuerdo al directorio
-namespace App\Http\Controllers\Access;
+namespace App\Http\Controllers\Batch;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -17,7 +17,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\BadResponseException;
 use Carbon\Carbon;
 
-class Massive_update_dispcatalog_Controller extends BaseController
+class Massive_Batch_Cambio_Rotate extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
@@ -26,7 +26,8 @@ class Massive_update_dispcatalog_Controller extends BaseController
     {
         $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_batchserv') ] );
 
-    }//construct
+    }
+
 
     /**
      * Show the Porta In.
@@ -39,7 +40,7 @@ class Massive_update_dispcatalog_Controller extends BaseController
         if ( isset( $menu[23] ) )
             return redirect()->route('home.index');
 
-        return view('Access.massive_update_dispcatalog')-> with('menu',$menu); // test 2
+        return view('Batch.massive_batch_Rotate')-> with('menu',$menu); // test 2
 
 
     }
@@ -54,6 +55,8 @@ class Massive_update_dispcatalog_Controller extends BaseController
         $this->loginResponse = $this->login();
         $file = request()->file('file');
 
+        //loginfo($file->getClientOriginalName());
+        //loginfo($file);
         $response = NULL;
         try {
 
@@ -79,17 +82,13 @@ class Massive_update_dispcatalog_Controller extends BaseController
             //$sJL_resupload = implode([]);
             $sJL_resupload = implode([html_entity_decode(utf8_decode($response->getBody()))]);
 
-
-            loginfo("sisten test1");
             loginfo($sJL_resupload);
-            loginfo("sisten test2");
             //remove
 
             /*$result_data[]= array(
                 'result_opp' => $sJL_resupload
                 );*/
 
-            loginfo("sisten test3");
             //return json_encode();
             return $sJL_resupload;
 
@@ -110,48 +109,37 @@ class Massive_update_dispcatalog_Controller extends BaseController
     {
         loginfo('Obtiene Datos del API para el reporte: ');
 
-        loginfo("sisten exec 1");
         $json = request()->json()->all();
         loginfo($json);
 
 
         $responsexec = NULL;
         try {
-            loginfo("sisten exec 2");
-            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.cgi',
+            $responsexec = $this->httpClient->request('POST',config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi',
                 [
                     'headers'  => [ 'Content-type' => 'Application/json' ],
                     'json' => $json
                 ]);
 
-            loginfo("sisten exec 3");
-            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/master_catalogo.cgi', [$responsexec->getBody()]);
+            loginfo('user '.app('auth')->user()->name.' response '.config('conf.url_batchserv').'cgi-bin/boveda/buscarcv3_boveda.cgi', [$responsexec->getBody()]);
 
             //inicio
-            loginfo("sisten exec 4");
             $sJL_resupload = implode([html_entity_decode(utf8_decode($responsexec->getBody()))]);
             loginfo($sJL_resupload);
-            $sJL_resupload = str_replace('"{','{',$sJL_resupload);
-            $sJL_result = str_replace('}"','}',$sJL_resupload);
-
-            loginfo("sisten exec 5");
-            loginfo($sJL_result);
             //fin
 
             //return json_encode([$responsexec->getBody()]);
-            return json_encode($sJL_result);
+            return $sJL_resupload;
 
 
 
         }catch(\Exception $exception){
-            loginfo("sisten exec 5");
             loginfo('Exception http code: '.$exception->getMessage() );
             //$responsexec = $exception->getResponse();
             loginfo('user '.app('auth')->user()->name.' error '.config('conf.url_batchserv').'upload.php'
                 .'statusCode '. $exception
                 , $exception );
 
-            loginfo("sisten exec 6");
             return json_encode([ 'error' => parse_exception( $exception ),
                 'statusCode' => $exception
             ]);

@@ -149,13 +149,13 @@ class Report_Batch_Controller extends BaseController
                   ])->getBody());
 
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);
-            loginfo('termina ejecución API');
+            loginfo('termina ejecuciÃ³n API');
         } catch (\Exception $e) {
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
 
 
         }
-        loginfo('Regreso información');
+        loginfo('Regreso informaciÃ³n');
         return json_encode( $req );
 
     }

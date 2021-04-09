@@ -92,6 +92,26 @@
                     </li>
                 @endif
 
+                <!-- Adicion 2020/04/08 -->
+                @if ( !isset( $menu[49] ) )
+                    <li>
+                        <a href="{{ route('batch.masive_rotate.index') }}">
+                            <div class="pull-left"><span class="right-nav-text">Rotación Masiva de Usuarios</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
+
+                <!-- Adicion 2020/04/08 -->
+                @if ( !isset( $menu[50] ) )
+                    <li>
+                        <a href="{{ route('batch.masive_endsec.index') }}">
+                            <div class="pull-left"><span class="right-nav-text">Termino de Sesión Masivo de Usuarios</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
+
                 <!-- Adicion 2020/12/03 -->
                 @if ( !isset( $menu[35] ) )
                     <li>
@@ -245,7 +265,7 @@
                 @if ( !isset( $menu[17] )  )
 					<li>
 						<a href="{{ route('Actividades.View_Remedy.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Revision de parametros Remedy</span></div>
+							<div class="pull-left"><span class="right-nav-text">Revision de actividades vigentes Remedy</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
@@ -301,7 +321,7 @@
 
                @if ( !isset( $menu[22] ) )
 				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
+					<a href="{{ route('Tickets.View_ticket_cons.index' , array('isMob'=>'false') ) }}">
 						<div class="pull-left"><span class="right-nav-text">Consulta de Tickets</span></div>
 						<div class="clearfix"></div></a>
 				</li>
@@ -319,12 +339,12 @@
         <!-- modif 2021/01/18 Renombre - Incidentes -->
         @if ( !isset( $menu[37] )  )
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Boton rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Bot&oacute;n rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="Bton_red" class="collapse collapse-level-1 two-col-list">
 
                @if ( !isset( $menu[38] ) )
 				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
+					<a href="{{ route('Tickets.View_ticket.index') }}">
 						<div class="pull-left"><span class="right-nav-text">Actividades Actuales</span></div>
 						<div class="clearfix"></div></a>
 				</li>

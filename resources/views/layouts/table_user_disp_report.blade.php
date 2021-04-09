@@ -21,6 +21,7 @@
                                         <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Opciones</th>
                                         <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">id tipo disp</th>
                                         <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">id perfil</th>
+                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">perfil_choose</th>
 									</tr>
 								</thead>
 							</table>

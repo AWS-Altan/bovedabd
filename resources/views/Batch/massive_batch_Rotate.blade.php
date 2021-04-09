@@ -10,7 +10,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta/Actualización Masiva Cátalogo Dispositivos</span></h3>
+						<h3><span class="head-font capitalize-font">Rotación Masiva de Usuarios</span></h3>
 						<section>
                             <p>Seleccione el archivo a procesar:
                             <p>Archivos:
@@ -75,7 +75,7 @@
 
 
 	    $.ajax({
-            url: "{{ route('access.masive_dispcatalog.load') }}",
+            url: "{{ route('batch.masive_rotate.load') }}",
             type: 'POST',
             dataType: 'text',  // what to expect back from the PHP script, if anything
             cache: false,
@@ -86,8 +86,6 @@
         {
             executeCharge($file_data);
             $.unblockUI();
-            console.log(response);
-            // $('#inputErrors').append(response);
 	    })
 	    .fail(function() {
             $('#result').empty();
@@ -95,7 +93,7 @@
 			$.unblockUI();
 	    })
 	    .always(function () {
-
+            $('#inputErrors').append(response);
 			$.unblockUI();
         });
     }//loadfile
@@ -109,36 +107,22 @@
         data.file  = $file_data.name;
 
         $.ajax({
-            url: "{{ route('access.masive_dispcatalog.exec') }}",
+            url: "{{ route('batch.masive_rotate.exec') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(data)
         }).done(function (response)
         {
-            console.log(response);
-
-            $('#message_error').empty();
-            $('#inputErrors').empty();
-            $('#result').empty();
-
             jsJLresp = jQuery.parseJSON(response);
-            console.log('jsJLresp');
-            console.log(jsJLresp);
-            console.log('details');
-            sJLdetails = jQuery.parseJSON(jsJLresp);
-            console.log('json');
-            console.log(sJLdetails);
-
-            //console.log(jsJLresp.details.status);
-            if(sJLdetails.status == "ok")
+            //$('#message_error').empty();
+            $('#result').empty();
+            if(jsJLresp.details == "Success")
             {
-                console.log("caso de Success");
-                $('#inputErrors').append('<label class="help-block mb-30 text-left" style="color: green"><strong> ' + sJLdetails.details.details + ' ejecutadas: ' +  sJLdetails.details.ejecutadas + '</strong>');
+                $('#result').append('<label class="help-block mb-30 text-left" style="color: green"><strong>' + jsJLresp.details + '</strong>');
                 $("#finish" ).text('Ir a reporte');
                 bJL_successLoad = true;
             }else{
-                console.log("Diferente a Success");
-                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>' + sJLdetails.details + '</strong>');
+                $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>' + jsJLresp.details + '</strong>');
             }//else
 
             $.unblockUI();
@@ -149,6 +133,7 @@
 			$.unblockUI();
 		})
 		.always(function () {
+            $('#inputErrors').append(response);
 			$.unblockUI();
         });
     }//executeCharge
@@ -163,13 +148,13 @@
             if ($('#inputFileData').val() )
             {
                 var file_data = $('#inputFileData')[0].files[0];
-                var extension = file_data.name.substr( 0,8);
-                if ( extension.toUpperCase() != 'CATALOGO')
+                var extension = file_data.name.substr( 0,4);
+                if ( extension.toUpperCase() != 'ROTATE')
                 {
 
                     $('#inputErrors').show();
                     $('#result').empty();
-                    $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de CATALOGO</strong>');
+                    $('#result').append('<label class="help-block mb-30 text-left" style="color: red"><strong>Formato incorrecto, sólo se permite archivos de rotado</strong>');
                     return;
                 }//if
 
@@ -189,9 +174,7 @@
         }//if
         else
         {
-            $('#message_error').text('ejecución Redirect');
-            //return redirect()->route('batch.altareport.index');
-
+            $('#message_error').text('Ejecución Correcta');
         }//else
     } //finished
     //Cargo comportmiento de inicio de pantalla
