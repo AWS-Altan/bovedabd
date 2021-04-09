@@ -595,11 +595,11 @@
                         //inicia boton
                         $.confirm({
                             title: 'Proporcione los siguientes datos',
-                            content: sjL_detailCP_text                            ,
+                            content: sjL_detailCP_text,
                             buttons: {
                                 formSubmit: {
                                     text: 'Actualizar',
-                                    btnClass: 'btn-blue',
+                                    btnClass: 'btn-red',
                                     action: function () {
                                         var txtJLdisp = this.$content.find('.txtdisp').val();
                                         var txtJLperf = $('#cbo_profile1 option:selected').val();
@@ -737,7 +737,7 @@
                             buttons: {
                                 Confirmar: {
                                     text: 'Confirmar',
-                                    btnClass: 'btn-blue',
+                                    btnClass: 'btn-red',
                                     keys: ['enter', 'shift'],
                                     action: function(){
                                         var txtJLcontr = this.$content.find('.txtcontr').val();
@@ -755,7 +755,7 @@
                                 },
                                 Cancelar: {
                                     text: 'Cancelar',
-                                    btnClass: 'btn-blue',
+                                    btnClass: 'btn-red',
                                     keys: ['enter', 'shift'],
                                 }
                             }
@@ -798,7 +798,7 @@
                                 },
                                 Cancelar: {
                                     text: 'Cancelar',
-                                    btnClass: 'btn-blue',
+                                    btnClass: 'btn-red',
                                     keys: ['enter', 'shift'],
                                 }
                             }

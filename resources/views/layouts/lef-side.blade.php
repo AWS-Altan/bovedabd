@@ -92,6 +92,26 @@
                     </li>
                 @endif
 
+                <!-- Adicion 2020/04/08 -->
+                @if ( !isset( $menu[49] ) )
+                    <li>
+                        <a href="{{ route('batch.masive_rotate.index') }}">
+                            <div class="pull-left"><span class="right-nav-text">Rotación Masiva de Usuarios</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
+
+                <!-- Adicion 2020/04/08 -->
+                @if ( !isset( $menu[50] ) )
+                    <li>
+                        <a href="{{ route('batch.masive_endsec.index') }}">
+                            <div class="pull-left"><span class="right-nav-text">Termino de Sesión Masivo de Usuarios</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
+
                 <!-- Adicion 2020/12/03 -->
                 @if ( !isset( $menu[35] ) )
                     <li>

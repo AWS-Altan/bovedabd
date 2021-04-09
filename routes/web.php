@@ -49,6 +49,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/batch-load-change', 'Massive_Batch_Cambio_Controller@load')->name('batch.masive_change.load');
         Route::post('/batch-exec-change', 'Massive_Batch_Cambio_Controller@execute')->name('batch.masive_change.exec');
 
+        // Menu de Rotación Masiva usurios
+        Route::resource('/massive_rotate', 'Massive_Batch_Cambio_Rotate', ['names' => ['index' => 'batch.masive_rotate.index']])->only(['index']);
+        Route::post('/batch-load-rotate', 'Massive_Batch_Cambio_Rotate@load')->name('batch.masive_rotate.load');
+        Route::post('/batch-exec-rotate', 'Massive_Batch_Cambio_Rotate@execute')->name('batch.masive_rotate.exec');
+
+        // Menu de Cierre de Secion Masiva usurios
+        Route::resource('/massive_ensec', 'Massive_Batch_Cambio_Endsec', ['names' => ['index' => 'batch.masive_endsec.index']])->only(['index']);
+        Route::post('/batch-load-ensec', 'Massive_Batch_Cambio_Endsec@load')->name('batch.masive_endsec.load');
+        Route::post('/batch-exec-ensec', 'Massive_Batch_Cambio_Endsec@execute')->name('batch.masive_endsec.exec');
+
+
     }); //Route
 
     Route::group(['prefix' => 'users', 'namespace' => 'Users'], function () {
