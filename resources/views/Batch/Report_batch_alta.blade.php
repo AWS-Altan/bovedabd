@@ -48,9 +48,12 @@
 
 <!-- Inicio la programación del estilo -->
 @section('jsfree')
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <!--librerias para el boton del pdf -->
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
 <style type="text/css">
 	.wizard > .steps > ul > li{
 		    width: 45%;
@@ -163,7 +166,7 @@
                         ],
                         dom: 'Bfrtip',
                         buttons: [
-                            'csv'
+                            'copy', 'csv', 'excel', 'pdf'
                         ]
                     });
                 }else {

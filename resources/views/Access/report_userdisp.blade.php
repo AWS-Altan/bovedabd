@@ -112,6 +112,10 @@
     <!--librerias para los botones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <!--librerias para el boton del pdf -->
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+
 
 <style type="text/css">
 	.wizard > .steps > ul > li{
@@ -449,7 +453,7 @@
                         ],
                         dom: 'Bfrtip',
                         buttons: [
-                            'csv'
+                            'copy', 'csv', 'excel', 'pdf'
                         ]
                     });
 
