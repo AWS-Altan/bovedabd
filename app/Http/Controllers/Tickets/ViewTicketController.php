@@ -16,7 +16,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\BadResponseException;
 use Carbon\Carbon;
 
-class View_Ticket_Controller extends BaseController
+class ViewTicketController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
@@ -44,13 +44,13 @@ class View_Ticket_Controller extends BaseController
         return view('Tickets.View_Ticket')-> with('menu',$menu);
     }
 
-       protected function login()
+    protected function login()
     {
 
     }
 
     
-        public function getList()
+    public function getList()
     {
         //$this->loginResponse = $this->login();
 
@@ -60,6 +60,36 @@ class View_Ticket_Controller extends BaseController
         loginfo($json);
 
 
+        try {
+
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_activity_list'). 'bv_button_query'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_activity_list') . 'bv_button_query', [$req]);
+
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_activity_list') .'bv_button_query'
+                , [ parse_exception( $e ) ]);
+
+
+        }
+
+        return json_encode( $req );
+    }
+
+
+    public function actionsRedButton()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Se procesa accion del boton rojo de las actividades en curso');
+
+        $json = request()->json()->all();
+        loginfo($json);
+
+        
         try {
 
             $req = json_decode($this->httpClient->request('POST',config('conf.url_activity_list'). 'bv_button_query'

@@ -203,8 +203,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/call/View_Ticket_Cons', 'View_Ticket_Rel_Controller@search_data_api')->name('actividades.call.view_ticket');
 
         // Menu de Consulta de tickets- para boton rojo
-        Route::resource('/View_Ticket', 'View_Ticket_Controller', ['names' => ['index' => 'Tickets.View_ticket.index']])->only(['index']);
-        Route::post('/call/ticket-list', 'View_Ticket_Controller@getList')->name('tickets.call.list');
+        Route::resource('/View_Ticket', 'ViewTicketController', ['names' => ['index' => 'Tickets.View_ticket.index']])->only(['index']);
+        Route::post('/call/ticket-list', 'ViewTicketController@getList')->name('tickets.call.list');
+        Route::post('/call/ticket-actionsredbutton', 'ViewTicketController@actionsRedButton')->name('tickets.call.actionsredbutton');
 
 
     }); //Route

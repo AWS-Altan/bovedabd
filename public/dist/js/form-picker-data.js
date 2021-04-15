@@ -344,6 +344,43 @@ $(document).ready(function() {
 		}
 	});
 
+	// ------------------------------------ Boton Rojo --------------------------------------------
+	$('#dateInicioBotonRojo').datetimepicker({
+			useCurrent: false,
+			//defaultDate: moment().startOf('day').subtract(7, 'days'),
+			format: 'YYYY-MM-DD',
+			showClose: true,
+			icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+	}).on('dp.change', function(e){
+		if(moment(e.date).diff($('#dateFinBotonRojo').data("DateTimePicker").viewDate(), 'days') < -7 
+			|| moment(e.date).diff($('#dateFinBotonRojo').data("DateTimePicker").viewDate(), 'days') >= 0){
+			$('#dateFinBotonRojo').data("DateTimePicker").date(moment(e.date).add(7, 'days'));
+		}
+	});
+
+	$('#dateFinBotonRojo').datetimepicker({
+			useCurrent: false,
+			//defaultDate: moment().startOf('day'),
+			format: 'YYYY-MM-DD',
+			showClose: true,
+			icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+	}).on('dp.change', function(e){
+		if(moment(e.date).diff($('#dateInicioBotonRojo').data("DateTimePicker").viewDate(), 'days') > 7
+			|| moment(e.date).diff($('#dateInicioBotonRojo').data("DateTimePicker").viewDate(), 'days') <= 0){
+			$('#dateInicioBotonRojo').data("DateTimePicker").date(moment(e.date).subtract(7, 'days'));
+		}
+	});
+
 	// ------------------------------------ Tab Operaciones --------------------------------------------
 	$('#dateInicioOperaciones').datetimepicker({
 			useCurrent: false,
