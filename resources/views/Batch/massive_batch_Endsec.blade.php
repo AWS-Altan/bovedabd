@@ -148,7 +148,7 @@
             if ($('#inputFileData').val() )
             {
                 var file_data = $('#inputFileData')[0].files[0];
-                var extension = file_data.name.substr( 0,4);
+                var extension = file_data.name.substr( 0,10);
                 if ( extension.toUpperCase() != 'ENDSESSION')
                 {
 
