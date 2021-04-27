@@ -54,8 +54,8 @@
 
             if(  $('#initialDate').val() != '' && $('#finalDate').val() != '')
             {
-                data.fecha_ini = $('#initialDate').val();
-                data.fecha_fin = $('#finalDate').val();
+                data.fecha_inicio = $('#initialDate').val();
+                data.fecha_termino = $('#finalDate').val();
             }
 
 
@@ -149,7 +149,7 @@
                         ],
                         dom: 'Bfrtip',
                         buttons: [
-                            'copy', 'csv', 'excel', 'pdf'
+                            'csv', 'excel', 'pdf'
                         ]
                     });
 
@@ -207,9 +207,9 @@
 /***********************************************/
                     var data = {};
                     data.operacion= "pause";
-                    data.fecha_inicio= "2021-04-03";
-                    data.fecha_termino= "2021-04-15";
-                    data.mensaje= "Incidencia en el cor";
+                    //data.fecha_inicio= "2021-04-03";
+                    //data.fecha_termino= "2021-04-15";
+                    //data.mensaje= "Incidencia en el cor";
                     data.responsable= '{{app('auth')->user()->name}}';
                     data.actividades= actividades;
 
@@ -296,9 +296,9 @@
 /***********************************************/
                     var data = {};
                     data.operacion= "resume";
-                    data.fecha_inicio= "2021-04-03";
-                    data.fecha_termino= "2021-04-15";
-                    data.mensaje= "Incidencia en el cor";
+                    //data.fecha_inicio= "2021-04-03";
+                    //data.fecha_termino= "2021-04-15";
+                    //data.mensaje= "Incidencia en el cor";
                     data.responsable= '{{app('auth')->user()->name}}';
                     data.actividades= actividades;
 
@@ -392,9 +392,9 @@
 
                     var data = {};
                     data.operacion= "stop";
-                    data.fecha_inicio= "2021-04-03";
-                    data.fecha_termino= "2021-04-15";
-                    data.mensaje= "Incidencia en el cor";
+                    //data.fecha_inicio= "2021-04-03";
+                    //data.fecha_termino= "2021-04-15";
+                    //data.mensaje= "Incidencia en el cor";
                     data.responsable= '{{app('auth')->user()->name}}';
                     data.actividades= actividades ;
 
