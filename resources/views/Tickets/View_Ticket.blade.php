@@ -39,7 +39,7 @@
 
         var initializeDatatable = function initializeDatatable(check) {
             //bloqueo();
-            console.log('inicia consulta operaciones'+moment().format('YYYY-MM-DD HH:mm:ss'))
+            console.log('inicia consulta actividades'+moment().format('YYYY-MM-DD HH:mm:ss'))
 
             //Ejecuto la busqueda del dato, armo la busqueda
             var sJL_mail = '{{app('auth')->user()->email}}';
@@ -47,14 +47,10 @@
             var data = {};
             data.operacion   = "query";
            
-            if(  $('#fechaIni').val() != '' && $('#fechaFin').val() != '')
+            if(  $('#initialDate').val() != '' && $('#finalDate').val() != '')
             {
-                //fromDate = new Date ( $('#fechaIni').val() );
-                //data.fecha_ini = new Date ( fromDate ).toDateString('YYYY-MM-DD');
-                //toDate = new Date( $('#fechaFin').val() );
-                //data.fecha_fin = new Date ( toDate ).toDateString('YYYY-MM-DD');
-                data.fecha_ini = $('#fechaIni').val();
-                data.fecha_fin = $('#fechaFin').val();
+                data.fecha_ini = $('#initialDate').val();
+                data.fecha_fin = $('#finalDate').val();
             }
 
             
@@ -173,15 +169,12 @@
 
 
                 $("#consultaActividades").click(function (e) {
-                    f1 = $("#initialDate").val();
-                    f2 = $("#finalDate").val();
+
                     $('#message').empty();
-                    if ( f1.length < 1 || f2.length < 1 ) {
-                        $('#message').append('<label class="help-block mb-30 text-left"><strong>Las fechas son obligatorias</strong> ');
+                    if ( $('#initialDate').val() == '' || $('#finalDate').val() == '') {
+                        $('#message').append('<label class="help-block mb-30 text-left"><strong>Las fechas de consulta son obligatorias</strong> ');
                         return false;
                     }
-                    $("#fechaIni").val(f1);
-                    $("#fechaFin").val(f2);
                     initializeDatatable(1);
                 });
 

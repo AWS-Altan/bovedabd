@@ -335,8 +335,6 @@
 
         <li><hr class="light-grey-hr mb-10"/></li>
 
-        <!-- Boton Rojo -->
-        <!-- modif 2021/01/18 Renombre - Incidentes -->
         @if ( !isset( $menu[37] )  )
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Bot&oacute;n rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
@@ -349,15 +347,6 @@
 						<div class="clearfix"></div></a>
 				</li>
                 @endif
-
-                @if ( !isset( $menu[39] ) )
-				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
-						<div class="pull-left"><span class="right-nav-text">Incidentes Actuales</span></div>
-						<div class="clearfix"></div></a>
-				</li>
-                @endif
-
 
             </ul>
 
