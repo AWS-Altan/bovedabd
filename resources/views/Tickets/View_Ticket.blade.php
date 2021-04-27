@@ -26,13 +26,18 @@
 @endsection
 
 @section('jsfree')
+
+    <!--librerias para el boton del pdf -->
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+
 <style type="text/css">
     .wizard > .steps > ul > li{
             width: 45%;
     }
 </style>
 <script>
-   
+
 
     $(window).on('load', function() {
         var datatableInstance    = null;
@@ -46,14 +51,14 @@
 
             var data = {};
             data.operacion   = "query";
-           
+
             if(  $('#initialDate').val() != '' && $('#finalDate').val() != '')
             {
                 data.fecha_ini = $('#initialDate').val();
                 data.fecha_fin = $('#finalDate').val();
             }
 
-            
+
             bloqueo();
             $.ajax({
                 url: "{{ route('tickets.call.list') }}",
@@ -62,8 +67,8 @@
                 data: JSON.stringify(data)
             }).done(function (response) {
                 obj = jQuery.parseJSON(response);
-                console.log("obj");
-                console.log(obj);
+                //console.log("obj");
+                //console.log(obj);
                 $('#message').hide();
                 $('#message').empty();
                 $('#message').css('color', '#9E1D23');
@@ -76,10 +81,10 @@
                     $('#Tbl_usrdisp').hide();
                 }else{
                     console.log('termina consulta actividades'+moment().format('YYYY-MM-DD HH:mm:ss'))
-                    
+
                     data = obj.actividades;
-                    console.log('DATA');
-                    console.log(data);
+                    //console.log('DATA');
+                    //console.log(data);
 
                     if (datatableInstance) {
                         datatableInstance.destroy();
@@ -106,7 +111,7 @@
                         "columns": [
                             {
                                 "data": "ticket"
-                                
+
                             },
                             {
                                 "data": "ticket"
@@ -144,7 +149,7 @@
                         ],
                         dom: 'Bfrtip',
                         buttons: [
-                            'csv'
+                            'copy', 'csv', 'excel', 'pdf'
                         ]
                     });
 
@@ -164,7 +169,7 @@
         var Consulta = function () {
 
             var initializePlugins2 = function initializePlugins2() {
-                
+
                 initializeDatatable(1);
 
 
@@ -188,7 +193,7 @@
                     var rows_selected = datatableInstance.column(0).checkboxes.selected();
 
 
-                    $.each(rows_selected, function(index, rowId){  
+                    $.each(rows_selected, function(index, rowId){
                         //alert("Seleccionado" +  rowId );
                         activitiesList[ activityindex ] = rowId;
                         activityindex++;
@@ -209,14 +214,14 @@
                     data.actividades= actividades;
 
 
-                    $.blockUI({ message: 'Procesando ...',css: { 
-                        border: 'none', 
-                        padding: '15px', 
-                        backgroundColor: '#000', 
-                        '-webkit-border-radius': '10px', 
-                        '-moz-border-radius': '10px', 
-                        opacity: .5, 
-                        color: '#fff' 
+                    $.blockUI({ message: 'Procesando ...',css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
                     } });
                     $.ajax({
                         url: "{{ route('tickets.call.actionsredbutton') }}",
@@ -226,12 +231,12 @@
                     })
                     .done(function(response) {
                         var obj = jQuery.parseJSON(response);
-                        console.log(obj);
-                        
+                        //console.log(obj);
 
-                        if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.Message.indexOf("error")>-1 )  )  {  
+
+                        if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.Message.indexOf("error")>-1 )  )  {
                             var descriptionError = "";
-                            
+
                             if( obj.stackTrace ){
                                 descriptionError= obj.errorMessage;
                                 descriptionError+= " <br>"
@@ -241,7 +246,7 @@
                             }else if ( obj.Message || obj.Message.indexOf("error")>-1 ) {
                                 descriptionError= obj.Message;
                             }
-                        
+
                             $('#message').empty();
                             $('#message').show();
                             $('#message').append('</br><label class="alert-danger mb-30 text-left">Error al pausar las siguientes actividades: ' + activitiesList +' <br> <strong>'+ descriptionError + '</strong>');
@@ -264,7 +269,7 @@
                         $.unblockUI();
                     });
 
-/***********************************************/                   
+/***********************************************/
                 });
 
 
@@ -277,7 +282,7 @@
                     var rows_selected = datatableInstance.column(0).checkboxes.selected();
 
 
-                    $.each(rows_selected, function(index, rowId){  
+                    $.each(rows_selected, function(index, rowId){
                         //alert("Seleccionado" +  rowId );
                         activitiesList[ activityindex ] = rowId;
                         activityindex++;
@@ -298,14 +303,14 @@
                     data.actividades= actividades;
 
 
-                    $.blockUI({ message: 'Procesando ...',css: { 
-                        border: 'none', 
-                        padding: '15px', 
-                        backgroundColor: '#000', 
-                        '-webkit-border-radius': '10px', 
-                        '-moz-border-radius': '10px', 
-                        opacity: .5, 
-                        color: '#fff' 
+                    $.blockUI({ message: 'Procesando ...',css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
                     } });
                     $.ajax({
                         url: "{{ route('tickets.call.actionsredbutton') }}",
@@ -315,10 +320,10 @@
                     })
                     .done(function(response) {
                         var obj = jQuery.parseJSON(response);
-                        console.log(obj);
-                        if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.Message.indexOf("error")>-1 )  )  {  
+                        //console.log(obj);
+                        if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.Message.indexOf("error")>-1 )  )  {
                             var descriptionError = "";
-                            
+
                             if( obj.stackTrace ){
                                 descriptionError= obj.errorMessage;
                                 descriptionError+= " <br>"
@@ -328,7 +333,7 @@
                             }else if ( obj.Message || obj.Message.indexOf("error")>-1 ) {
                                 descriptionError= obj.Message;
                             }
-                        
+
                             $('#message').empty();
                             $('#message').show();
                             $('#message').append('</br><label class="alert-danger mb-30 text-left">Error al reanudar las siguientes actividades: ' + activitiesList +' : <br><strong>'+ descriptionError + '</strong>');
@@ -351,7 +356,7 @@
                         $.unblockUI();
                     });
 
-/***********************************************/                   
+/***********************************************/
                 });
 
 
@@ -365,13 +370,13 @@
                     $( ".dt-checkboxes-select-all" ).trigger( "click" );
 
                     var rows_selected = datatableInstance.column(0).checkboxes.selected();
-                    //alert (rows_selected.length); 
+                    //alert (rows_selected.length);
                     if (rows_selected.length<=0){
                         $( ".dt-checkboxes-select-all" ).trigger( "click" );
                         var rows_selected = datatableInstance.column(0).checkboxes.selected();
                     }
 
-                    $.each(rows_selected, function(index, rowId){  
+                    $.each(rows_selected, function(index, rowId){
                         //alert("Seleccionado" +  rowId );
                         activitiesList[ activityindex ] = rowId;
                         activityindex++;
@@ -394,14 +399,14 @@
                     data.actividades= actividades ;
 
 
-                    $.blockUI({ message: 'Procesando ...',css: { 
-                        border: 'none', 
-                        padding: '15px', 
-                        backgroundColor: '#000', 
-                        '-webkit-border-radius': '10px', 
-                        '-moz-border-radius': '10px', 
-                        opacity: .5, 
-                        color: '#fff' 
+                    $.blockUI({ message: 'Procesando ...',css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
                     } });
                     $.ajax({
                         url: "{{ route('tickets.call.actionsredbutton') }}",
@@ -411,9 +416,9 @@
                     })
                     .done(function(response) {
                         var obj = jQuery.parseJSON(response);
-                        console.log(obj);
+                        //console.log(obj);
                         if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.
-                            Message.indexOf("error")>-1 )  )  {  
+                            Message.indexOf("error")>-1 )  )  {
                             var descriptionError = "";
                             alert("Entra Error");
                             if ( (obj.errorMessage) ){
@@ -445,13 +450,13 @@
                         $.unblockUI();
                     });
 
-/***********************************************/                   
+/***********************************************/
                 });
 
 
             };
 
-            
+
 
             return {
                 init: function() {
@@ -459,14 +464,14 @@
                     $('#finish').text('Consultar');
                     $('#finish').hide();
                     initializePlugins2();
-                    
+
                 }
             };
         }
         Consulta().init();
 
     });
-    
+
 </script>
 @endsection
 

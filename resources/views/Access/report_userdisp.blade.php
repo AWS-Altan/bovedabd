@@ -112,6 +112,10 @@
     <!--librerias para los botones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <!--librerias para el boton del pdf -->
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+
 
 <style type="text/css">
 	.wizard > .steps > ul > li{
@@ -219,7 +223,7 @@
             json.idtipo_disp= ""+sJLipodisp_value+"";
             json.passw= txtJLcontr;
             json.operacion= "online";
-            json.Id_perfil= txtJLperf;
+            json.id_perfil= txtJLperf;
 
         $.ajax({
             url: "{{ route('access.call.report_rotate') }}",
@@ -360,6 +364,8 @@
                         datatableInstance.destroy();
                     } //if
 
+                    var $sjl_acciones = null;
+
                     var datatableInstance
                     datatableInstance = $('table#Tbl_usrdisp').DataTable({
                         "data": data,
@@ -424,9 +430,23 @@
                                 "data": "send_fechaTermino"
                             },
                             {
-                                data: null,
-                                className: "center",
-                                defaultContent: '<a href="" class="editor_rotar"><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>'
+                                "name": "acciones",
+                                "data": $sjl_acciones,
+                                "render" : function(data)
+                                {
+                                    if(!$sjl_acciones)
+                                    {
+                                        console.log('No hay data acciones' + $sjl_acciones);
+                                        //data = '<a href=""  class="editor_ticket">' + data + '</a>';
+                                        data = '<a id="idrotate_href" href="" class="editor_rotar" ><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>';
+                                    }else
+                                    {
+                                        console.log('haria cambio' + $sjl_acciones);
+                                        data = 'Rotar Password / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>';
+                                    }//else
+                                    return data;
+                                }
+                                //"defaultContent": '<a id="idrotate_href" href="" class="editor_rotar" ><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>'
                             },
                             {
                                 //id_tipo dispositivo
@@ -449,7 +469,7 @@
                         ],
                         dom: 'Bfrtip',
                         buttons: [
-                            'csv'
+                            'copy', 'csv', 'excel', 'pdf'
                         ]
                     });
 
@@ -629,141 +649,166 @@
 
                     } );
 
-                    // Rotar Password
-                    $('table#Tbl_usrdisp').on('click', 'a.editor_rotar', function (e) {
-                        //prevengo de que no se rellame la pantalla
+                    //rotar_disabled
+                    $('table#Tbl_usrdisp').on('click', 'a.rotar_disabled', function (e)
+                    {
                         e.preventDefault();
-                        //obtengo los datos
-                        var row = datatableInstance.row($(this).closest('tr'));
-                        console.log('row '+row);
-                        var sJLip_value = row.data()['send_ip'];
-                        var sJLuser_value = row.data()['send_usuario'];
-                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
-                        var sJLiprofchange_value = row.data()['send_profile_change'];
-                        console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' puede camb ' + sJLiprofchange_value );
-                        //inicio extracción de perfiles
-                        sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
-                        aJL_profiles=sJLiprofchange_value.split(',');
-                        console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
+                        $.alert('disabled: ');
+                    });//rotar_disabled
 
-                        sjL_detailCP_text = '<form action="" class="formName">';
-                        sjL_detailCP_text += '<div class="form-group">';
-                        sjL_detailCP_text += '<label>Proporcione la nueva contraseña</label>';
-                        sjL_detailCP_text += '<input type="text" placeholder="Contraseña" class="txtcontr form-control" required />';
-                        sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile2">Actualización de Perfil</label>';
-                        sjL_detailCP_text += '<select id="cbo_profile2" class="form-control" name="cbo_profile2">';
-
-                        aJL_profiles.forEach(function(iJL_perfil)
-                        {
-                             console.log(iJL_perfil);
-
-                            //1	Manager Seguridad
-                            if (iJL_perfil==1)
-                            {
-                                sjL_detailCP_text += '<option value="1">Manager Seguridad</option>';
-                            }//if
-                            //2	Solicitante de Acceso
-                            if (iJL_perfil==2)
-                            {
-                                sjL_detailCP_text += '<option value="2">Solicitante de Acceso</option>';
-                            }//if
-                            //3	Manager SOC
-                            if (iJL_perfil==3)
-                            {
-                                sjL_detailCP_text += '<option value="3">Manager SOC</option>';
-                            }//if
-                            //4	Operacion SOC
-                            if (iJL_perfil==4)
-                            {
-                                sjL_detailCP_text += '<option value="4">Operacion SOC</option>';
-                            }//if
-                            //5	Operacion Seguridad Aprobador
-                            if (iJL_perfil==5)
-                            {
-                                sjL_detailCP_text += '<option value="5">Operacion Seguridad Aprobador</option>';
-                            }//if
-                            //6	Operacion SOC Aprobador
-                            if (iJL_perfil==6)
-                            {
-                                sjL_detailCP_text += '<option value="6">Operacion SOC Aprobador</option>';
-                            }//if
-                            //7	Read Only / Lectura
-                            if (iJL_perfil==7)
-                            {
-                                sjL_detailCP_text += '<option value="7">Read Only - Lectura</option>';
-                            }//if
-                            //8	admin / read-write/ escritura
-                            if (iJL_perfil==8)
-                            {
-                                sjL_detailCP_text += '<option value="8">admin - read-write - escritura</option>';
-                            }//if
-                            //9	Trace
-                            if (iJL_perfil==9)
-                            {
-                                sjL_detailCP_text += '<option value="9">Trace</option>';
-                            }//if
-                            //10	Admin Boveda
-                            if (iJL_perfil==10)
-                            {
-                                sjL_detailCP_text += '<option value="10">Admin Boveda</option>';
-                            }//if
-                            //11	Admin System / root
-                            if (iJL_perfil==11)
-                            {
-                                sjL_detailCP_text += '<option value="11">Admin System - root</option>';
-                            }//if
-                            //13	Purge
-                            if (iJL_perfil==12)
-                            {
-                                sjL_detailCP_text += '<option value="12">Purge</option>';
-                            }//if
-                            //14	GUI
-                            if (iJL_perfil==13)
-                            {
-                                sjL_detailCP_text += '<option value="13">GUI</option>';
-                            }//if
-
-                        });
+                    // Rotar Password
+                    $('table#Tbl_usrdisp').on('click', 'a.editor_rotar', function (e)
+                    {
+                        //if ($(this).hasClass("disabled"))
+                        //{
+                            //prevengo de que no se rellame la pantalla
+                            e.preventDefault();
+                            //obtengo los datos
+                            var row = datatableInstance.row($(this).closest('tr'));
+                            console.log('row '+row);
+                            var sJLip_value = row.data()['send_ip'];
+                            var sJLuser_value = row.data()['send_usuario'];
+                            var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                            var sJLiprofchange_value = row.data()['send_profile_change'];
 
 
-                        sjL_detailCP_text += '</div>';
-                        sjL_detailCP_text += '</form>';
 
-                        //inicio de boton
-                        $.confirm({
-                            title: 'Rotación de Password',
-                            content: 'Desea solicitar el rotado de password?',
-                            content: sjL_detailCP_text,
-                            buttons: {
-                                Confirmar: {
-                                    text: 'Confirmar',
-                                    btnClass: 'btn-red',
-                                    keys: ['enter', 'shift'],
-                                    action: function(){
-                                        var txtJLcontr = this.$content.find('.txtcontr').val();
-                                        var txtJLperf = $('#cbo_profile2 option:selected').val();
-                                        console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
-                                        if(!txtJLcontr){
-                                            $.alert('Coloque información valida');
-                                            return false;
+                            console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' puede camb ' + sJLiprofchange_value );
+                            //inicio extracción de perfiles
+                            sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
+                            aJL_profiles=sJLiprofchange_value.split(',');
+                            console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
+
+                            sjL_detailCP_text = '<form action="" class="formName">';
+                            sjL_detailCP_text += '<div class="form-group">';
+                            sjL_detailCP_text += '<label>Proporcione la nueva contraseña</label>';
+                            sjL_detailCP_text += '<input type="text" placeholder="Contraseña" class="txtcontr form-control" required />';
+                            sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile2">Actualización de Perfil</label>';
+                            sjL_detailCP_text += '<select id="cbo_profile2" class="form-control" name="cbo_profile2">';
+
+                            aJL_profiles.forEach(function(iJL_perfil)
+                            {
+                                console.log(iJL_perfil);
+
+                                //1	Manager Seguridad
+                                if (iJL_perfil==1)
+                                {
+                                    sjL_detailCP_text += '<option value="1">Manager Seguridad</option>';
+                                }//if
+                                //2	Solicitante de Acceso
+                                if (iJL_perfil==2)
+                                {
+                                    sjL_detailCP_text += '<option value="2">Solicitante de Acceso</option>';
+                                }//if
+                                //3	Manager SOC
+                                if (iJL_perfil==3)
+                                {
+                                    sjL_detailCP_text += '<option value="3">Manager SOC</option>';
+                                }//if
+                                //4	Operacion SOC
+                                if (iJL_perfil==4)
+                                {
+                                    sjL_detailCP_text += '<option value="4">Operacion SOC</option>';
+                                }//if
+                                //5	Operacion Seguridad Aprobador
+                                if (iJL_perfil==5)
+                                {
+                                    sjL_detailCP_text += '<option value="5">Operacion Seguridad Aprobador</option>';
+                                }//if
+                                //6	Operacion SOC Aprobador
+                                if (iJL_perfil==6)
+                                {
+                                    sjL_detailCP_text += '<option value="6">Operacion SOC Aprobador</option>';
+                                }//if
+                                //7	Read Only / Lectura
+                                if (iJL_perfil==7)
+                                {
+                                    sjL_detailCP_text += '<option value="7">Read Only - Lectura</option>';
+                                }//if
+                                //8	admin / read-write/ escritura
+                                if (iJL_perfil==8)
+                                {
+                                    sjL_detailCP_text += '<option value="8">admin - read-write - escritura</option>';
+                                }//if
+                                //9	Trace
+                                if (iJL_perfil==9)
+                                {
+                                    sjL_detailCP_text += '<option value="9">Trace</option>';
+                                }//if
+                                //10	Admin Boveda
+                                if (iJL_perfil==10)
+                                {
+                                    sjL_detailCP_text += '<option value="10">Admin Boveda</option>';
+                                }//if
+                                //11	Admin System / root
+                                if (iJL_perfil==11)
+                                {
+                                    sjL_detailCP_text += '<option value="11">Admin System - root</option>';
+                                }//if
+                                //13	Purge
+                                if (iJL_perfil==12)
+                                {
+                                    sjL_detailCP_text += '<option value="12">Purge</option>';
+                                }//if
+                                //14	GUI
+                                if (iJL_perfil==13)
+                                {
+                                    sjL_detailCP_text += '<option value="13">GUI</option>';
+                                }//if
+
+                            });
+
+
+                            sjL_detailCP_text += '</div>';
+                            sjL_detailCP_text += '</form>';
+
+                            //inicio de boton
+                            $.confirm({
+                                title: 'Rotación de Password',
+                                content: 'Desea solicitar el rotado de password?',
+                                content: sjL_detailCP_text,
+                                buttons: {
+                                    Confirmar: {
+                                        text: 'Confirmar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                        action: function(){
+                                            var txtJLcontr = this.$content.find('.txtcontr').val();
+                                            var txtJLperf = $('#cbo_profile2 option:selected').val();
+                                            console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
+                                            if(!txtJLcontr){
+                                                $.alert('Coloque información valida');
+                                                return false;
+                                            }
+                                            obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
+                                            console.log('obj21');
+                                            console.log(obj21);
+                                            $.alert('Confirmación de Aplicación Status: ' + obj21.status );
+                                            console.log('deshabilito');
+                                            row.data()['acciones'] = '';
+                                            //row.cell(row,1).data('hola').draw();
+                                            $sjl_acciones = 'hola';
+                                            row.cell(row,11).data('hola').draw();
                                         }
-                                        obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
-                                        console.log('obj21');
-                                        console.log(obj21);
-                                        $.alert('Confirmación de Aplicación Status: ' + obj21.status );
+                                    },
+                                    Cancelar: {
+                                        text: 'Cancelar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                        action: function()
+                                        {
+                                            console.log('cancelo');
+                                        }
                                     }
-                                },
-                                Cancelar: {
-                                    text: 'Cancelar',
-                                    btnClass: 'btn-red',
-                                    keys: ['enter', 'shift'],
                                 }
-                            }
-                        }); //fin de boton
+                            }); //fin de boton
 
-                        //var column = datatableInstance.column($(this).attr('data-column'));
-                        //column.visible( ! column.visible() );
-                    } );
+
+                        //}
+                        //$(this).addClass("disabled")
+
+
+                    } );//editor_rotar
 
                     // Termino de seson
                     $('table#Tbl_usrdisp').on('click', 'a.editor_force', function (e) {
