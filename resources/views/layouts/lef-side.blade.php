@@ -350,13 +350,13 @@
 				</li>
                 @endif
 
-                @if ( !isset( $menu[39] ) )
-				<li>
-					<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}">
-						<div class="pull-left"><span class="right-nav-text">Incidentes Actuales</span></div>
-						<div class="clearfix"></div></a>
-				</li>
-                @endif
+                <!-- @if ( !isset( $menu[39] ) ) -->
+				<!-- <li> -->
+				<!-- 	<a href="{{ route('Tickets.View_ticket.index' , array('isMob'=>'false') ) }}"> -->
+				<!-- 		<div class="pull-left"><span class="right-nav-text">Incidentes Actuales</span></div> -->
+				<!-- 		<div class="clearfix"></div></a> -->
+				<!-- </li> -->
+                <!-- @endif -->
 
 
             </ul>

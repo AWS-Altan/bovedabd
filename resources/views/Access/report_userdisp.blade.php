@@ -786,7 +786,7 @@
                                             $.alert('Confirmación de Aplicación Status: ' + obj21.status );
                                             console.log('deshabilito');
                                             row.data()['acciones'] = '';
-                                            row.cell(row,1).data('hola').draw();
+                                            //row.cell(row,1).data('hola').draw();
                                             $sjl_acciones = 'hola';
                                             row.cell(row,11).data('hola').draw();
                                         }
