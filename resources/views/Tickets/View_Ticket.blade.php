@@ -44,7 +44,7 @@
 
         var initializeDatatable = function initializeDatatable(check) {
             //bloqueo();
-            console.log('inicia consulta operaciones'+moment().format('YYYY-MM-DD HH:mm:ss'))
+            console.log('inicia consulta actividades'+moment().format('YYYY-MM-DD HH:mm:ss'))
 
             //Ejecuto la busqueda del dato, armo la busqueda
             var sJL_mail = '{{app('auth')->user()->email}}';
@@ -52,14 +52,10 @@
             var data = {};
             data.operacion   = "query";
 
-            if(  $('#fechaIni').val() != '' && $('#fechaFin').val() != '')
+            if(  $('#initialDate').val() != '' && $('#finalDate').val() != '')
             {
-                //fromDate = new Date ( $('#fechaIni').val() );
-                //data.fecha_ini = new Date ( fromDate ).toDateString('YYYY-MM-DD');
-                //toDate = new Date( $('#fechaFin').val() );
-                //data.fecha_fin = new Date ( toDate ).toDateString('YYYY-MM-DD');
-                data.fecha_ini = $('#fechaIni').val();
-                data.fecha_fin = $('#fechaFin').val();
+                data.fecha_inicio = $('#initialDate').val();
+                data.fecha_termino = $('#finalDate').val();
             }
 
 
@@ -71,8 +67,8 @@
                 data: JSON.stringify(data)
             }).done(function (response) {
                 obj = jQuery.parseJSON(response);
-                console.log("obj");
-                console.log(obj);
+                //console.log("obj");
+                //console.log(obj);
                 $('#message').hide();
                 $('#message').empty();
                 $('#message').css('color', '#9E1D23');
@@ -87,8 +83,8 @@
                     console.log('termina consulta actividades'+moment().format('YYYY-MM-DD HH:mm:ss'))
 
                     data = obj.actividades;
-                    console.log('DATA');
-                    console.log(data);
+                    //console.log('DATA');
+                    //console.log(data);
 
                     if (datatableInstance) {
                         datatableInstance.destroy();
@@ -153,7 +149,7 @@
                         ],
                         dom: 'Bfrtip',
                         buttons: [
-                            'copy', 'csv', 'excel', 'pdf'
+                            'csv', 'excel', 'pdf'
                         ]
                     });
 
@@ -178,15 +174,12 @@
 
 
                 $("#consultaActividades").click(function (e) {
-                    f1 = $("#initialDate").val();
-                    f2 = $("#finalDate").val();
+
                     $('#message').empty();
-                    if ( f1.length < 1 || f2.length < 1 ) {
-                        $('#message').append('<label class="help-block mb-30 text-left"><strong>Las fechas son obligatorias</strong> ');
+                    if ( $('#initialDate').val() == '' || $('#finalDate').val() == '') {
+                        $('#message').append('<label class="help-block mb-30 text-left"><strong>Las fechas de consulta son obligatorias</strong> ');
                         return false;
                     }
-                    $("#fechaIni").val(f1);
-                    $("#fechaFin").val(f2);
                     initializeDatatable(1);
                 });
 
@@ -214,9 +207,9 @@
 /***********************************************/
                     var data = {};
                     data.operacion= "pause";
-                    data.fecha_inicio= "2021-04-03";
-                    data.fecha_termino= "2021-04-15";
-                    data.mensaje= "Incidencia en el cor";
+                    //data.fecha_inicio= "2021-04-03";
+                    //data.fecha_termino= "2021-04-15";
+                    //data.mensaje= "Incidencia en el cor";
                     data.responsable= '{{app('auth')->user()->name}}';
                     data.actividades= actividades;
 
@@ -238,7 +231,7 @@
                     })
                     .done(function(response) {
                         var obj = jQuery.parseJSON(response);
-                        console.log(obj);
+                        //console.log(obj);
 
 
                         if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.Message.indexOf("error")>-1 )  )  {
@@ -303,9 +296,9 @@
 /***********************************************/
                     var data = {};
                     data.operacion= "resume";
-                    data.fecha_inicio= "2021-04-03";
-                    data.fecha_termino= "2021-04-15";
-                    data.mensaje= "Incidencia en el cor";
+                    //data.fecha_inicio= "2021-04-03";
+                    //data.fecha_termino= "2021-04-15";
+                    //data.mensaje= "Incidencia en el cor";
                     data.responsable= '{{app('auth')->user()->name}}';
                     data.actividades= actividades;
 
@@ -327,7 +320,7 @@
                     })
                     .done(function(response) {
                         var obj = jQuery.parseJSON(response);
-                        console.log(obj);
+                        //console.log(obj);
                         if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.Message.indexOf("error")>-1 )  )  {
                             var descriptionError = "";
 
@@ -399,9 +392,9 @@
 
                     var data = {};
                     data.operacion= "stop";
-                    data.fecha_inicio= "2021-04-03";
-                    data.fecha_termino= "2021-04-15";
-                    data.mensaje= "Incidencia en el cor";
+                    //data.fecha_inicio= "2021-04-03";
+                    //data.fecha_termino= "2021-04-15";
+                    //data.mensaje= "Incidencia en el cor";
                     data.responsable= '{{app('auth')->user()->name}}';
                     data.actividades= actividades ;
 
@@ -423,7 +416,7 @@
                     })
                     .done(function(response) {
                         var obj = jQuery.parseJSON(response);
-                        console.log(obj);
+                        //console.log(obj);
                         if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.
                             Message.indexOf("error")>-1 )  )  {
                             var descriptionError = "";

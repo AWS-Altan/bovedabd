@@ -348,7 +348,7 @@ $(document).ready(function() {
 	$('#dateInicioBotonRojo').datetimepicker({
 			useCurrent: false,
 			//defaultDate: moment().startOf('day').subtract(7, 'days'),
-			format: 'YYYY-MM-DD',
+			format: 'YYYY-MM-DD HH:mm:ss',
 			showClose: true,
 			icons: {
                     time: "fa fa-clock-o",
@@ -366,7 +366,7 @@ $(document).ready(function() {
 	$('#dateFinBotonRojo').datetimepicker({
 			useCurrent: false,
 			//defaultDate: moment().startOf('day'),
-			format: 'YYYY-MM-DD',
+			format: 'YYYY-MM-DD  HH:mm:ss',
 			showClose: true,
 			icons: {
                     time: "fa fa-clock-o",

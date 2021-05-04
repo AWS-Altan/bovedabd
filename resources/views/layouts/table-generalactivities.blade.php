@@ -26,9 +26,6 @@
                     </div>
                     <div class="col-sm-4">
                         <a id="consultaActividades" type="button" class="btn btn-primary">Buscar</a>
-                        <a id="pausarActividades" type="button" class="btn btn-primary">Pausar</a>
-                        <a id="reanudarActividades" type="button" class="btn btn-primary">Reanudar</a>
-                        <a id="stopActividades" type="button" class="btn btn-primary">Detener Todo</a>
                     </div>
                 </div>
             </div>

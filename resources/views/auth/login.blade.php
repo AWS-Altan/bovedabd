@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="mb-30">
-                                        <h3 class="text-center txt-dark mb-10">Boveda <br> Manager SGI</h3>
+                                        <h3 class="text-center txt-dark mb-10">B&oacute;veda <br> Manager SGI</h3>
                                     </div>
                                     <div class="form-wrap">
                                          <form id="form_login" method="POST" action="{{ route('login') }}">
