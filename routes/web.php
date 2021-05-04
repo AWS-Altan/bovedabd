@@ -210,6 +210,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     }); //Route
 
+    Route::group(['prefix' => 'reports', 'namespace' => 'Reports'], function () {
+        Route::resource('/general-activity', 'GeneralActivityReportController', ['names' => ['index' => 'Actividades.general-report.index']])->only(['index']);
+
+        Route::post('/call/activity-list', 'GeneralActivityReportController@getList')->name('call.generalactivity-list');
+
+    }); 
+
 
 
 	Route::group(['prefix' => 'operations', 'namespace' => 'Operations'], function () {

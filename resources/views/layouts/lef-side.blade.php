@@ -253,15 +253,6 @@
 					</li>
                 @endif
 
-                <!-- @if ( !isset( $menu[16] )  ) -->
-				<!-- 	<li> -->
-				<!-- 		<a href="{{ route('Actividades.Modif_activ.index') }}"> -->
-				<!-- 			<div class="pull-left"><span class="right-nav-text">Modificacion de Actividades</span></div> -->
-				<!-- 			<div class="clearfix"></div> -->
-				<!-- 		</a> -->
-				<!-- 	</li> -->
-				<!-- @endif -->
-
                 @if ( !isset( $menu[17] )  )
 					<li>
 						<a href="{{ route('Actividades.View_Remedy.index') }}">
@@ -347,6 +338,16 @@
 						<div class="clearfix"></div></a>
 				</li>
                 @endif
+
+                @if ( !isset( $menu[16] )  )
+                    <li>
+                        <a href="{{ route('Actividades.general-report.index') }}">
+                            <div class="pull-left"><span class="right-nav-text">Reporte de Actividades</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
+
 
             </ul>
 
