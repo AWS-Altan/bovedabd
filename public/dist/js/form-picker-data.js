@@ -343,6 +343,26 @@ $(document).ready(function() {
 			$('#dateInicioOfertas').data("DateTimePicker").date(moment(e.date).subtract(7, 'days'));
 		}
 	});
+	// ------------------------------------ Vigencia en Alta User --------------------------------------------
+	$('#dateVigencia').datetimepicker({
+		    useCurrent: false,
+			defaultDate: moment().startOf('day').add(1, 'days'),
+			format: 'HH:mm',
+			showClose: true,
+			showClear: true,
+			icons: {
+                    time: "",
+                    date: "fa fa-clock-o",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                },
+            tooltips: {    
+                     selectTime: ''
+            	}
+	}).on('dp.change', function(e){
+
+
+	});
 
 	// ------------------------------------ Boton Rojo --------------------------------------------
 	$('#dateInicioBotonRojo').datetimepicker({

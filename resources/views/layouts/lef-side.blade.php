@@ -12,7 +12,7 @@
         <!-- modif 2021/01/18 Renombre - Menu Administración Equipos -->
         <li><hr class="light-grey-hr mb-10"/></li>
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Admin de Equipos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-server mr-20"></i><span class="right-nav-text">Admin de Equipos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="acciones_dr" class="collapse collapse-level-1 two-col-list">
 
                 <!-- Modificación de Catalogo de Dispositivos -->
@@ -59,7 +59,7 @@
         <!-- modif 2021/01/12 renombre - Administración de Usuarios -->
         <li><hr class="light-grey-hr mb-10"/></li>
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Admin de Usuarios</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-user mr-20"></i><span class="right-nav-text">Admin de Usuarios</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="batch_dr" class="collapse collapse-level-1 two-col-list">
 
                 <!-- Adicion 2020/12/03 -->
@@ -159,7 +159,7 @@
         <!-- Solicitud de Accesos -->
         <li><hr class="light-grey-hr mb-10"/></li>
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#solicitides_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Solicitud de Accesos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#solicitides_dr"><div class="pull-left"><i class="fa fa-pencil-square-o mr-20"></i><span class="right-nav-text">Solicitud de Accesos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="solicitides_dr" class="collapse collapse-level-1 two-col-list">
 
                 <!-- Alta usuarios -->
@@ -328,7 +328,7 @@
 
         @if ( !isset( $menu[37] )  )
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-sliders  mr-20"></i><span class="right-nav-text">Bot&oacute;n rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#Bton_red"><div class="pull-left"><i class="fa fa-circle  mr-20"></i><span class="right-nav-text">Bot&oacute;n rojo</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="Bton_red" class="collapse collapse-level-1 two-col-list">
 
                @if ( !isset( $menu[38] ) )
@@ -360,7 +360,7 @@
         <!-- Manejo de Usuarios Internos del sistema -->
         <li><hr class="light-grey-hr mb-10"/></li>
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Configuración</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cog mr-20"></i><span class="right-nav-text">Configuración</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="operaciones_dr" class="collapse collapse-level-1 two-col-list">
 
 
