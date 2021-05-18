@@ -24,5 +24,6 @@ return [
     'url_repbat_force' => 'https://skwwvweq7g.execute-api.us-east-1.amazonaws.com/prod/',
     'url_activity_list' => 'https://leg1dqae6a.execute-api.us-east-1.amazonaws.com/dev/',
     'url_activities_report'=> 'https://q82jneeux8.execute-api.us-east-1.amazonaws.com/prod/',
+    'url_gui_user'     => 'https://2zmucdaom1.execute-api.us-east-1.amazonaws.com/dev/dev/',
 
 ];

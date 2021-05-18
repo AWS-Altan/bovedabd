@@ -91,8 +91,10 @@ class Report_userdisp_Controller extends BaseController
 
         loginfo('Obtiene Datos del API para la solicitud de Baja: ');
 
-        $json = request()->data;
+        //$json = request()->data;
+        $json = request()->json()->all();
         loginfo($json);
+
 
 
         try {
@@ -122,8 +124,8 @@ class Report_userdisp_Controller extends BaseController
         //$this->loginResponse = $this->login();
 
         loginfo('Obtiene Datos del API para la solicitud de cambio: ');
-
-        $json = request()->data;
+        loginfo('test2: ');
+        $json = request()->json()->all();
         loginfo($json);
 
 
@@ -181,8 +183,7 @@ class Report_userdisp_Controller extends BaseController
 
         loginfo('Obtiene Datos del API para el forzado de la sesion: ');
 
-        //$json = request()->data;
-        $json = request()->json()->all();
+        $json = request()->data;
         loginfo($json);
 
 
@@ -204,7 +205,7 @@ class Report_userdisp_Controller extends BaseController
     }
 
 
-} 
+}
 
 
 
