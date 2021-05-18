@@ -381,7 +381,7 @@
 		})
         /// a aqui
 
-        $('#message_error').append('voy finish B ');
+        
         //$.unblockUI();
 
 
@@ -413,9 +413,9 @@
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        //$('#message').append('voy 4');
+                        
                     });
-                    //$('#message').append('voy 3');
+                    
 		        }
 		    };
         }
