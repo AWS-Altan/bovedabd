@@ -51,7 +51,7 @@ class SupportController extends BaseController
             'passwd' => $sJL_pass64
         ];
 
-        loginfo('Version 2020/02/02 ');
+        loginfo('Version 2020/05/12 ');
 
         try {
             //$req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'boveda-login', [

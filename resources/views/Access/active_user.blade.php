@@ -151,9 +151,9 @@
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        //$('#message_error').append('voy 4');
+                        
                     });
-                    //$('#message_error').append('voy 3');
+                    
 		        }
 		    };
         }

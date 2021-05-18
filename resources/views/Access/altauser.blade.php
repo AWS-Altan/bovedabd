@@ -30,7 +30,7 @@
 												        <label class="help-block text-left">IP de Host</label>
                                                     </div>
                                                     <div class="col-sm-3 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="ipHost" placeholder="Ingrese La IP del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="ipHost" placeholder="Ingrese la direcci&oacute;n IP del dispositivo" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="ipHostError"></div>
 												    </div>
                                                     <div class="col-sm-1 mb-20">
@@ -84,7 +84,7 @@
                                                         <label class="help-block text-left">Usuario</label>
                                                     </div>
                                                     <div class="col-sm-3 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="usuarioDispositivo" placeholder="Ingrese el usuario del dispositivo" data-error="Valor inválido" maxlength="150">
+                                                        <input type="text" data-minlength="10" class="form-control" id="usuarioDispositivo" placeholder="Ingrese usuario solicitado para el dispositivo" data-error="Valor inválido" maxlength="150">
                                                         <div class="help-block with-errors" id="usuarioDispositivoError"></div>
                                                     </div>
                                                     <div class="col-sm-1 mb-20">
@@ -95,7 +95,7 @@
                                                         <label class="help-block text-left">Contrase&ntilde;a</label>
                                                     </div>
                                                     <div class="col-sm-2">
-                                                        <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese la contrase&ntilde;a del usuario" data-error="Valor inválido" maxlength="150">
+                                                        <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150">
                                                             <div class="help-block with-errors" id="PasswordError"></div>
                                                     </div>
                                                     <div class="col-sm-2 mb-20">
@@ -129,8 +129,11 @@
                                                         <input type='date' id="txtDate" class="inputCal" value="" /> <label id="cleardate" onclick="clearDateTime()"> Limpiar fecha </label>
                                                         <div class="help-block with-errors" id="txtDateError"></div>
                                                     </div>
-                                                    <div class="col-sm-2 mb-20 select select-group" >
-                                                        <input type='time' id="txtTime" class="inputCal" value="" />
+                                                    <div class='input-group date' id = "dateVigencia" style="width: 195px">
+                                                    <input id="txtTime" type='text' class="form-control" placeholder="HH:mm"/>
+                                                    <span class="input-group-addon">
+                                                    <span class="fa fa-clock-o"></span>
+                                                    </span>
                                                     </div>
 
                                                 </div>
@@ -634,6 +637,9 @@
             })
         .always(function() {
             //$.unblockUI();
+            $('#ipHost').val('');
+            $('#password').val('');
+            $('#usuarioDispositivo').val('');
         });
 
 

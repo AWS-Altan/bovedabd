@@ -140,18 +140,24 @@
 
         console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
 
-        var jsonborra = {
+        /*var jsonborra = {
             "ip": sJLip_value,
             "usuario": sJLuser_value,
             "idtipo_disp": sJLipodisp_value,
             "operacion": "online"
-        };
+        };*/
+
+        var json = {};
+            json.ip= sJLip_value;
+            json.usuario= sJLuser_value;
+            json.idtipo_disp= ""+sJLipodisp_value+"";
+            json.operacion= "online";
 
         $.ajax({
             url: "{{ route('access.call.report_baja') }}",
             type: 'POST',
             contentType: "application/json",
-            data: jsonborra
+            data: JSON.stringify(jsonborra)
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
@@ -170,22 +176,23 @@
 
     }//fun_report_baja
 
-    function fun_report_cambio( sJLip_value, sJLuser_value, sJLipodisp_value,sJLidperf_value){
+
+    function fun_report_cambio( sJLip_value, sJLuser_value, sJLipodisp_value,sJLidperf_value)
+    {
         console.log(' mando a API IP_Camio '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
 
-        var jsonchange = {
-            "ip": sJLip_value,
-            "usuario": sJLuser_value,
-            "idtipo_disp": sJLipodisp_value,
-            "id_perfil": sJLidperf_value,
-            "operacion": "online"
-        };
+        var jsonchange = {};
+            jsonchange.ip= sJLip_value;
+            jsonchange.usuario= sJLuser_value;
+            jsonchange.idtipo_disp= ""+sJLipodisp_value+"";
+            jsonchange.operacion= "online";
+            jsonchange.id_perfil= sJLidperf_value;
 
         $.ajax({
             url: "{{ route('access.call.report_camb') }}",
             type: 'POST',
             contentType: "application/json",
-            data: jsonchange
+            data: JSON.stringify(jsonchange)
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
@@ -208,14 +215,6 @@
 
         console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
 
-        /*
-        var jsonrota = {
-            "ip": sJLip_value,
-            "user": sJLuser_value,
-            "id_disp": sJLipodisp_value,
-            "passw": txtJLcontr
-        };
-        */
 
         var json = {};
             json.ip= sJLip_value;
@@ -321,28 +320,37 @@
         if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
         {
             data.fecha_ini = $('#txtDateini' ).val();
-            data.fecha_fin = $('#txtDatefin' ).val()
+            data.fecha_fin = $('#txtDatefin' ).val();
+            console.log('Fechas: '+data.fecha_ini+','+data.fecha_fin);
+
         }
         if(document.getElementById('radio5').checked)
         {
             data.IP = $('#inputData').val();
+            console.log('IP:'+data.IP);
         }//if
         if(document.getElementById('radio6').checked)
         {
             data.hostname = $('#inputData').val();
+            console.log('Hostname:'+data.hostname);
         }//if
         if(document.getElementById('radio7').checked)
         {
             data.user = $('#inputData').val();
+            console.log('usuario:'+data.user);
         }//if
         if(document.getElementById('radio8').checked)
         {
             data.solicitante = $('#inputData').val();
+            console.log('solicitante'+data.solicitante);
         }//if
         if(document.getElementById('radio9').checked)
         {
             data.status = $('#inputData').val();
+            console.log('status:'+data.status);
         }//if
+
+        $popup_visible = false;
 
         //Hago el manejo de la tabla
         $.ajax({
@@ -359,15 +367,17 @@
                 {
 
                     data = jQuery.parseJSON(obj.data);
-                    if (typeof(datatableInstance)!== 'undefined')
+                    if (typeof($datatableInstance)!== 'undefined')
                     {
-                        datatableInstance.destroy();
-                    } //if
+                        console.log('borrando');
+                        $datatableInstance.destroy();
+                    } //end
+
 
                     var $sjl_acciones = null;
 
-                    var datatableInstance
-                    datatableInstance = $('table#Tbl_usrdisp').DataTable({
+                    //var $datatableInstance
+                    $datatableInstance = $('table#Tbl_usrdisp').DataTable({
                         "data": data,
                         "pageLength": 10,
                         "order": [
@@ -436,12 +446,10 @@
                                 {
                                     if(!$sjl_acciones)
                                     {
-                                        console.log('No hay data acciones' + $sjl_acciones);
                                         //data = '<a href=""  class="editor_ticket">' + data + '</a>';
                                         data = '<a id="idrotate_href" href="" class="editor_rotar" ><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>';
                                     }else
                                     {
-                                        console.log('haria cambio' + $sjl_acciones);
                                         data = 'Rotar Password / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>';
                                     }//else
                                     return data;
@@ -475,177 +483,189 @@
 
                     // Opcion de Borrado
 
-                    $('table#Tbl_usrdisp').on('click', 'a.editor_remove', function (e) {
+                    $('table#Tbl_usrdisp').on('click', 'a.editor_remove', function (e)
+                    {
                         e.preventDefault(); //para eviar redirect
-                        var row = datatableInstance.row($(this).closest('tr'));
-                        //console.log('row '+row);
+                        if(!$popup_visible)
+                        {
+                            $popup_visible = true;
+                            var row = $datatableInstance.row($(this).closest('tr'));
+                            //console.log('row '+row);
 
-                        //Obtengo los datos para el borrado
-                        var sJLip_value = row.data()['send_ip'];
-                        var sJLuser_value = row.data()['send_usuario'];
-                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
-                        console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
+                            //Obtengo los datos para el borrado
+                            var sJLip_value = row.data()['send_ip'];
+                            var sJLuser_value = row.data()['send_usuario'];
+                            var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                            console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
 
 
-                        $.confirm({
-                            title: 'Borrado de Registro',
-                            content: '¿Desea Enviar la solucitud de borrado de Registro para la IP ' + sJLip_value + '?',
-                            buttons: {
-                                Confirmar: {
-                                    text: 'Confirmar',
-                                    btnClass: 'btn-red',
-                                    keys: ['enter', 'shift'],
-                                    action: function()
-                                    {
-                                        obj = fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value);
-                                        $.alert('Confirmación de Aplicación Status: ' + obj.status + " Descripción: " + obj.description);
-                                    } //action
-                                },
-                                Cancelar: {
-                                    text: 'Cancelar',
-                                    btnClass: 'btn-red',
-                                    keys: ['enter', 'shift'],
+                            $.confirm({
+                                title: 'Borrado de Registro',
+                                content: '¿Desea Enviar la solucitud de borrado de Registro para la IP ' + sJLip_value + '?',
+                                buttons: {
+                                    Confirmar: {
+                                        text: 'Confirmar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                        action: function()
+                                        {
+                                            obj = fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value);
+                                            $.alert('Confirmación de Aplicación Status: ' + obj.status + " Descripción: " + obj.description);
+                                        } //action
+                                    },
+                                    Cancelar: {
+                                        text: 'Cancelar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                    }
                                 }
-                            }
-                        });
+                            });
+                            $popup_visible = false;
 
-
+                        }//if
                     } );
 
                     // Edit record
-                    $('table#Tbl_usrdisp').on('click', 'a.editor_edit', function (e) {
+                    $('table#Tbl_usrdisp').on('click', 'a.editor_edit', function (e)
+                    {
                         e.preventDefault();
-                        var row = datatableInstance.row($(this).closest('tr'));
-                        console.log('row '+row);
-
-                        var sJLip_value = row.data()['send_ip'];
-                        var sJLuser_value = row.data()['send_usuario'];
-                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
-                        var sJLidperf_value = row.data()['send_idperfil2'];
-                        var sJLiprofchange_value = row.data()['send_profile_change'];
-                        console.log('IP '+ sJLip_value + 'user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' id perfil ' + sJLidperf_value + ' puede camb ' + sJLiprofchange_value );
-
-
-                        //inicio extracción de perfiles
-                        sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
-                        aJL_profiles=sJLiprofchange_value.split(',');
-                        console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
-
-                        sjL_detailCP_text = '<form action="" class="formName">';
-                        sjL_detailCP_text += '<div class="form-group">';
-                        sjL_detailCP_text += '<label>Tipo Dispositivo</label>';
-                        sjL_detailCP_text += '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />';
-                        sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile1">Actualización de Perfil</label>';
-                        sjL_detailCP_text += '<select id="cbo_profile1" class="form-control" name="cbo_profile1">';
-
-                        aJL_profiles.forEach(function(iJL_perfil)
+                        if(!$popup_visible)
                         {
-                             console.log(iJL_perfil);
+                            $popup_visible = true;
+                            var row = $datatableInstance.row($(this).closest('tr'));
+                            console.log('row '+row);
 
-                            //1	Manager Seguridad
-                            if (iJL_perfil==1)
-                            {
-                                sjL_detailCP_text += '<option value="1">Manager Seguridad</option>';
-                            }//if
-                            //2	Solicitante de Acceso
-                            if (iJL_perfil==2)
-                            {
-                                sjL_detailCP_text += '<option value="2">Solicitante de Acceso</option>';
-                            }//if
-                            //3	Manager SOC
-                            if (iJL_perfil==3)
-                            {
-                                sjL_detailCP_text += '<option value="3">Manager SOC</option>';
-                            }//if
-                            //4	Operacion SOC
-                            if (iJL_perfil==4)
-                            {
-                                sjL_detailCP_text += '<option value="4">Operacion SOC</option>';
-                            }//if
-                            //5	Operacion Seguridad Aprobador
-                            if (iJL_perfil==5)
-                            {
-                                sjL_detailCP_text += '<option value="5">Operacion Seguridad Aprobador</option>';
-                            }//if
-                            //6	Operacion SOC Aprobador
-                            if (iJL_perfil==6)
-                            {
-                                sjL_detailCP_text += '<option value="6">Operacion SOC Aprobador</option>';
-                            }//if
-                            //7	Read Only / Lectura
-                            if (iJL_perfil==7)
-                            {
-                                sjL_detailCP_text += '<option value="7">Read Only - Lectura</option>';
-                            }//if
-                            //8	admin / read-write/ escritura
-                            if (iJL_perfil==8)
-                            {
-                                sjL_detailCP_text += '<option value="8">admin - read-write - escritura</option>';
-                            }//if
-                            //9	Trace
-                            if (iJL_perfil==9)
-                            {
-                                sjL_detailCP_text += '<option value="9">Trace</option>';
-                            }//if
-                            //10	Admin Boveda
-                            if (iJL_perfil==10)
-                            {
-                                sjL_detailCP_text += '<option value="10">Admin Boveda</option>';
-                            }//if
-                            //11	Admin System / root
-                            if (iJL_perfil==11)
-                            {
-                                sjL_detailCP_text += '<option value="11">Admin System - root</option>';
-                            }//if
-                            //13	Purge
-                            if (iJL_perfil==12)
-                            {
-                                sjL_detailCP_text += '<option value="12">Purge</option>';
-                            }//if
-                            //14	GUI
-                            if (iJL_perfil==13)
-                            {
-                                sjL_detailCP_text += '<option value="13">GUI</option>';
-                            }//if
+                            var sJLip_value = row.data()['send_ip'];
+                            var sJLuser_value = row.data()['send_usuario'];
+                            var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                            var sJLidperf_value = row.data()['send_idperfil2'];
+                            var sJLiprofchange_value = row.data()['send_profile_change'];
+                            console.log('IP '+ sJLip_value + 'user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' id perfil ' + sJLidperf_value + ' puede camb ' + sJLiprofchange_value );
 
-                        });
-                        sjL_detailCP_text += '</div>';
-                        sjL_detailCP_text += '</form>';
 
-                        //inicia boton
-                        $.confirm({
-                            title: 'Proporcione los siguientes datos',
-                            content: sjL_detailCP_text,
-                            buttons: {
-                                formSubmit: {
-                                    text: 'Actualizar',
-                                    btnClass: 'btn-red',
-                                    action: function () {
-                                        var txtJLdisp = this.$content.find('.txtdisp').val();
-                                        var txtJLperf = $('#cbo_profile1 option:selected').val();
-                                        console.log('información-' + txtJLdisp + '-' + txtJLperf + '-');
-                                        if(!txtJLdisp || !txtJLperf){
-                                            $.alert('Coloque información valida');
-                                            return false;
+                            //inicio extracción de perfiles
+                            sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
+                            aJL_profiles=sJLiprofchange_value.split(',');
+                            console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
+
+                            sjL_detailCP_text = '<form action="" class="formName">';
+                            sjL_detailCP_text += '<div class="form-group">';
+                            sjL_detailCP_text += '<label>Tipo Dispositivo</label>';
+                            sjL_detailCP_text += '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />';
+                            sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile1">Actualización de Perfil</label>';
+                            sjL_detailCP_text += '<select id="cbo_profile1" class="form-control" name="cbo_profile1">';
+
+                            aJL_profiles.forEach(function(iJL_perfil)
+                            {
+                                console.log(iJL_perfil);
+
+                                //1	Manager Seguridad
+                                if (iJL_perfil==1)
+                                {
+                                    sjL_detailCP_text += '<option value="1">Manager Seguridad</option>';
+                                }//if
+                                //2	Solicitante de Acceso
+                                if (iJL_perfil==2)
+                                {
+                                    sjL_detailCP_text += '<option value="2">Solicitante de Acceso</option>';
+                                }//if
+                                //3	Manager SOC
+                                if (iJL_perfil==3)
+                                {
+                                    sjL_detailCP_text += '<option value="3">Manager SOC</option>';
+                                }//if
+                                //4	Operacion SOC
+                                if (iJL_perfil==4)
+                                {
+                                    sjL_detailCP_text += '<option value="4">Operacion SOC</option>';
+                                }//if
+                                //5	Operacion Seguridad Aprobador
+                                if (iJL_perfil==5)
+                                {
+                                    sjL_detailCP_text += '<option value="5">Operacion Seguridad Aprobador</option>';
+                                }//if
+                                //6	Operacion SOC Aprobador
+                                if (iJL_perfil==6)
+                                {
+                                    sjL_detailCP_text += '<option value="6">Operacion SOC Aprobador</option>';
+                                }//if
+                                //7	Read Only / Lectura
+                                if (iJL_perfil==7)
+                                {
+                                    sjL_detailCP_text += '<option value="7">Read Only - Lectura</option>';
+                                }//if
+                                //8	admin / read-write/ escritura
+                                if (iJL_perfil==8)
+                                {
+                                    sjL_detailCP_text += '<option value="8">admin - read-write - escritura</option>';
+                                }//if
+                                //9	Trace
+                                if (iJL_perfil==9)
+                                {
+                                    sjL_detailCP_text += '<option value="9">Trace</option>';
+                                }//if
+                                //10	Admin Boveda
+                                if (iJL_perfil==10)
+                                {
+                                    sjL_detailCP_text += '<option value="10">Admin Boveda</option>';
+                                }//if
+                                //11	Admin System / root
+                                if (iJL_perfil==11)
+                                {
+                                    sjL_detailCP_text += '<option value="11">Admin System - root</option>';
+                                }//if
+                                //13	Purge
+                                if (iJL_perfil==12)
+                                {
+                                    sjL_detailCP_text += '<option value="12">Purge</option>';
+                                }//if
+                                //14	GUI
+                                if (iJL_perfil==13)
+                                {
+                                    sjL_detailCP_text += '<option value="13">GUI</option>';
+                                }//if
+
+                            });
+                            sjL_detailCP_text += '</div>';
+                            sjL_detailCP_text += '</form>';
+
+                            //inicia boton
+                            $.confirm({
+                                title: 'Proporcione los siguientes datos',
+                                content: sjL_detailCP_text,
+                                buttons: {
+                                    formSubmit: {
+                                        text: 'Actualizar',
+                                        btnClass: 'btn-red',
+                                        action: function () {
+                                            var txtJLdisp = this.$content.find('.txtdisp').val();
+                                            var txtJLperf = $('#cbo_profile1 option:selected').val();
+                                            if(!txtJLdisp || !txtJLperf){
+                                                $.alert('Coloque información valida');
+                                                return false;
+                                            }//if
+                                            console.log('información cambio-' + sJLip_value +'-'+ sJLuser_value +'-'+ txtJLdisp +'-'+ txtJLperf);
+                                            obj = fun_report_cambio( sJLip_value, sJLuser_value, txtJLdisp,txtJLperf)
+                                            $.alert('Confirmación de Aplicación Status: ' + obj.status );
                                         }
-                                        obj = fun_report_cambio( sJLip_value, sJLuser_value, txtJLdisp,txtJLperf)
-                                        $.alert('Confirmación de Aplicación Status: ' + obj.status );
-                                    }
+                                    },
+                                    Cancelar: function () {
+                                        //close
+                                    },
                                 },
-                                Cancelar: function () {
-                                    //close
-                                },
-                            },
-                            onContentReady: function () {
-                                // bind to events
-                                var jc = this;
-                                this.$content.find('form').on('submit', function (e) {
-                                    // if the user submits the form by pressing enter in the field.
-                                    e.preventDefault();
-                                    jc.$$formSubmit.trigger('click'); // reference the button and click it
-                                });
-                            }
-                        }); // Boton
+                                onContentReady: function () {
+                                    // bind to events
+                                    var jc = this;
+                                    this.$content.find('form').on('submit', function (e) {
+                                        // if the user submits the form by pressing enter in the field.
+                                        e.preventDefault();
+                                        jc.$$formSubmit.trigger('click'); // reference the button and click it
+                                    });
+                                }
+                            }); // Boton
+                            $popup_visible = false;
+
+                        }//if
 
                     } );
 
@@ -662,9 +682,12 @@
                         //if ($(this).hasClass("disabled"))
                         //{
                             //prevengo de que no se rellame la pantalla
-                            e.preventDefault();
+                        e.preventDefault();
+                        if(!$popup_visible)
+                        {
+                            $popup_visible = true;
                             //obtengo los datos
-                            var row = datatableInstance.row($(this).closest('tr'));
+                            var row = $datatableInstance.row($(this).closest('tr'));
                             console.log('row '+row);
                             var sJLip_value = row.data()['send_ip'];
                             var sJLuser_value = row.data()['send_usuario'];
@@ -802,55 +825,58 @@
                                     }
                                 }
                             }); //fin de boton
-
-
-                        //}
-                        //$(this).addClass("disabled")
-
+                            $popup_visible = false;
+                        }//if
 
                     } );//editor_rotar
 
                     // Termino de seson
-                    $('table#Tbl_usrdisp').on('click', 'a.editor_force', function (e) {
+                    $('table#Tbl_usrdisp').on('click', 'a.editor_force', function (e)
+                    {
                         //prevengo de que no se rellame la pantalla
                         e.preventDefault();
-                        //obtengo los datos
-                        var row = datatableInstance.row($(this).closest('tr'));
-                        console.log('Forzado cierre row '+row);
-                        var sJLip_value = row.data()['send_ip'];
-                        var sJLuser_value = row.data()['send_usuario'];
-                        var sJLipodisp_value = row.data()['send_idtipodisp2'];
-                        console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
-                        //inicio de boton
-                        $.confirm({
-                            title: 'Forzado de Sesion',
-                            content: '¿Desea solicitar el cierre forzado de la sesión?',
-                            content: '' +
-                            '<label>Favor de confirmar</label>',
-                            buttons: {
-                                Confirmar: {
-                                    text: 'Confirmar',
-                                    btnClass: 'btn-red',
-                                    keys: ['enter', 'shift'],
-                                    action: function(){
+                        if(!$popup_visible)
+                        {
+                            $popup_visible = true;
+                            //obtengo los datos
+                            var row = $datatableInstance.row($(this).closest('tr'));
+                            console.log('Forzado cierre row '+row);
+                            var sJLip_value = row.data()['send_ip'];
+                            var sJLuser_value = row.data()['send_usuario'];
+                            var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                            console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
+                            //inicio de boton
+                            $.confirm({
+                                title: 'Forzado de Sesion',
+                                content: '¿Desea solicitar el cierre forzado de la sesión?',
+                                content: '' +
+                                '<label>Favor de confirmar</label>',
+                                buttons: {
+                                    Confirmar: {
+                                        text: 'Confirmar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                        action: function(){
 
-                                        obj22 = fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
-                                        console.log('obj22');
-                                        console.log(obj22);
-                                        $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() );
+                                            obj22 = fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
+                                            console.log('obj22');
+                                            console.log(obj22);
+                                            $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() );
 
+                                        }
+                                    },
+                                    Cancelar: {
+                                        text: 'Cancelar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
                                     }
-                                },
-                                Cancelar: {
-                                    text: 'Cancelar',
-                                    btnClass: 'btn-red',
-                                    keys: ['enter', 'shift'],
                                 }
-                            }
-                        }); //fin de boton
+                            }); //fin de boton
 
-                        //var column = datatableInstance.column($(this).attr('data-column'));
-                        //column.visible( ! column.visible() );
+                            $popup_visible = false;
+
+                        }//if
+
                     } );
 
                 }else {
@@ -892,6 +918,8 @@
 
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
+            console.log('limpiando');
+            $datatableInstance.clear().draw();
             fun_ejecuta_busqueda();
         }else if ($('#txtDateini' ).val()!='' || $('#txtDatefin' ).val()!='')
         {
@@ -919,7 +947,9 @@
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-            var datatableInstance = null;
+            var $datatableInstance = null;
+            //comportamiento del popup
+            var $popup_visible = false;
 
         	return {
 		        init: function() {
@@ -934,9 +964,9 @@
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        //$('#message').append('voy 4');
+
                     });
-                    //$('#message').append('voy 3');
+
 		        }
 		    };
         }

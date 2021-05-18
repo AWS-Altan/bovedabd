@@ -215,7 +215,7 @@
 		})
         /// a aqui
 
-        $('#message_error').append('voy finish B ');
+    
         //$.unblockUI();
 
     } //finished
@@ -230,7 +230,7 @@
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-            $('#message_error').append('voy 1');
+            
 
         	return {
 		        init: function() {
@@ -238,14 +238,14 @@
                     $( "#finish" ).text('Alta');
 
                     $('#message_error').empty();
-				    $('#message_error').append('voy 2');
+				    
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        $('#message_error').append('voy 4');
+                        
                     });
-                    $('#message_error').append('voy 3');
+                    
 		        }
 		    };
         }

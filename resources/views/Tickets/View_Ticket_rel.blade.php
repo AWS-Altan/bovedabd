@@ -347,9 +347,9 @@
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                        //$('#message').append('voy 4');
+                        
                     });
-                    //$('#message').append('voy 3');
+                    
 		        }
 		    };
         }
