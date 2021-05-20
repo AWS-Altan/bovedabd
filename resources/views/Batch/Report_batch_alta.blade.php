@@ -128,10 +128,6 @@
                                 "data": "send_ip"
                             },
                             {
-                                //Campo de HOST
-                                "data": "send_host"
-                            },
-                            {
                                 //Tipo Dispositivo
                                 "data": "send_idtipodisp"
                             },

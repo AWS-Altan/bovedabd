@@ -29,6 +29,7 @@ class Report_userdisp_Controller extends BaseController
         $this->httpRepCamb  = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
         $this->httpRepForce = new Client( [ 'base_uri' => config('conf.url_repbat_force') ] );
         $this->httpRepRota = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
+        $this->httpReptipdisp = new Client( [ 'base_uri' => config('conf.url_tipo_disp') ] );       
 
     }
 
@@ -177,13 +178,14 @@ class Report_userdisp_Controller extends BaseController
     }
 
 
-        public function session_force_call()
+    public function session_force_call()
     {
         //$this->loginResponse = $this->login();
 
         loginfo('Obtiene Datos del API para el forzado de la sesion: ');
 
-        $json = request()->data;
+        $json = request()->json()->all();
+        //$json = request()->data;
         loginfo($json);
 
 
@@ -204,6 +206,33 @@ class Report_userdisp_Controller extends BaseController
         return json_encode( $req );
     }
 
+    public function fun_get_tipo_Dispositivo()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('Obtiene Datos del tipo de dispositivo: ');
+
+        $json = request()->json()->all();
+        //$json = request()->data;
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpReptipdisp->request('POST',config('conf.url_tipo_disp').'qry_tipo_dispositivo'
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_tipo_disp').'qry_tipo_dispositivo' , [$req]);
+            loginfo('termina ejecución API de forzado de sesion');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_tipo_disp').'qry_tipo_dispositivo' , [ $e ]);
+
+
+        }
+        return json_encode( $req );
+    }
 
 }
 

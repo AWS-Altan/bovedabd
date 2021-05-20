@@ -143,6 +143,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/call/access_user_camb', 'Report_userdisp_Controller@cambio_api_call')->name('access.call.report_camb');
         Route::post('/call/access_user_rotate', 'Report_userdisp_Controller@rotate_api_call')->name('access.call.report_rotate');
         Route::post('/call/session_force', 'Report_userdisp_Controller@session_force_call')->name('access.call.session_force');
+        Route::post('/call/gettipodisp', 'Report_userdisp_Controller@fun_get_tipo_Dispositivo')->name('access.call.tipo_disp_cat');
 
 
         // Alta Catalogo dispositivos

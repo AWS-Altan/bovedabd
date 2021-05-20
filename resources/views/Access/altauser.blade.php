@@ -320,6 +320,13 @@
             return false;
         }
 
+        //trasnformado a mayusculas del usuario en MSS MSS
+        if($('select#tipoDispositivo').prop('selectedIndex')==12)
+        {            
+            sJLuser=$('#usuarioDispositivo').val();
+            $('#usuarioDispositivo').val(sJLuser.toUpperCase());
+        }//if   
+
         if ( $('select#grupo').prop('selectedIndex')<=0){
             $('#grupoError').empty();
             $('#grupoError').append('<label class="alert-danger mb-30 text-left">seleccionar un grupo</label>');
@@ -499,7 +506,21 @@
         $('#txtTime').val('');
     }
 
+    //trasnsforma en mayusculas el usuario si se escoge el valor que se incializa
+    function funMayusfield(sJL_disp_mayusc)
+    {
+        console.log('cambio');
+        //tipoDispositivoError
+        console.log($('select#tipoDispositivo').prop('selectedIndex'));
+        if($('select#tipoDispositivo').prop('selectedIndex')==sJL_disp_mayusc)
+        {            
+            sJLuser=$('#usuarioDispositivo').val();
+            console.log('cambio en mayusc ');
+            console.log(sJLuser);
+            $('#usuarioDispositivo').val(sJLuser.toUpperCase());
+        }//if        
 
+    }//funMayusfield
 
     //Cargo comportmiento de inicio de pantalla
     $(window).on('load', function()
@@ -522,6 +543,7 @@
         $('#nombreSolicitante, #paternoSolicitante ,#maternoSolicitante').prop('disabled',true);
         $('#movilSolicitante, #mailSolicitante, #organizacionSolicitante').prop('disabled',true);
 
+        document.getElementById("usuarioDispositivo").onchange = function() {funMayusfield(12)};
 
         bloqueo();
         var data = {};

@@ -138,7 +138,7 @@
     //funcion que mando a llamar para poder mandar la peticion debaja en el boton de baja de la tabla
     function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value){
 
-        console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
+        console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja: ' + sJLipodisp_value);
 
         /*var jsonborra = {
             "ip": sJLip_value,
@@ -157,7 +157,7 @@
             url: "{{ route('access.call.report_baja') }}",
             type: 'POST',
             contentType: "application/json",
-            data: JSON.stringify(jsonborra)
+            data: JSON.stringify(json)
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
@@ -258,7 +258,7 @@
             json.idtipo_disp= ""+sJLipodisp_value+"";
             json.operacion= "batch";
 
-        $.blockUI({ message: 'Procesando ...',css: {
+        $.blockUI({ message: 'Forzando Cierre de Sesion ...',css: {
             border: 'none',
             padding: '15px',
             backgroundColor: '#000',
@@ -293,6 +293,47 @@
         return obj;
     }
 
+    function fun_getTipoDispositivo()
+    {
+
+        console.log('Voy a sacar el tipo de dispositivo');        
+
+        var json = {};
+            json.operacion= "tipo_dispositivo";
+
+        $.blockUI({ message: 'Procesando ...',css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        } });
+
+        $.ajax({
+            url: "{{ route('access.call.tipo_disp_cat') }}",
+            async: false,
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(json)
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+
+            console.log("ejecución catalogo dispositivos " + obj.status);
+            console.log(obj);
+
+        })
+        .fail(function() {
+            console.log("Falla catalogo dispositivos ");
+        })
+        .always(function() {
+            console.log("catalogo dispositivos always ");
+            $.unblockUI();
+        });
+        return obj;
+    }//fun_getTipoDispositivo
 
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
@@ -500,7 +541,7 @@
 
 
                             $.confirm({
-                                title: 'Borrado de Registro',
+                                title: 'Baja de Usuario',
                                 content: '¿Desea Enviar la solucitud de borrado de Registro para la IP ' + sJLip_value + '?',
                                 buttons: {
                                     Confirmar: {
@@ -534,6 +575,10 @@
                             $popup_visible = true;
                             var row = $datatableInstance.row($(this).closest('tr'));
                             console.log('row '+row);
+                            objtipo=fun_getTipoDispositivo();
+                            console.log('detalles ');
+                            console.log(objtipo.details);
+                            //detJLTiposDisp = jQuery.parseJSON(objtipo.details);
 
                             var sJLip_value = row.data()['send_ip'];
                             var sJLuser_value = row.data()['send_usuario'];
@@ -804,6 +849,7 @@
                                                 return false;
                                             }
                                             obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
+                                            console.log(txtJLperf);
                                             console.log('obj21');
                                             console.log(obj21);
                                             $.alert('Confirmación de Aplicación Status: ' + obj21.status );
@@ -861,7 +907,7 @@
                                             obj22 = fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
                                             console.log('obj22');
                                             console.log(obj22);
-                                            $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() );
+                                            $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() +'<br> status: ' + obj22.description);
 
                                         }
                                     },
@@ -895,7 +941,6 @@
         .fail(function() {
                 $('#message_error').empty();
 				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
-	        	$.unblockUI();
 	        })
         .always(function() {
         	//console.log(obj);
@@ -919,6 +964,7 @@
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
             console.log('limpiando');
+            $popup_visible = false;
             $datatableInstance.clear().draw();
             fun_ejecuta_busqueda();
         }else if ($('#txtDateini' ).val()!='' || $('#txtDatefin' ).val()!='')

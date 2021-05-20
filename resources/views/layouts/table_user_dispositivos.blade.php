@@ -8,7 +8,6 @@
 								<thead>
 									<tr>
 										<th>IP</th>
-										<th>Host</th>
 										<th>Tipo Dispositivo</th>
 										<th>Grupo</th>
 										<th>Usuario</th>
