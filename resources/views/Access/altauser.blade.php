@@ -484,7 +484,7 @@
                     $('#validar').hide();
     				$('#finish').hide();
     				$('#message').empty();
-                    $('#message').append('<label class="alert-success  mb-30 text-center" style="height:80px; width:103%;">Alta de usuario <strong>&nbsp;&eacutexitosa</strong></label>');
+                    $('#message').append('<label class="alert-success  mb-30 text-center" style="height:80px; width:103%;">Su petici&oacute;n ha sido enviada<strong>&nbsp;exitosamente</strong></label>');
                 }
 				$.unblockUI();
             }
