@@ -126,7 +126,7 @@
                 @if ( !isset( $menu[38] ) )
                     <li>
                         <a href="{{ route('batch.bajareport.index') }}">
-                            <div class="pull-left"><span class="right-nav-text">Reporte Baja dispositivos</span></div>
+                            <div class="pull-left"><span class="right-nav-text">Reporte Baja de Usuarios</span></div>
                             <div class="clearfix"></div>
                         </a>
                     </li>
@@ -360,19 +360,20 @@
         <!-- Manejo de Usuarios Internos del sistema -->
         <li><hr class="light-grey-hr mb-10"/></li>
 		<li>
-			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cog mr-20"></i><span class="right-nav-text">Configuración</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Configuración</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="operaciones_dr" class="collapse collapse-level-1 two-col-list">
 
 
                 <!-- Alta usuarios -->
-                @if ( !isset( $menu[47] ) )
-					<li>
-						<a href="{{ route('Users.alta_solicitantes.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Alta de solicitantes</span></div>
-							<div class="clearfix"></div>
-						</a>
-					</li>
-                @endif
+                <!-- 2021/05/16 comentado por que no tiene funcionalidad -->
+                <!-- @if ( !isset( $menu[47] ) ) -->
+				<!-- 	<li> -->
+				<!-- 		<a href="{{ route('Users.alta_solicitantes.index') }}"> -->
+				<!-- 			<div class="pull-left"><span class="right-nav-text">Alta de solicitantes</span></div> -->
+				<!-- 			<div class="clearfix"></div> -->
+				<!-- 		</a> -->
+				<!-- 	</li> -->
+                <!-- @endif -->
 
 
                 <!-- Alta usuarios -->
@@ -388,7 +389,7 @@
                 @if ( !isset( $menu[3] ) )
 					<li>
 						<a href="{{ route('Users.baja_user.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Baja usuario</span></div>
+							<div class="pull-left"><span class="right-nav-text">Deshabilitación de usuario</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
@@ -412,23 +413,23 @@
 					</li>
                 @endif
 
-                @if ( !isset( $menu[7] ) )
-					<li>
-						<a href="{{ route('Users.Deactive_user.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Desactivación de usuario</span></div>
-							<div class="clearfix"></div>
-						</a>
-					</li>
-                @endif
+                <!-- @if ( !isset( $menu[7] ) ) -->
+				<!--	<li> -->
+				<!--		<a href="{{ route('Users.Deactive_user.index') }}"> -->
+				<!--			<div class="pull-left"><span class="right-nav-text">Desactivación de usuario</span></div> -->
+				<!--			<div class="clearfix"></div> -->
+				<!--		</a> -->
+				<!--	</li> -->
+                <!-- @endif -->
 
-                @if ( !isset( $menu[8] ) )
-					<li>
-						<a href="{{ route('Users.Change_pass.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Cambiar / Rotar Password</span></div>
-							<div class="clearfix"></div>
-						</a>
-					</li>
-                @endif
+                <!--@if ( !isset( $menu[8] ) ) -->
+				<!--	<li> -->
+				<!--		<a href="{{ route('Users.Change_pass.index') }}"> -->
+				<!--			<div class="pull-left"><span class="right-nav-text">Cambiar / Rotar Password</span></div> -->
+				<!--			<div class="clearfix"></div> -->
+				<!--		</a> -->
+				<!--	</li> -->
+                <!--@endif -->
 
 
                 <!-- Adicion 2020/11/26 -->

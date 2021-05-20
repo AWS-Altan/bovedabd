@@ -20,6 +20,13 @@ class Modif_user_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
+
+    public function __construct()
+    {
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_gui_user') ] );
+
+    }
+
     /**
      * Show the Porta In.
      *
@@ -93,72 +100,55 @@ class Modif_user_Controller extends BaseController
     {
         // Valido Sesion
         //$this->loginResponse = $this->login();
+        loginfo('Alta de usuario');
+        $json = request()->json()->all();
+        loginfo($json);
 
         //Escribo al log
-        loginfo('Modificación de usuario');
         // Escribo los datos de alta
-        loginfo(' mail:' . request()->send_email .
-                ' usuario: ' . request()->send_username .
-                ' id company:' . request()->send_id_company .
-                ' id estado:' . request()->send_id_estado .
-                ' id nivel:' . request()->send_id_nivel .
-                ' id reesponsable:' . request()->send_id_responable .
-                ' id solicitante:' . request()->send_id_solicitante .
-                ' telefono:' . request()->send_Telefono);
-        //Inserto al log de la base
-        Vwlogs::create([
-                        "vwuser_id" => app('auth')->user()->id,
-                        "actions" => 'Update',
-                        "responses" => 'test',
-                        "action_low" => 'test2',
-                        "resoponse_low" => 'test3'
-                    ]);
+        loginfo(' mail:' . request()->mail .
+                ' nombre:'. request()->nombre.
+                ' paterno:'. request()->paterno.
+                ' materno:'. request()->materno.
+                ' msisdn:'. request()->msisdn.
+                ' id_company:'. request()->id_company.
+                ' fecha_alta:'. request()->fecha_alta.
+                ' fecha_termino:'. request()->fecha_termino.
+                ' id_estado:'. request()->id_estado.
+                ' nivel:'. request()->nivel.
+                ' idresp:'. request()->idresp
+                );
+
+
+
         //Escribo al log
         loginfo('inserte en logs');
 
-        //traigo el maximo
-        try{
-            $max_id = Vwuser::max('id');
-            loginfo('Valor max');
-            loginfo($max_id);
-            $max_id++;
-        }catch (Exception $e) {
+        //hago la inserción por la API
+
+        try {
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_user'). 'modif-usuario'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_user') . 'modif-usuario', [$req]);
+            loginfo('termina ejecución API');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_user') .'modif-usuario', [ $e ]);
+
 
         }
-
-        //Realizo insercion en el Catalogo
-        try {
-
-                $exception = Vwuser::where('email', request()->send_email)
-                ->update([
-                        'name' => request()->send_username,
-                        'phone' => request()->send_Telefono,
-                        'id_company' => request()->send_id_company,
-                        'id_estado' => request()->send_id_estado,
-                        'nivel' => request()->send_id_nivel,
-                        'idresp' => request()->send_id_responable,
-                        'id_solicitante' => request()->send_id_createdby
-                ]);
-
-                //Escribo al log
-                loginfo('actualice usuario');
-
-                $response = json_encode(['description' => 'OK',
-                                  'statusCode' => 200
-                    ]);//json encode
-            } catch (Exception $e) {
-                loginfo('Error al actualizar el usuario', [ $e->getMessage() ]);
-                $response = json_encode(['description' => 'NOk',
-                                  'statusCode' => 400
-                    ]);//json encode
-
-                //Escribo al log
-                loginfo('Error en actualizacion');
-                loginfo($e->getMessage());
-            } //Try/Catch
-
-            //regreso respuesta
-        return $response;
+        loginfo('Regreso información');
+        //Inserto al log de la base
+        Vwlogs::create([
+                        "vwuser_id" => app('auth')->user()->id,
+                        "actions" => 'Alta_de_usaurio',
+                        "responses" => 'test',
+                        "action_low" => config('conf.url_gui_user'). 'alta-usuario',
+                        "resoponse_low" => 'test3'
+                    ]);
+        return json_encode( $req );
     }//modif_user()
 
 }

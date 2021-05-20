@@ -23,7 +23,9 @@ trait Getmenu
             if ( !is_null( $value->config ) )
             {
                 // sisfen - aqui va la parte de seguridad par los Menus, cuando se vea ese tema , colocarla
-
+                foreach (json_decode( $value->config )->role_excluded as $val)
+                    if (    $val->id == session()->get('user_nivel') )
+                       $menu[$value->id] = $value->name;
             }
 
         return $menu;

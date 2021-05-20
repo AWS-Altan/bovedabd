@@ -34,7 +34,7 @@ class Active_user_Controller extends BaseController
         return view('Users.active_user')-> with('menu',$menu); // test 2
     }
 
-       protected function login()
+    protected function login()
     {
 
     }

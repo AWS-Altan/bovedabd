@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser};
+use App\Entities\{Usermana};
 
 class HomeController extends Controller
 {

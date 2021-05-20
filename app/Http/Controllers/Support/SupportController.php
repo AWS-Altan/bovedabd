@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
-use App\Entities\{Vwuser};
+use App\Entities\{Usermana,Vwuser};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -21,7 +21,7 @@ use Hash;
 
 /**********************
  *  Nombre: SupportController.php
- *  Descripción: Pantalla despues del login, muestra el cambio de contraseña si es el primer ingreso, 
+ *  Descripción: Pantalla despues del login, muestra el cambio de contraseña si es el primer ingreso,
  *  Historial modificaciones:
  *
  * *********************/
@@ -51,7 +51,7 @@ class SupportController extends BaseController
             'passwd' => $sJL_pass64
         ];
 
-        loginfo('Version 2020/02/02 ');
+        loginfo('Version 2020/05/12 ');
 
         try {
             //$req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'boveda-login', [
@@ -70,14 +70,20 @@ class SupportController extends BaseController
             loginfo("Acceso: " .  $sJLstatus . " level:" . $sJLnivel . " detalle:" . $sJLdetails . " nombre:" . $sJLnombre);
 
 
-            $resp = Vwuser::where( 'email', request()->email )->first();
+            //$resp = Usermana::where( 'mail', request()->email )->first();
+            $resp = Usermana::where([['mail','=',request()->email],['id_estado','=','1']]  )->first();            
+            
+            /*tabla view users en proceso de borrado*/
+            $resp2 = Vwuser::where( 'email', request()->email )->first();
+
             if ($sJLstatus == "ok")
             {
                 loginfo('Login exitoso del usuario ', [request()->email]);
                 $new_session = \Session::getId();
 
-                if (is_null($resp)) {
-
+                /*tabla view users en proceso de borrado*/
+                if (is_null($resp)) 
+                {
                     loginfo('se crea el registro del usuario para bitacora ', [request()->email]);
                     Vwuser::create([
                         'name' => $sJLnombre,
@@ -86,21 +92,21 @@ class SupportController extends BaseController
                         'email' => request()->email,
                         'active' => "1"
                     ]);
-                    $resp = Vwuser::where( 'email', request()->email )->first();
+                    $resp2 = Vwuser::where( 'email', request()->email )->first();
                 }
 
-
-
                 $resp->last_session_id = $new_session;
-                $resp->password = Hash::make( request()->password );
                 $resp->save();
-
-
                 $new_session = \Session::getId();
-
                 session()->put('idsession', $new_session);
                 session()->put('email',request()->email);
-                
+                session()->put('user_nivel',$resp->nivel);
+
+                /*tabla view users en proceso de borrado*/
+                $resp2->last_session_id = $new_session;
+                $resp2->password = Hash::make( request()->password );
+                $resp2->save();
+
                 return  json_encode( [ 'mvno' => '1' ] );
 
             } //if
@@ -125,7 +131,7 @@ class SupportController extends BaseController
 
     public function reset()
     {
-        $res = Vwuser::where( 'id', app('auth')->user()->id )->first();
+        //$res = Usermana::where( 'id', app('auth')->user()->id )->first();
         $res->password = Hash::make( request()->password );
         $res->active = 1;
         $res->save();
