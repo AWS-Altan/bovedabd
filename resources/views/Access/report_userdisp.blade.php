@@ -595,8 +595,8 @@
 
                             sjL_detailCP_text = '<form action="" class="formName">';
                             sjL_detailCP_text += '<div class="form-group">';
-                            sjL_detailCP_text += '<label>Tipo Dispositivo</label>';
-                            sjL_detailCP_text += '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />';
+                            //sjL_detailCP_text += '<label>Tipo Dispositivo</label>';
+                            //sjL_detailCP_text += '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />';
                             sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile1">Actualización de Perfil</label>';
                             sjL_detailCP_text += '<select id="cbo_profile1" class="form-control" name="cbo_profile1">';
 
@@ -683,7 +683,8 @@
                                         text: 'Actualizar',
                                         btnClass: 'btn-red',
                                         action: function () {
-                                            var txtJLdisp = this.$content.find('.txtdisp').val();
+                                            //var txtJLdisp = this.$content.find('.txtdisp').val();
+                                            var txtJLdisp = sJLipodisp_value;
                                             var txtJLperf = $('#cbo_profile1 option:selected').val();
                                             if(!txtJLdisp || !txtJLperf){
                                                 $.alert('Coloque información valida');
@@ -718,6 +719,8 @@
                     $('table#Tbl_usrdisp').on('click', 'a.rotar_disabled', function (e)
                     {
                         e.preventDefault();
+                        console.log('popup visible:');
+                        console.log($popup_visible);1
                         $.alert('disabled: ');
                     });//rotar_disabled
 
@@ -738,7 +741,7 @@
                             var sJLuser_value = row.data()['send_usuario'];
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
                             var sJLiprofchange_value = row.data()['send_profile_change'];
-
+                            var sJLiperfil_value = row.data()['send_idperfil2'];                          
 
 
                             console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' puede camb ' + sJLiprofchange_value );
@@ -751,10 +754,10 @@
                             sjL_detailCP_text += '<div class="form-group">';
                             sjL_detailCP_text += '<label>Proporcione la nueva contraseña</label>';
                             sjL_detailCP_text += '<input type="text" placeholder="Contraseña" class="txtcontr form-control" required />';
-                            sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile2">Actualización de Perfil</label>';
-                            sjL_detailCP_text += '<select id="cbo_profile2" class="form-control" name="cbo_profile2">';
+                            //sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile2">Actualización de Perfil</label>';
+                            //sjL_detailCP_text += '<select id="cbo_profile2" class="form-control" name="cbo_profile2">';
 
-                            aJL_profiles.forEach(function(iJL_perfil)
+                            /*aJL_profiles.forEach(function(iJL_perfil)
                             {
                                 console.log(iJL_perfil);
 
@@ -824,7 +827,7 @@
                                     sjL_detailCP_text += '<option value="13">GUI</option>';
                                 }//if
 
-                            });
+                            });*/
 
 
                             sjL_detailCP_text += '</div>';
@@ -842,7 +845,8 @@
                                         keys: ['enter', 'shift'],
                                         action: function(){
                                             var txtJLcontr = this.$content.find('.txtcontr').val();
-                                            var txtJLperf = $('#cbo_profile2 option:selected').val();
+                                            //var txtJLperf = $('#cbo_profile2 option:selected').val();
+                                            var txtJLperf = sJLiperfil_value;
                                             console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
                                             if(!txtJLcontr){
                                                 $.alert('Coloque información valida');

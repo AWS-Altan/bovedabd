@@ -8,7 +8,7 @@
                 <div class="form-fecha" style=" display:flex; align-items:flex-end;">
                     <div class="col-sm-2">
                         <label class="control-label mb-5">Inicial</label>
-                        <div class='input-group date' id = "dateInicioBotonRojo">
+                        <div class='input-group date' id = "dateInicioBRojoReprot">
                             <input id="initialDate" type='text' class="form-control" placeholder="AÑO-MM-DD HH:mm:ss"/>
                             <span class="input-group-addon">
                                 <span class="fa fa-calendar"></span>
@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-sm-2">
                         <label class="control-label mb-5">Final</label>
-                        <div class='input-group date' id = "dateFinBotonRojo">
+                        <div class='input-group date' id = "dateFinBRojoReport">
                             <input id="finalDate" type='text' class="form-control" placeholder="AÑO-MM-DD  HH:mm:ss"/>
                             <span class="input-group-addon">
                                 <span class="fa fa-calendar"></span>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                
+
         </div>
     </div>
     <!-- /Row -->
