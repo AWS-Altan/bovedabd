@@ -1,6 +1,8 @@
 <div class="fixed-sidebar-left">
 	<ul class="nav navbar-nav side-nav nicescroll-bar fixed">
         <li><hr class="light-grey-hr mb-10"/></li>
+
+        @if ( !isset( $menu[43] )  )
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#acciones_dr"><div class="pull-left"><i class="fa fa-server mr-20"></i><span class="right-nav-text">Admin de Equipos</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="acciones_dr" class="collapse collapse-level-1 two-col-list">
@@ -30,8 +32,10 @@
                 @endif
 			</ul>
         </li>
+        @endif
 
         <li><hr class="light-grey-hr mb-10"/></li>
+        @if ( !isset( $menu[34] )  )
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#batch_dr"><div class="pull-left"><i class="fa fa-user mr-20"></i><span class="right-nav-text">Admin de Usuarios</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="batch_dr" class="collapse collapse-level-1 two-col-list">
@@ -83,7 +87,7 @@
                         </a>
                     </li>
                 @endif
-                @if ( !isset( $menu[38] ) )
+                @if ( !isset( $menu[40] ) )
                     <li>
                         <a href="{{ route('batch.bajareport.index') }}">
                             <div class="pull-left"><span class="right-nav-text">Reporte Baja de Usuarios</span></div>
@@ -109,6 +113,7 @@
                 @endif
 			</ul>
         </li>
+        @endif
 
 
         <li><hr class="light-grey-hr mb-10"/></li>
@@ -203,14 +208,7 @@
                     </li>
                 @endif
 
-                @if ( !isset( $menu[16] )  )
-                    <li>
-                        <a href="{{ route('call.chart.general') }}">
-                            <div class="pull-left"><span class="right-nav-text">Prueba Graficas</span></div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </li>
-                @endif
+
 
             </ul>
 
@@ -218,6 +216,7 @@
 		@endif
 
         <li><hr class="light-grey-hr mb-10"/></li>
+        @if ( !isset( $menu[1] )  )
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#operaciones_dr"><div class="pull-left"><i class="fa fa-cogs mr-20"></i><span class="right-nav-text">Configuración</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 			<ul id="operaciones_dr" class="collapse collapse-level-1 two-col-list">
@@ -268,6 +267,7 @@
 
 			</ul>
 		</li>
+        @endif
 
 		<li><hr class="light-grey-hr mb-10"/></li>
 
