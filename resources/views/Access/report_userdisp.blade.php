@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('username')">
                                             <label for="radio7" style="margin-bottom: 0px;">
                                                 USUARIO
                                             </label>
@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio8" value="option4" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio8" value="option4" Onclick="TipoDato4('nombre')">
                                             <label for="radio8" style="margin-bottom: 0px;">
                                                 SOLICITANTE
                                             </label>
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio9" value="option5" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio9" value="option5" Onclick="TipoDato4('status')">
                                             <label for="radio8" style="margin-bottom: 0px;">
                                                 STATUS
                                             </label>
@@ -296,7 +296,7 @@
     function fun_getTipoDispositivo()
     {
 
-        console.log('Voy a sacar el tipo de dispositivo');        
+        console.log('Voy a sacar el tipo de dispositivo');
 
         var json = {};
             json.operacion= "tipo_dispositivo";
@@ -741,7 +741,7 @@
                             var sJLuser_value = row.data()['send_usuario'];
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
                             var sJLiprofchange_value = row.data()['send_profile_change'];
-                            var sJLiperfil_value = row.data()['send_idperfil2'];                          
+                            var sJLiperfil_value = row.data()['send_idperfil2'];
 
 
                             console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' puede camb ' + sJLiprofchange_value );
@@ -960,24 +960,113 @@
 
     }//fun_ejecuta_busqueda
 
+    function filtra_tabla()
+    {
+
+        console.log('hago filtro tabla');
+
+        $datatableInstance.draw();
+
+
+    }//filtra_tabla
+
+    // Custom filtering function which will search data in column four between two values
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex )
+        {
+
+
+            var bJLFiltro = false;
+            if( $('#txtDateini' ).val() == '' && $('#txtDatefin' ).val() == '' )
+            {
+                console.log('Consulta sin filtro');
+                bJLFiltro = true;
+            }
+
+            if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
+            {
+                console.log('sisfen fecha');
+                //reviso los campos del filtro
+                var sJL_min = new Date($('#txtDateini' ).val());
+                var sJL_max = new Date($('#txtDatefin' ).val());
+                var date = new Date(data[9]);
+                console.log(sJL_min);
+                console.log(sJL_max);
+                console.log(date);
+                if (sJL_min <= date && date <= sJL_max )
+                {
+                    console.log('Fech dentro');
+                    if($('#inputData').val()=='')
+                    {
+                        bJLFiltro = true;
+                    }//if
+                    else
+                    {
+                        sJL_dato=$('#inputData').val();
+                        if(document.getElementById('radio5').checked)
+                        {
+                            sJL_search = data[0];
+                            console.log('filtro IP:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio6').checked)
+                        {
+                            sJL_search = data[1];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro Hostname:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio7').checked)
+                        {
+                            sJL_search = data[4];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro usuario:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio8').checked)
+                        {
+                            sJL_search = data[8];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro solicitante:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio9').checked)
+                        {
+                            sJL_search = data[6];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro status:'+sJL_dato);
+
+                        }//if
+                        if (sJL_search.includes(sJL_dato))
+                        {
+                            bJLFiltro = true;
+                        }//if
+                    }//else
+                }//if
+            }//if
+            return bJLFiltro;
+        }
+    );
 
 
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 
+        //$datatableInstance.clear().draw();
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
-            console.log('limpiando');
+            $('#message_error').empty();
             $popup_visible = false;
-            $datatableInstance.clear().draw();
-            fun_ejecuta_busqueda();
-        }else if ($('#txtDateini' ).val()!='' || $('#txtDatefin' ).val()!='')
+            //$datatableInstance.clear().draw();
+            filtra_tabla();
+            //fun_ejecuta_busqueda();
+        }else
         {
             if ( $('#txtDateini' ).val()=='' ){
                 $('#message_error').empty();
                 $('#message_error').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha inicio de consulta</label>');
                 $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
-            return false;
+                return false;
             }
 
             if ( $('#txtDatefin' ).val()=='' ){
@@ -998,6 +1087,7 @@
         {
             //Inicio el comporatamiento de la ventana
             var $datatableInstance = null;
+
             //comportamiento del popup
             var $popup_visible = false;
 

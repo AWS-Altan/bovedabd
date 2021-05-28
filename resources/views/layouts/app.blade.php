@@ -156,6 +156,7 @@
         patrones['nombre']=/^[_a-z0-9]{50}$/;
         patrones['apellido']=/^[_a-z0-9]{50}$/;
         patrones['usuario']=/^[_a-z0-9]{50}$/;
+        patrones['status']=/^[_a-z0-9]{50}$/;
 
 
 		var inputTope = new Array();
@@ -174,6 +175,8 @@
         inputTope['nombre']=50;
         inputTope['apellido']=50;
         inputTope['usuario']=50;
+        inputTope['status']=50;
+
 
 		function bloqueo() {
 			$.blockUI({ message: 'Procesando ...',css: {
