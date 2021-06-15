@@ -988,9 +988,18 @@
                 console.log('sisfen fecha');
                 //reviso los campos del filtro
                 var sJL_min = new Date($('#txtDateini' ).val());
+                //sJL_min.toLocaleDateString('es-MX');
+                sJL_min.setHours(24,0,0,0);
                 var sJL_max = new Date($('#txtDatefin' ).val());
+                //sJL_max.toLocaleDateString('es-MX');
+                sJL_max.setHours(47,59,59,0);
+                //var sJL_max =  new Date(sJL_max.getTime() + millisecond + 1000 * (sec + 60 * (min + 60 * (hours + 24 * days))));
+                //var sJL_max = sJL_max + 59 + (1000*59) + (1000*60*59) + (1000*60*60*23)+(1000*60*60*24*1);
+
                 var date = new Date(data[9]);
+                console.log('sJL_min');
                 console.log(sJL_min);
+                console.log('sJL_max');
                 console.log(sJL_max);
                 console.log(date);
                 if (sJL_min <= date && date <= sJL_max )
@@ -1055,8 +1064,9 @@
         //$datatableInstance.clear().draw();
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
-            $('#message_error').empty();
+            console.log('limpiando');
             $popup_visible = false;
+            $('#message_error').empty();
             //$datatableInstance.clear().draw();
             filtra_tabla();
             //fun_ejecuta_busqueda();
@@ -1066,7 +1076,7 @@
                 $('#message_error').empty();
                 $('#message_error').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha inicio de consulta</label>');
                 $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
-                return false;
+            return false;
             }
 
             if ( $('#txtDatefin' ).val()=='' ){
