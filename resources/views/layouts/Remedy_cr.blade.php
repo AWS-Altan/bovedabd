@@ -9,7 +9,6 @@
 									<tr>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">CRQ</th>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">REQ</th>
-										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">ID Site</th>
                                         <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">IP</th>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Usuario</th>
                                         <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Solicitante</th>

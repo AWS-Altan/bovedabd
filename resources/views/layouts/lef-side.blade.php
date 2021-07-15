@@ -256,14 +256,7 @@
 					</li>
                 @endif
 
-                @if ( !isset( $menu[23] ) )
-					<li>
-						<a href="{{ route('Users.Masive_Sign_in.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Alta Masiva de usuarios</span></div>
-							<div class="clearfix"></div>
-						</a>
-					</li>
-				@endif
+
 
 			</ul>
 		</li>

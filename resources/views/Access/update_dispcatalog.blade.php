@@ -55,18 +55,33 @@
         //Validacion de campo de busqueda Input data del layou te busqueda
         var dato=$('#inputData').val();
         var valid=patrones[tipo_campo].test(dato);
+        console.log(dato);
+        console.log(valid);
 
         //REalizo validacion de que el dato este correcto
-		if (valid) {
+
+        if(document.getElementById('radio5').checked )
+        {        
+            if (valid)
+            {
+                fun_ejecuta_busqueda();
+                return true;
+            } //if
+            else {
+		        //$("#inputData").css({'border' : '1px solid #f73414'});
+			    //$("#message_error").css('color', '#f73414');
+			    $("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
+                return false;
+            }//else
+		} //if
+
+        if(document.getElementById('radio6').checked)
+        {
             fun_ejecuta_busqueda();
             return true;
+        }//if
 
-		} else {
-		    //$("#inputData").css({'border' : '1px solid #f73414'});
-			$("#message_error").css('color', '#f73414');
-			//$("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
-            return false;
-        }//else
+
 	}
 
 
@@ -307,7 +322,7 @@
         .done(function(response) {
 
             obj = jQuery.parseJSON(response);
-
+            console.log(obj);
 
             //id_selAmbiente
             switch(obj[0].Ambiente) {

@@ -130,7 +130,7 @@
                                                                     <table id="Tbl_usrdisp" class="table table-hover display">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th>Site</th>
+                                                                                <th>REQ</th>
                                                                                 <th>IP</th>
                                                                                 <th>Usuario</th>
                                                                                 <th>Solicitante</th>
@@ -269,9 +269,9 @@
                     ],
                     "columns": [
                             {
-                                //id_site
-                                "name": "id_site",
-                                "data": "id_site"
+                                //id_req
+                                "name": "id_req",
+                                "data": "id_req"
                             },
                             {
                                 //ip

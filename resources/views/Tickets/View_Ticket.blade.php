@@ -57,6 +57,7 @@
                 data.fecha_inicio = $('#initialDate').val();
                 data.fecha_termino = $('#finalDate').val();
             }
+            //esta consulta setea los cambios de fecha a 7 dias por motivos de que remedy no lo aguanta
 
 
             bloqueo();

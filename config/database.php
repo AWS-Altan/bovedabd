@@ -59,11 +59,13 @@ return [
             //'port' => env('DB_PORT', '3306'),
 
             // Desarrollo Boveda
-            //'host' => env('DB_HOST', '52.201.46.166'),
+
             'host' => env('DB_HOST', '192.168.224.12'),
             'database' => env('DB_DATABASE', 'boveda'),
-            'username' => env('DB_USERNAME', 'republica'),
-            'password' => env('DB_PASSWORD', 'S0yR0m3o-'),
+            
+            'username' => env('DB_USERNAME', 'spider'),
+            'password' => env('DB_PASSWORD', 'WtP8FGe82f8sbuH9fsQsqr4AUhFaftesqw29xRJYYuLS9cQzCxzJjsSz3AcxbhEWPd22sH'),
+
             'port' => env('DB_PORT', '3306'),
 
 

@@ -102,6 +102,9 @@ Route::group(['middleware' => ['auth']], function () {
         //Route::resource('/Send_pass', 'Send_pass_Controller', ['names' => ['index' => 'Users.Send_pass.index']])->only(['index']);
         // Menu de Alta Masiva usurios
         Route::resource('/Massive_users', 'Massive_SignIn_Controller', ['names' => ['index' => 'Users.Masive_Sign_in.index']])->only(['index']);
+        Route::post('/Massive_users_input', 'Massive_Batch_Cambio_Controller@load')->name('batch.masive_sign.load');
+        Route::post('/Massive_users_exec', 'Massive_Batch_Cambio_Controller@execute')->name('batch.masive_sign.exec');
+
     }); //Route
 
     Route::group(['prefix' => 'access', 'namespace' => 'Access'], function () {

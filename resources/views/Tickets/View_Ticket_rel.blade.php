@@ -115,8 +115,7 @@
                                                                 <div class="table-responsive">
                                                                     <table id="Tbl_usrdisp" class="table table-hover display">
                                                                         <thead>
-                                                                            <tr>
-                                                                                <th>Site</th>
+                                                                            <tr>                                                                                
                                                                                 <th>IP</th>
                                                                                 <th>Usuario</th>
                                                                                 <th>Task</th>
@@ -254,11 +253,6 @@
                     ],
                     "columns": [
                             {
-                                //id_site
-                                "name": "id_site",
-                                "data": "id_site"
-                            },
-                            {
                                 //ip
                                 "name": "ip",
                                 "data": "ip"
@@ -298,7 +292,7 @@
                 $('#value').val('');
 				$('#message_error').empty();
                 $("#message_error").css('color', 'red');
-				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar: </strong> ' + obj.details);
+				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar </strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
                 sJL_nextstep = false;

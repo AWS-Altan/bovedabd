@@ -14,7 +14,7 @@
                             <form id="step_two">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        @include('layouts.table_user_disp_baja_change')
+                                        @include('layouts.table_user_disp_change_batch')
                                     </div>
                                     <!-- Vigencia del usuario -->
                                     <div class="col-sm-2 mb-20">

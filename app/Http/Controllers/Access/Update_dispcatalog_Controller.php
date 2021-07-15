@@ -40,7 +40,7 @@ class Update_dispcatalog_Controller extends BaseController
         return view('Access.update_dispcatalog')-> with('menu',$menu);
     }
 
-       protected function login()
+    protected function login()
     {
 
     }

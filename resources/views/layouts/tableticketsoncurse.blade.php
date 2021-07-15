@@ -1,7 +1,7 @@
     <form id="form_tabs" action="#">
         <div class="row">
             <div class="mb-10">
-            <h6 class="txt-dark capitalize-font">Per&iacute;odo - Fecha Ingreso.</h6>
+            <h6 class="txt-dark capitalize-font">Busqueda en base a Fecha Inicio: </h6>
             </div>
             <div class="row">
 

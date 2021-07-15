@@ -645,9 +645,10 @@
                     }
 
                 });
-                if ( obj.isManager==="false" ) {
+                $('#solicitante').prop('disabled',true);
+                /*if ( obj.isManager==="false" ) {
                         $('#solicitante').prop('disabled',true);
-                }
+                }*/
 
 
             }
