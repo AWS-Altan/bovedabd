@@ -144,7 +144,7 @@
                 @if ( !isset( $menu[15] )  )
 					<li>
 						<a href="{{ route('Actividades.View_activ.index') }}">
-							<div class="pull-left"><span class="right-nav-text">Consulta de Tickets</span></div>
+							<div class="pull-left"><span class="right-nav-text">Consulta de Cambios</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>
@@ -173,7 +173,7 @@
                @if ( !isset( $menu[22] ) )
 				<li>
 					<a href="{{ route('Tickets.View_ticket_cons.index' , array('isMob'=>'false') ) }}">
-						<div class="pull-left"><span class="right-nav-text">Consulta de Tickets</span></div>
+						<div class="pull-left"><span class="right-nav-text">Consulta de Incidentes</span></div>
 						<div class="clearfix"></div></a>
 				</li>
                 @endif
