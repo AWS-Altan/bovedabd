@@ -9,7 +9,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Busqueda de Tickets</span></h3>
+						<h3><span class="head-font capitalize-font">Consulta de Incidentes</span></h3>
 						<section>
                             <form id="step_one">
                                 <!-- Template busqueda Actividad -->
@@ -33,7 +33,7 @@
                                     <div class="panel panel-default">
                                         <!-- Header Subseccion -->
                                         <div class="panel-heading">
-    		    						    Información del CRQ
+    		    						    Información del INC
                                         </div>
                                         <div class="card-body">
                                             <!--renglon-->
@@ -103,10 +103,7 @@
                                 <!-- Contenedor -->
                                 <form id="form_tabs" action="#">
                                     <div class="panel panel-default">
-                                        <!-- Header Subseccion -->
-                                        <div class="panel-heading">
-    		    						    Detalles equipos
-                                        </div>
+
                                         <div class="col-sm-12">
                                             <div class="form-group mt-12">
                                                     <div class="panel-wrapper collapse in">
@@ -115,7 +112,7 @@
                                                                 <div class="table-responsive">
                                                                     <table id="Tbl_usrdisp" class="table table-hover display">
                                                                         <thead>
-                                                                            <tr>                                                                                
+                                                                            <tr>
                                                                                 <th>IP</th>
                                                                                 <th>Usuario</th>
                                                                                 <th>Task</th>

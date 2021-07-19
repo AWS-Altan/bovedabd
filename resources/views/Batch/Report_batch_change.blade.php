@@ -9,7 +9,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
                     <div id="example-basic">
-						<h3><span class="head-font capitalize-font">Reporte Batch de Cambios</span></h3>
+						<h3><span class="head-font capitalize-font">Reporte Cambio de Privilegios Usuarios</span></h3>
 						<section>
                             <form id="step_two">
                                 <div class="row">

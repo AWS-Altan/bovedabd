@@ -117,10 +117,6 @@
                                 <!-- Contenedor -->
                                 <form id="form_tabs" action="#">
                                     <div class="panel panel-default">
-                                        <!-- Header Subseccion -->
-                                        <div class="panel-heading">
-    		    						    Detalles equipos
-                                        </div>
                                         <div class="col-sm-12">
                                             <div class="form-group mt-12">
                                                     <div class="panel-wrapper collapse in">
