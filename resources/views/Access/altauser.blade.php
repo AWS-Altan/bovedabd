@@ -97,7 +97,7 @@
                                                         <label class="help-block text-left">Contrase&ntilde;a</label>
                                                     </div>
                                                     <div class="col-sm-2">
-                                                        <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150">
+                                                        <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150" autocomplete="">
                                                             <div class="help-block with-errors" id="PasswordError"></div>
                                                     </div>
                                                     <div class="col-sm-2 mb-20">
