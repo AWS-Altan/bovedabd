@@ -642,7 +642,7 @@
         $iJL_passlen = sJL_password.length;
         $iJL_userlen = $iJL_username.length;
 
-        if($iJL_passlen !=0)
+        if($iJL_passlen !=0 )
         {
             console.log('password no vacio:'+ $iJL_passlen + ':');
             if($iJL_tipodisp!=null && $iJL_tipodisp!="")
@@ -669,10 +669,10 @@
                 while (i < sJL_password.length)
                 {
                     character = sJL_password.charAt(i);
-                    JLascii = sJL_password.charCodeAt (i);                    
+                    JLascii = sJL_password.charCodeAt (i);
                     //if (!isNaN(character * 1) && !bJL_valdate_numner)
                     iJLisnum=isNaN(character);
-                    
+
                     if (!iJLisnum)
                     {
                         bJL_valdate_numner = true;
@@ -694,7 +694,7 @@
                                 console.log('trae minus');
                             }//if
                         }//if
-                        
+
                     }//else
                     //if (character == character.toUpperCase() && !bJL_valdate_upper)
 
@@ -721,26 +721,26 @@
 
                     //giro la cadena
                     sJL_userRever = reverseString(sJL_userLower);
-                    
+
                     console.log(sJL_userRever);
                     bJL_valdrev_include = sJL_passLowe.includes(sJL_userRever);
                     console.log('contiene pass allr:' + bJL_valdrev_include);
 
                 }//if
-                
+
 
                 //carateres repetidos
                 var numberOfRepeats;
-                
-                for(var i = 0; i< sJL_password.length; i++) 
+
+                for(var i = 0; i< sJL_password.length; i++)
                 {
                     numberOfRepeats = CheckForRepeat(i, sJL_password, sJL_password.charAt(i));
-                    //do something                    
-                    if(numberOfRepeats > iJLMaxREps) 
+                    //do something
+                    if(numberOfRepeats > iJLMaxREps)
                     {
                         iJLMaxREps = numberOfRepeats;
                     }
-                    
+
                 };
                 console.log('caracteres repetidos');
                 console.log(iJLMaxREps);
@@ -748,7 +748,7 @@
                 //caracteres consecutivos
                 bJL_valdchar_consec = CheckConsecutive(sJL_password);
                 console.log('contiene caracteres conecutivos: ' + bJL_valdchar_consec );
-                
+
 
                 //termina validación de escenarios
 
@@ -799,20 +799,20 @@
                             console.log('password contiene el usuario alrevez');
                             alert('El password contiene el nombre del usuario escrito alrevez');
                             $('#password').val('');
-                        }//if                        
+                        }//if
                         if(iJLMaxREps>=2)
                         {
                             console.log('password contiene mas de dos caracteres consecutivos repetidos');
                             alert('El password contiene mas de dos caracteres consecutivos repetidos');
                             $('#password').val('');
-                        }                        
+                        }
                         if(bJL_valdchar_consec)
                         {
                             console.log('password contiene 3 o mas caracteres consecutivos al derecho o al reves');
                             alert('El password contiene 3 o mas caracteres consecutivos al derecho o al reves');
                             $('#password').val('');
                         }
-                        
+
 
                         break;
                     default:
@@ -838,36 +838,41 @@
     function fun_valida_username()
     {
         sJL_uname = $('#usuarioDispositivo').val();
+        iJL_userlen = sJL_uname.length;
         //console.log('Entre validación Username');
         $iJL_tipodisp = $('select#tipoDispositivo').val();
-        if($iJL_tipodisp!=null && $iJL_tipodisp!="")
+        if(iJL_userlen !=0 )
         {
-            //console.log('tipo dispositivo 2:'+ $iJL_tipodisp+':');
-            switch($iJL_tipodisp)
+            if($iJL_tipodisp!=null && $iJL_tipodisp!="" )
             {
-                case '14':
-                        // code block
-                        //console.log('validare el dato');
-                        if(sJL_uname.length > 6)
-                        {
-                            alert('El usuario de este tipo de dispositivo solo permite 6 caracteres en mayusculas ');
-                            sJL_uname = sJL_uname.substring(0,6)
-                            $('#usuarioDispositivo').val(sJL_uname);
-                        }//if
-                        $('#usuarioDispositivo').val(sJL_uname.toUpperCase());
-                    break;
+                //console.log('tipo dispositivo 2:'+ $iJL_tipodisp+':');
+                switch($iJL_tipodisp)
+                {
+                    case '14':
+                            // code block
+                            //console.log('validare el dato');
+                            if(sJL_uname.length > 6)
+                            {
+                                alert('El usuario de este tipo de dispositivo solo permite 6 caracteres en mayusculas ');
+                                sJL_uname = sJL_uname.substring(0,6)
+                                $('#usuarioDispositivo').val(sJL_uname);
+                            }//if
+                            $('#usuarioDispositivo').val(sJL_uname.toUpperCase());
+                        break;
 
-                default:
-                    console.log('Sin validación extra de usuario');
+                    default:
+                        console.log('Sin validación extra de usuario');
 
-            }//switch
+                }//switch
 
+            }//if
+            else
+            {
+                alert('Seleccione el tipo de dispositivo');
+                $('#usuarioDispositivo').val('');
+            }//else
         }//if
-        else
-        {
-            alert('Seleccione el tipo de dispositivo');
-            $('#usuarioDispositivo').val('');
-        }
+
     }//fun_valida_username
 
     //2021/07/28 - Acrtualización GUI - JLDS
@@ -902,7 +907,7 @@
 
     } //fun_cambio__resp_mail
 
-    function reverseString(str) 
+    function reverseString(str)
     {
         console.log(str);
         var newString = "";
@@ -912,26 +917,26 @@
         console.log(newString);
         return newString;
     }//reverseString
-    
+
     function probarRegex(regexp, cadena)
     {
         var subcadena;
         var bJL_return = false;
 
-        if (regexp.test(cadena)) 
+        if (regexp.test(cadena))
         {
             subcadena = ' contiene ';
             bJL_return = true;
         } //if
-        else 
+        else
         {
             subcadena = ' no contiene ';
         }
         console.log(cadena + subcadena + regexp.source);
-        return bJL_return;    
+        return bJL_return;
     }//probarRegex
 
-    function CheckForRepeat(startIndex, originalString, charToCheck) 
+    function CheckForRepeat(startIndex, originalString, charToCheck)
     {
         var repeatCount = 1;
         for(var i = startIndex+1; i< originalString.length; i++) {
@@ -939,30 +944,30 @@
                 repeatCount++;
             } else {
             return repeatCount;
-            }   
+            }
         }
         return repeatCount;
     }//CheckForRepeat
 
     function CheckConsecutive(s)
     {
-  
+
         // Get the length of the string
         let l = s.length;
 
         // Iterate for every index and
         // check for the condition
         for (let i = 2; i < l; i++) {
-            iJL_eval = (s[i].charCodeAt() - s[i - 1].charCodeAt());            
+            iJL_eval = (s[i].charCodeAt() - s[i - 1].charCodeAt());
             if (iJL_eval == 1)
-            {                
+            {
                 iJL_eval = (s[i - 1].charCodeAt()- s[i - 2].charCodeAt());
                 if (iJL_eval == 1)
                 {
                     return true;
-                }//if                
-            }//if                
-        }//for  
+                }//if
+            }//if
+        }//for
 
 
         for (let i = l-1; i > 2; i--) {
@@ -974,9 +979,9 @@
                 if (iJL_eval == 1)
                 {
                     return true;
-                }//if                
-            }//if                
-        }//for  
+                }//if
+            }//if
+        }//for
         return false;
     }
 
