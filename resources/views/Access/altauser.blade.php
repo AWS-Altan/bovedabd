@@ -1013,6 +1013,8 @@
         //catalogo de responsables
         //sJLresp = fun_llena_catalog("1",obj.data[0].send_idresp);
         sJLresp = fun_llena_catalog("1","");
+        $("usuarioDispositivo").attr("autocomplete", "off");
+        $("password").attr("autocomplete", "off");
         document.getElementById("usuarioDispositivo").onchange = function() {fun_valida_username()};
         document.getElementById("password").onchange = function() {fun_valida_password()};
         document.getElementById("tipoDispositivo").onchange = function() {fun_valida_cambio_disp()};
