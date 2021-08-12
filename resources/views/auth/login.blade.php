@@ -143,7 +143,7 @@
                             opacity: .5,
                             color: '#fff'
                         } });
-                        console.log("Version  2021/05/20");
+                        console.log("Version  2021/08/10");
                         $.ajax({
                             url: "{{ route('support.call.mvo') }}",
                             type: 'GET',
@@ -155,14 +155,17 @@
                         .done(function(response) {
                             var obj = jQuery.parseJSON(response);
                             console.log(obj);
-                            if(obj.error){
+                            if(obj.error)
+                            {
                                 $('#alert').empty();
                                 $('#email, #password').val('');
                                 $("#alert").css('color', '#f73414');
                                 $('#alert').append('Credenciales no válidas');
                                 $('#email').focus();
                                 console.log("Credenciales no validas ");
-                            }else{
+                            } //if
+                            else
+                            {
 
                                 console.log("Credenciales validas ");
                                 

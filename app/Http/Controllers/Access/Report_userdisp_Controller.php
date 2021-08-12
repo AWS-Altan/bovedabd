@@ -29,7 +29,7 @@ class Report_userdisp_Controller extends BaseController
         $this->httpRepCamb  = new Client( [ 'base_uri' => config('conf.url_repbat_cambio') ] );
         $this->httpRepForce = new Client( [ 'base_uri' => config('conf.url_repbat_force') ] );
         $this->httpRepRota = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
-        $this->httpReptipdisp = new Client( [ 'base_uri' => config('conf.url_tipo_disp') ] );       
+        $this->httpReptipdisp = new Client( [ 'base_uri' => config('conf.url_tipo_disp') ] );
 
     }
 

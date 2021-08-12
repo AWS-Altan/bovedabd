@@ -158,6 +158,13 @@
         patrones['usuario']=/^[_a-z0-9]{50}$/;
         patrones['status']=/^[_a-z0-9]{50}$/;
 
+        patrones['ambiente']=/^[_a-z0-9]{50}$/;
+        patrones['tipo']=/^[_a-z0-9]{50}$/;
+        patrones['modelo']=/^[_a-z0-9]{50}$/;
+		
+		
+
+
 
 		var inputTope = new Array();
 		inputTope['msisdn']=10;
@@ -176,6 +183,12 @@
         inputTope['apellido']=50;
         inputTope['usuario']=50;
         inputTope['status']=50;
+		inputTope['ambiente']=50;
+		inputTope['tipo']=50;
+		inputTope['modelo']=50;
+		
+		
+		
 
 
 		function bloqueo() {

@@ -30,6 +30,14 @@
                         </a>
                     </li>
                 @endif
+                @if ( !isset( $menu[46] ) )
+                    <li>
+                        <a href="{{ route('access.report_equip_catalog.index') }}">
+                            <div class="pull-left"><span class="right-nav-text">Reporte de Equipos en Catálogo</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
 			</ul>
         </li>
         @endif
@@ -256,7 +264,24 @@
 					</li>
                 @endif
 
+                @if ( !isset( $menu[51] ) )
+					<li>
+						<a href="{{ route('Users.modif_solic.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Manejo de Solicitantes</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
 
+
+                <!-- @if ( !isset( $menu[23] ) )  -->
+				<!--	<li>  -->
+				<!--		<a href="{{ route('Users.Masive_Sign_in.index') }}">  -->
+				<!--			<div class="pull-left"><span class="right-nav-text">Alta Masiva de usuarios</span></div>  -->
+				<!--			<div class="clearfix"></div>  -->
+				<!--		</a>  -->
+				<!--	</li>  -->
+				<!-- @endif -->
 
 			</ul>
 		</li>

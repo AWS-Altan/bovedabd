@@ -105,6 +105,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/Massive_users_input', 'Massive_Batch_Cambio_Controller@load')->name('batch.masive_sign.load');
         Route::post('/Massive_users_exec', 'Massive_Batch_Cambio_Controller@execute')->name('batch.masive_sign.exec');
 
+        // Menu de cambios de solicitantes
+        Route::resource('/Modif_solic', 'Modif_solicitantes_Controller', ['names' => ['index' => 'Users.modif_solic.index']])->only(['index']);
+        Route::post('/call/Modif_solicit', 'Modif_solicitantes_Controller@modif_user')->name('Users.call.modif_solicit');
+
     }); //Route
 
     Route::group(['prefix' => 'access', 'namespace' => 'Access'], function () {
@@ -165,6 +169,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/massive_disp_catalog', 'Massive_update_dispcatalog_Controller', ['names' => ['index' => 'access.massive_dispcatalog.index']])->only(['index']);
         Route::post('/access-load-dispcatalog', 'Massive_update_dispcatalog_Controller@load')->name('access.masive_dispcatalog.load');
         Route::post('/acess-exec-dispcatalog', 'Massive_update_dispcatalog_Controller@execute')->name('access.masive_dispcatalog.exec');
+
+        //2021/07/28 - Acrtualización GUI - JLDS
+        Route::resource('/rep_equip_catalog', 'Rep_EquipCat_Controller', ['names' => ['index' => 'access.report_equip_catalog.index']])->only(['index']);
+        Route::get('/call/rep_equip_catalog', 'Rep_EquipCat_Controller@search_data_api')->name('access.call.report_equip_catalog');
+
 
     }); //Route
 

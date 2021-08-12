@@ -73,7 +73,7 @@
                                     <div class="col-sm-5">
                                         <div class="radio radio-info" style="padding-top: 10px;">
                                             <input type="radio" name="radio1" id="radio9" value="option5" Onclick="TipoDato4('status')">
-                                            <label for="radio8" style="margin-bottom: 0px;">
+                                            <label for="radio9" style="margin-bottom: 0px;">
                                                 STATUS
                                             </label>
                                         </div>
@@ -133,10 +133,11 @@
     function ValidateNext() {
         fun_ejecuta_busqueda();
         return true;
-    }
+    } //ValidateNext
 
     //funcion que mando a llamar para poder mandar la peticion debaja en el boton de baja de la tabla
-    function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value){
+    function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value)
+    {
 
         console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja: ' + sJLipodisp_value);
 
@@ -211,7 +212,8 @@
 
     }//fun_report_cambio
 
-    function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr, txtJLperf){
+    function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr, txtJLperf)
+    {
 
         console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
 
@@ -247,7 +249,8 @@
         return obj;
     }//fun_report_rotar
 
-    function fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value){
+    function fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
+    {
 
         console.log('forzado sesion IP:'+ sJLip_value + ' user: ' + sJLuser_value + ' id_disp:' + sJLipodisp_value);
 
