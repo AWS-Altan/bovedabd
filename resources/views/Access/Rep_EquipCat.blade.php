@@ -39,7 +39,7 @@
                                         <div class="radio radio-info" style="padding-top: 10px;">
                                             <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('ip')">
                                             <label for="radio7" style="margin-bottom: 0px;">
-                                                ID Prin
+                                                IP Prin
                                             </label>
                                         </div>
                                     </div>
@@ -224,42 +224,42 @@
                         {
                             //Ambiente
                             "name": "Ambiente",
-                            "data": "Ambiente.S"
+                            "data": "Ambiente"
                         },
                         {
                             //Campo de HOST
                             "name": "ID",
-                            "data": "ID.S"
+                            "data": "ID"
                         },
                         {
                             //IP_Prin
                             "name": "IP_Prin",
-                            "data": "IP_Prin.S"
+                            "data": "IP_Prin"
                         },
                         {
                             //Marca
                             "name": "Marca",
-                            "data": "Marca.S"
+                            "data": "Marca"
                         },
                         {
                             //Tipo
                             "name": "Tipo",
-                            "data": "Tipo.S"
+                            "data": "Tipo"
                         },
                         {
                             //Modelo
                             "name": "Modelo",
-                            "data": "Modelo.S"
+                            "data": "Modelo"
                         },
                         {
                             //Estado
                             "name": "Estado",
-                            "data": "Estado.S"
+                            "data": "Estado"
                         },
                         {
                             //Tipo APP
                             "name": "Tipo_Aplicativo",
-                            "data": "Tipo Aplicativo.S"
+                            "data": "Tipo Aplicativo"
                         }
                     ],
                     dom: 'Bfrtip',
