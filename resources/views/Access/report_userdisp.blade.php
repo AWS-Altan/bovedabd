@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('username')">
                                             <label for="radio7" style="margin-bottom: 0px;">
                                                 USUARIO
                                             </label>
@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio8" value="option4" Onclick="TipoDato4('hostname')">
+                                            <input type="radio" name="radio1" id="radio8" value="option4" Onclick="TipoDato4('nombre')">
                                             <label for="radio8" style="margin-bottom: 0px;">
                                                 SOLICITANTE
                                             </label>
@@ -72,8 +72,8 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio9" value="option5" Onclick="TipoDato4('hostname')">
-                                            <label for="radio8" style="margin-bottom: 0px;">
+                                            <input type="radio" name="radio1" id="radio9" value="option5" Onclick="TipoDato4('status')">
+                                            <label for="radio9" style="margin-bottom: 0px;">
                                                 STATUS
                                             </label>
                                         </div>
@@ -133,12 +133,13 @@
     function ValidateNext() {
         fun_ejecuta_busqueda();
         return true;
-    }
+    } //ValidateNext
 
     //funcion que mando a llamar para poder mandar la peticion debaja en el boton de baja de la tabla
-    function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value){
+    function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value)
+    {
 
-        console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
+        console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja: ' + sJLipodisp_value);
 
         /*var jsonborra = {
             "ip": sJLip_value,
@@ -157,7 +158,9 @@
             url: "{{ route('access.call.report_baja') }}",
             type: 'POST',
             contentType: "application/json",
-            data: JSON.stringify(jsonborra)
+
+            data: JSON.stringify(json)
+
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
@@ -211,7 +214,8 @@
 
     }//fun_report_cambio
 
-    function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr, txtJLperf){
+    function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr, txtJLperf)
+    {
 
         console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
 
@@ -247,7 +251,8 @@
         return obj;
     }//fun_report_rotar
 
-    function fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value){
+    function fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
+    {
 
         console.log('forzado sesion IP:'+ sJLip_value + ' user: ' + sJLuser_value + ' id_disp:' + sJLipodisp_value);
 
@@ -258,7 +263,7 @@
             json.idtipo_disp= ""+sJLipodisp_value+"";
             json.operacion= "batch";
 
-        $.blockUI({ message: 'Procesando ...',css: {
+        $.blockUI({ message: 'Forzando Cierre de Sesion ...',css: {
             border: 'none',
             padding: '15px',
             backgroundColor: '#000',
@@ -293,6 +298,47 @@
         return obj;
     }
 
+    function fun_getTipoDispositivo()
+    {
+
+        console.log('Voy a sacar el tipo de dispositivo');
+
+        var json = {};
+            json.operacion= "tipo_dispositivo";
+
+        $.blockUI({ message: 'Procesando ...',css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        } });
+
+        $.ajax({
+            url: "{{ route('access.call.tipo_disp_cat') }}",
+            async: false,
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(json)
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+
+            console.log("ejecución catalogo dispositivos " + obj.status);
+            console.log(obj);
+
+        })
+        .fail(function() {
+            console.log("Falla catalogo dispositivos ");
+        })
+        .always(function() {
+            console.log("catalogo dispositivos always ");
+            $.unblockUI();
+        });
+        return obj;
+    }//fun_getTipoDispositivo
 
     // furncion para ejecutar busqueda
     function fun_ejecuta_busqueda()
@@ -498,7 +544,6 @@
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
                             console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
 
-
                             $.confirm({
                                 title: 'Borrado de Registro',
                                 content: '¿Desea Enviar la solucitud de borrado de Registro para la IP ' + sJLip_value + '?',
@@ -522,6 +567,31 @@
                             });
                             $popup_visible = false;
 
+
+                            $.confirm({
+                                title: 'Baja de Usuario',
+                                content: '¿Desea Enviar la solucitud de borrado de Registro para la IP ' + sJLip_value + '?',
+                                buttons: {
+                                    Confirmar: {
+                                        text: 'Confirmar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                        action: function()
+                                        {
+                                            obj = fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value);
+                                            $.alert('Confirmación de Aplicación Status: ' + obj.status + " Descripción: " + obj.description);
+                                        } //action
+                                    },
+                                    Cancelar: {
+                                        text: 'Cancelar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                    }
+                                }
+                            });
+                            $popup_visible = false;
+
+
                         }//if
                     } );
 
@@ -534,6 +604,12 @@
                             $popup_visible = true;
                             var row = $datatableInstance.row($(this).closest('tr'));
                             console.log('row '+row);
+
+                            objtipo=fun_getTipoDispositivo();
+                            console.log('detalles ');
+                            console.log(objtipo.details);
+                            //detJLTiposDisp = jQuery.parseJSON(objtipo.details);
+
 
                             var sJLip_value = row.data()['send_ip'];
                             var sJLuser_value = row.data()['send_usuario'];
@@ -550,8 +626,10 @@
 
                             sjL_detailCP_text = '<form action="" class="formName">';
                             sjL_detailCP_text += '<div class="form-group">';
-                            sjL_detailCP_text += '<label>Tipo Dispositivo</label>';
-                            sjL_detailCP_text += '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />';
+
+                            //sjL_detailCP_text += '<label>Tipo Dispositivo</label>';
+                            //sjL_detailCP_text += '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />';
+
                             sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile1">Actualización de Perfil</label>';
                             sjL_detailCP_text += '<select id="cbo_profile1" class="form-control" name="cbo_profile1">';
 
@@ -638,7 +716,10 @@
                                         text: 'Actualizar',
                                         btnClass: 'btn-red',
                                         action: function () {
-                                            var txtJLdisp = this.$content.find('.txtdisp').val();
+
+                                            //var txtJLdisp = this.$content.find('.txtdisp').val();
+                                            var txtJLdisp = sJLipodisp_value;
+
                                             var txtJLperf = $('#cbo_profile1 option:selected').val();
                                             if(!txtJLdisp || !txtJLperf){
                                                 $.alert('Coloque información valida');
@@ -673,6 +754,8 @@
                     $('table#Tbl_usrdisp').on('click', 'a.rotar_disabled', function (e)
                     {
                         e.preventDefault();
+                        console.log('popup visible:');
+                        console.log($popup_visible);1
                         $.alert('disabled: ');
                     });//rotar_disabled
 
@@ -693,7 +776,7 @@
                             var sJLuser_value = row.data()['send_usuario'];
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
                             var sJLiprofchange_value = row.data()['send_profile_change'];
-
+                            var sJLiperfil_value = row.data()['send_idperfil2'];
 
 
                             console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' puede camb ' + sJLiprofchange_value );
@@ -706,10 +789,10 @@
                             sjL_detailCP_text += '<div class="form-group">';
                             sjL_detailCP_text += '<label>Proporcione la nueva contraseña</label>';
                             sjL_detailCP_text += '<input type="text" placeholder="Contraseña" class="txtcontr form-control" required />';
-                            sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile2">Actualización de Perfil</label>';
-                            sjL_detailCP_text += '<select id="cbo_profile2" class="form-control" name="cbo_profile2">';
+                            //sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile2">Actualización de Perfil</label>';
+                            //sjL_detailCP_text += '<select id="cbo_profile2" class="form-control" name="cbo_profile2">';
 
-                            aJL_profiles.forEach(function(iJL_perfil)
+                            /*aJL_profiles.forEach(function(iJL_perfil)
                             {
                                 console.log(iJL_perfil);
 
@@ -779,7 +862,7 @@
                                     sjL_detailCP_text += '<option value="13">GUI</option>';
                                 }//if
 
-                            });
+                            });*/
 
 
                             sjL_detailCP_text += '</div>';
@@ -797,13 +880,15 @@
                                         keys: ['enter', 'shift'],
                                         action: function(){
                                             var txtJLcontr = this.$content.find('.txtcontr').val();
-                                            var txtJLperf = $('#cbo_profile2 option:selected').val();
+                                            //var txtJLperf = $('#cbo_profile2 option:selected').val();
+                                            var txtJLperf = sJLiperfil_value;
                                             console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
                                             if(!txtJLcontr){
                                                 $.alert('Coloque información valida');
                                                 return false;
                                             }
                                             obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
+                                            console.log(txtJLperf);
                                             console.log('obj21');
                                             console.log(obj21);
                                             $.alert('Confirmación de Aplicación Status: ' + obj21.status );
@@ -858,10 +943,11 @@
                                         keys: ['enter', 'shift'],
                                         action: function(){
 
+
                                             obj22 = fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
                                             console.log('obj22');
                                             console.log(obj22);
-                                            $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() );
+                                            $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() +'<br> status: ' + obj22.description);
 
                                         }
                                     },
@@ -895,7 +981,6 @@
         .fail(function() {
                 $('#message_error').empty();
 				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
-	        	$.unblockUI();
 	        })
         .always(function() {
         	//console.log(obj);
@@ -911,17 +996,119 @@
 
     }//fun_ejecuta_busqueda
 
+    function filtra_tabla()
+    {
+
+        console.log('hago filtro tabla');
+
+        $datatableInstance.draw();
+
+
+    }//filtra_tabla
+
+    // Custom filtering function which will search data in column four between two values
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex )
+        {
+
+
+            var bJLFiltro = false;
+            if( $('#txtDateini' ).val() == '' && $('#txtDatefin' ).val() == '' )
+            {
+                console.log('Consulta sin filtro');
+                bJLFiltro = true;
+            }
+
+            if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
+            {
+                console.log('sisfen fecha');
+                //reviso los campos del filtro
+                var sJL_min = new Date($('#txtDateini' ).val());
+                //sJL_min.toLocaleDateString('es-MX');
+                sJL_min.setHours(24,0,0,0);
+                var sJL_max = new Date($('#txtDatefin' ).val());
+                //sJL_max.toLocaleDateString('es-MX');
+                sJL_max.setHours(47,59,59,0);
+                //var sJL_max =  new Date(sJL_max.getTime() + millisecond + 1000 * (sec + 60 * (min + 60 * (hours + 24 * days))));
+                //var sJL_max = sJL_max + 59 + (1000*59) + (1000*60*59) + (1000*60*60*23)+(1000*60*60*24*1);
+
+                var date = new Date(data[9]);
+                console.log('sJL_min');
+                console.log(sJL_min);
+                console.log('sJL_max');
+                console.log(sJL_max);
+                console.log(date);
+                if (sJL_min <= date && date <= sJL_max )
+                {
+                    console.log('Fech dentro');
+                    if($('#inputData').val()=='')
+                    {
+                        bJLFiltro = true;
+                    }//if
+                    else
+                    {
+                        sJL_dato=$('#inputData').val();
+                        if(document.getElementById('radio5').checked)
+                        {
+                            sJL_search = data[0];
+                            console.log('filtro IP:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio6').checked)
+                        {
+                            sJL_search = data[1];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro Hostname:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio7').checked)
+                        {
+                            sJL_search = data[4];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro usuario:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio8').checked)
+                        {
+                            sJL_search = data[8];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro solicitante:'+sJL_dato);
+                        }//if
+                        if(document.getElementById('radio9').checked)
+                        {
+                            sJL_search = data[6];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro status:'+sJL_dato);
+
+                        }//if
+                        if (sJL_search.includes(sJL_dato))
+                        {
+                            bJLFiltro = true;
+                        }//if
+                    }//else
+                }//if
+            }//if
+            return bJLFiltro;
+        }
+    );
 
 
     // Funcion de Fin de Vista, ejecucion
     function finished(){
 
+        //$datatableInstance.clear().draw();
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
             console.log('limpiando');
-            $datatableInstance.clear().draw();
-            fun_ejecuta_busqueda();
-        }else if ($('#txtDateini' ).val()!='' || $('#txtDatefin' ).val()!='')
+
+            $popup_visible = false;
+            $('#message_error').empty();
+            //$datatableInstance.clear().draw();
+            filtra_tabla();
+            //fun_ejecuta_busqueda();
+        }else
+
         {
             if ( $('#txtDateini' ).val()=='' ){
                 $('#message_error').empty();

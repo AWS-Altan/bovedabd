@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser};
+use App\Entities\{Usermana};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -40,7 +40,7 @@ class Update_dispcatalog_Controller extends BaseController
         return view('Access.update_dispcatalog')-> with('menu',$menu);
     }
 
-       protected function login()
+    protected function login()
     {
 
     }

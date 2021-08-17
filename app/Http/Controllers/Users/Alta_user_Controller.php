@@ -29,6 +29,13 @@ use Carbon\Carbon;
 class Alta_user_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
+
+    public function __construct()
+    {
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_gui_user') ] );
+
+    }
+
     /*******************************
      * Invocación de vista  de Alta de Usuario
      *
@@ -59,83 +66,80 @@ class Alta_user_Controller extends BaseController
 
         // Valido Sesion
         //$this->loginResponse = $this->login();
+        loginfo('Alta de usuario');
+        $json = request()->json()->all();
+        loginfo($json);
 
         //Escribo al log
-        loginfo('Alta de usuario');
         // Escribo los datos de alta
-        loginfo(' mail:' . request()->send_email .
-                ' password: ' . request()->send_password .
-                ' usuario: ' . request()->send_username .
-                ' id company:' . request()->send_id_company .
-                ' id estado:' . request()->send_id_estado .
-                ' id nivel:' . request()->send_id_nivel .
-                ' id reesponsable:' . request()->send_id_responable .
-                ' id solicitante:' . request()->send_id_solicitante .
-                ' id credor:' . request()->send_id_createdby .
-                ' creador:' . request()->send_createdby .
-                ' telefono:' . request()->send_Telefono);
-        //Inserto al log de la base
-        Vwlogs::create([
-                        "vwuser_id" => app('auth')->user()->id,
-                        "actions" => 'Alta de usaurio',
-                        "responses" => 'test',
-                        "action_low" => 'test2',
-                        "resoponse_low" => 'test3'
-                    ]);
+        loginfo(' mail:' . request()->mail .
+                ' nombre:'. request()->nombre.
+                ' paterno:'. request()->paterno.
+                ' materno:'. request()->materno.
+                ' msisdn:'. request()->msisdn.
+                ' id_company:'. request()->id_company.
+                ' fecha_alta:'. request()->fecha_alta.
+                ' fecha_termino:'. request()->fecha_termino.
+                ' id_estado:'. request()->id_estado.
+                ' nivel:'. request()->nivel.
+                ' idresp:'. request()->idresp
+                );
+
+
+
         //Escribo al log
         loginfo('inserte en logs');
 
-        //traigo el maximo
-        try{
-            $max_id = Vwuser::max('id');
-            loginfo('Valor max');
-            loginfo($max_id);
-            $max_id++;
-        }catch (Exception $e) {
+        //hago la inserción por la API
+        try {
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_user'). 'alta-usuario'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_user') . 'alta-usuario', [$req]);
+            loginfo('termina ejecución API');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_user') .'alta-usuario', [ $e ]);
+
 
         }
-
-        //Realizo insercion en el Catalogo
-        try {
-                $exception = Vwuser::create([
-                        "id" => $max_id,
-                        "name" => request()->send_username,
-                        "vwrole_id" => "1",
-                        "email" => request()->send_email,
-                        "password" => Hash::make( request()->send_password),
-                        "phone" => request()->send_Telefono,
-                        "active" => "0",
-                        "last_session_id" => session()->get('idsession'),
-                        "created_by" => request()->send_id_createdby,
-                        "id_company" => request()->send_id_company,
-                        "id_estado" => request()->send_id_estado,
-                        "nivel" => request()->send_id_nivel,
-                        "idresp" => request()->send_id_responable,
-                        "id_solicitante" => request()->send_id_createdby
-
-                ]); //Insercion
-
-                //Escribo al log
-                loginfo('inserte usuario');
-
-                $response = json_encode(['description' => 'ok',
-                                  'statusCode' => 200
-                    ]);//json encode
-            } catch (Exception $e) {
-                loginfo('Error al dar de alta el usuario', [ $e->getMessage() ]);
-                $response = json_encode(['description' => 'NOk',
-                                  'statusCode' => 400
-                    ]);//json encode
-
-                //Escribo al log
-                loginfo('Error en insercion');
-                loginfo($e->getMessage());
-            } //Try/Catch
-
-            //regreso respuesta
-        return $response;
+        loginfo('Regreso información');
+        //Inserto al log de la base
+        Vwlogs::create([
+                        "vwuser_id" => app('auth')->user()->id,
+                        "actions" => 'Alta_de_usaurio',
+                        "responses" => 'test',
+                        "action_low" => config('conf.url_gui_user'). 'alta-usuario',
+                        "resoponse_low" => 'test3'
+                    ]);
+        return json_encode( $req );
 
     } // new_user
 
+    /****************************
+    *    Funcion de Consulta de catalog
+    *************************/
+    public function calatog_view()
+    {
+        loginfo('Obtiene Datos del API para el catalogo: ');
+
+        $json = request()->json()->all();
+        loginfo($json);
+        //hago la inserción por la API
+        try {
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_user'). 'catalogo'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_user') . 'catalogo', [$req]);
+            loginfo('termina ejecución API');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_user') .'catalogo', [ $e ]);
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+    }
 
 }

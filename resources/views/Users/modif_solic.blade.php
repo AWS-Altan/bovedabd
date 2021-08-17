@@ -9,51 +9,11 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Busqueda de Usuario</span></h3>
+                        <h3><span class="head-font capitalize-font">Cambio de información de solicitantes</span></h3>
 						<section>
-                            <form id="step_one">
-                                <!-- Template busqueda Usuario -->
-                                <div class="row">
-								    <div class="col-sm-12">
-									    <div class="form-group mb-0">
-										    <div class="row">
-											     @include('layouts.Search_Users')
-										    </div>
-									    </div>
-								    </div>
-							    </div>
-
-                            </form>
-                        </section>
-                        <h3><span class="head-font capitalize-font">Cambio de información</span></h3>
-						<section>
+                         <section>
                             <form id="step_two">
-                            <!-- Contenedor -->
-                            <form id="form_tabs" action="#">
-                                <div class="panel panel-default">
-                                    <!-- Header Subseccion -->
-                                    <div class="panel-heading">
-    								Datos de la cuenta (usuario)
-                                    </div>
-                                    <!-- despues del header de la seccion -->
-                                    <div class="card-body">
-                                        <!-- Campo de Correo de usuario -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Correo Usuario</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del usuario" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_Mail_user"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <!-- /panel1 -->
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
@@ -121,47 +81,35 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <!-- /panel2 -->
-                                <div class="panel panel-default">
-                                    <!-- Header Subseccion -->
-                                    <div class="panel-heading">
-    								Datos Extras Temporales
-                                    </div>
-                                        <!-- Campo temporal de ID company -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">ID company</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-                                                        <select id="cbo_idCompany" class="form-control" name="cbo_idCompany">
-                                                        </select>
-													    <div class="help-block with-errors" id="err_msg_ID_Company"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo Temporal de ID Estado -->
+                                        <!-- Fecha Alta -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">ID Estado</label>
+                                                        <label class="help-block text-left">Fecha Alta:</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <select id="cbo_ID_Estado" class="form-control" name="cbo_ID_Estado">
-                                                        </select>
-													    <div class="help-block with-errors" id="err_msg_ID_Estado"></div>
-												    </div>
+                                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                        <div class="help-block with-errors" id="inputTxtDateiniError"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo Temporal de ID Nivel-->
+                                        <!-- Fecha Termino -->
+                                        <div class="row">
+                                            <div class="form-group mt-12">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-3 mb-20">
+                                                        <label class="help-block text-left">Fecha Termino:</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                        <div class="help-block with-errors" id="inputTxtDatefinError"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de ID Nivel-->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
@@ -176,9 +124,50 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Campo Mail del Usuario -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <!-- mail del solicitante -->
+                                                    <div class="col-sm-3 mb-20">
+                                                        <label class="help-block text-left">Correo del Usuario</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del solicitante" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="err_msg_Mail_user"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de Ultima Rotación -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">ultima Rotación</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <input type="text" data-minlength="10" class="form-control" id="cmd_last_totate" placeholder="Ultima Rotación del Usuario" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="cmd_last_totateError"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- /panel2 -->
+                                <div class="panel panel-default">
+                                    <!-- Header Subseccion -->
+                                    <div class="panel-heading">
+    								    Datos adicionales de consulta
+                                    </div>
+
                                         <!-- Campo Temporal de ID Responsable -->
                                         <div class="row">
                                             <div class="col-sm-12">
+                                                <div><br></div>
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
 												        <label class="help-block text-left">Id Responsable</label>
@@ -191,41 +180,124 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Vigencia del usuario -->
+                                        <!-- Campo Correo del responsable -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <!-- mail del solicitante -->
                                                     <div class="col-sm-3 mb-20">
-                                                        <label class="help-block text-left">Fecha Inicio:</label>
+                                                        <label class="help-block text-left">Correo del Responsable</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
-                                                        <div class="help-block with-errors" id="inputTxtDateiniError"></div>
+                                                        <input type="text" data-minlength="10" class="form-control" id="cmd_Mail_resp" placeholder="Ingrese el correo del responsable" data-error="Valor inválido" maxlength="150">
+                                                        <div class="help-block with-errors" id="mailresponsableError"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Vigencia del usuario -->
-                                        <div class="row">
-                                            <div class="form-group mt-12">
-                                                <div class="col-sm-12">
-                                                    <div class="col-sm-3 mb-20">
-                                                        <label class="help-block text-left">Fecha Final:</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20 select select-group" >
-                                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
-                                                        <div class="help-block with-errors" id="inputTxtDatefinError"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+
+
                                 </div>
-                                <!-- Texto de Menajes -->
-                                <div class="row" id="message_error">
-								</div>
-                            </form>
+
+
+                                <!-- Contenedor -->
+
+                                @if(Session::has('user_no_disp'))
+                                    @if(Session::get('user_no_disp')== 'A')
+                                        <form id="sis_form_tabs" action="#">
+                                            <div class="panel panel-default">
+                                                <!-- Header Subseccion -->
+                                                <div class="panel-heading">
+                                                Datos de la cuenta (usuario)
+                                                </div>
+                                                <!-- despues del header de la seccion -->
+                                                <div class="card-body">
+                                                    <!-- Campo de contraseña del usuario anterior-->
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group mt-12">
+                                                                <div><br></div>
+
+                                                                <div><br></div>
+                                                                <!-- Contraseña actual-->
+                                                                <div class="col-sm-3 mb-20">
+                                                                    <label class="help-block text-left">Contrase&ntilde;a Actual</label>
+                                                                </div>
+                                                                <div class="col-sm-4 mb-20">
+                                                                    <input type="password" data-minlength="10" class="form-control" id="passwordActual" placeholder="Ingrese password actual" data-error="Valor inválido" maxlength="150">
+                                                                        <div class="help-block with-errors" id="PasswordErrorAct"></div>
+                                                                </div>
+                                                                <div class="col-sm-2 mb-20">
+                                                                    <button id="mostrarContrasenaActual" class="btn btn-primary btn-xs">Ver</button>
+                                                            </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Campo de contraseña del usuario nueva-->
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group mt-12">
+                                                                <div><br></div>
+
+                                                                <div><br></div>
+                                                                <!-- Contraseña del usuario del dispositivo-->
+                                                                <div class="col-sm-3 mb-20">
+                                                                    <label class="help-block text-left">Contrase&ntilde;a Nueva</label>
+                                                                </div>
+                                                                <div class="col-sm-4 mb-20">
+                                                                    <input type="password" data-minlength="10" class="form-control" id="passwordNew" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150">
+                                                                        <div class="help-block with-errors" id="PasswordErrorCur"></div>
+                                                                </div>
+                                                                <div class="col-sm-2 mb-20">
+                                                                    <button id="mostrarContrasenaNew" class="btn btn-primary btn-xs">Ver</button>
+                                                            </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Campo de contraseña del usuario nuevo-->
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group mt-12">
+                                                                <div><br></div>
+
+                                                                <div><br></div>
+                                                                <!-- Contraseña del usuario del dispositivo-->
+                                                                <div class="col-sm-3 mb-20">
+                                                                    <label class="help-block text-left">Repita Contrase&ntilde;a</label>
+                                                                </div>
+                                                                <div class="col-sm-4 mb-20">
+                                                                    <input type="password" data-minlength="10" class="form-control" id="passwordAgain" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150">
+                                                                        <div class="help-block with-errors" id="PasswordErrorAga"></div>
+                                                                </div>
+                                                                <div class="col-sm-2 mb-20">
+                                                                    <button id="mostrarContrasenaAga" class="btn btn-primary btn-xs">Ver</button>
+                                                            </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <button id="send_reset" class="btn btn-primary" style="position:center;"> Cambiar password de usuario </button>
+
+
+                                                </div>
+                                            </div>
+                                            <!-- Texto de Menajes -->
+                                            <div class="row" id="message_error">
+                                        </div>
+                                    </form>
+                                    @endif
+
+                                @endif
                             </form>
                         </section>
+
                         <!-- Texto de Menajes -->
                         <div class="row" id="message_error">
 						</div>
@@ -249,23 +321,7 @@
 // funcion para cambio de pestaña
     function ValidateNext()
     {
-        //Validacion de campo de busqueda Input data del layou te busqueda
-        var dato=$('#inputData').val();
 
-        //REalizo validacion de que el dato este correcto
-		if (patrones[tipo_campo].test(dato))
-        {
-		    console.log("Evalar");
-            console.log(dato);
-        	fun_ejecuta_busqueda("3",dato);
-            return true;
-
-		} else {
-		    $("#inputData").css({'border' : '1px solid #f73414'});
-			$("#message_error").css('color', '#f73414');
-			$("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
-            return false;
-        }//else
 	}
 
 
@@ -306,14 +362,18 @@
                 $('#cmd_ApPaterno').val(obj.data[0].send_paterno);
                 $('#cmd_ApMaterno').val(obj.data[0].send_materno);
                 $('#data360').val(obj.data[0].send_msisdn);
-                $('#cbo_idCompany').selectedIndex = obj.data[0].send_id_company;
-                $('#cbo_ID_Estado').selectedIndex = obj.data[0].send_id_estado;
-                //$('#cbo_ID_Estado').selectedIndex = '1';
                 $('#cbo_ID_Nivel').selectedIndex = obj.data[0].send_nivel;
-				$('#cbo_ID_Responsable').selectedIndex = obj.data[0].send_idresp;
+				//$('#cbo_ID_Responsable').selectedIndex = obj.data[0].send_idresp;
 				$('#txtDateini').val(obj.data[0].send_fecha_alta);
 				$('#txtDatefin').val(obj.data[0].send_fecha_termino);
-                $('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Realice la modificación de datos del usuario</strong> ');
+
+                //catalogo de responsables
+                sJLresp = fun_llena_catalog("1",obj.data[0].send_idresp);
+
+
+
+                //$('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Realice la modificación de datos del usuario</strong> ');
+                $('#txtDateini, #txtDatefin ,#cbo_ID_Nivel,#cbo_ID_Responsable,#cmd_Mail_user,#cmd_Mail_resp').prop('disabled',true);
             }
             else
             {
@@ -348,29 +408,8 @@
         $('err_txtApPaterno').empty();
         $('err_txtApMaterno').empty();
         $('err_msg_Telefono').empty();
-        $('err_msg_ID_Company').empty();
-        $('err_msg_ID_Estado').empty();
-        $('err_msg_ID_Nivel').empty();
-        $('err_msg_ID_Responsable').empty();
-        $('inputTxtDateiniError').empty();
-        $('inputTxtDatefinError').empty();
 
         // Inicio Validaciones de campos
-        // Valido que el campo de fecha tenga valor
-        if( $('#txtDateini' ).val() == '' )
-        {
-            $('#inputTxtDateiniError' ).empty();
-			$('#inputTxtDateiniError').append('<label class="alert-danger mb-30 text-left">capture La fecha de unicio del usuario</label>');
-			return false;
-        }
-
-        // Valido que el campo de fecha tenga valor
-        if( $('#txtDatefin' ).val() == '' )
-        {
-            $('#inputTxtDatefinError' ).empty();
-			$('#inputTxtDatefinError').append('<label class="alert-danger mb-30 text-left">capture La fecha de fin del usuario</label>');
-			return false;
-        }
 
         // Valido que el campo del correo no este vacio
         if ( $('#cmd_Mail_user' ).val()=='' ){
@@ -416,7 +455,7 @@
 
 
         //Realizo el bloqueo de la pantalla
-		$.blockUI({ message: 'Realizando Inserción ...',css: {
+		$.blockUI({ message: 'Realizando actualización ...',css: {
             border: 'none',
             padding: '15px',
             backgroundColor: '#000',
@@ -435,16 +474,9 @@
         jsoninsert.paterno = $('#cmd_ApPaterno').val();
         jsoninsert.materno = $('#cmd_ApMaterno').val();
         jsoninsert.msisdn = $('#data360').val();
-        jsoninsert.id_company = $('#cbo_idCompany').val();
-        jsoninsert.fecha_alta = $('#txtDateini' ).val();
-        jsoninsert.fecha_termino = $('#txtDatefin' ).val();
-        jsoninsert.id_estado = $('#cbo_ID_Estado').val();
-        jsoninsert.nivel = $('#cbo_ID_Nivel').val();
-        jsoninsert.idresp = $('#cbo_ID_Responsable').val();
-
 
         $.ajax({
-            url: "{{ route('Users.call.modif_user') }}",
+            url: "{{ route('Users.call.modif_solicit') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(jsoninsert)
@@ -464,17 +496,13 @@
             $('#cmd_ApPaterno').val("");
             $('#cmd_ApMaterno').val("");
             $('#data360').val("");
-            $('#cbo_idCompany').val("");
-            $('#txtDateini' ).val("");
-            $('#txtDatefin' ).val("");
-            $('#cbo_ID_Estado').val("");
-            $('#cbo_ID_Nivel').val("");
-            $('#cbo_ID_Responsable').val("");
+
+
         })
         .fail(function()
         {
             console.log('Ejecución API incorrecta');
-			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario Boveda </label>');
+			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> modificacion de solicitante incorrecta </label>');
 	        $.unblockUI();
 	    })
         .always(function()
@@ -486,9 +514,9 @@
 
     }//fun_ejecuta_cambio
 
-    function fun_llena_catalog(iJL_catalog)
+function fun_llena_catalog(iJL_catalog,iJL_idResp)
     {
-        console.log(' Obtengo catalogo '+ iJL_catalog);
+        console.log(' Obtengo catalogo '+ iJL_catalog + 'voy por id ' + iJL_idResp);
         //Realizo el bloqueo de la pantalla
 		$.blockUI({ message: 'Procesando ...',css: {
             border: 'none',
@@ -514,13 +542,20 @@
             console.log("Ejecución Catalogo " + obj.status);
             console.log(obj);
             //$('#cbo_ID_Responsable').append($('<option></option>').val('').html('N/A'));
-			$.each( obj.data, function( value, name )
+		    $.each( obj.data, function( value, name )
 			{
-                //console.log(value);
-				//console.log(name);
-			  	$('#cbo_ID_Responsable').append(
-					$('<option></option>').val(name.send_id).html(name.send_nameresp)
-				);
+                if (name.send_id==iJL_idResp)
+                {
+                    console.log('revisando');
+                    console.log(value);
+				    console.log(name);
+                    console.log(iJL_idResp);
+                    $('#cbo_ID_Responsable').append(
+				    	$('<option></option>').val(name.send_id).html(name.send_nameresp)
+				    );
+                    $('#cmd_Mail_resp').val(name.send_mail);
+                }//if
+
 			});
             return obj;
         })
@@ -536,6 +571,7 @@
 
     }//fun_llena_catalog
 
+
     // Funcion de Fin de Vista, ejecucion
     function finished(){
         //Ejecuta la actualización
@@ -547,19 +583,64 @@
 
         // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
 
-        //compañias
-        $('#cbo_idCompany').append($('<option></option>').val('175').html('175'));
-        //Estado
-        $('#cbo_ID_Estado').append($('<option></option>').val('0').html('Desactivo'));
-        $('#cbo_ID_Estado').append($('<option></option>').val('1').html('Activo'));
         //Nivel
         $('#cbo_ID_Nivel').append($('<option></option>').val('1').html('Manager'));
         $('#cbo_ID_Nivel').append($('<option></option>').val('2').html('Solicitante'));
         $('#cbo_ID_Nivel').append($('<option></option>').val('3').html('Manager SOC'));
         //campo de numero
         TipoDato360('msisdn');
-        //catalogo de
-        fun_llena_catalog("1");
+
+
+
+       $( "#mostrarContrasenaActual" ).click(function( event ) {
+                    event.preventDefault();
+                    var ePasswordcur=$('#passwordActual').val();
+                    //var dPasswordcur=atob( $('#passwordActual').val() );
+                    $('#passwordActual').val(ePasswordcur);
+                    $('#passwordActual').prop('type','text');
+                    $( "#mostrarContrasenaActual").hide();
+                    setTimeout( function(){
+                    $('#passwordActual').prop('type','password');
+                    $('#passwordActual').val(ePasswordcur);
+                    $( "#mostrarContrasenaActual").show();
+                    },1000);
+        });
+
+        $( "#mostrarContrasenaNew" ).click(function( event ) {
+                    event.preventDefault();
+                    var ePasswordNew=$('#passwordNew').val();
+                    //var dPasswordNew=atob( $('#passwordNew').val() );
+                    $('#passwordNew').val(ePasswordNew);
+                    $('#passwordNew').prop('type','text');
+                    $( "#mostrarContrasenaNew").hide();
+                    setTimeout( function(){
+                    $('#passwordNew').prop('type','password');
+                    $('#passwordNew').val(ePasswordNew);
+                    $( "#mostrarContrasenaNew").show();
+                    },1000);
+        });
+
+        $( "#mostrarContrasenaAga" ).click(function( event ) {
+                    event.preventDefault();
+                    var ePassword=$('#passwordAgain').val();
+                    //var dPassword=atob( $('#passwordAgain').val() );
+                    $('#passwordAgain').val(ePassword);
+                    $('#passwordAgain').prop('type','text');
+                    $( "#mostrarContrasenaAga").hide();
+                    setTimeout( function(){
+                    $('#passwordAgain').prop('type','password');
+                    $('#passwordAgain').val(ePassword);
+                    $( "#mostrarContrasenaAga").show();
+                    },1000);
+        });
+
+        $( "#send_reset" ).click(function( event )
+        {
+            event.preventDefault();
+        });
+
+
+
 
         var Operations2 = function ()
         {
@@ -569,7 +650,15 @@
         	return {
 		        init: function() {
 		        	$('#previous').hide();
-                    $( "#finish" ).text('Siguiemte');
+                    $( "#finish" ).text('Actualizar');
+                    sJLmail= '{{app('auth')->user()->email}}';
+                    fun_ejecuta_busqueda("3",sJLmail);
+                    $('#sis_form_tabs').css("display","none");
+                    //$('#sis_form_tabs').visible = false;
+                    //var sisfram = document.getElementById('sis_form_tabs');
+                    //$('#sis_form_tabs').hide();
+                    //sis_form_tabs
+
 
                     $('#message_error').empty();
 				    //initializePlugins2();

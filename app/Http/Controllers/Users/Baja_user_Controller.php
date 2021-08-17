@@ -20,6 +20,13 @@ class Baja_user_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
+
+    public function __construct()
+    {
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_gui_user') ] );
+
+    }
+
     /**
      * Show the Porta In.
      *
@@ -39,45 +46,30 @@ class Baja_user_Controller extends BaseController
 
     } //login
 
-    public function delete_user()
+    public function change_status()
     {
 
-        loginfo('Borrado de usuario');
+        
         // Escribo los datos de alta
-        loginfo('type:' . request()->type .
-                ', value: ' . request()->value);
+        loginfo('Obtiene Datos del API para la deshabilitación: ');
 
+        $json = request()->json()->all();
+        loginfo($json);
+        //hago la inserción por la API
         try {
-                //consulta
-                $boveda_user =  Vwuser::where('email','=',request()->value)->forceDelete();
-                //$boveda_user->forceDelete();
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_user'). 'cambio-estado'
+                , [
+                    'json' => $json,
+                  ])->getBody());
 
-
-                foreach ($boveda_user as $user_bob) {
-                    $response = json_encode(['description' => 'NOK',
-                                  'statusCode' => 400,
-                    ]);//json encode
-
-                } //for each
-
-                    $response = json_encode(['description' => 'ok',
-                                  'statusCode' => 200
-
-                    ]);//json encode
-
-
-
-
-            } catch (\Exception $e) {
-                loginfo('Error al consultar el usuario', [ $e->getMessage() ]);
-                $response = json_encode(['description' => 'nok',
-                                  'statusCode' => 300
-                    ]);//json encode
-                return $response;
-            } //Try/Catch
-
-            //regreso respuesta
-        return $response;
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_user') . 'cambio-estado', [$req]);
+            loginfo('termina ejecución API');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_user') .'cambio-estado', [ $e ]);
+        }
+        loginfo('Regreso información');
+        return json_encode( $req );
+        
     }//delete_user
 
 

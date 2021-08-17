@@ -1,8 +1,8 @@
 /*FormPicker Init*/
 
 function customRange() {
-	//var fechafin=$('#fechafin').datepicker("getDate");
-	//var fechaini=$('#fecha').datepicker("getDate");
+    //var fechafin=$('#fechafin').datepicker("getDate");
+    //var fechaini=$('#fecha').datepicker("getDate");
 
 	//console.log($('#consumos_txtDate2').datepicker('option', 'maxDate'));
 
@@ -401,24 +401,53 @@ $(document).ready(function() {
 		}
 	});
 
-	// ------------------------------------ Tab Operaciones --------------------------------------------
-	$('#dateInicioOperaciones').datetimepicker({
-			useCurrent: false,
-			defaultDate: moment().startOf('day').subtract(7, 'days'),
-			format: 'MM/DD/YYYY',
-			showClose: true,
-			icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-	}).on('dp.change', function(e){
-		if(moment(e.date).diff($('#dateFinOperaciones').data("DateTimePicker").viewDate(), 'days') < -7 
-			|| moment(e.date).diff($('#dateFinOperaciones').data("DateTimePicker").viewDate(), 'days') >= 0){
-			$('#dateFinOperaciones').data("DateTimePicker").date(moment(e.date).add(7, 'days'));
-		}
-	});
+    // ------------------------------------ Boton Rojo Reporte Actividades--------------------------------------------
+    $('#dateInicioBRojoReprot').datetimepicker({
+        useCurrent: false,
+        //defaultDate: moment().startOf('day').subtract(7, 'days'),
+        format: 'YYYY-MM-DD HH:mm:ss',
+        showClose: true,
+        icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down"
+        }
+    });
+
+    $('#dateFinBRojoReport').datetimepicker({
+        useCurrent: false,
+        //defaultDate: moment().startOf('day'),
+        format: 'YYYY-MM-DD  HH:mm:ss',
+        showClose: true,
+        icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down"
+        }
+    });
+
+
+
+    // ------------------------------------ Tab Operaciones --------------------------------------------
+    $('#dateInicioOperaciones').datetimepicker({
+        useCurrent: false,
+        defaultDate: moment().startOf('day').subtract(7, 'days'),
+        format: 'MM/DD/YYYY',
+        showClose: true,
+        icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down"
+        }
+    }).on('dp.change', function(e) {
+        if (moment(e.date).diff($('#dateFinOperaciones').data("DateTimePicker").viewDate(), 'days') < -7 ||
+            moment(e.date).diff($('#dateFinOperaciones').data("DateTimePicker").viewDate(), 'days') >= 0) {
+            $('#dateFinOperaciones').data("DateTimePicker").date(moment(e.date).add(7, 'days'));
+        }
+    });
 
 	$('#dateFinOperaciones').datetimepicker({
 			useCurrent: false,

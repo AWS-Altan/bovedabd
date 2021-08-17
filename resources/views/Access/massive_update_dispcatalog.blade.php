@@ -12,8 +12,7 @@
 					<div id="example-basic">
 						<h3><span class="head-font capitalize-font">Alta/Actualización Masiva Cátalogo Dispositivos</span></h3>
 						<section>
-                            <p>Seleccione el archivo a procesar:
-                            <p>Archivos:
+
 							<div class="form-group">
 								Seleccione el archivo a procesar: <input type="file" data-minlength="7" class="form-control" id="inputFileData" placeholder="Archivo" data-error="Valor inválido" maxlength="20">
 								<div class="help-block with-errors"></div>

@@ -8,7 +8,7 @@
 								<thead>
 									<tr>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">IP</th>
-										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Host</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">ID Site</th>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Tipo Dispositivo</th>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Grupo</th>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Usuario</th>

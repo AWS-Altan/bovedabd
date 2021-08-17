@@ -35,20 +35,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Contraseña -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Contraseña</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-														<input type="password" data-minlength="10" class="form-control" id="cmd_password" placeholder="Ingrese la contrase&ntilde;a del usuario" data-error="Valor inválido" maxlength="150">
-														<div class="help-block with-errors" id="err_msg_password"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <!-- /panel1 -->
@@ -67,8 +53,38 @@
 												        <label class="help-block text-left">Nombre Usuario</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre Completo del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre del usuario" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_msg_NombreAlta"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de Apellido Paterno -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Apellido Paterno</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_ApPaterno" placeholder="Ingrese el Apellido Paterno del usuario" data-error="Valor inválido" maxlength="150">
+													    <div class="help-block with-errors" id="err_txtApPaterno"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de apellido Materno -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Apellido Materno</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_ApMaterno" placeholder="Ingrese el Nombre Completo del usuario" data-error="Valor inválido" maxlength="150">
+													    <div class="help-block with-errors" id="err_txtApMaterno"></div>
 												    </div>
                                                 </div>
                                             </div>
@@ -82,7 +98,7 @@
 												        <label class="help-block text-left">Número Telefonico</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Telefono" placeholder="Ingrese el Telefono del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="data360" placeholder="Ingrese el Telefono del usuario" data-error="Valor inválido" maxlength="45">
 													    <div class="help-block with-errors" id="err_msg_Telefono"></div>
 												    </div>
                                                 </div>
@@ -106,7 +122,8 @@
 												        <label class="help-block text-left">ID company</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ID_company" placeholder="Ingrese el ID de compañia" data-error="Valor inválido" maxlength="150">
+                                                        <select id="cbo_idCompany" class="form-control" name="cbo_idCompany">
+                                                        </select>
 													    <div class="help-block with-errors" id="err_msg_ID_Company"></div>
 												    </div>
                                                 </div>
@@ -120,7 +137,8 @@
 												        <label class="help-block text-left">ID Estado</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ID_Estado" placeholder="Ingrese el ID de Estado" data-error="Valor inválido" maxlength="150">
+                                                        <select id="cbo_ID_Estado" class="form-control" name="cbo_ID_Estado">
+                                                        </select>
 													    <div class="help-block with-errors" id="err_msg_ID_Estado"></div>
 												    </div>
                                                 </div>
@@ -134,7 +152,8 @@
 												        <label class="help-block text-left">ID Nivel</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ID_Nivel" placeholder="Ingrese el ID nivel" data-error="Valor inválido" maxlength="150">
+                                                        <select id="cbo_ID_Nivel" class="form-control" name="cbo_ID_Nivel">
+                                                        </select>
 													    <div class="help-block with-errors" id="err_msg_ID_Nivel"></div>
 												    </div>
                                                 </div>
@@ -148,23 +167,38 @@
 												        <label class="help-block text-left">Id Responsable</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ID_Responsable" placeholder="Ingrese el ID responsable" data-error="Valor inválido" maxlength="150">
+                                                        <select id="cbo_ID_Responsable" class="form-control" name="cbo_ID_Responsable">
+                                                        </select>
 													    <div class="help-block with-errors" id="err_msg_ID_Responsable"></div>
 												    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo Temporal de Id solicitante -->
+                                        <!-- Vigencia del usuario -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">ID Solicitante</label>
+                                                        <label class="help-block text-left">Fecha Inicio:</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ID_Solicitante" placeholder="Ingrese el Ide del solicitante" data-error="Valor inválido" maxlength="150">
-													    <div class="help-block with-errors" id="err_msg_ID_Solicitante"></div>
-												    </div>
+                                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                        <div class="help-block with-errors" id="inputTxtDateiniError"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Vigencia del usuario -->
+                                        <div class="row">
+                                            <div class="form-group mt-12">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-3 mb-20">
+                                                        <label class="help-block text-left">Fecha Final:</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                        <div class="help-block with-errors" id="inputTxtDatefinError"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,23 +224,39 @@
 </style>
 <script>
     // Funcion de Fin de Vista, ejecucion
-    function finished(){
-
-
+    function finished()
+    {
         // Limpio los mensajes de Error
         // $('#message' ).empty();
-        $('#err_msg_Mail_user' ).empty();
-        $('#err_msg_password' ).empty();
-        $('#err_msg_NombreAlta' ).empty();
-        $('#err_msg_ID_Company' ).empty();
-        $('#err_msg_ID_Estado' ).empty();
-        $('#err_msg_ID_Nivel' ).empty();
-        $('#err_msg_ID_Responsable' ).empty();
-        $('#err_msg_ID_Solicitante' ).empty();
-        $('#err_msg_Telefono' ).empty();
-
+        $('#err_msg_Mail_user').empty();
+        $('err_msg_NombreAlta').empty();
+        $('err_txtApPaterno').empty();
+        $('err_txtApMaterno').empty();
+        $('err_msg_Telefono').empty();
+        $('err_msg_ID_Company').empty();
+        $('err_msg_ID_Estado').empty();
+        $('err_msg_ID_Nivel').empty();
+        $('err_msg_ID_Responsable').empty();
+        $('inputTxtDateiniError').empty();
+        $('inputTxtDatefinError').empty();
 
         // Inicio Validaciones de campos
+        // Valido que el campo de fecha tenga valor
+        if( $('#txtDateini' ).val() == '' )
+        {
+            $('#inputTxtDateiniError' ).empty();
+			$('#inputTxtDateiniError').append('<label class="alert-danger mb-30 text-left">capture La fecha de unicio del usuario</label>');
+			return false;
+        }
+
+        // Valido que el campo de fecha tenga valor
+        if( $('#txtDatefin' ).val() == '' )
+        {
+            $('#inputTxtDatefinError' ).empty();
+			$('#inputTxtDatefinError').append('<label class="alert-danger mb-30 text-left">capture La fecha de fin del usuario</label>');
+			return false;
+        }
+
         // Valido que el campo del correo no este vacio
         if ( $('#cmd_Mail_user' ).val()=='' ){
 			$('#err_msg_Mail_user' ).empty();
@@ -221,15 +271,37 @@
 			return false;
         }
 
-        // Valido que el Password no este Vacio
-        if ( $('#cmd_password' ).val()=='' ){
-			$('#err_msg_password').empty();
-			$('#err_msg_password').append('<label class="alert-danger mb-30 text-left">Capture la contrase&ntilde;a del nuevo usuario para acceder a Boveda</label>');
+        // Valido que el Nombre no este Vacio
+        if ( $('#cmd_NombreAlta' ).val()=='' ){
+			$('#err_msg_NombreAlta').empty();
+			$('#err_msg_NombreAlta').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Usuario</label>');
 			return false;
         }
 
+        // Valido que el Apellido Paterno no este Vacio
+        if ( $('#cmd_ApPaterno' ).val()=='' ){
+			$('#err_txtApPaterno').empty();
+			$('#err_txtApPaterno').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Usuario</label>');
+			return false;
+        }
+
+        // Valido que el Apellido Materno no este Vacio
+        if ( $('#cmd_ApMaterno' ).val()=='' ){
+			$('#err_txtApMaterno').empty();
+			$('#err_txtApMaterno').append('<label class="alert-danger mb-30 text-left">Capture el apellido paterno del Usuario</label>');
+			return false;
+        }
+
+        // Valido que el Telefono no este Vacio
+        if ( $('#data360' ).val()=='' ){            
+			$('#err_msg_Telefono').empty();
+			$('#err_msg_Telefono').append('<label class="alert-danger mb-30 text-left">Capture el apellido materno del Usuario</label>');
+			return false;
+        }
+
+
         //Realizo el bloqueo de la pantalla
-		$.blockUI({ message: 'Procesando ...',css: {
+		$.blockUI({ message: 'Realizando Inserción ...',css: {
             border: 'none',
             padding: '15px',
             backgroundColor: '#000',
@@ -241,67 +313,117 @@
 
         ///de aqui
         //Mando los datos para ejecutar, construllo el Json
-        $.ajax(
-        {
-			url: "{{ route('Users.call.alta_user') }}",
-			type: 'GET',
-		 	data: {
-				 'send_email'			: $('#cmd_Mail_user').val(),
-				 'send_password'		: $('#cmd_password').val(),
-				 'send_username'	    : $('#cmd_NombreAlta').val(),
-				 'send_id_company'		: $('#cmd_ID_company').val(),
-				 'send_id_estado'	    : $('#cmd_ID_Estado').val(),
-				 'send_id_nivel'		: $('#cmd_ID_Nivel').val(),
-                 'send_id_responable'	: $('#cmd_ID_Responsable').val(),
-				 'send_id_solicitante' 	: $('#cmd_ID_Solicitante').val(),
-                 'send_id_createdby'   	: "{{ app('auth')->user()->id }}",
-                 'send_createdby'    	: "{{ app('auth')->user()->email }}",
-                 'send_Telefono'        : $('#cmd_Telefono').val()
-			}
-		})
+        var jsoninsert = {};
+
+        jsoninsert.mail = $('#cmd_Mail_user').val();
+        jsoninsert.nombre = $('#cmd_NombreAlta').val();
+        jsoninsert.paterno = $('#cmd_ApPaterno').val();
+        jsoninsert.materno = $('#cmd_ApMaterno').val();
+        jsoninsert.msisdn = $('#data360').val();
+        jsoninsert.id_company = $('#cbo_idCompany').val();
+        jsoninsert.fecha_alta = $('#txtDateini' ).val();
+        jsoninsert.fecha_termino = $('#txtDatefin' ).val();
+        jsoninsert.id_estado = $('#cbo_ID_Estado').val();
+        jsoninsert.nivel = $('#cbo_ID_Nivel').val();
+        jsoninsert.idresp = $('#cbo_ID_Responsable').val();
+
+
+        $.ajax({
+            url: "{{ route('Users.call.alta_internaluser') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(jsoninsert)
+        })
         .done(function(response)
         {
-        	obj2 = jQuery.parseJSON(response);
-        	console.log(obj2);
+            console.log('Ejecución API Correcta');
+        	//obj2 = jQuery.parseJSON(response);
+        	console.log(response);
+            $('#validar').hide();
+			$('#finish').hide();
+			//$('#message').empty();
+            $('#message_error').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+
+            $('#cmd_Mail_user').val("");
+            $('#cmd_NombreAlta').val("");
+            $('#cmd_ApPaterno').val("");
+            $('#cmd_ApMaterno').val("");
+            $('#data360').val("");
+            $('#cbo_idCompany').val("");
+            $('#txtDateini' ).val("");
+            $('#txtDatefin' ).val("");
+            $('#cbo_ID_Estado').val("");
+            $('#cbo_ID_Nivel').val("");
+            $('#cbo_ID_Responsable').val("");
         })
         .fail(function()
         {
-	        // $('#message').empty();
+            console.log('Ejecución API incorrecta');
 			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario Boveda </label>');
 	        $.unblockUI();
 	    })
         .always(function()
         {
-            if ( obj2.statusCode!= null && obj2.statusCode!=200 )
-            {
-				// $('#message').empty();
-				$('#message_error').append('<label class="alert-danger mb-30 text-left">Alta de usuario <strong>no exitosa</strong><br>'+obj2.error+'</label>');
-				$.unblockUI();
-            }else
-            {
-			    $('#validar').hide();
-				$('#finish').hide();
-				//$('#message').empty();
-                $('#message_error').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
-                $('#cmd_Mail_user').val("");
-				$('#cmd_password').val("");
-				$('#cmd_NombreAlta').val("");
-				$('#cmd_ID_company').val("");
-				$('#cmd_ID_Estado').val("");
-				$('#cmd_ID_Nivel').val("");
-                $('#cmd_ID_Responsable').val("");
-				$('#cmd_ID_Solicitante').val("");
-                $('#cmd_Telefono').val("");
-				$.unblockUI();
-            }//else
+            //if ( obj2.statusCode!= null && obj2.statusCode!=200 )
+			$.unblockUI();
+
 		})
         /// a aqui
 
-        
+
         //$.unblockUI();
 
     } //finished
 
+    function fun_llena_catalog(iJL_catalog)
+    {
+        console.log(' Obtengo catalogo '+ iJL_catalog);
+        //Realizo el bloqueo de la pantalla
+		$.blockUI({ message: 'Procesando ...',css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        } });
+
+        var jsonchange = {};
+            jsonchange.type= iJL_catalog;
+
+        $.ajax({
+            url: "{{ route('Users.call.catalogs_view') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(jsonchange)
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+            console.log("Ejecución Catalogo " + obj.status);
+            console.log(obj);
+            //$('#cbo_ID_Responsable').append($('<option></option>').val('').html('N/A'));
+			$.each( obj.data, function( value, name )
+			{
+                //console.log(value);
+				//console.log(name);
+			  	$('#cbo_ID_Responsable').append(
+					$('<option></option>').val(name.send_id).html(name.send_nameresp)
+				);
+			});
+            return obj;
+        })
+        .fail(function() {
+            //algo
+            console.log("Error extracción de catalogo ");
+        })
+        .always(function() {
+            //algo
+            console.log("Catalogo always ");
+            $.unblockUI();
+        });
+
+    }//fun_llena_catalog
 
     //Cargo comportmiento de inicio de pantalla
     $(window).on('load', function()
@@ -309,10 +431,26 @@
 
         // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
 
+
+        //compañias
+        $('#cbo_idCompany').append($('<option></option>').val('175').html('175'));
+        //Estado
+        $('#cbo_ID_Estado').append($('<option></option>').val('0').html('Desactivo'));
+        $('#cbo_ID_Estado').append($('<option></option>').val('1').html('Activo'));
+        //Nivel
+        $('#cbo_ID_Nivel').append($('<option></option>').val('1').html('Manager'));
+        $('#cbo_ID_Nivel').append($('<option></option>').val('2').html('Solicitante'));
+        $('#cbo_ID_Nivel').append($('<option></option>').val('3').html('Manager SOC'));
+        //campo de numero 
+        TipoDato360('msisdn');
+        //catalogo de
+        fun_llena_catalog("1");
+
+
         var Operations2 = function ()
         {
             //Inicio el comporatamiento de la ventana
-            
+
 
         	return {
 		        init: function() {
@@ -320,14 +458,14 @@
                     $( "#finish" ).text('Alta');
 
                     $('#message_error').empty();
-				    
+
 				    //initializePlugins2();
 
 				    $( "#finish" ).click(function() {
                         //Aqui va el codigo de cuando se presiona el boton
-                    
+
                     });
-                    
+
 		        }
 		    };
         }

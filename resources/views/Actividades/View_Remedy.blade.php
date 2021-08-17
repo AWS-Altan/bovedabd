@@ -9,74 +9,31 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
                     <div id="example-basic">
-						<h3><span class="head-font capitalize-font">Busqueda de Actividades </span></h3>
+						<h3><span class="head-font capitalize-font">Busqueda de Actividades Vigentes </span></h3>
 						<section>
                             <form id="step_two">
                                 <!--   -->
                                     <br><br>
-                                    Seleccione otros criterios de busqueda:
+                                    Seleccione otros criterios de busqueda basados en Fecha Inicio:
                                     <br><br>
                                     <!-- fecha de inicio -->
                                     <div class="col-sm-2 mb-20">
-                                        <label class="help-block text-left">Fecha Inicio:</label>
+                                        <label class="help-block text-left">Desde:</label>
                                     </div>
                                     <div class="col-sm-4 mb-20 select select-group" >
-                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> </label>
                                         <div class="help-block with-errors" id="inputTxtDateError"></div>
                                     </div>
                                     <!-- Fecha Final -->
                                     <div class="col-sm-2 mb-20">
-                                        <label class="help-block text-left">Fecha Final:</label>
+                                        <label class="help-block text-left">Hasta:</label>
                                     </div>
                                     <div class="col-sm-4 mb-20 select select-group" >
-                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()">  </label>
                                         <div class="help-block with-errors" id="inputTxtDateError"></div>
                                     </div>
                                     <br><br>
-                                    Criterios Adicionales:
-                                    <br><br>
-                                    <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
-                                        <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio5" value="option1" Onclick="TipoDato4('nombre')">
-                                            <label for="radio5" style="margin-bottom: 0px;">
-                                                Nombre
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
-                                        <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio6" value="option2" Onclick="TipoDato4('apellido')">
-                                            <label for="radio6" style="margin-bottom: 0px;">
-                                                Apellido
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
-                                        <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio7" value="option3" Onclick="TipoDato4('usuario')">
-                                            <label for="radio7" style="margin-bottom: 0px;">
-                                                Usuario
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
-                                        <div class="radio radio-info" style="padding-top: 10px;">
-                                            <input type="radio" name="radio1" id="radio8" value="option4" Onclick="TipoDato4('ip')">
-                                            <label for="radio8" style="margin-bottom: 0px;">
-                                                IP
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4" style=" display:flex; align-items:flex-end;">
-                                        <div class="form-wrap" style="display: inline-block; width: 320px">
-                                                <form id="form_identify">
-                                                    <div class="form-group">
-                                                        <input type="text" data-minlength="10" class="form-control" id="inputData" placeholder="Ingrese valor a consultar" data-error="Valor inv�lido" maxlength="150">
-                                                        <div class="help-block with-errors" id="inputMSISDNError"></div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                    </div>
+                                    
                                     <div class="col-sm-3">
                                         <a id="consult_remedy" type="button" class="btn btn-primary">Buscar</a>
                                     </div>
@@ -304,12 +261,6 @@
                                 "data": "send_id_req"
                             },
                             {
-                                //ID SIte
-                                "name": "send_id_site",
-                                "data": "send_id_site"
-
-                            },
-                            {
                                 //IP
                                 "name": "send_ip",
                                 "data": "send_ip"
@@ -430,12 +381,6 @@
                                 "data": "send_id_task"
                             },
                             {
-                                //ID SIte
-                                "name": "send_id_site",
-                                "data": "send_id_site"
-
-                            },
-                            {
                                 //IP
                                 "name": "send_ip",
                                 "data": "send_ip"
@@ -455,11 +400,6 @@
                                 //Fecha Inicio
                                 "name": "send_fecha_inicio",
                                 "data": "send_fecha_inicio"
-                            },
-                            {
-                                //Fecha Termino
-                                "name": "send_fecha_termino",
-                                "data": "send_fecha_termino"
                             },
                             {
                                 //Fecha notificacion
@@ -525,7 +465,7 @@
         {
             data.fecha_fin = $('#txtDatefin' ).val()
         }
-        if(document.getElementById('radio5').checked)
+        /*if(document.getElementById('radio5').checked)
         {
             data.nombre = $('#inputData').val();
         }//if
@@ -540,7 +480,7 @@
         if(document.getElementById('radio8').checked)
         {
             data.ip = $('#inputData').val();
-        }//if
+        }//if*/
 
         //Hago el manejo de la tabla
         $.ajax({
@@ -616,6 +556,8 @@
                         ]
                     });
 
+                    //$datatableInstance.DefaultView.ToTable(true, "send_ticket", "send_fecha_inicio", "send_fecha_termino", "send_fecha_pausa", "send_fecha_reanuda", "send_descripcion"); 
+                    
 
                     // Opcion de Borrado
                     $('table#Tbl_usrdisp').on('click', 'a.editor_ticket', function (e)
@@ -679,7 +621,7 @@
         .always(function() {
         	//console.log(obj);
 			$.unblockUI();
-            document.getElementById('radio5').checked = true;
+            //document.getElementById('radio5').checked = true;
             $('#inputData').val('');
 
         });
@@ -709,12 +651,7 @@
             fun_ejecuta_busqueda();
         };*/
 
-        txJL_input.addEventListener("keyup", function (event) {
-            if (event.keyCode == 13) {
-                preventDefault();
-                fun_ejecuta_busqueda();
-            }
-        });
+
 
 
         var Operations2 = function ()

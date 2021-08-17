@@ -9,7 +9,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
                     <div id="example-basic">
-						<h3><span class="head-font capitalize-font">Reporte Batch de Altas</span></h3>
+						<h3><span class="head-font capitalize-font">Reporte Altas de Usuarios</span></h3>
 						<section>
                             <form id="step_two">
                                 <div class="row">
@@ -126,10 +126,6 @@
                             {
                                 //Campo de IP
                                 "data": "send_ip"
-                            },
-                            {
-                                //Campo de HOST
-                                "data": "send_host"
                             },
                             {
                                 //Tipo Dispositivo

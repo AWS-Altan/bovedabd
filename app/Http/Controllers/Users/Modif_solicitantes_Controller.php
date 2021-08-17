@@ -16,7 +16,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\BadResponseException;
 use Carbon\Carbon;
 
-class Modif_user_Controller extends BaseController
+class Modif_solicitantes_Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,GetMenu;
 
@@ -39,7 +39,7 @@ class Modif_user_Controller extends BaseController
             return redirect()->route('home.index');
 
         //return view('users.modif_user', ['menu' => $menu] );
-        return view('Users.modif_user')-> with('menu',$menu);
+        return view('Users.modif_solic')-> with('menu',$menu);
     }
 
        protected function login()
@@ -110,13 +110,7 @@ class Modif_user_Controller extends BaseController
                 ' nombre:'. request()->nombre.
                 ' paterno:'. request()->paterno.
                 ' materno:'. request()->materno.
-                ' msisdn:'. request()->msisdn.
-                ' id_company:'. request()->id_company.
-                ' fecha_alta:'. request()->fecha_alta.
-                ' fecha_termino:'. request()->fecha_termino.
-                ' id_estado:'. request()->id_estado.
-                ' nivel:'. request()->nivel.
-                ' idresp:'. request()->idresp
+                ' msisdn:'. request()->msisdn
                 );
 
 
@@ -127,15 +121,15 @@ class Modif_user_Controller extends BaseController
         //hago la inserción por la API
 
         try {
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_user'). 'modif-usuario'
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_user'). 'modif-solicic'
                 , [
                     'json' => $json,
                   ])->getBody());
 
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_user') . 'modif-usuario', [$req]);
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_user') . 'modif-solicic', [$req]);
             loginfo('termina ejecución API');
         } catch (\Exception $e) {
-            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_user') .'modif-usuario', [ $e ]);
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_user') .'modif-solicic', [ $e ]);
 
 
         }

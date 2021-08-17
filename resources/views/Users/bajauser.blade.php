@@ -24,7 +24,7 @@
 							    </div>
                             </form>
                         </section>
-                        <h3><span class="head-font capitalize-font">Confirmación Baja</span></h3>
+                        <h3><span class="head-font capitalize-font">Confirmación Deshabilitación</span></h3>
 						<section>
                             <form id="step_two">
                                 <!-- Panel -->
@@ -103,8 +103,11 @@
         var dato=$('#inputData').val();
 
         //REalizo validacion de que el dato este correcto
-		if (patrones[tipo_campo].test(dato)) {
-			fun_ejecuta_busqueda();
+		if (patrones[tipo_campo].test(dato)) 
+        {
+            console.log("Evalar");
+            console.log(dato);
+        	fun_llena_catalog("2",dato);
             return true;
 
 		} else {
@@ -115,12 +118,12 @@
         }//else
 	}
 
-    // funcion para ejecutar busqueda
-    function fun_ejecuta_busqueda(){
-        //limpio los textos
-        $('#message_error').empty();
-        //realizo el bloqueo de pantalla
-        $.blockUI({ message: 'Procesando ...',css: {
+
+    function fun_llena_catalog(iJL_catalog,sJLMail)
+    {
+        console.log(' Obtengo catalogo '+ iJL_catalog+' '+sJLMail);
+        //Realizo el bloqueo de la pantalla
+		$.blockUI({ message: 'Procesando ...',css: {
             border: 'none',
             padding: '15px',
             backgroundColor: '#000',
@@ -130,51 +133,54 @@
             color: '#fff'
         } });
 
-        //Ejecuto la busqueda del dato
+        var jsonchange = {};
+            jsonchange.type= iJL_catalog;
+            jsonchange.mail= sJLMail;            
+
         $.ajax({
-			url: "{{ route('Users.call.user_search') }}",
-			type: 'GET',
-		 	data: {
-		 		'type': tipo_campo,
-		 		'value': $('#inputData').val()
-		 	}
-		})
+            url: "{{ route('Users.call.catalogs_view') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(jsonchange)
+        })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
+            console.log("Ejecución Catalogo " + obj.status);
+            console.log(obj);
+            //$('#cbo_ID_Responsable').append($('<option></option>').val('').html('N/A'));
+			
+            if ( obj.status=="ok" )
+            {
+                $('#cmd_Mail_user').val(sJLMail);
+                $('#cmd_NombreAlta').val(obj.data[0].send_username);
+            }
+            else
+            {
+                $('#message_error').empty();
+                $('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Usuario No encontrado</strong> ');
+                $( "#finish" ).hide();
+            }
+            return obj;
         })
         .fail(function() {
-	        	$('#message_error').empty();
-                $('#message_error').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');
-                $( "#previous" ).trigger( "click" );
-	        	$.unblockUI();
-	        })
+            //algo
+            console.log("Error extracción de catalogo ");            
+            $( "#finish" ).hide();
+            $('#message_error').empty();
+            $('#message_error').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');            
+        })
         .always(function() {
-        	//console.log(obj);
-        	if(obj.error){
-        		$('#value').val('');
-				$('#message_error').empty();
-				$('#message_error').append('<label class="help-block mb-30 text-center"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
-				$( "#previous" ).trigger( "click" );
-				$.unblockUI();
-        	}else{
-                // coloco los datos en los txt
-                $('#cmd_NombreAlta').val(obj.name);
-                $("#cmd_Mail_user").val(obj.email);
-
-                // configuro la siguiente pestaña
-        		$('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Confirme el borrado del usuario</strong> ');
-                // $('#previous').show();
-                $( "#finish" ).text('Borrar');
-
-                $.unblockUI();
-	        }// Else
+            //algo
+            console.log("Catalogo always ");
             $.unblockUI();
         });
 
-    }//fun_ejecuta_busqueda
+    }//fun_llena_catalog
 
+   
     // funcion para ejecutar Borrado
-    function fun_ejecuta_borrado(){
+    function fun_ejecuta_borrado(sJLMail)
+    {
         $('#message_error').empty();
         //$('#message_error').append('Borro');
 
@@ -190,16 +196,30 @@
         } });
 
         //Ejecuto la busqueda del dato
+        var jsonchange = {};
+            jsonchange.estado= "0";
+            jsonchange.mail= sJLMail;            
+
         $.ajax({
-			url: "{{ route('Users.call.user_delete') }}",
-			type: 'GET',
-		 	data: {
-		 		'type': tipo_campo,
-		 		'value': $('#cmd_Mail_user').val()
-		 	}
-		})
+            url: "{{ route('Users.call.Change_status') }}",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(jsonchange)
+        })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
+            console.log(obj);
+            if ( obj.status=="ok" )
+            {
+                $('#message_error').empty();
+                $('#message_error').append('<label class="help-block mb-30 text-center" style="color: black"><strong>Usuario Deshabilitado</strong> ');
+            }
+            else
+            {
+                $('#message_error').empty();
+                $('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Usuario No Deshabilitado</strong> ');
+            }
+            
         })
         .fail(function() {
 	        	$('#message_error').empty();
@@ -219,7 +239,7 @@
                 // coloco los datos en los txt
 
                 // configuro la siguiente pestaña
-        		$('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Confirme el borrado del usuario</strong> ');
+        		
                 // $('#previous').show();
                 $( "#finish" ).text('Borrar');
 
@@ -235,7 +255,8 @@
     // Funcion de Fin de Vista, ejecucion
     function finished(){
         //Borro el registro
-        fun_ejecuta_borrado();
+        console.log('Ejecución de Borrado');
+        fun_ejecuta_borrado($('#cmd_Mail_user').val());
     } //finished
     //Cargo comportmiento de inicio de pantalla
     $(window).on('load', function()
@@ -251,7 +272,7 @@
         	return {
 		        init: function() {
 		        	$('#previous').hide();
-                    $( "#finish" ).text('Buscar');
+                    $( "#finish" ).text('Deshabilitar');
 
                     $('#message_error').empty();
 				    //initializePlugins2();

@@ -57,6 +57,7 @@
                 data.fecha_inicio = $('#initialDate').val();
                 data.fecha_termino = $('#finalDate').val();
             }
+            //esta consulta setea los cambios de fecha a 7 dias por motivos de que remedy no lo aguanta
 
 
             bloqueo();
@@ -420,8 +421,8 @@
                         if ( (obj.stackTrace) || (obj.errorMessage) ||  ( obj.Message && obj.
                             Message.indexOf("error")>-1 )  )  {
                             var descriptionError = "";
-                            alert("Entra Error");
-                            if ( (obj.errorMessage) ){
+                            alert("Se ha mandado a detener los procesos");
+                            /*if ( (obj.errorMessage) ){
                                 descriptionError= obj.errorMessage;
                                 descriptionError+= " <br>"
                                 descriptionError+= obj.stackTrace[0];
@@ -430,8 +431,8 @@
                             }
                             $('#message').empty();
                             $('#message').show();
-                            $('#message').append('</br><label class="alert-danger mb-30 text-left">Error al detener las siguientes actividades: ' + activitiesList +' <br> <strong>'+ descriptionError + '</strong>');
-
+                            $('#message').append('</br><label class="alert-danger mb-30 text-left">Error al detener las siguientes actividades: ' + activitiesList +' <br> <strong>'+ descriptionError + '</strong>');*/
+                            $.unblockUI();
                         }else{
                             $('#message').empty();
                             $('#message').show();

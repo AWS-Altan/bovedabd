@@ -117,10 +117,6 @@
                                 <!-- Contenedor -->
                                 <form id="form_tabs" action="#">
                                     <div class="panel panel-default">
-                                        <!-- Header Subseccion -->
-                                        <div class="panel-heading">
-    		    						    Detalles equipos
-                                        </div>
                                         <div class="col-sm-12">
                                             <div class="form-group mt-12">
                                                     <div class="panel-wrapper collapse in">
@@ -130,7 +126,7 @@
                                                                     <table id="Tbl_usrdisp" class="table table-hover display">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th>Site</th>
+                                                                                <th>REQ</th>
                                                                                 <th>IP</th>
                                                                                 <th>Usuario</th>
                                                                                 <th>Solicitante</th>
@@ -269,9 +265,9 @@
                     ],
                     "columns": [
                             {
-                                //id_site
-                                "name": "id_site",
-                                "data": "id_site"
+                                //id_req
+                                "name": "id_req",
+                                "data": "id_req"
                             },
                             {
                                 //ip
