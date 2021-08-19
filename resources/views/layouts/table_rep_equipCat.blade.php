@@ -11,10 +11,11 @@
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">ID</th>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">IP Prin</th>
 										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Marca</th>
-                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Tipo</th>
-                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Modelo</th>
-                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Estado</th>
-                                        <th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Tipo App</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Tipo</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Modelo</th>                                        
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Tipo App</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Gerencia</th>
+										<th style="color:#9E1D22; font-weight: bold; font-size: 11px;">Direccion</th>
 
 									</tr>
 								</thead>

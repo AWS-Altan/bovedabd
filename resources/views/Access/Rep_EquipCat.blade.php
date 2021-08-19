@@ -71,7 +71,7 @@
                                         <div class="radio radio-info" style="padding-top: 10px;">
                                             <input type="radio" name="radio1" id="radio11" value="option5" Onclick="TipoDato4('status')">
                                             <label for="radio11" style="margin-bottom: 0px;">
-                                                Estado
+                                                Tipo App
                                             </label>
                                         </div>
                                     </div>
@@ -79,7 +79,15 @@
                                         <div class="radio radio-info" style="padding-top: 10px;">
                                             <input type="radio" name="radio1" id="radio12" value="option5" Onclick="TipoDato4('tipo')">
                                             <label for="radio12" style="margin-bottom: 0px;">
-                                                Tipo App
+                                                Gerencia
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <div class="radio radio-info" style="padding-top: 10px;">
+                                            <input type="radio" name="radio1" id="radio13" value="option5" Onclick="TipoDato4('tipo')">
+                                            <label for="radio13" style="margin-bottom: 0px;">
+                                                Direccion
                                             </label>
                                         </div>
                                     </div>
@@ -250,16 +258,21 @@
                             //Modelo
                             "name": "Modelo",
                             "data": "Modelo"
-                        },
-                        {
-                            //Estado
-                            "name": "Estado",
-                            "data": "Estado"
-                        },
+                        },                        
                         {
                             //Tipo APP
                             "name": "Tipo_Aplicativo",
                             "data": "Tipo Aplicativo"
+                        },
+                        {
+                            //Gerencia
+                            "name": "Gerencia",
+                            "data": "Area.Gerencia"
+                        },
+                        {
+                            //Direccion
+                            "name": "Direccion",
+                            "data": "Area.Direccion"
                         }
                     ],
                     dom: 'Bfrtip',
@@ -369,7 +382,7 @@
                             console.log('filtro status:'+sJL_dato);
 
                         }//if
-                        //Estado
+                        //Tipo App
                         if(document.getElementById('radio11').checked)
                         {
                             sJL_search = data[6];
@@ -378,10 +391,19 @@
                             console.log('filtro status:'+sJL_dato);
 
                         }//if
-                        //Tipo App
+                        //Gerencia
                         if(document.getElementById('radio12').checked)
                         {
                             sJL_search = data[7];
+                            sJL_dato=sJL_dato.toUpperCase()
+                            sJL_search=sJL_search.toUpperCase()
+                            console.log('filtro status:'+sJL_dato);
+
+                        }//if
+                        //Direccion
+                        if(document.getElementById('radio13').checked)
+                        {
+                            sJL_search = data[8];
                             sJL_dato=sJL_dato.toUpperCase()
                             sJL_search=sJL_search.toUpperCase()
                             console.log('filtro status:'+sJL_dato);
