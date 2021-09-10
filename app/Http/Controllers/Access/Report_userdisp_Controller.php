@@ -61,7 +61,13 @@ class Report_userdisp_Controller extends BaseController
 
         loginfo('Obtiene Datos del API para el reporte: ');
 
-        $json = request()->json()->all();
+
+        $iJL_pagina = 1;
+        $json = [
+                    'type' => request()->type,
+                    'mail' => request()->mail,
+                    'page' => $iJL_pagina
+                ];
         loginfo($json);
 
 
@@ -71,15 +77,53 @@ class Report_userdisp_Controller extends BaseController
                     'json' => $json,
                   ])->getBody());
 
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'consulta-usuarios-dispositivos', [$req]);
-            loginfo('termina ejecución API');
+            //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'consulta-usuarios-dispositivos', [$req]);
+            loginfo('termina ejecución API 1');
+            $sJL_varanalis = json_decode(json_encode( $req ),true);
+            loginfo($sJL_varanalis['status']);
+            loginfo($iJL_pagina);
+            $sJL_pagedata = str_replace ('[','',$sJL_varanalis['data']);
+            $sJL_pagedata = str_replace (']','',$sJL_pagedata);
+            loginfo(strlen($sJL_pagedata));
+            while($sJL_varanalis['data'] != '[]')
+            {
+                $iJL_pagina = $iJL_pagina + 1;
+                $json = [
+                    'type' => request()->type,
+                    'mail' => request()->mail,
+                    'page' => $iJL_pagina
+                ];
+
+                loginfo($json);
+
+                $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'consulta-usuarios-dispositivos'
+                , [
+                    'json' => $json,
+                  ])->getBody());
+
+                $sJL_varanalis = json_decode(json_encode( $req ),true);
+                loginfo($sJL_varanalis['status']);
+                if($sJL_varanalis['data'] != '[]')
+                {
+                    $sJL_pagedatanew = str_replace ('[','',$sJL_varanalis['data']);
+                    $sJL_pagedatanew = str_replace (']','',$sJL_pagedatanew);
+                    $sJL_pagedata = $sJL_pagedata.','.$sJL_pagedatanew;
+                    loginfo(strlen($sJL_pagedata));
+                }//if
+
+            }//while
+            $sJL_pagedata = '['.$sJL_pagedata.']';
+            $sJL_varanalis['data'] = $sJL_pagedata;
+
+            loginfo('Regreso información');
+            return json_encode( $sJL_varanalis );
+
         } catch (\Exception $e) {
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'consulta-usuarios-dispositivos', [ $e ]);
-
-
         }
-        loginfo('Regreso información');
-        return json_encode( $req );
+
+        //echo json_encode(array_merge(json_decode($dados1, true),json_decode($dados2, true)));
+
 
     }//search_data_api
 
