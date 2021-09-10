@@ -139,7 +139,7 @@
     function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value)
     {
 
-        console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja: ' + sJLipodisp_value);
+        //console.log(' mando a API IP_baja '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja: ' + sJLipodisp_value);
 
         /*var jsonborra = {
             "ip": sJLip_value,
@@ -164,7 +164,7 @@
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            console.log("ejecución boton de borrado " + obj.status);
+            //console.log("ejecución boton de borrado " + obj.status);
 
         })
         .fail(function() {
@@ -182,7 +182,7 @@
 
     function fun_report_cambio( sJLip_value, sJLuser_value, sJLipodisp_value,sJLidperf_value)
     {
-        console.log(' mando a API IP_Camio '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
+        //console.log(' mando a API IP_Camio '+ sJLip_value + ' user_baja ' + sJLuser_value + ' id_disp_baja ' + sJLipodisp_value);
 
         var jsonchange = {};
             jsonchange.ip= sJLip_value;
@@ -199,7 +199,7 @@
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            console.log("Ejecución Boton Cambio " + obj.status);
+            //console.log("Ejecución Boton Cambio " + obj.status);
 
         })
         .fail(function() {
@@ -217,7 +217,7 @@
     function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr, txtJLperf)
     {
 
-        console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
+        //console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
 
 
         var json = {};
@@ -237,7 +237,7 @@
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
-            console.log("ejecución boton de rotado " + obj.status);
+            //console.log("ejecución boton de rotado " + obj.status);
 
         })
         .fail(function() {
@@ -254,7 +254,7 @@
     function fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
     {
 
-        console.log('forzado sesion IP:'+ sJLip_value + ' user: ' + sJLuser_value + ' id_disp:' + sJLipodisp_value);
+        //console.log('forzado sesion IP:'+ sJLip_value + ' user: ' + sJLuser_value + ' id_disp:' + sJLipodisp_value);
 
 
         var json = {};
@@ -283,8 +283,8 @@
         .done(function(response) {
             obj = jQuery.parseJSON(response);
 
-            console.log("ejecución boton de forzado de sesion " + obj.status);
-            console.log(obj);
+            //console.log("ejecución boton de forzado de sesion " + obj.status);
+            //console.log(obj);
 
         })
         .fail(function() {
@@ -301,7 +301,7 @@
     function fun_getTipoDispositivo()
     {
 
-        console.log('Voy a sacar el tipo de dispositivo');
+        //console.log('Voy a sacar el tipo de dispositivo');
 
         var json = {};
             json.operacion= "tipo_dispositivo";
@@ -326,8 +326,8 @@
         .done(function(response) {
             obj = jQuery.parseJSON(response);
 
-            console.log("ejecución catalogo dispositivos " + obj.status);
-            console.log(obj);
+            //console.log("ejecución catalogo dispositivos " + obj.status);
+            //console.log(obj);
 
         })
         .fail(function() {
@@ -367,33 +367,33 @@
         {
             data.fecha_ini = $('#txtDateini' ).val();
             data.fecha_fin = $('#txtDatefin' ).val();
-            console.log('Fechas: '+data.fecha_ini+','+data.fecha_fin);
+            //console.log('Fechas: '+data.fecha_ini+','+data.fecha_fin);
 
         }
         if(document.getElementById('radio5').checked)
         {
             data.IP = $('#inputData').val();
-            console.log('IP:'+data.IP);
+            //console.log('IP:'+data.IP);
         }//if
         if(document.getElementById('radio6').checked)
         {
             data.hostname = $('#inputData').val();
-            console.log('Hostname:'+data.hostname);
+            //console.log('Hostname:'+data.hostname);
         }//if
         if(document.getElementById('radio7').checked)
         {
             data.user = $('#inputData').val();
-            console.log('usuario:'+data.user);
+            //console.log('usuario:'+data.user);
         }//if
         if(document.getElementById('radio8').checked)
         {
             data.solicitante = $('#inputData').val();
-            console.log('solicitante'+data.solicitante);
+            //console.log('solicitante'+data.solicitante);
         }//if
         if(document.getElementById('radio9').checked)
         {
             data.status = $('#inputData').val();
-            console.log('status:'+data.status);
+            //console.log('status:'+data.status);
         }//if
 
         $popup_visible = false;
@@ -415,7 +415,7 @@
                     data = jQuery.parseJSON(obj.data);
                     if (typeof($datatableInstance)!== 'undefined')
                     {
-                        console.log('borrando');
+                        //console.log('borrando');
                         $datatableInstance.destroy();
                     } //end
 
@@ -542,7 +542,7 @@
                             var sJLip_value = row.data()['send_ip'];
                             var sJLuser_value = row.data()['send_usuario'];
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
-                            console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
+                            //console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
 
                             $.confirm({
                                 title: 'Borrado de Registro',
@@ -603,11 +603,11 @@
                         {
                             $popup_visible = true;
                             var row = $datatableInstance.row($(this).closest('tr'));
-                            console.log('row '+row);
 
+                            //console.log('row '+row);
                             objtipo=fun_getTipoDispositivo();
-                            console.log('detalles ');
-                            console.log(objtipo.details);
+                            //console.log('detalles ');
+                            //console.log(objtipo.details);
                             //detJLTiposDisp = jQuery.parseJSON(objtipo.details);
 
 
@@ -616,13 +616,13 @@
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
                             var sJLidperf_value = row.data()['send_idperfil2'];
                             var sJLiprofchange_value = row.data()['send_profile_change'];
-                            console.log('IP '+ sJLip_value + 'user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' id perfil ' + sJLidperf_value + ' puede camb ' + sJLiprofchange_value );
+                            //console.log('IP '+ sJLip_value + 'user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' id perfil ' + sJLidperf_value + ' puede camb ' + sJLiprofchange_value );
 
 
                             //inicio extracción de perfiles
                             sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
                             aJL_profiles=sJLiprofchange_value.split(',');
-                            console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
+                            //console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
 
                             sjL_detailCP_text = '<form action="" class="formName">';
                             sjL_detailCP_text += '<div class="form-group">';
@@ -635,7 +635,7 @@
 
                             aJL_profiles.forEach(function(iJL_perfil)
                             {
-                                console.log(iJL_perfil);
+                                //console.log(iJL_perfil);
 
                                 //1	Manager Seguridad
                                 if (iJL_perfil==1)
@@ -725,7 +725,7 @@
                                                 $.alert('Coloque información valida');
                                                 return false;
                                             }//if
-                                            console.log('información cambio-' + sJLip_value +'-'+ sJLuser_value +'-'+ txtJLdisp +'-'+ txtJLperf);
+                                            //console.log('información cambio-' + sJLip_value +'-'+ sJLuser_value +'-'+ txtJLdisp +'-'+ txtJLperf);
                                             obj = fun_report_cambio( sJLip_value, sJLuser_value, txtJLdisp,txtJLperf)
                                             $.alert('Confirmación de Aplicación Status: ' + obj.status );
                                         }
@@ -754,8 +754,8 @@
                     $('table#Tbl_usrdisp').on('click', 'a.rotar_disabled', function (e)
                     {
                         e.preventDefault();
-                        console.log('popup visible:');
-                        console.log($popup_visible);1
+                        //console.log('popup visible:');
+                        //console.log($popup_visible);1
                         $.alert('disabled: ');
                     });//rotar_disabled
 
@@ -771,7 +771,7 @@
                             $popup_visible = true;
                             //obtengo los datos
                             var row = $datatableInstance.row($(this).closest('tr'));
-                            console.log('row '+row);
+                            //console.log('row '+row);
                             var sJLip_value = row.data()['send_ip'];
                             var sJLuser_value = row.data()['send_usuario'];
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
@@ -779,11 +779,11 @@
                             var sJLiperfil_value = row.data()['send_idperfil2'];
 
 
-                            console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' puede camb ' + sJLiprofchange_value );
+                            //console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value + ' puede camb ' + sJLiprofchange_value );
                             //inicio extracción de perfiles
                             sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
                             aJL_profiles=sJLiprofchange_value.split(',');
-                            console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
+                            //console.log('Puede camb2: ' + sJLiprofchange_value + ' arreglo:' + aJL_profiles );
 
                             sjL_detailCP_text = '<form action="" class="formName">';
                             sjL_detailCP_text += '<div class="form-group">';
@@ -882,17 +882,17 @@
                                             var txtJLcontr = this.$content.find('.txtcontr').val();
                                             //var txtJLperf = $('#cbo_profile2 option:selected').val();
                                             var txtJLperf = sJLiperfil_value;
-                                            console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
+                                            //console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
                                             if(!txtJLcontr){
                                                 $.alert('Coloque información valida');
                                                 return false;
                                             }
                                             obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
-                                            console.log(txtJLperf);
-                                            console.log('obj21');
-                                            console.log(obj21);
+                                            //console.log(txtJLperf);
+                                            //console.log('obj21');
+                                            //console.log(obj21);
                                             $.alert('Confirmación de Aplicación Status: ' + obj21.status );
-                                            console.log('deshabilito');
+                                            //console.log('deshabilito');
                                             row.data()['acciones'] = '';
                                             //row.cell(row,1).data('hola').draw();
                                             $sjl_acciones = 'hola';
@@ -925,11 +925,11 @@
                             $popup_visible = true;
                             //obtengo los datos
                             var row = $datatableInstance.row($(this).closest('tr'));
-                            console.log('Forzado cierre row '+row);
+                            //console.log('Forzado cierre row '+row);
                             var sJLip_value = row.data()['send_ip'];
                             var sJLuser_value = row.data()['send_usuario'];
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
-                            console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
+                            //console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
                             //inicio de boton
                             $.confirm({
                                 title: 'Forzado de Sesion',
@@ -945,8 +945,8 @@
 
 
                                             obj22 = fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
-                                            console.log('obj22');
-                                            console.log(obj22);
+                                            //console.log('obj22');
+                                            //console.log(obj22);
                                             $.alert('Cierre, forzado de sesión: ' + obj22.status.toUpperCase() +'<br> status: ' + obj22.description);
 
                                         }
@@ -999,7 +999,7 @@
     function filtra_tabla()
     {
 
-        console.log('hago filtro tabla');
+        //console.log('hago filtro tabla');
 
         $datatableInstance.draw();
 
@@ -1015,13 +1015,13 @@
             var bJLFiltro = false;
             if( $('#txtDateini' ).val() == '' && $('#txtDatefin' ).val() == '' )
             {
-                console.log('Consulta sin filtro');
+                //console.log('Consulta sin filtro');
                 bJLFiltro = true;
             }
 
             if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
             {
-                console.log('sisfen fecha');
+                //console.log('sisfen fecha');
                 //reviso los campos del filtro
                 var sJL_min = new Date($('#txtDateini' ).val());
                 //sJL_min.toLocaleDateString('es-MX');
@@ -1033,14 +1033,14 @@
                 //var sJL_max = sJL_max + 59 + (1000*59) + (1000*60*59) + (1000*60*60*23)+(1000*60*60*24*1);
 
                 var date = new Date(data[9]);
-                console.log('sJL_min');
-                console.log(sJL_min);
-                console.log('sJL_max');
-                console.log(sJL_max);
-                console.log(date);
+                //console.log('sJL_min');
+                //console.log(sJL_min);
+                //console.log('sJL_max');
+                //console.log(sJL_max);
+                //console.log(date);
                 if (sJL_min <= date && date <= sJL_max )
                 {
-                    console.log('Fech dentro');
+                    //console.log('Fech dentro');
                     if($('#inputData').val()=='')
                     {
                         bJLFiltro = true;
@@ -1051,35 +1051,35 @@
                         if(document.getElementById('radio5').checked)
                         {
                             sJL_search = data[0];
-                            console.log('filtro IP:'+sJL_dato);
+                            //console.log('filtro IP:'+sJL_dato);
                         }//if
                         if(document.getElementById('radio6').checked)
                         {
                             sJL_search = data[1];
                             sJL_dato=sJL_dato.toUpperCase()
                             sJL_search=sJL_search.toUpperCase()
-                            console.log('filtro Hostname:'+sJL_dato);
+                            //console.log('filtro Hostname:'+sJL_dato);
                         }//if
                         if(document.getElementById('radio7').checked)
                         {
                             sJL_search = data[4];
                             sJL_dato=sJL_dato.toUpperCase()
                             sJL_search=sJL_search.toUpperCase()
-                            console.log('filtro usuario:'+sJL_dato);
+                            //console.log('filtro usuario:'+sJL_dato);
                         }//if
                         if(document.getElementById('radio8').checked)
                         {
                             sJL_search = data[8];
                             sJL_dato=sJL_dato.toUpperCase()
                             sJL_search=sJL_search.toUpperCase()
-                            console.log('filtro solicitante:'+sJL_dato);
+                            //console.log('filtro solicitante:'+sJL_dato);
                         }//if
                         if(document.getElementById('radio9').checked)
                         {
                             sJL_search = data[6];
                             sJL_dato=sJL_dato.toUpperCase()
                             sJL_search=sJL_search.toUpperCase()
-                            console.log('filtro status:'+sJL_dato);
+                            //console.log('filtro status:'+sJL_dato);
 
                         }//if
                         if (sJL_search.includes(sJL_dato))
@@ -1100,7 +1100,8 @@
         //$datatableInstance.clear().draw();
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
-            console.log('limpiando');
+
+            //console.log('limpiando');
 
             $popup_visible = false;
             $('#message_error').empty();
