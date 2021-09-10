@@ -25,9 +25,11 @@ return [
     'url_activity_list'=> 'https://leg1dqae6a.execute-api.us-east-1.amazonaws.com/dev/',
     'url_activities_report'=> 'https://q82jneeux8.execute-api.us-east-1.amazonaws.com/prod/',
     'url_gui_user'     => 'https://2zmucdaom1.execute-api.us-east-1.amazonaws.com/dev/dev/',
+
     'url_tipo_disp'    => 'https://tsqa1er8c4.execute-api.us-east-1.amazonaws.com/prod/',
     'url_report_graps' => 'https://b84q0jo83f.execute-api.us-east-1.amazonaws.com/prod/',
     'url_report_disp' => 'https://ci9pdiap17.execute-api.us-east-1.amazonaws.com/prod/',
+
 
 
 ];
