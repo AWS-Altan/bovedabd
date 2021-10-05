@@ -103,7 +103,7 @@ class Alta_userMan_Controller extends BaseController
                     "materno" => request()->send_appmat,
                     "msisdn" => request()->send_phone,
                     //"id_company" =>
-                    "mail" => request()->send_mail
+                    "email" => request()->send_mail
                     //"fecha_alta" =>
                     //"fecha_termino" =>
                     //"id_estado"v

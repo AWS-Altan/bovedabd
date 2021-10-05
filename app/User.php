@@ -15,8 +15,8 @@ class User extends Authenticatable
      *
      * @var string
      */
-      protected $table = 'vwusers';
-     //protected $table = 'tbl_ctl_user_manager_secure';
+     //protected $table = 'vwusers';
+     protected $table = 'tbl_ctl_user_manager_secure';
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +25,7 @@ class User extends Authenticatable
      */
     /*protected $fillable = [
         
-        'mail','iduser_bv','nombre','paterno','materno','msisdn','id_company','id_estado','nivel','idresp','last_session_id'
+        'email','iduser_bv','nombre','paterno','materno','msisdn','id_company','id_estado','nivel','idresp','last_session_id'
     ];*/
 
     /**
@@ -43,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     /*protected $casts = [
-        'mail' => 'email',
+        'email' => 'email',
     ];*/
 
     

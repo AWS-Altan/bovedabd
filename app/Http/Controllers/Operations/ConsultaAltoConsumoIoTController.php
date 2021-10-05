@@ -10,7 +10,7 @@ use App\Traits\GetMenu;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 
-use App\Entities\{Vwuser};
+
 
 class ConsultaAltoConsumoIoTController extends BaseController
 {

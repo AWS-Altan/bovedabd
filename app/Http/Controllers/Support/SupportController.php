@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
-use App\Entities\{Usermana,Vwuser};
+use App\Entities\{Usermana};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -51,16 +51,20 @@ class SupportController extends BaseController
             'passwd' => $sJL_pass64
         ];
 
-        loginfo('Version 2020/08/10');
+        loginfo('Version 2020/10/05');
+        
 
         try {
+            loginfo('envio a pass');
+            loginfo($json);
+
             $req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'slogin', [
             //$req = json_decode($this->httpClient->request('POST','https://ch9o1fia6l.execute-api.us-east-1.amazonaws.com/test/boveda-login', [
             
                     'json' => $json
                   ])->getBody(),true);
 
-            loginfo('Login response' . config('conf.url_login_bob') . 'boveda-login', [$req]);
+            loginfo('Login response' . config('conf.url_login_bob') . 'slogin', [$req]);
             $sJLstring = implode(",", [$req][0]);
             $arrJLlogin = explode(',', $sJLstring);
             $sJLstatus = $arrJLlogin[0];            
@@ -82,10 +86,10 @@ class SupportController extends BaseController
 
 
             //$resp = Usermana::where( 'mail', request()->email )->first();
-            $resp = Usermana::where([['mail','=',request()->email],['id_estado','=','1']]  )->first();            
+            $resp = Usermana::where([['email','=',request()->email],['id_estado','=','1']]  )->first();            
             
             /*tabla view users en proceso de borrado*/
-            $resp2 = Vwuser::where( 'email', request()->email )->first();
+            $resp2 = Usermana::where( 'email', request()->email )->first();
 
             if ($sJLstatus == "ok")
             {
@@ -96,14 +100,14 @@ class SupportController extends BaseController
                 if (is_null($resp)) 
                 {
                     loginfo('se crea el registro del usuario para bitacora ', [request()->email]);
-                    Vwuser::create([
+                    /*Vwuser::create([
                         'name' => $sJLnombre,
                         'vwrole_id' => $sJLnivel,
                         'mvno_id' => "1",
                         'email' => request()->email,
                         'active' => "1"
                     ]);
-                    $resp2 = Vwuser::where( 'email', request()->email )->first();
+                    $resp2 = Vwuser::where( 'email', request()->email )->first();*/
                 }
 
                 $resp->last_session_id = $new_session;
@@ -150,7 +154,7 @@ class SupportController extends BaseController
         dd( '' );
     }
 
-    public function reset()
+    /*public function reset()
     {
         //$res = Usermana::where( 'id', app('auth')->user()->id )->first();
         $res->password = Hash::make( request()->password );
@@ -158,6 +162,6 @@ class SupportController extends BaseController
         $res->save();
         loginfo('cambio de contraseña primera vez del usuario ', [app('auth')->user()->id]);
         return redirect('/logout');
-    }
+    }*/
 
 }
