@@ -228,10 +228,8 @@ class Report_userdisp_Controller extends BaseController
 
         loginfo('Obtiene Datos del API para el forzado de la sesion: ');
 
-
         $json = request()->json()->all();
         //$json = request()->data;
-
         loginfo($json);
 
 

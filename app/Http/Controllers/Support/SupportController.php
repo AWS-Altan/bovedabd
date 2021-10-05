@@ -51,9 +51,7 @@ class SupportController extends BaseController
             'passwd' => $sJL_pass64
         ];
 
-
         loginfo('Version 2020/08/10');
-
 
         try {
             $req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'slogin', [

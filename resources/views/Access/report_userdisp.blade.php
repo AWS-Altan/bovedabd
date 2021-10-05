@@ -158,9 +158,7 @@
             url: "{{ route('access.call.report_baja') }}",
             type: 'POST',
             contentType: "application/json",
-
             data: JSON.stringify(json)
-
         })
         .done(function(response) {
             obj = jQuery.parseJSON(response);
@@ -214,7 +212,8 @@
 
     }//fun_report_cambio
 
-    function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr, txtJLperf)
+    //function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr, txtJLperf)
+    function fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLperf)
     {
 
         //console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
@@ -224,7 +223,7 @@
             json.ip= sJLip_value;
             json.usuario= sJLuser_value;
             json.idtipo_disp= ""+sJLipodisp_value+"";
-            json.passw= txtJLcontr;
+            //json.passw= txtJLcontr;
             json.operacion= "online";
             json.id_perfil= txtJLperf;
 
@@ -544,29 +543,6 @@
                             var sJLipodisp_value = row.data()['send_idtipodisp2'];
                             //console.log('IP '+ sJLip_value + ' user ' + sJLuser_value + ' id_disp ' + sJLipodisp_value);
 
-                            $.confirm({
-                                title: 'Borrado de Registro',
-                                content: '¿Desea Enviar la solucitud de borrado de Registro para la IP ' + sJLip_value + '?',
-                                buttons: {
-                                    Confirmar: {
-                                        text: 'Confirmar',
-                                        btnClass: 'btn-red',
-                                        keys: ['enter', 'shift'],
-                                        action: function()
-                                        {
-                                            obj = fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value);
-                                            $.alert('Confirmación de Aplicación Status: ' + obj.status + " Descripción: " + obj.description);
-                                        } //action
-                                    },
-                                    Cancelar: {
-                                        text: 'Cancelar',
-                                        btnClass: 'btn-red',
-                                        keys: ['enter', 'shift'],
-                                    }
-                                }
-                            });
-                            $popup_visible = false;
-
 
                             $.confirm({
                                 title: 'Baja de Usuario',
@@ -591,7 +567,6 @@
                             });
                             $popup_visible = false;
 
-
                         }//if
                     } );
 
@@ -603,13 +578,11 @@
                         {
                             $popup_visible = true;
                             var row = $datatableInstance.row($(this).closest('tr'));
-
                             //console.log('row '+row);
                             objtipo=fun_getTipoDispositivo();
                             //console.log('detalles ');
                             //console.log(objtipo.details);
                             //detJLTiposDisp = jQuery.parseJSON(objtipo.details);
-
 
                             var sJLip_value = row.data()['send_ip'];
                             var sJLuser_value = row.data()['send_usuario'];
@@ -626,10 +599,8 @@
 
                             sjL_detailCP_text = '<form action="" class="formName">';
                             sjL_detailCP_text += '<div class="form-group">';
-
                             //sjL_detailCP_text += '<label>Tipo Dispositivo</label>';
                             //sjL_detailCP_text += '<input type="text" placeholder="Dispositivo" class="txtdisp form-control" required />';
-
                             sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile1">Actualización de Perfil</label>';
                             sjL_detailCP_text += '<select id="cbo_profile1" class="form-control" name="cbo_profile1">';
 
@@ -716,10 +687,8 @@
                                         text: 'Actualizar',
                                         btnClass: 'btn-red',
                                         action: function () {
-
                                             //var txtJLdisp = this.$content.find('.txtdisp').val();
                                             var txtJLdisp = sJLipodisp_value;
-
                                             var txtJLperf = $('#cbo_profile1 option:selected').val();
                                             if(!txtJLdisp || !txtJLperf){
                                                 $.alert('Coloque información valida');
@@ -787,8 +756,8 @@
 
                             sjL_detailCP_text = '<form action="" class="formName">';
                             sjL_detailCP_text += '<div class="form-group">';
-                            sjL_detailCP_text += '<label>Proporcione la nueva contraseña</label>';
-                            sjL_detailCP_text += '<input type="text" placeholder="Contraseña" class="txtcontr form-control" required />';
+                            //sjL_detailCP_text += '<label>Proporcione la nueva contraseña</label>';
+                            //sjL_detailCP_text += '<input type="text" placeholder="Contraseña" class="txtcontr form-control" required />';
                             //sjL_detailCP_text += '<label class="control-label mb-10" for="cbo_profile2">Actualización de Perfil</label>';
                             //sjL_detailCP_text += '<select id="cbo_profile2" class="form-control" name="cbo_profile2">';
 
@@ -879,15 +848,16 @@
                                         btnClass: 'btn-red',
                                         keys: ['enter', 'shift'],
                                         action: function(){
-                                            var txtJLcontr = this.$content.find('.txtcontr').val();
+                                            //var txtJLcontr = this.$content.find('.txtcontr').val();
                                             //var txtJLperf = $('#cbo_profile2 option:selected').val();
                                             var txtJLperf = sJLiperfil_value;
                                             //console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
-                                            if(!txtJLcontr){
+                                            /*if(!txtJLcontr){
                                                 $.alert('Coloque información valida');
                                                 return false;
-                                            }
-                                            obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
+                                            }*/
+                                            //obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
+                                            obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLperf)
                                             //console.log(txtJLperf);
                                             //console.log('obj21');
                                             //console.log(obj21);
@@ -942,7 +912,6 @@
                                         btnClass: 'btn-red',
                                         keys: ['enter', 'shift'],
                                         action: function(){
-
 
                                             obj22 = fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
                                             //console.log('obj22');
@@ -1100,16 +1069,13 @@
         //$datatableInstance.clear().draw();
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
-
             //console.log('limpiando');
-
             $popup_visible = false;
             $('#message_error').empty();
             //$datatableInstance.clear().draw();
             filtra_tabla();
             //fun_ejecuta_busqueda();
         }else
-
         {
             if ( $('#txtDateini' ).val()=='' ){
                 $('#message_error').empty();
@@ -1136,6 +1102,7 @@
         {
             //Inicio el comporatamiento de la ventana
             var $datatableInstance = null;
+
             //comportamiento del popup
             var $popup_visible = false;
 
