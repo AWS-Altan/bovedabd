@@ -47,7 +47,7 @@ class AltaAccessController extends BaseController
     public function index()
     {
         $menu = $this->get_menu();
-        if ( isset( $menu[2] ) )
+        if ( isset( $menu[25] ) )
             return redirect()->route('home.index');
 
         return view('Access.altauser')-> with('menu',$menu); // test 2
@@ -80,7 +80,7 @@ class AltaAccessController extends BaseController
 
         $json = [   'ip'            => request()->ip,
                     'usuario'       => request()->usuario,
-                    'password'      => request()->password,
+                    //'password'      => request()->password,
                     'idtipo_disp'   => request()->idTipoDispositivo,
                     'id_grupo'      => request()->idGrupo,
                     'flag_rota'     => request()->flagRotacionPassword,

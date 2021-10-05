@@ -26,7 +26,7 @@ class Usermana extends Model
     // User model
     /*public function address()
     {
-        return $this->hasMany(Address::class, 'mail', 'mail');
+        return $this->hasMany(Address::class, 'email', 'email');
     }*/
 
     //programación para el insert
@@ -37,26 +37,27 @@ class Usermana extends Model
         'materno',
         'msisdn',
         'id_company',
-        'mail',
+        'email',
         'fecha_alta',
         'fecha_termino',
         'id_estado',
         'nivel',
         'idresp',
-        'last_session_id'
+        'last_session_id',
+        'id'
     ];
 
     protected $primaryKey = 'iduser_bv';
    
     protected $maps = [
-        'mail' => 'email',        
+        'email' => 'email',        
     ];
 
     protected $append = ['email'];
 
     public function getEmailAttribute()
     {
-        return $this->attributes['mail'];
+        return $this->attributes['email'];
     }
     
 

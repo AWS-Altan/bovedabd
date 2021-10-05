@@ -32,7 +32,7 @@ class View_Ticket_Rel_Controller extends BaseController
     public function index()
     {
         $menu = $this->get_menu();
-        if ( isset( $menu[2] ) )
+        if ( isset( $menu[22] ) )
             return redirect()->route('home.index');
 
         //return view('tickets.View_Ticket', ['menu' => $menu] );

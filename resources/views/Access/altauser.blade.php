@@ -92,17 +92,16 @@
                                                     <div class="col-sm-1 mb-20">
                                                     </div>
 
-                                                    <!-- Contraseña del usuario del dispositivo-->
-                                                    <div class="col-sm-2">
-                                                        <label class="help-block text-left">Contrase&ntilde;a</label>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="password" data-minlength="10" class="form-control" id="password" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150" autocomplete="">
-                                                            <div class="help-block with-errors" id="PasswordError"></div>
-                                                    </div>
+                                                    <!-- Solicitante -->
                                                     <div class="col-sm-2 mb-20">
-                                                        <button id="mostrarContrasena" class="btn btn-primary btn-xs">Ver</button>
-                                                   </div>
+                                                        <label class="help-block text-left" id="solicitanteLabel">Solicitante</label>
+                                                    </div>
+                                                    <div class="col-sm-3 mb-20 select select-group" >
+                                                        <select id="solicitante" class="form-control">
+                                                        </select>
+                                                        <div class="help-block with-errors" id="solicitanteError"></div>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -157,15 +156,7 @@
                                                     <div class="col-sm-1 mb-20">
                                                     </div>
 
-                                                    <!-- Solicitante -->
-                                                    <div class="col-sm-2 mb-20">
-                                                        <label class="help-block text-left" id="solicitanteLabel">Solicitante</label>
-                                                    </div>
-                                                    <div class="col-sm-3 mb-20 select select-group" >
-                                                        <select id="solicitante" class="form-control">
-                                                        </select>
-                                                        <div class="help-block with-errors" id="solicitanteError"></div>
-                                                    </div>
+                                                   
 
                                                 </div>
                                             </div>
@@ -402,7 +393,7 @@
     {
         var fechaTermino = '';
         // Limpio los mensajes de Error
-        $('#message, #ipHostError, #usuarioDispositivoError, #passwordError' ).empty();
+        $('#message, #ipHostError, #usuarioDispositivoError' ).empty();
         $('#tipoDispositivoError, #grupoError, #tipoUsuarioError, #perfilError, inputSolicitanteError' ).empty();
         $('#nombreSolicitanteError, #paternoSolicitanteError, #maternoSolicitanteError, #movilSolicitanteError, mailSolicitanteError, #organizacionSolicitanteError' ).empty();
 
@@ -449,13 +440,7 @@
             $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
             return false;
         }
-
-        if ( $('#password' ).val()=='' ){
-            $('#passwordError').empty();
-            $('#passwordError').append('<label class="alert-danger mb-30 text-left">capturar contrase&ntilde;a del nuevo usuario del dispositivo</label>');
-            $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
-            return false;
-        }
+        
 
         if( $('select#tipoUsuario').prop('selectedIndex')<=0){
             $('#tipoUsuarioError').empty();
@@ -555,8 +540,7 @@
 		 	data:
                 {
                     'ip'                    : $('#ipHost').val(),
-                    'usuario'               : $('#usuarioDispositivo').val(),
-                    'password'              : $('#password').val(),
+                    'usuario'               : $('#usuarioDispositivo').val(),                    
                     'idTipoDispositivo'     : $('#tipoDispositivo option:selected').val(),
                     'idGrupo'               : $('#grupo option:selected').val(),
                     'flagRotacionPassword'  : "0",
@@ -632,7 +616,7 @@
     }//funMayusfield
 
     //2021/07/28 - Acrtualización GUI - JLDS
-    function fun_valida_password()
+    /*function fun_valida_password()
     {
         sJL_password = $('#password').val();
         console.log('Entre validación Password:' + sJL_password);
@@ -832,7 +816,7 @@
         }//if
 
 
-    }//fun_valida_password
+    }*///fun_valida_password
 
     //2021/07/28 - Acrtualización GUI - JLDS
     function fun_valida_username()
@@ -878,7 +862,7 @@
     //2021/07/28 - Acrtualización GUI - JLDS
     function fun_valida_cambio_disp()
     {
-        fun_valida_password();
+        //fun_valida_password();
         fun_valida_username();
     }//fun_valida_cambio_disp
 
@@ -991,7 +975,7 @@
 
         bloqueo();
 
-        $( "#mostrarContrasena" ).click(function( event ) {
+        /*$( "#mostrarContrasena" ).click(function( event ) {
                     event.preventDefault();
                     var ePassword=$('#password').val();
                     var dPassword=atob( $('#password').val() );
@@ -1003,7 +987,7 @@
                     $('#password').val(ePassword);
                     $( "#mostrarContrasena").show();
                     },1000);
-        });
+        });*/
 
         $('#nombreSolicitante, #paternoSolicitante ,#maternoSolicitante').prop('disabled',true);
         $('#movilSolicitante, #mailSolicitante, #organizacionSolicitante').prop('disabled',true);
@@ -1013,10 +997,8 @@
         //catalogo de responsables
         //sJLresp = fun_llena_catalog("1",obj.data[0].send_idresp);
         sJLresp = fun_llena_catalog("1","");
-        $("usuarioDispositivo").attr("autocomplete", "off");
-        $("password").attr("autocomplete", "off");
-        document.getElementById("usuarioDispositivo").onchange = function() {fun_valida_username()};
-        document.getElementById("password").onchange = function() {fun_valida_password()};
+        $("usuarioDispositivo").attr("autocomplete", "off");        
+        document.getElementById("usuarioDispositivo").onchange = function() {fun_valida_username()};        
         document.getElementById("tipoDispositivo").onchange = function() {fun_valida_cambio_disp()};
 
         //2021/07/28 - Acrtualización GUI - JLDS
@@ -1047,7 +1029,7 @@
                 $('#message').empty();
                 $('#message').append('<label class="alert-danger mb-30 text-left">Se produjo un error al intentar obtener los datos de los catalogos:<br><strong>'+ errorInfo + '</strong> ');
                 $(":text").prop('disabled',true);
-                $(":password").prop('disabled',true);
+                //$(":password").prop('disabled',true);
                 $("#tipoDispositivo,#grupo,#tipoUsuario,#perfil,#solicitante").prop('disabled',true);
                 $( "#finish" ).hide();
                 $.unblockUI();
@@ -1139,8 +1121,7 @@
             })
         .always(function() {
             //$.unblockUI();
-            $('#ipHost').val('');
-            $('#password').val('');
+            $('#ipHost').val('');            
             $('#usuarioDispositivo').val('');
         });
 
@@ -1238,21 +1219,7 @@
 
                 });
 
-                $("#password").change(function( event ) {
-
-                    if ( $('#password' ).val()=='' ){
-                        $('#passwordError').empty();
-                        $('#passwordError').append('<label class="alert-danger mb-30 text-left">capturar contrase&ntilde;a del nuevo usuario del dispositivo</label>');
-                        $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
-                    }else{
-                        $('#passwordError').empty();
-                        $('#message').empty();
-                        var encodePassword=btoa( $('#password').val() );
-                        $('#password').val(encodePassword);
-                        $( '#finish' ).show();
-                    }
-
-                });
+               
 
                 $('#tipoUsuario').change(function( event ){
                     if ( $('select#tipoUsuario').prop('selectedIndex')<=0 ){
@@ -1385,8 +1352,7 @@
 
                 });
 
-
-                $('#password').val('');
+                
 
         };
 
@@ -1401,8 +1367,7 @@
 
                     $('#message').empty();
 
-                    initializePlugins2();
-                    $('#password').val('');
+                    initializePlugins2();                    
 
 		        }
 		    };

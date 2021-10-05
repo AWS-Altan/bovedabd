@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser};
+use App\Entities\{Usermana};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -52,7 +52,7 @@ class View_pass_Controller extends BaseController
 
         try {
                 //consulta
-                $boveda_user =  Vwuser::where('email','=',request()->value)->get();
+                $boveda_user =  Usermana::where('email','=',request()->value)->get();
 
                 foreach ($boveda_user as $user_bob) {
                     loginfo('name'.$user_bob->name);

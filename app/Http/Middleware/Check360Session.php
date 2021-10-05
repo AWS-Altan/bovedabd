@@ -24,7 +24,7 @@ class Check360Session
         $session_id = session()->get('idsession');
         $email = session()->get('email');
 
-        $resp1 = Usermana::where( 'mail',  $email )->first();
+        $resp1 = Usermana::where( 'email',  $email )->first();
 
         if($resp1 != null ){
             //loginfo('db_last_session_id: '.$resp1->last_session_id);

@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         if ( app('auth')->user()->active == 0 ) {
-            return view('reset');
+            //return view('reset');
         }
         return view('home', ['menu' => $this->get_menu()] );
     }

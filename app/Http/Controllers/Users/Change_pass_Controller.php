@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser};
+use App\Entities\{Usermana};
 use Hash; //para el password
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -49,7 +49,7 @@ class Change_pass_Controller extends BaseController
                 ', value: ' . request()->value);
 
         try {
-                $exception = Vwuser::where('email', request()->value)
+                $exception = Usermana::where('email', request()->value)
                 ->update([
                         "password" => Hash::make( request()->send_password),
                 ]);

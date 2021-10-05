@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser, Vwlogs};
+use App\Entities\{Usermana, Vwlogs};
 use Hash; //para el password
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -105,7 +105,7 @@ class Alta_dispos_Controller extends BaseController
 
         //Realizo insercion en el Catalogo
         try {
-                Vwuser::create([
+                /*Vwuser::create([
                         "id_disp" => $max_id,
                         "ip" => request()-> send_ip,
                         "host" => request()->send_host,
@@ -121,7 +121,7 @@ class Alta_dispos_Controller extends BaseController
                         "fecha_rota" => request()->send_fecharota,
                         "fecha_termino" => request()->send_fechaterm
 
-                ]); //Insercion
+                ]);*/ //Insercion
 
                 //Escribo al log
                 loginfo('inserté usuario');

@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
 //declaracion de datos a usar
-use App\Entities\{Vwuser, Vwlogs};
+use App\Entities\{Vwlogs};
 
 use Hash; //para el password
 

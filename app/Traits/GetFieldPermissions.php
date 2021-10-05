@@ -12,8 +12,7 @@
 namespace App\Traits;
 use Illuminate\Support\Facades\DB;
 
-//use App\Entities\{Vwuser,Vwactions,Docs};
-use App\Entities\{Vwuser,Vwactions,Docs};
+use App\Entities\{Vwactions,Docs};
 
 trait GetFieldPermissions
 {
