@@ -250,6 +250,44 @@
         return obj;
     }//fun_report_rotar
 
+    //fun_cambio_pass
+    function fun_cambio_pass( sJLip_value, sJLuser_value)
+    {
+
+        //console.log(' mando a API IP_rotar '+ sJLip_value + ' user_rota ' + sJLuser_value + ' id_disp_rota ' + sJLipodisp_value + 'passw' + txtJLcontr);
+
+
+        var json = {};
+            json.ip= sJLip_value;
+            json.usuario= sJLuser_value;
+            json.idtipo_disp= ""+sJLipodisp_value+"";
+            //json.passw= txtJLcontr;
+            json.operacion= "online";
+            json.id_perfil= txtJLperf;
+
+        $.ajax({
+            url: "{{ route('access.call.report_rotate') }}",
+            async: false,
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(json)
+        })
+        .done(function(response) {
+            obj = jQuery.parseJSON(response);
+            //console.log("ejecución boton de rotado " + obj.status);
+
+        })
+        .fail(function() {
+            //algo
+            console.log("Falla boton Rotación ");
+        })
+        .always(function() {
+            //algo
+            console.log("Boton rotado allways ");
+        });
+        return obj;
+    }//fun_cambio_pass
+
     function fun_report_force( sJLip_value, sJLuser_value, sJLipodisp_value)
     {
 
@@ -492,10 +530,10 @@
                                     if(!$sjl_acciones)
                                     {
                                         //data = '<a href=""  class="editor_ticket">' + data + '</a>';
-                                        data = '<a id="idrotate_href" href="" class="editor_rotar" ><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>';
+                                        data = '<a id="idrotate_href" href="" class="editor_rotar" ><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a> / <a href="" class="recup_pass"><span class="btn-small" style="color:#9E1D22;">Recuperar Password</span></a>';
                                     }else
                                     {
-                                        data = 'Rotar Password / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>';
+                                        data = 'Rotar Password / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a> / <a href="" class="recup_pass"><span class="btn-small" style="color:#9E1D22;">Recuperar Password</span></a> ';
                                     }//else
                                     return data;
                                 }
@@ -933,6 +971,80 @@
                         }//if
 
                     } );
+
+                    // Recuperar Password
+                    $('table#Tbl_usrdisp').on('click', 'a.recup_pass', function (e)
+                    {                        
+                        e.preventDefault();
+                        if(!$popup_visible)
+                        {
+                            $popup_visible = true;
+                            //obtengo los datos
+                            var row = $datatableInstance.row($(this).closest('tr'));
+                            //console.log('row '+row);
+                            var sJLip_value = row.data()['send_ip'];
+                            var sJLuser_value = row.data()['send_usuario'];
+                            //var sJLipodisp_value = row.data()['send_idtipodisp2'];
+                            //var sJLiprofchange_value = row.data()['send_profile_change'];
+                            //var sJLiperfil_value = row.data()['send_idperfil2'];
+
+
+                            
+                            sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
+                            aJL_profiles=sJLiprofchange_value.split(',');
+                            
+
+                            sjL_detailCP_text = '<form action="" class="formName">';
+                            sjL_detailCP_text += '<div class="form-group">';
+           
+
+                            sjL_detailCP_text += '</div>';
+                            sjL_detailCP_text += '</form>';
+
+                            //inicio de boton
+                            $.confirm({
+                                title: 'Recuperación de Password',
+                                content: '¿Desea recuperar el password?',
+                                content: sjL_detailCP_text,
+                                buttons: {
+                                    Confirmar: {
+                                        text: 'Confirmar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                        action: function(){
+                                            //var txtJLcontr = this.$content.find('.txtcontr').val();
+                                            //var txtJLperf = $('#cbo_profile2 option:selected').val();
+                                            var txtJLperf = sJLiperfil_value;
+                                            //console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
+                                            /*if(!txtJLcontr){
+                                                $.alert('Coloque información valida');
+                                                return false;
+                                            }*/
+                                            //obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
+                                            obj21 = fun_cambio_pass( sJLip_value, sJLuser_value)                                            
+                                            $.alert('Confirmación de Aplicación Status: ' + obj21.status );
+                                            //console.log('deshabilito');
+                                            row.data()['acciones'] = '';
+                                            //row.cell(row,1).data('hola').draw();
+                                            $sjl_acciones = 'hola';
+                                            row.cell(row,11).data('hola').draw();
+                                        }
+                                    },
+                                    Cancelar: {
+                                        text: 'Cancelar',
+                                        btnClass: 'btn-red',
+                                        keys: ['enter', 'shift'],
+                                        action: function()
+                                        {
+                                            console.log('cancelo');
+                                        }
+                                    }
+                                }
+                            }); //fin de boton
+                            $popup_visible = false;
+                        }//if
+
+                    } );//recup_pass
 
                 }else {
                     $("#message_error").text("No hay datos para Mostrar, seleccione una fecha");
