@@ -58,13 +58,12 @@ class SupportController extends BaseController
             loginfo('envio a pass');
             loginfo($json);
 
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'slogin', [
-            //$req = json_decode($this->httpClient->request('POST','https://ch9o1fia6l.execute-api.us-east-1.amazonaws.com/test/boveda-login', [
-            
+            //$req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'slogin', [
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_login_bob'). 'login', [                        
                     'json' => $json
                   ])->getBody(),true);
 
-            loginfo('Login response' . config('conf.url_login_bob') . 'slogin', [$req]);
+            loginfo('Login response' . config('conf.url_login_bob') . 'login', [$req]);
             $sJLstring = implode(",", [$req][0]);
             $arrJLlogin = explode(',', $sJLstring);
             $sJLstatus = $arrJLlogin[0];            
@@ -139,7 +138,7 @@ class SupportController extends BaseController
 
         } catch (\Exception $e) {
             loginfo($e);
-            loginfo(config('conf.url_login_bob').'boveda-login');
+            loginfo(config('conf.url_login_bob').'login');
         }
         loginfo('Login fail con los datos ', [ request()->email, request()->password]);
 

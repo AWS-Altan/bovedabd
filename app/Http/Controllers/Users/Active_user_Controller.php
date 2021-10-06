@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Traits\GetMenu;
 
-use App\Entities\{Vwuser};
+use App\Entities\{Dispositivos};
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -47,7 +47,7 @@ class Active_user_Controller extends BaseController
                 ', value: ' . request()->value);
 
         try {
-                $exception = Vwuser::where('email', request()->value)
+                $exception = Dispositivos::where('email', request()->value)
                 ->update([
                         'active_user' => 1
                 ]);
