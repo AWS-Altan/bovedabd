@@ -30,6 +30,7 @@ class Report_userdisp_Controller extends BaseController
         $this->httpRepForce = new Client( [ 'base_uri' => config('conf.url_repbat_force') ] );
         $this->httpRepRota = new Client( [ 'base_uri' => config('conf.url_repbat_rotate') ] );
         $this->httpReptipdisp = new Client( [ 'base_uri' => config('conf.url_tipo_disp') ] );
+        $this->httpRecpass = new Client( [ 'base_uri' => config('conf.url_pass_recup') ] );
 
     }
 
@@ -277,6 +278,34 @@ class Report_userdisp_Controller extends BaseController
         }
         return json_encode( $req );
     }
+
+    public function fun_pass_recup()
+    {
+        //$this->loginResponse = $this->login();
+
+        loginfo('recupera password: ');
+
+        $json = request()->json()->all();
+        //$json = request()->data;
+        loginfo($json);
+
+
+        try {
+            $req = json_decode($this->httpRecpass->request('POST',config('conf.url_pass_recup').'recupera'
+                , [
+                    'headers'  => [ 'Content-Type' => 'application/json' ],
+                    'json' => $json
+                  ])->getBody());
+
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_pass_recup').'qry_tipo_dispositivo' , [$req]);
+            loginfo('termina ejecución API de forzado de sesion');
+        } catch (\Exception $e) {
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_pass_recup').'qry_tipo_dispositivo' , [ $e ]);
+
+
+        }
+        return json_encode( $req );
+    }//fun_pass_recup
 
 }
 

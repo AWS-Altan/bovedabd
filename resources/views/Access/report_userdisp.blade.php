@@ -260,13 +260,13 @@
         var json = {};
             json.ip= sJLip_value;
             json.usuario= sJLuser_value;
-            json.idtipo_disp= ""+sJLipodisp_value+"";
+            //json.idtipo_disp= ""+sJLipodisp_value+"";
             //json.passw= txtJLcontr;
-            json.operacion= "online";
-            json.id_perfil= txtJLperf;
+            //json.operacion= "online";
+            //json.id_perfil= txtJLperf;
 
         $.ajax({
-            url: "{{ route('access.call.report_rotate') }}",
+            url: "{{ route('access.call.recup_pass') }}",
             async: false,
             type: 'POST',
             contentType: "application/json",
@@ -279,11 +279,11 @@
         })
         .fail(function() {
             //algo
-            console.log("Falla boton Rotación ");
+            console.log("Falla recuperación ");
         })
         .always(function() {
             //algo
-            console.log("Boton rotado allways ");
+            console.log("Boton recuperacion ");
         });
         return obj;
     }//fun_cambio_pass
@@ -990,8 +990,8 @@
 
 
                             
-                            sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
-                            aJL_profiles=sJLiprofchange_value.split(',');
+                            //sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
+                            //aJL_profiles=sJLiprofchange_value.split(',');
                             
 
                             sjL_detailCP_text = '<form action="" class="formName">';
@@ -1014,7 +1014,7 @@
                                         action: function(){
                                             //var txtJLcontr = this.$content.find('.txtcontr').val();
                                             //var txtJLperf = $('#cbo_profile2 option:selected').val();
-                                            var txtJLperf = sJLiperfil_value;
+                                            //var txtJLperf = sJLiperfil_value;
                                             //console.log('información-' + txtJLcontr + '-' + txtJLperf + '-');
                                             /*if(!txtJLcontr){
                                                 $.alert('Coloque información valida');
@@ -1022,7 +1022,7 @@
                                             }*/
                                             //obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
                                             obj21 = fun_cambio_pass( sJLip_value, sJLuser_value)                                            
-                                            $.alert('Confirmación de Aplicación Status: ' + obj21.status );
+                                            $.alert('Confirmación de Aplicación Status: ' + obj21.status + ' ' + obj21.details );
                                             //console.log('deshabilito');
                                             row.data()['acciones'] = '';
                                             //row.cell(row,1).data('hola').draw();
