@@ -29,6 +29,7 @@ return [
     'url_tipo_disp'    => 'https://tsqa1er8c4.execute-api.us-east-1.amazonaws.com/prod/',
     'url_report_graps' => 'https://b84q0jo83f.execute-api.us-east-1.amazonaws.com/prod/',
     'url_report_disp' => 'https://ci9pdiap17.execute-api.us-east-1.amazonaws.com/prod/',
+	'url_pass_recup' => 'https://azyw6ze6x9.execute-api.us-east-1.amazonaws.com/dev/',
 
 
 
