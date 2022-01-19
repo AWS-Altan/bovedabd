@@ -9,27 +9,27 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-						<h3><span class="head-font capitalize-font">Alta de usuario Boveda</span></h3>
+						<h3><span class="head-font capitalize-font">Alta de solicitante</span></h3>
 						<section>
                             <!-- Contenedor -->
                             <form id="form_tabs" action="#">
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
                                     <div class="panel-heading">
-    								Datos de la cuenta (usuario)
+    								Datos de la cuenta (Solicitante)
                                     </div>
                                     <!-- despues del header de la seccion -->
                                     <div class="card-body">
-                                        <!-- Campo de Correo de usuario -->
+                                        <!-- Campo de Correo de Solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
                                                     <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Correo Usuario</label>
+												        <label class="help-block text-left">Correo Solicitante</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del soliictante" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_msg_Mail_user"></div>
 												    </div>
                                                 </div>
@@ -41,19 +41,19 @@
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
                                     <div class="panel-heading">
-    								Datos Usuario
+    								Datos Solicitante
                                     </div>
                                     <div class="card-body">
-                                        <!-- Campo de Nombre de Usuario -->
+                                        <!-- Campo de Nombre de solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
                                                     <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Nombre Usuario</label>
+												        <label class="help-block text-left">Nombre Solicitante</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre del Solicitante" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_msg_NombreAlta"></div>
 												    </div>
                                                 </div>
@@ -68,7 +68,7 @@
 												        <label class="help-block text-left">Apellido Paterno</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ApPaterno" placeholder="Ingrese el Apellido Paterno del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_ApPaterno" placeholder="Ingrese el Apellido Paterno del Solicitante" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_txtApPaterno"></div>
 												    </div>
                                                 </div>
@@ -83,13 +83,13 @@
 												        <label class="help-block text-left">Apellido Materno</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ApMaterno" placeholder="Ingrese el Nombre Completo del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_ApMaterno" placeholder="Ingrese el Nombre Completo del Solicitante" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_txtApMaterno"></div>
 												    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Telefono de Usuario -->
+                                        <!-- Campo de Telefono de Solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
@@ -98,7 +98,7 @@
 												        <label class="help-block text-left">Número Telefonico</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="data360" placeholder="Ingrese el Telefono del usuario" data-error="Valor inválido" maxlength="45">
+														<input type="text" data-minlength="10" class="form-control" id="data360" placeholder="Ingrese el Telefono del Solicitante" data-error="Valor inválido" maxlength="45">
 													    <div class="help-block with-errors" id="err_msg_Telefono"></div>
 												    </div>
                                                 </div>
@@ -174,7 +174,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Vigencia del usuario -->
+                                        <!-- Vigencia del Solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
@@ -188,7 +188,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Vigencia del usuario -->
+                                        <!-- Vigencia del Solicitante -->
                                         <div class="row">
                                             <div class="form-group mt-12">
                                                 <div class="col-sm-12">
@@ -245,7 +245,7 @@
         if( $('#txtDateini' ).val() == '' )
         {
             $('#inputTxtDateiniError' ).empty();
-			$('#inputTxtDateiniError').append('<label class="alert-danger mb-30 text-left">capture La fecha de unicio del usuario</label>');
+			$('#inputTxtDateiniError').append('<label class="alert-danger mb-30 text-left">capture La fecha de unicio del Solicitante</label>');
 			return false;
         }
 
@@ -253,14 +253,14 @@
         if( $('#txtDatefin' ).val() == '' )
         {
             $('#inputTxtDatefinError' ).empty();
-			$('#inputTxtDatefinError').append('<label class="alert-danger mb-30 text-left">capture La fecha de fin del usuario</label>');
+			$('#inputTxtDatefinError').append('<label class="alert-danger mb-30 text-left">capture La fecha de fin del Solicitante</label>');
 			return false;
         }
 
         // Valido que el campo del correo no este vacio
         if ( $('#cmd_Mail_user' ).val()=='' ){
 			$('#err_msg_Mail_user' ).empty();
-			$('#err_msg_Mail_user').append('<label class="alert-danger mb-30 text-left">capture el correo del usuario a dar de alta</label>');
+			$('#err_msg_Mail_user').append('<label class="alert-danger mb-30 text-left">capture el correo del Solicitante a dar de alta</label>');
 			return false;
         }
 
@@ -274,28 +274,28 @@
         // Valido que el Nombre no este Vacio
         if ( $('#cmd_NombreAlta' ).val()=='' ){
 			$('#err_msg_NombreAlta').empty();
-			$('#err_msg_NombreAlta').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Usuario</label>');
+			$('#err_msg_NombreAlta').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Solicitante</label>');
 			return false;
         }
 
         // Valido que el Apellido Paterno no este Vacio
         if ( $('#cmd_ApPaterno' ).val()=='' ){
 			$('#err_txtApPaterno').empty();
-			$('#err_txtApPaterno').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Usuario</label>');
+			$('#err_txtApPaterno').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Solicitante</label>');
 			return false;
         }
 
         // Valido que el Apellido Materno no este Vacio
         if ( $('#cmd_ApMaterno' ).val()=='' ){
 			$('#err_txtApMaterno').empty();
-			$('#err_txtApMaterno').append('<label class="alert-danger mb-30 text-left">Capture el apellido paterno del Usuario</label>');
+			$('#err_txtApMaterno').append('<label class="alert-danger mb-30 text-left">Capture el apellido paterno del Solicitante</label>');
 			return false;
         }
 
         // Valido que el Telefono no este Vacio
         if ( $('#data360' ).val()=='' ){
 			$('#err_msg_Telefono').empty();
-			$('#err_msg_Telefono').append('<label class="alert-danger mb-30 text-left">Capture el apellido materno del Usuario</label>');
+			$('#err_msg_Telefono').append('<label class="alert-danger mb-30 text-left">Capture el apellido materno del Solicitante</label>');
 			return false;
         }
 
@@ -329,7 +329,7 @@
 
 
         $.ajax({
-            url: "{{ route('Users.call.alta_internaluser') }}",
+            url: "{{ route('Users.call.alta_internalsolic') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(jsoninsert)
@@ -342,7 +342,7 @@
             $('#validar').hide();
 			$('#finish').hide();
 			//$('#message').empty();
-            $('#message_error').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+            $('#message_error').append('<label class="help-block mb-30 text-left">Alta del Solicitante fue<strong>&nbsp;&eacutexitosa</strong></label>');
 
             $('#cmd_Mail_user').val("");
             $('#cmd_NombreAlta').val("");
@@ -359,7 +359,7 @@
         .fail(function()
         {
             console.log('Ejecución API incorrecta');
-			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de usuario Boveda </label>');
+			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de Solicitante Boveda </label>');
 	        $.unblockUI();
 	    })
         .always(function()
@@ -393,7 +393,7 @@
             jsonchange.type= iJL_catalog;
 
         $.ajax({
-            url: "{{ route('Users.call.catalogs_view') }}",
+            url: "{{ route('Users.call.catalogs_view_solic') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(jsonchange)
@@ -456,7 +456,7 @@
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Alta');
-                    
+                    $('#finish').hide();
 
                     $('#message_error').empty();
 
