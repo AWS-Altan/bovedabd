@@ -530,7 +530,8 @@
                                     if(!$sjl_acciones)
                                     {
                                         //data = '<a href=""  class="editor_ticket">' + data + '</a>';
-                                        data = '<a id="idrotate_href" href="" class="editor_rotar" ><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a> / <a href="" class="recup_pass"><span class="btn-small" style="color:#9E1D22;">Recuperar Password</span></a>';
+                                        //data = '<a id="idrotate_href" href="" class="editor_rotar" ><span class="btn-small" style="color:#9E1D22;">Rotar Password</span></a> / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a> / <a href="" class="recup_pass"><span class="btn-small" style="color:#9E1D22;">Recuperar Password</span></a>';
+                                        data = '<a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a>';
                                     }else
                                     {
                                         data = 'Rotar Password / <a href="" class="editor_edit"><span class="btn-small" style="color:#9E1D22;">Cambio</span></a> / <a href="" class="editor_remove"><span class="btn-small" style="color:#9E1D22;">Baja</span></a>/ <a href="" class="editor_force"><span class="btn-small" style="color:#9E1D22;">Forzado Sesión</span></a> / <a href="" class="recup_pass"><span class="btn-small" style="color:#9E1D22;">Recuperar Password</span></a> ';
@@ -564,7 +565,7 @@
                         ]
                     });
 
-                    // Opcion de Borrado
+                    // Opcion de Borrados
 
                     $('table#Tbl_usrdisp').on('click', 'a.editor_remove', function (e)
                     {
@@ -974,7 +975,7 @@
 
                     // Recuperar Password
                     $('table#Tbl_usrdisp').on('click', 'a.recup_pass', function (e)
-                    {                        
+                    {
                         e.preventDefault();
                         if(!$popup_visible)
                         {
@@ -989,14 +990,14 @@
                             //var sJLiperfil_value = row.data()['send_idperfil2'];
 
 
-                            
+
                             //sJLiprofchange_value = sJLiprofchange_value.replace(/[^a-zA-Z0-9,]/g, '');
                             //aJL_profiles=sJLiprofchange_value.split(',');
-                            
+
 
                             sjL_detailCP_text = '<form action="" class="formName">';
                             sjL_detailCP_text += '<div class="form-group">';
-           
+
 
                             sjL_detailCP_text += '</div>';
                             sjL_detailCP_text += '</form>';
@@ -1021,7 +1022,7 @@
                                                 return false;
                                             }*/
                                             //obj21 = fun_report_rotar( sJLip_value, sJLuser_value, sJLipodisp_value, txtJLcontr,txtJLperf)
-                                            obj21 = fun_cambio_pass( sJLip_value, sJLuser_value)                                            
+                                            obj21 = fun_cambio_pass( sJLip_value, sJLuser_value)
                                             $.alert('Confirmación de Aplicación Status: ' + obj21.status + ' ' + obj21.details );
                                             //console.log('deshabilito');
                                             row.data()['acciones'] = '';

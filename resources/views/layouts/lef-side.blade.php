@@ -237,10 +237,28 @@
 					</li>
                 @endif
 
+                @if ( !isset( $menu[2] ) )
+					<li>
+						<a href="{{ route('Users.alta_solic.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Alta solicitante</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
                 @if ( !isset( $menu[3] ) )
 					<li>
 						<a href="{{ route('Users.baja_user.index') }}">
 							<div class="pull-left"><span class="right-nav-text">Deshabilitación de usuario</span></div>
+							<div class="clearfix"></div>
+						</a>
+					</li>
+                @endif
+
+                @if ( !isset( $menu[3] ) )
+					<li>
+						<a href="{{ route('Users.baja_solic.index') }}">
+							<div class="pull-left"><span class="right-nav-text">Deshabilitación de solicitante</span></div>
 							<div class="clearfix"></div>
 						</a>
 					</li>

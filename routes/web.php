@@ -70,9 +70,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/Alta_user', 'Alta_user_Controller', ['names' => ['index' => 'Users.alta_user.index']])->only(['index']);
         Route::post('/call/Alta_Internal', 'Alta_user_Controller@new_user')->name('Users.call.alta_internaluser');
         Route::post('/call/catalogs_user', 'Alta_user_Controller@calatog_view')->name('Users.call.catalogs_view');
+        // Menu de Alta de solicitante
+        Route::resource('/Alta_Solic', 'Alta_solic_Controller', ['names' => ['index' => 'Users.alta_solic.index']])->only(['index']);
+        Route::post('/call/Alta_Intersolic', 'Alta_solic_Controller@new_user')->name('Users.call.alta_internalsolic');
+        Route::post('/call/catalogs_solic', 'Alta_solic_Controller@calatog_view')->name('Users.call.catalogs_view_solic');
         // Menu de baja de usuario
         Route::resource('/Baja_user', 'Baja_user_Controller', ['names' => ['index' => 'Users.baja_user.index']])->only(['index']);
         Route::post('/call/Change_Status', 'Baja_user_Controller@change_status')->name('Users.call.Change_status');
+        // Menu de baja de solicitante
+        Route::resource('/Baja_solic', 'Baja_solic_Controller', ['names' => ['index' => 'Users.baja_solic.index']])->only(['index']);
+        Route::post('/call/Change_StatSolic', 'Baja_solic_Controller@change_status')->name('Users.call.Change_solstatus');
 
         // Menu de Modificación de  de usuario
         Route::resource('/Modif_user', 'Modif_user_Controller', ['names' => ['index' => 'Users.modif_user.index']])->only(['index']);
