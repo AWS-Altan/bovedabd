@@ -35,7 +35,12 @@
                                         <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
                                         <div class="help-block with-errors" id="inputTxtDateError"></div>
                                     </div>
+                                    
+                                    <a id="consult_dates" type="button" class="btn btn-primary" style="position: absolute; right: 0;">Buscar</a>
+                                    
+                                </div>
                                     <br><br>
+                                <div class="row">
                                     Criterios Adicionales:
                                     <br><br>
                                     <div class="col-sm-1">
@@ -126,14 +131,44 @@
 </style>
 <script>
 
-
-
-
     // funcion para cambio de pestaña
-    function ValidateNext() {
+    function ValidateNext() 
+    {
         fun_ejecuta_busqueda();
         return true;
     } //ValidateNext
+
+    function SearchDates() 
+    {
+        if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
+        {
+            console.log('iniciando busqueda');
+            console.log($('#txtDateini' ).val());
+            console.log($('#txtDatefin' ).val());
+            $popup_visible = false;
+            $('#message_error').empty();
+            //$datatableInstance.clear().draw();
+            fun_ejecuta_busqueda();
+            //filtra_tabla();
+            
+        }else
+        {
+            if ( $('#txtDateini' ).val()=='' ){
+                $('#message_error').empty();
+                $('#message_error').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha inicio de consulta</label>');
+                $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+            return false;
+            }
+
+            if ( $('#txtDatefin' ).val()=='' ){
+                $('#message_error').empty();
+                $('#message_error').append('<label class="alert-danger mb-30 text-left">Seleccionar Fecha fin de consulta</label>');
+                $('#message').append('<label class="alert-danger mb-30 text-left">Error en validaci&oacute;n de datos</label>');
+                return false;
+            }
+        }
+        return true;
+    } //SearchDates
 
     //funcion que mando a llamar para poder mandar la peticion debaja en el boton de baja de la tabla
     function fun_report_baja( sJLip_value, sJLuser_value, sJLipodisp_value)
@@ -398,16 +433,18 @@
         var sJL_mail = '{{app('auth')->user()->email}}';
 
 		var data = {};
-        data.type   = "alta";
-        data.mail   = sJL_mail;
+        //data.type   = "altas";
+        //data.mail   = sJL_mail;
+
+
         if( $('#txtDateini' ).val() != '' && $('#txtDatefin' ).val() != '')
         {
             data.fecha_ini = $('#txtDateini' ).val();
             data.fecha_fin = $('#txtDatefin' ).val();
-            //console.log('Fechas: '+data.fecha_ini+','+data.fecha_fin);
+            console.log('Fechas: '+data.fecha_ini+','+data.fecha_fin);
 
         }
-        if(document.getElementById('radio5').checked)
+        /*if(document.getElementById('radio5').checked)
         {
             data.IP = $('#inputData').val();
             //console.log('IP:'+data.IP);
@@ -431,7 +468,11 @@
         {
             data.status = $('#inputData').val();
             //console.log('status:'+data.status);
-        }//if
+        }//if*/
+
+        //sisfen pruebas
+        //data.fecha_ini = "2022-01-01";
+        //data.fecha_fin = "2022-02-23";
 
         $popup_visible = false;
 
@@ -442,14 +483,20 @@
             contentType: "application/json",
             data: JSON.stringify(data)
 		})
-        .done(function(response) {
-            obj = jQuery.parseJSON(response);
-            if (obj.status = "ok")
+        .done(function(response) 
+        {
+            //obj = jQuery.parseJSON(response);
+            obj = response;
+            console.log(response);
+            console.log(obj);
+            
+            if (obj.status == "ok")
             {
                 if(obj.data != "No Data Return")
                 {
 
-                    data = jQuery.parseJSON(obj.data);
+                    //data = jQuery.parseJSON(obj.data);
+                    data = obj.data;
                     if (typeof($datatableInstance)!== 'undefined')
                     {
                         //console.log('borrando');
@@ -1053,17 +1100,20 @@
             } else
             {
 			    $("#message_error").css('color', '#f73414');
-                $("#message_error").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+                //$("#message_error").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+                $("#message_error").text("No se presentaron datos, favor de seleccionar fechas diferentes");
                 $.unblockUI();
 
             } //else
             $.unblockUI();
 
         })
-        .fail(function() {
+        .fail(function() 
+        {
                 $('#message_error').empty();
 				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
-	        })
+                $.unblockUI();
+	    })
         .always(function() {
         	//console.log(obj);
         	if(obj.error){
@@ -1182,12 +1232,15 @@
         //$datatableInstance.clear().draw();
         if( $('#txtDateini' ).val()!='' && $('#txtDatefin' ).val()!='')
         {
-            //console.log('limpiando');
+            console.log('iniciando busqueda');
+            console.log($('#txtDateini' ).val());
+            console.log($('#txtDatefin' ).val());
             $popup_visible = false;
             $('#message_error').empty();
             //$datatableInstance.clear().draw();
-            filtra_tabla();
             //fun_ejecuta_busqueda();
+            filtra_tabla();
+            
         }else
         {
             if ( $('#txtDateini' ).val()=='' ){
@@ -1210,6 +1263,13 @@
     {
 
         // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
+
+    $("#consult_dates").click(function (e) 
+    {
+	    console.log("inicializando boton busqueda con filtro")
+		SearchDates();
+        
+	});
 
         var Operations2 = function ()
         {
