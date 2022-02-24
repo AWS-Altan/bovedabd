@@ -24,7 +24,8 @@ class Report_Baja_Controller extends BaseController
 
     public function __construct()
     {
-        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );
+        //$this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatch') ] );        
+        $this->httpClient       = new Client( [ 'base_uri' => config('conf.url_repbatchcgi') ] );
 
     }
 
@@ -143,20 +144,25 @@ class Report_Baja_Controller extends BaseController
 
 
         try {
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'reportebatch'
+            //$req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'reportebatch'            
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatchcgi'). 'reporte_batch.cgi'
                 , [
+                    //'timeout' => 10,
+                    //'connect_timeout' => 10,
                     'json' => $json,
+                    'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
                   ])->getBody());
 
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);
+            //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);            
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatchcgi') . 'reporte_batch.cgi', [$req]);
             loginfo('termina ejecución API');
         } catch (\Exception $e) {
-            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
-
-
+            //loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatchcgi') .'reporte_batch.cgi', [ $e ]);
         }
         loginfo('Regreso información');
-        return json_encode( $req );
+        //return json_encode( $req );        
+        return json_decode(json_encode( $req ),true);
 
     }
 

@@ -60,6 +60,7 @@ class Alta_solic_Controller extends BaseController
 
     /****************************
     *    Funcion de Creación de Usuario
+     falta organizacion y suborganizacion
     *************************/
     public function new_user()
     {
@@ -118,7 +119,22 @@ class Alta_solic_Controller extends BaseController
     } // new_user
 
     /****************************
-    *    Funcion de Consulta de catalog
+    * Funcion de Consulta de catalog
+    *   tipo 4 - informacion de solciiotantes
+    *mail
+
+    {
+        "type": "1",
+        "mail": "claudia.fernandez@altanredes.com"
+    }
+
+    4 - info
+    si no - nook
+
+    5 - trae dominios permitidos por solicitantes / organizaciones que existen / subcatalogos / perfiles --- info alta
+    6 - trae la info de lo que ya existe / consulta de datos
+
+    
     *************************/
     public function calatog_view()
     {

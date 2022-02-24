@@ -104,13 +104,17 @@
             contentType: "application/json",
             data: JSON.stringify(data)
 		})
-        .done(function(response) {
-            obj = jQuery.parseJSON(response);
+        .done(function(response) 
+        {
+            //obj = jQuery.parseJSON(response);
+            obj = response;
+            console.log(obj);
             if (obj.status = "ok")
             {
                 if(obj.data != "No Data Return")
                 {
-                    data = jQuery.parseJSON(obj.data);
+                    //data = jQuery.parseJSON(obj.data);
+                    data = obj.data;
                     if (typeof(datatableInstance)!== 'undefined')
                     {
                         datatableInstance.destroy();
@@ -150,11 +154,12 @@
                             {
                                 //PERFIL
                                 "data": "send_reintento"
-                            },
+                            }
+                            /*,
                             {
                                 //PERFIL
                                 "data": "send_estatus"
-                            }
+                            }*/
                         ],
                         dom: 'Bfrtip',
                         buttons: [
@@ -168,7 +173,8 @@
             } else
             {
 			    $("#message_error").css('color', '#f73414');
-			    $("#message_error").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+			    //$("#message_error").text("Por favor ingresa un valor de " + tipo_campo + " válido " + dato);
+                $("#message_error").text("No hay datos para Mostrar, seleccione una fecha");
                 $.unblockUI();
             } //else
             $.unblockUI();
@@ -176,18 +182,18 @@
         })
         .fail(function() {
 	        	$('#message_error').empty();
-				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>   La busqueda no regreso ningun dato</strong>');
-	        	$.unblockUI();
+				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>La busqueda no regreso ningun dato</strong>');
+	        	//$.unblockUI();
 	        })
         .always(function() {
         	//console.log(obj);
-        	if(obj.error){
+        	/*if(obj.error){
         		$('#value').val('');
 				$('#message_error').empty();
 				$('#message_error').append('<label class="help-block mb-30 text-left"><strong>Datos proporcionados no son correctos por favor verificar</strong> ');
 				$( "#previous" ).trigger( "click" );
 				$.unblockUI();
-        	}//if
+        	}//if*/
 			$.unblockUI();
         });
 
