@@ -148,8 +148,8 @@ class Report_Batch_Controller extends BaseController
             //$req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'reportebatch'
             $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatchcgi'). 'reporte_batch.cgi'            
                 , [                
-                    'timeout' => 25,
-                    'connect_timeout' => 25,
+                    'timeout' => 0,
+                    'connect_timeout' => 0,
                     'json' => $json,
                     'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
                   ])->getBody(),true);
