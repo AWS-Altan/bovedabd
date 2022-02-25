@@ -147,11 +147,11 @@ class Report_Change_Controller extends BaseController
             //$req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'reportebatch'
             $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatchcgi'). 'reporte_batch.cgi'            
                 , [                
-                    //'timeout' => 10,
-                    //'connect_timeout' => 10,
+                    'timeout' => 25,
+                    'connect_timeout' => 25,
                     'json' => $json,
                     'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
-                ])->getBody());
+                ])->getBody(),true);
 
             //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);            
             loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatchcgi') . 'reporte_batch.cgi', [$req]);
@@ -162,7 +162,8 @@ class Report_Change_Controller extends BaseController
         }
         loginfo('Regreso información');
         //return json_encode( $req );        
-        return json_decode(json_encode( $req ),true);
+        //return json_decode(json_encode( $req ),true);
+        return $req;
 
     }//search_data_api
 
