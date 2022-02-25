@@ -136,30 +136,29 @@
                                 "data": "send_idtipodisp"
                             },
                             {
-                                //Tipo Dispositivo
+                                //Usuario
                                 "data": "send_usuario"
                             },
                             {
-                                //GRUPO
+                                //Perfil
+                                "data": "send_idperfil"
+                            },
+                            {
+                                //Estado
                                 "data": "send_idstatus"
                             },
                             {
-                                //USUARIO
+                                //Fecah ingreso
                                 "data": "send_fechaIngreso"
                             },
                             {
-                                //TIPO USUARIO
+                                //FEcha actualización
                                 "data": "send_fechaupdate"
                             },
                             {
-                                //PERFIL
+                                //reintento
                                 "data": "send_reintento"
                             }
-                            /*,
-                            {
-                                //PERFIL
-                                "data": "send_estatus"
-                            }*/
                         ],
                         dom: 'Bfrtip',
                         buttons: [
