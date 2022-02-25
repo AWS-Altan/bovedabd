@@ -129,8 +129,8 @@ class Report_userdisp_Controller extends BaseController
             //$req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'consulta-usuarios-dispositivos'
             $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatchcgi'). 'reporte_usuarios_cargados.cgi'            
             , [                
-                //'timeout' => 10,
-                //'connect_timeout' => 10,
+                'timeout' => 30,
+                'connect_timeout' => 30,
                 'json' => $json,
                 'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
               ])->getBody());
