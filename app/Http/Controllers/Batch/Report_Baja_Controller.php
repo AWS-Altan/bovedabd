@@ -150,7 +150,7 @@ class Report_Baja_Controller extends BaseController
                     'timeout' => 0,
                     'connect_timeout' => 0,
                     'json' => $json,
-                    'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
+                    'headers' => [ 'Content-type' => 'Application/json','Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
                   ])->getBody(),true);
 
             //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);            
