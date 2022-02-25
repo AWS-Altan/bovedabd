@@ -154,8 +154,8 @@ class Report_Baja_Controller extends BaseController
                   ])->getBody(),true);
 
             //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);            
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatchcgi') . 'reporte_batch.cgi', [$req]);
-            loginfo('termina ejecución API');
+            loginfo($req);
+            loginfo('PASE');
         } catch (\Exception $e) {
             //loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatchcgi') .'reporte_batch.cgi', [ $e ]);
