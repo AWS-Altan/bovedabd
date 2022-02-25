@@ -133,13 +133,13 @@ class Report_userdisp_Controller extends BaseController
                 'connect_timeout' => 25,
                 'json' => $json,
                 'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
-              ])->getBody());
+              ])->getBody(),true);
 
+            loginfo($req);
             loginfo('PASE');
-            $sJL_varanalis = json_decode(json_encode( $req ),true);
+            //$sJL_varanalis = json_decode(json_encode( $req ),true);
+            //$sJL_varanalis = json_decode(json_encode( $req ));            
 
-            loginfo('req:');
-            //loginfo($sJL_varanalis);
 
             //loginfo($sJL_varanalis['status']);
             /*if($sJL_varanalis['data'] != '[]')
@@ -156,7 +156,7 @@ class Report_userdisp_Controller extends BaseController
             /*cambio 20220223*/;
 
             loginfo('Regreso información');
-            return $sJL_varanalis;
+            return $req;
             //return json_encode( $req );
 
         } catch (\Exception $e) {
