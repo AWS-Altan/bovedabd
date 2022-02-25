@@ -135,6 +135,7 @@ class Report_userdisp_Controller extends BaseController
                 'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
               ])->getBody());
 
+            loginfo('PASE');
             $sJL_varanalis = json_decode(json_encode( $req ),true);
 
             loginfo('req:');
