@@ -139,7 +139,7 @@ class Report_userdisp_Controller extends BaseController
             $sJL_varanalis = json_decode(json_encode( $req ),true);
 
             loginfo('req:');
-            loginfo($sJL_varanalis);
+            //loginfo($sJL_varanalis);
 
             //loginfo($sJL_varanalis['status']);
             /*if($sJL_varanalis['data'] != '[]')
