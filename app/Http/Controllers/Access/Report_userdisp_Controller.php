@@ -87,6 +87,7 @@ class Report_userdisp_Controller extends BaseController
 
             //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'consulta-usuarios-dispositivos', [$req]);
             loginfo('termina ejecución API 1');
+            
             $sJL_varanalis = json_decode(json_encode( $req ),true);
             loginfo($sJL_varanalis['status']);
             loginfo($iJL_pagina);
