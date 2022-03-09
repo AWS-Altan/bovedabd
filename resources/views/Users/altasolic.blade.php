@@ -203,22 +203,7 @@
 												    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- Campo Temporal de Perfil -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Perfil</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-                                                        <select id="cbo_send_nameperfil" class="form-control" name="send_nameperfil">
-                                                        </select>
-													    <div class="help-block with-errors" id="err_msg_send_nameperfil"></div>
-												    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </div>                                        
                                         <!-- Vigencia del Solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -571,35 +556,7 @@
                     
                 }//if
                 
-			});//each
-
-            $.each( obj.data[4], function( value, name )
-			{
-                console.log("datito 13 ");
-                console.log(value);
-                console.log("datito 14 ");
-				console.log(name);
-                if(value == 'arr_perfiles')
-                {
-                    $.each( name, function( value2, name2 )
-                    {
-                        console.log("datito 15 ");
-                        console.log(value2);
-                        console.log("datito 16 ");
-                        console.log(name2);
-                        respons=JSON.stringify(name2);
-                        //respons= jQuery.parseJSON(name2);
-                        respons= JSON.parse(respons);
-                        console.log(respons);
-                        $('#cbo_send_nameperfil').append(                    
-                            $('<option></option>').val(respons.send_id).html(respons.send_nameperfil)
-                        );
-                    });//each
-                    
-                }//if
-                
-			});//each
-
+			});//each            
 
             return obj;
         })
