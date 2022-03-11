@@ -9,28 +9,66 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div id="example-basic">
-                        <h3><span class="head-font capitalize-font">Cambio de información de solicitantes</span></h3>
+                        <h3><span class="head-font capitalize-font">Busqueda de Solicitantes</span></h3>
 						<section>
-                         <section>
+                            <form id="step_one">
+                                <!-- Tmplate busqueda solicitante -->
+                                <div class="row">
+								    <div class="col-sm-12">
+									    <div class="form-group mb-0">
+										    <div class="row">
+											     @include('layouts.Search_Users')
+										    </div>
+									    </div>
+								    </div>
+							    </div>
+                            </form>
+                        </section>
+                        <h3><span class="head-font capitalize-font">Cambio de información de solicitantes</span></h3>
+                        <section>
                             <form id="step_two">
 
-                                <!-- /panel1 -->
                                 <div class="panel panel-default">
                                     <!-- Header Subseccion -->
                                     <div class="panel-heading">
-    								Datos Usuario
+    								Datos de la cuenta (Solicitante)
                                     </div>
+                                    <!-- despues del header de la seccion -->
                                     <div class="card-body">
-                                        <!-- Campo de Nombre de Usuario -->
+                                        <!-- Campo de Correo de Solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div><br></div>
                                                     <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">Nombre Usuario</label>
+												        <label class="help-block text-left">Correo Solicitante</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del soliictante" data-error="Valor inválido" maxlength="150">
+													    <div class="help-block with-errors" id="err_msg_Mail_user"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /panel1 -->
+                                <div class="panel panel-default">
+                                    <!-- Header Subseccion -->
+                                    <div class="panel-heading">
+    								Datos Solicitante
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- Campo de Nombre de solicitante -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Nombre Solicitante</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_NombreAlta" placeholder="Ingrese el Nombre del Solicitante" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_msg_NombreAlta"></div>
 												    </div>
                                                 </div>
@@ -45,7 +83,7 @@
 												        <label class="help-block text-left">Apellido Paterno</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ApPaterno" placeholder="Ingrese el Apellido Paterno del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_ApPaterno" placeholder="Ingrese el Apellido Paterno del Solicitante" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_txtApPaterno"></div>
 												    </div>
                                                 </div>
@@ -60,13 +98,13 @@
 												        <label class="help-block text-left">Apellido Materno</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_ApMaterno" placeholder="Ingrese el Nombre Completo del usuario" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_ApMaterno" placeholder="Ingrese el Nombre Completo del Solicitante" data-error="Valor inválido" maxlength="150">
 													    <div class="help-block with-errors" id="err_txtApMaterno"></div>
 												    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo de Telefono de Usuario -->
+                                        <!-- Campo de Telefono de Solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
@@ -75,41 +113,53 @@
 												        <label class="help-block text-left">Número Telefonico</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="data360" placeholder="Ingrese el Telefono del usuario" data-error="Valor inválido" maxlength="45">
+														<input type="text" data-minlength="10" class="form-control" id="data360" placeholder="Ingrese el Telefono del Solicitante" data-error="Valor inválido" maxlength="45">
 													    <div class="help-block with-errors" id="err_msg_Telefono"></div>
 												    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Fecha Alta -->
+                                    </div>
+                                </div>
+
+                                <!-- /panel2 -->
+                                <div class="panel panel-default">
+                                    <!-- Header Subseccion -->
+                                    <div class="panel-heading">
+    								Datos Extras Temporales
+                                    </div>
+                                        <!-- Campo temporal de ID company -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div><br></div>
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">ID company</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <select id="cbo_idCompany" class="form-control" name="cbo_idCompany">
+                                                        </select>
+													    <div class="help-block with-errors" id="err_msg_ID_Company"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo Temporal de ID Estado -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
-                                                        <label class="help-block text-left">Fecha Alta:</label>
+												        <label class="help-block text-left">ID Estado</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
-                                                        <div class="help-block with-errors" id="inputTxtDateiniError"></div>
-                                                    </div>
+                                                        <select id="cbo_ID_Estado" class="form-control" name="cbo_ID_Estado">
+                                                        </select>
+													    <div class="help-block with-errors" id="err_msg_ID_Estado"></div>
+												    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Fecha Termino -->
-                                        <div class="row">
-                                            <div class="form-group mt-12">
-                                                <div class="col-sm-12">
-                                                    <div class="col-sm-3 mb-20">
-                                                        <label class="help-block text-left">Fecha Termino:</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20 select select-group" >
-                                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
-                                                        <div class="help-block with-errors" id="inputTxtDatefinError"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de ID Nivel-->
+                                        <!-- Campo Temporal de ID Nivel-->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
@@ -124,50 +174,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo Mail del Usuario -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <!-- mail del solicitante -->
-                                                    <div class="col-sm-3 mb-20">
-                                                        <label class="help-block text-left">Correo del Usuario</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del solicitante" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="err_msg_Mail_user"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Campo de Ultima Rotación -->
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group mt-12">
-                                                    <div class="col-sm-3 mb-20">
-												        <label class="help-block text-left">ultima Rotación</label>
-                                                    </div>
-                                                    <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="cmd_last_totate" placeholder="Ultima Rotación del Usuario" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="cmd_last_totateError"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- /panel2 -->
-                                <div class="panel panel-default">
-                                    <!-- Header Subseccion -->
-                                    <div class="panel-heading">
-    								    Datos adicionales de consulta
-                                    </div>
-
                                         <!-- Campo Temporal de ID Responsable -->
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <div><br></div>
                                                 <div class="form-group mt-12">
                                                     <div class="col-sm-3 mb-20">
 												        <label class="help-block text-left">Id Responsable</label>
@@ -180,121 +189,65 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Campo Correo del responsable -->
+                                        <!-- Campo Temporal de Organización -->
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group mt-12">
-                                                    <div><br></div>
-                                                    <!-- mail del solicitante -->
                                                     <div class="col-sm-3 mb-20">
-                                                        <label class="help-block text-left">Correo del Responsable</label>
+												        <label class="help-block text-left">Organización</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-                                                        <input type="text" data-minlength="10" class="form-control" id="cmd_Mail_resp" placeholder="Ingrese el correo del responsable" data-error="Valor inválido" maxlength="150">
-                                                        <div class="help-block with-errors" id="mailresponsableError"></div>
+                                                        <select id="cbo_arr_organizacion" class="form-control" name="cbo_arr_organizacion">
+                                                        </select>
+													    <div class="help-block with-errors" id="err_msg_arr_organizacion"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo Temporal de sub Organización -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Sub Organización</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <select id="cbo_arr_suborganiza" class="form-control" name="cbo_arr_suborganizacion">
+                                                        </select>
+													    <div class="help-block with-errors" id="err_msg_arr_suborganizacion"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                        <!-- Vigencia del Solicitante -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+                                                        <label class="help-block text-left">Fecha Inicio:</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <input type='date' id="txtDateini" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                        <div class="help-block with-errors" id="inputTxtDateiniError"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-
-                                </div>
-
-
-                                <!-- Contenedor -->
-
-                                @if(Session::has('user_no_disp'))
-                                    @if(Session::get('user_no_disp')== 'A')
-                                        <form id="sis_form_tabs" action="#">
-                                            <div class="panel panel-default">
-                                                <!-- Header Subseccion -->
-                                                <div class="panel-heading">
-                                                Datos de la cuenta (usuario)
-                                                </div>
-                                                <!-- despues del header de la seccion -->
-                                                <div class="card-body">
-                                                    <!-- Campo de contraseña del usuario anterior-->
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group mt-12">
-                                                                <div><br></div>
-
-                                                                <div><br></div>
-                                                                <!-- Contraseña actual-->
-                                                                <div class="col-sm-3 mb-20">
-                                                                    <label class="help-block text-left">Contrase&ntilde;a Actual</label>
-                                                                </div>
-                                                                <div class="col-sm-4 mb-20">
-                                                                    <input type="password" data-minlength="10" class="form-control" id="passwordActual" placeholder="Ingrese password actual" data-error="Valor inválido" maxlength="150">
-                                                                        <div class="help-block with-errors" id="PasswordErrorAct"></div>
-                                                                </div>
-                                                                <div class="col-sm-2 mb-20">
-                                                                    <button id="mostrarContrasenaActual" class="btn btn-primary btn-xs">Ver</button>
-                                                            </div>
-
-                                                            </div>
-                                                        </div>
+                                        <!-- Vigencia del Solicitante -->
+                                        <div class="row">
+                                            <div class="form-group mt-12">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-3 mb-20">
+                                                        <label class="help-block text-left">Fecha Final:</label>
                                                     </div>
-                                                    <!-- Campo de contraseña del usuario nueva-->
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group mt-12">
-                                                                <div><br></div>
-
-                                                                <div><br></div>
-                                                                <!-- Contraseña del usuario del dispositivo-->
-                                                                <div class="col-sm-3 mb-20">
-                                                                    <label class="help-block text-left">Contrase&ntilde;a Nueva</label>
-                                                                </div>
-                                                                <div class="col-sm-4 mb-20">
-                                                                    <input type="password" data-minlength="10" class="form-control" id="passwordNew" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150">
-                                                                        <div class="help-block with-errors" id="PasswordErrorCur"></div>
-                                                                </div>
-                                                                <div class="col-sm-2 mb-20">
-                                                                    <button id="mostrarContrasenaNew" class="btn btn-primary btn-xs">Ver</button>
-                                                            </div>
-
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-sm-4 mb-20 select select-group" >
+                                                        <input type='date' id="txtDatefin" class="inputCal" value="" /> <label id="cleardate" onclick="cleardate()"> Limpiar fecha </label>
+                                                        <div class="help-block with-errors" id="inputTxtDatefinError"></div>
                                                     </div>
-
-                                                    <!-- Campo de contraseña del usuario nuevo-->
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group mt-12">
-                                                                <div><br></div>
-
-                                                                <div><br></div>
-                                                                <!-- Contraseña del usuario del dispositivo-->
-                                                                <div class="col-sm-3 mb-20">
-                                                                    <label class="help-block text-left">Repita Contrase&ntilde;a</label>
-                                                                </div>
-                                                                <div class="col-sm-4 mb-20">
-                                                                    <input type="password" data-minlength="10" class="form-control" id="passwordAgain" placeholder="Ingrese password a asignar" data-error="Valor inválido" maxlength="150">
-                                                                        <div class="help-block with-errors" id="PasswordErrorAga"></div>
-                                                                </div>
-                                                                <div class="col-sm-2 mb-20">
-                                                                    <button id="mostrarContrasenaAga" class="btn btn-primary btn-xs">Ver</button>
-                                                            </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <button id="send_reset" class="btn btn-primary" style="position:center;"> Cambiar password de usuario </button>
-
-
                                                 </div>
                                             </div>
-                                            <!-- Texto de Menajes -->
-                                            <div class="row" id="message_error">
                                         </div>
-                                    </form>
-                                    @endif
-
-                                @endif
+                                </div>                                
                             </form>
                         </section>
 
@@ -321,30 +274,56 @@
 // funcion para cambio de pestaña
     function ValidateNext()
     {
+        var dato=$('#inputData').val();
+        //REalizo validacion de que el dato este correcto
+		$('#message_error').empty();
+        if (patrones[tipo_campo].test(dato))
+        {
+            
+            console.log("Evaluar");
+            console.log(dato);
+        	//fun_llena_catalog("2",dato);
+            //fun_llena_catalog("6",dato);
+            sJLpassa = fun_ejecuta_busqueda("6",dato);
+                                   
+            console.log("Regresa:");
+            console.log(sJLpassa);
+            
+            return sJLpassa;
+		} //if
+        else 
+        {
+		    $("#inputData").css({'border' : '1px solid #f73414'});
+			$("#message_error").css('color', '#f73414');
+			$("#message_error").text("Por favor ingresa un valor de " + tipo_campo.toUpperCase()+" válido");
+            return false;
+        }//else
+        
 
 	}
-
+    
 
     function fun_ejecuta_busqueda(iJL_catalog,sJLMail)
     {
         console.log(' Obtengo catalogo '+ iJL_catalog+' '+sJLMail);
         //Realizo el bloqueo de la pantalla
-		$.blockUI({ message: 'Procesando ...',css: {
-            border: 'none',
-            padding: '15px',
-            backgroundColor: '#000',
-            '-webkit-border-radius': '10px',
-            '-moz-border-radius': '10px',
-            opacity: .5,
-            color: '#fff'
+        $.blockUI({ message: 'Procesando ...',css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
         } });
+		
 
         var jsonchange = {};
             jsonchange.type= iJL_catalog;
             jsonchange.mail= sJLMail;
 
         $.ajax({
-            url: "{{ route('Users.call.catalogs_view') }}",
+            url: "{{ route('Users.call.catalogs_view_solic') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(jsonchange)
@@ -355,33 +334,152 @@
             console.log(obj);
             //$('#cbo_ID_Responsable').append($('<option></option>').val('').html('N/A'));
 
-            if ( obj.status=="ok" )
+            
+            console.log('resultado de busqueda');
+            sjl_resbus=obj.data[0];
+            console.log(sjl_resbus);
+            if ( sjl_resbus.status=="ok" )
             {
-                $('#cmd_Mail_user').val(obj.data[0].send_mail);
-                $('#cmd_NombreAlta').val(obj.data[0].send_nombre);
-                $('#cmd_ApPaterno').val(obj.data[0].send_paterno);
-                $('#cmd_ApMaterno').val(obj.data[0].send_materno);
-                $('#data360').val(obj.data[0].send_msisdn);
-                $('#cbo_ID_Nivel').selectedIndex = obj.data[0].send_nivel;
+
+                //lleno los catalogos
+                $.each( obj.data[1], function( value, name )
+                {
+                    /*console.log("datito 1 ");
+                    console.log(value);
+                    console.log("datito 2 ");
+                    console.log(name);*/
+                    if(value == 'arr_responsables')
+                    {
+                        $.each( name, function( value2, name2 )
+                        {
+                            /*console.log("datito 3 ");
+                            console.log(value2);
+                            console.log("datito 4 ");
+                            console.log(name2);*/
+                            respons=JSON.stringify(name2);
+                            //respons= jQuery.parseJSON(name2);
+                            respons= JSON.parse(respons);
+                            //console.log(respons);
+                            $('#cbo_ID_Responsable').append(                    
+                                $('<option></option>').val(respons.send_id).html(respons.send_nameresp)
+                            );
+                        });//each
+                        
+                    }//if
+                    
+                });//each
+
+                $.each( obj.data[2], function( value, name )
+                {
+                    /*console.log("datito 1 ");
+                    console.log(value);
+                    console.log("datito 2 ");
+                    console.log(name);*/
+                    if(value == 'arr_organizacion')
+                    {
+                        $.each( name, function( value2, name2 )
+                        {
+                            /*console.log("datito 3 ");
+                            console.log(value2);
+                            console.log("datito 4 ");
+                            console.log(name2);*/
+                            respons=JSON.stringify(name2);
+                            //respons= jQuery.parseJSON(name2);
+                            respons= JSON.parse(respons);
+                            //console.log(respons);
+                            $('#cbo_arr_organizacion').append(                    
+                                $('<option></option>').val(respons.send_id).html(respons.send_nameorg)
+                            );
+                        });//each
+                        
+                    }//if
+                    
+                });//each
+
+                $.each( obj.data[3], function( value, name )
+                {
+                    /*console.log("datito 1 ");
+                    console.log(value);
+                    console.log("datito 2 ");
+                    console.log(name);*/
+                    if(value == 'arr_dominio_suborganizacion')
+                    {
+                        $.each( name, function( value2, name2 )
+                        {
+                            /*console.log("datito 3 ");
+                            console.log(value2);
+                            console.log("datito 4 ");
+                            console.log(name2);*/
+                            respons=JSON.stringify(name2);
+                            //respons= jQuery.parseJSON(name2);
+                            respons= JSON.parse(respons);
+                            console.log("datito responxe ")
+                            console.log(respons);
+                            console.log(respons.send_idorg);
+                            $('#cbo_arr_suborganiza').append(                    
+                                $('<option></option>').val(respons.send_id).html(respons.send_namesuborg)
+                            );
+                        });//each
+                        
+                    }//if
+                    
+                });//each
+
+                
+
+                console.log('lleno datos');
+                //console.log(sjl_resbus);
+                //console.log(sjl_resbus.infouser);
+                console.log(sjl_resbus.infouser[0].send_idsuborg);
+                
+                //coloco los datos
+                $('#cmd_Mail_user').val(sjl_resbus.infouser[0].send_mail);
+                $('#cmd_NombreAlta').val(sjl_resbus.infouser[0].send_username);
+                $('#cmd_ApPaterno').val(sjl_resbus.infouser[0].send_paterno);
+                $('#cmd_ApMaterno').val(sjl_resbus.infouser[0].send_materno);
+                $('#data360').val(sjl_resbus.infouser[0].send_movil);
+                
+                //$('#cbo_idCompany').selectedIndex = sjl_resbus.infouser.
+                $('#cbo_ID_Estado').val(sjl_resbus.infouser[0].send_idstatus);
+                $('#cbo_ID_Nivel').val(sjl_resbus.infouser[0].send_nivel);
+                $('#cbo_ID_Responsable').val(sjl_resbus.infouser[0].send_idresp);
+                $('#cbo_arr_organizacion').val(sjl_resbus.infouser[0].send_idorg);
+                //$('#cbo_arr_suborganiza').val(sjl_resbus.infouser[0].send_idsuborg);
+                $('#cbo_arr_suborganiza').val("4");
+                $('#txtDateini' ).val(sjl_resbus.infouser[0].send_falta);
+                $('#txtDatefin' ).val(sjl_resbus.infouser[0].send_ftermino);   
+
+
+                //$('#cmd_Mail_user').val(obj.data[0].send_mail);
+                //$('#cmd_NombreAlta').val(obj.data[0].send_nombre);
+                //$('#cmd_ApPaterno').val(obj.data[0].send_paterno);
+                //$('#cmd_ApMaterno').val(obj.data[0].send_materno);
+                //$('#data360').val(obj.data[0].send_msisdn);
+                //$('#cbo_ID_Nivel').selectedIndex = obj.data[0].send_nivel;
 				//$('#cbo_ID_Responsable').selectedIndex = obj.data[0].send_idresp;
-				$('#txtDateini').val(obj.data[0].send_fecha_alta);
-				$('#txtDatefin').val(obj.data[0].send_fecha_termino);
+				//$('#txtDateini').val(obj.data[0].send_fecha_alta);
+				//$('#txtDatefin').val(obj.data[0].send_fecha_termino);
 
                 //catalogo de responsables
-                sJLresp = fun_llena_catalog("1",obj.data[0].send_idresp);
+                //sJLresp = fun_llena_catalog("1",obj.data[0].send_idresp);
 
 
 
                 //$('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Realice la modificación de datos del usuario</strong> ');
-                $('#txtDateini, #txtDatefin ,#cbo_ID_Nivel,#cbo_ID_Responsable,#cmd_Mail_user,#cmd_Mail_resp').prop('disabled',true);
+                //$('#txtDateini, #txtDatefin ,#cbo_ID_Nivel,#cbo_ID_Responsable,#cmd_Mail_user,#cmd_Mail_resp').prop('disabled',true);                
+
+                return true;
             }
             else
             {
+                console.log("usuario incorrecto ");
                 $('#message_error').empty();
-                $('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Usuario No encontrado</strong> ');
-                $( "#finish" ).hide();
+                $('#message_error').append('<label class="help-block mb-30 text-center"><strong>Usuario no encontrado</strong>');
+                $( "#previous" ).trigger( "click" );
+				$( "#previous" ).hide();
+                return false;
             }
-            return obj;
+            
         })
         .fail(function() {
             //algo
@@ -394,11 +492,14 @@
             //algo
             console.log("Catalogo always ");
             $.unblockUI();
+            
         });
+        return true;
 
     }//fun_ejecuta_busqueda
 
 
+    //sisfen aqui voy 20220303
     function fun_ejecuta_cambio()
     {
         // Limpio los mensajes de Error
@@ -408,13 +509,36 @@
         $('err_txtApPaterno').empty();
         $('err_txtApMaterno').empty();
         $('err_msg_Telefono').empty();
+        $('err_msg_ID_Company').empty();
+        $('err_msg_ID_Estado').empty();
+        $('err_msg_ID_Nivel').empty();
+        $('err_msg_ID_Responsable').empty();
+        $('err_msg_arr_organizacion').empty();
+        $('err_msg_arr_suborganizacion').empty();
+        $('inputTxtDateiniError').empty();
+        $('inputTxtDatefinError').empty();
 
         // Inicio Validaciones de campos
+        // Valido que el campo de fecha tenga valor
+        if( $('#txtDateini' ).val() == '' )
+        {
+            $('#inputTxtDateiniError' ).empty();
+			$('#inputTxtDateiniError').append('<label class="alert-danger mb-30 text-left">capture La fecha de unicio del Solicitante</label>');
+			return false;
+        }
+
+        // Valido que el campo de fecha tenga valor
+        if( $('#txtDatefin' ).val() == '' )
+        {
+            $('#inputTxtDatefinError' ).empty();
+			$('#inputTxtDatefinError').append('<label class="alert-danger mb-30 text-left">capture La fecha de fin del Solicitante</label>');
+			return false;
+        }
 
         // Valido que el campo del correo no este vacio
         if ( $('#cmd_Mail_user' ).val()=='' ){
 			$('#err_msg_Mail_user' ).empty();
-			$('#err_msg_Mail_user').append('<label class="alert-danger mb-30 text-left">capture el correo del usuario a dar de alta</label>');
+			$('#err_msg_Mail_user').append('<label class="alert-danger mb-30 text-left">capture el correo del Solicitante a dar de alta</label>');
 			return false;
         }
 
@@ -428,34 +552,34 @@
         // Valido que el Nombre no este Vacio
         if ( $('#cmd_NombreAlta' ).val()=='' ){
 			$('#err_msg_NombreAlta').empty();
-			$('#err_msg_NombreAlta').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Usuario</label>');
+			$('#err_msg_NombreAlta').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Solicitante</label>');
 			return false;
         }
 
         // Valido que el Apellido Paterno no este Vacio
         if ( $('#cmd_ApPaterno' ).val()=='' ){
 			$('#err_txtApPaterno').empty();
-			$('#err_txtApPaterno').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Usuario</label>');
+			$('#err_txtApPaterno').append('<label class="alert-danger mb-30 text-left">Capture el nombre del Solicitante</label>');
 			return false;
         }
 
         // Valido que el Apellido Materno no este Vacio
         if ( $('#cmd_ApMaterno' ).val()=='' ){
 			$('#err_txtApMaterno').empty();
-			$('#err_txtApMaterno').append('<label class="alert-danger mb-30 text-left">Capture el apellido paterno del Usuario</label>');
+			$('#err_txtApMaterno').append('<label class="alert-danger mb-30 text-left">Capture el apellido paterno del Solicitante</label>');
 			return false;
         }
 
         // Valido que el Telefono no este Vacio
         if ( $('#data360' ).val()=='' ){
 			$('#err_msg_Telefono').empty();
-			$('#err_msg_Telefono').append('<label class="alert-danger mb-30 text-left">Capture el apellido materno del Usuario</label>');
+			$('#err_msg_Telefono').append('<label class="alert-danger mb-30 text-left">Capture el apellido materno del Solicitante</label>');
 			return false;
         }
 
 
         //Realizo el bloqueo de la pantalla
-		$.blockUI({ message: 'Realizando actualización ...',css: {
+		$.blockUI({ message: 'Realizando Inserción ...',css: {
             border: 'none',
             padding: '15px',
             backgroundColor: '#000',
@@ -474,9 +598,18 @@
         jsoninsert.paterno = $('#cmd_ApPaterno').val();
         jsoninsert.materno = $('#cmd_ApMaterno').val();
         jsoninsert.msisdn = $('#data360').val();
+        jsoninsert.id_company = $('#cbo_idCompany').val();
+        jsoninsert.id_estado = $('#cbo_ID_Estado').val();
+        jsoninsert.nivel = $('#cbo_ID_Nivel').val();
+        jsoninsert.idresp = $('#cbo_ID_Responsable').val();
+        jsoninsert.id_org = $('#cbo_arr_organizacion').val();
+        jsoninsert.id_sub_org = $('#cbo_arr_suborganiza').val();        
+        jsoninsert.fecha_alta = $('#txtDateini' ).val();
+        jsoninsert.fecha_termino = $('#txtDatefin' ).val();                               
+
 
         $.ajax({
-            url: "{{ route('Users.call.modif_solicit') }}",
+            url: "{{ route('Users.call.alta_internalsolic') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(jsoninsert)
@@ -484,25 +617,56 @@
         .done(function(response)
         {
             console.log('Ejecución API Correcta');
-        	//obj2 = jQuery.parseJSON(response);
+        	obj2 = jQuery.parseJSON(response);
         	console.log(response);
-            $('#validar').hide();
-			$('#finish').hide();
-			//$('#message').empty();
-            $('#message_error').append('<label class="help-block mb-30 text-left">Alta del usuario fue<strong>&nbsp;&eacutexitosa</strong></label>');
+            if(obj2.status=='200')
+            {
 
-            $('#cmd_Mail_user').val("");
-            $('#cmd_NombreAlta').val("");
-            $('#cmd_ApPaterno').val("");
-            $('#cmd_ApMaterno').val("");
-            $('#data360').val("");
+                $('#validar').hide();
+                $('#finish').hide();
+                //$('#message').empty();
+                $('#message_error').val("");
+                $('#message_error').append('<label class="help-block mb-30 text-left">Alta del Solicitante fue<strong>&nbsp;&eacutexitosa '+ obj2.description +'</strong></label>');
+
+                $('#cmd_Mail_user').val("");
+                $('#cmd_NombreAlta').val("");
+                $('#cmd_ApPaterno').val("");
+                $('#cmd_ApMaterno').val("");
+                $('#data360').val("");
+                $('#cbo_idCompany').val("");
+                $('#txtDateini' ).val("");
+                $('#txtDatefin' ).val("");
+                $('#cbo_ID_Estado').val("");
+                $('#cbo_ID_Nivel').val("");
+                $('#cbo_ID_Responsable').val("");
+                $('#cbo_arr_organizacion').val("");
+                $('#arr_suborganizacion').val("");
+                
+                $('#err_msg_Mail_user').empty();
+                $('err_msg_NombreAlta').empty();
+                $('err_txtApPaterno').empty();
+                $('err_txtApMaterno').empty();
+                $('err_msg_Telefono').empty();
+                $('err_msg_ID_Company').empty();
+                $('err_msg_ID_Estado').empty();
+                $('err_msg_ID_Nivel').empty();
+                $('err_msg_ID_Responsable').empty();
+                $('err_msg_arr_organizacion').empty();
+                $('err_msg_arr_suborganizacion').empty();
+                $('inputTxtDateiniError').empty();
+                $('inputTxtDatefinError').empty();
+            }//if
+            else
+            {
+                $('#message_error').append('<label class="help-block mb-30 text-left">Alta del Solicitante<strong>&nbsp; NO fue &eacutexitosa '+ obj2.description +'</strong></label>');
+            }//else
 
 
         })
         .fail(function()
         {
             console.log('Ejecución API incorrecta');
-			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> modificacion de solicitante incorrecta </label>');
+			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de Solicitante Boveda </label>');
 	        $.unblockUI();
 	    })
         .always(function()
@@ -511,69 +675,19 @@
 			$.unblockUI();
 
 		})
+        /// a aqui
+
+
+        //$.unblockUI();
 
     }//fun_ejecuta_cambio
 
-function fun_llena_catalog(iJL_catalog,iJL_idResp)
-    {
-        console.log(' Obtengo catalogo '+ iJL_catalog + 'voy por id ' + iJL_idResp);
-        //Realizo el bloqueo de la pantalla
-		$.blockUI({ message: 'Procesando ...',css: {
-            border: 'none',
-            padding: '15px',
-            backgroundColor: '#000',
-            '-webkit-border-radius': '10px',
-            '-moz-border-radius': '10px',
-            opacity: .5,
-            color: '#fff'
-        } });
 
-        var jsonchange = {};
-            jsonchange.type= iJL_catalog;
-
-        $.ajax({
-            url: "{{ route('Users.call.catalogs_view') }}",
-            type: 'POST',
-            contentType: "application/json",
-            data: JSON.stringify(jsonchange)
-        })
-        .done(function(response) {
-            obj = jQuery.parseJSON(response);
-            console.log("Ejecución Catalogo " + obj.status);
-            console.log(obj);
-            //$('#cbo_ID_Responsable').append($('<option></option>').val('').html('N/A'));
-		    $.each( obj.data, function( value, name )
-			{
-                if (name.send_id==iJL_idResp)
-                {
-                    console.log('revisando');
-                    console.log(value);
-				    console.log(name);
-                    console.log(iJL_idResp);
-                    $('#cbo_ID_Responsable').append(
-				    	$('<option></option>').val(name.send_id).html(name.send_nameresp)
-				    );
-                    $('#cmd_Mail_resp').val(name.send_mail);
-                }//if
-
-			});
-            return obj;
-        })
-        .fail(function() {
-            //algo
-            console.log("Error extracción de catalogo ");
-        })
-        .always(function() {
-            //algo
-            console.log("Catalogo always ");
-            $.unblockUI();
-        });
-
-    }//fun_llena_catalog
 
 
     // Funcion de Fin de Vista, ejecucion
-    function finished(){
+    function finished()
+    {
         //Ejecuta la actualización
         fun_ejecuta_cambio();
     } //finished
@@ -583,6 +697,11 @@ function fun_llena_catalog(iJL_catalog,iJL_idResp)
 
         // aqui llenaria los combos y el comportamiento de los objetos en la pantalla
 
+        //compañias
+        $('#cbo_idCompany').append($('<option></option>').val('175').html('175'));
+        //Estado
+        $('#cbo_ID_Estado').append($('<option></option>').val('0').html('Desactivo'));
+        $('#cbo_ID_Estado').append($('<option></option>').val('1').html('Activo'));
         //Nivel
         $('#cbo_ID_Nivel').append($('<option></option>').val('1').html('Manager'));
         $('#cbo_ID_Nivel').append($('<option></option>').val('2').html('Solicitante'));
@@ -651,8 +770,8 @@ function fun_llena_catalog(iJL_catalog,iJL_idResp)
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Actualizar');
-                    sJLmail= '{{app('auth')->user()->email}}';
-                    fun_ejecuta_busqueda("3",sJLmail);
+                    //sJLmail= '{{app('auth')->user()->email}}';
+                    //fun_ejecuta_busqueda("3",sJLmail);
                     $('#sis_form_tabs').css("display","none");
                     //$('#sis_form_tabs').visible = false;
                     //var sisfram = document.getElementById('sis_form_tabs');

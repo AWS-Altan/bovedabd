@@ -148,22 +148,22 @@ class Report_Batch_Controller extends BaseController
             //$req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'reportebatch'
             $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatchcgi'). 'reporte_batch.cgi'            
                 , [                
-                    //'timeout' => 10,
-                    //'connect_timeout' => 10,
+                    'timeout' => 0,
+                    'connect_timeout' => 0,
                     'json' => $json,
-                    'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
-                  ])->getBody());
+                    'headers' => [ 'Content-type' => 'Application/json','Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
+                  ])->getBody(),true);
 
             //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'reportebatch', [$req]);
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatchcgi') . 'reporte_batch.cgi', [$req]);
-            loginfo('termina ejecución API');
+            loginfo($req);
+            loginfo('PASE');
         } catch (\Exception $e) {
             //loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatch') .'reportebatch', [ $e ]);
             loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_repbatchcgi') .'reporte_batch.cgi', [ $e ]);
         }
         loginfo('Regreso información');
         //return json_encode( $req );        
-        return json_decode(json_encode( $req ),true);
+        return $req;
 
     }
 

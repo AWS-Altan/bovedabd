@@ -87,6 +87,7 @@ class Report_userdisp_Controller extends BaseController
 
             //loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_repbatch') . 'consulta-usuarios-dispositivos', [$req]);
             loginfo('termina ejecución API 1');
+            
             $sJL_varanalis = json_decode(json_encode( $req ),true);
             loginfo($sJL_varanalis['status']);
             loginfo($iJL_pagina);
@@ -129,16 +130,17 @@ class Report_userdisp_Controller extends BaseController
             //$req = json_decode($this->httpClient->request('POST',config('conf.url_repbatch'). 'consulta-usuarios-dispositivos'
             $req = json_decode($this->httpClient->request('POST',config('conf.url_repbatchcgi'). 'reporte_usuarios_cargados.cgi'            
             , [                
-                //'timeout' => 10,
-                //'connect_timeout' => 10,
+                'timeout' => 25,
+                'connect_timeout' => 25,
                 'json' => $json,
                 'headers' => [ 'Autorization' => 'Bearer Qm92ZWRhMlJlbWVkeTpzNTY3bWtHNmVaNzl2VQ==' ]
-              ])->getBody());
+              ])->getBody(),true);
 
-            $sJL_varanalis = json_decode(json_encode( $req ),true);
+            loginfo($req);
+            loginfo('PASE');
+            //$sJL_varanalis = json_decode(json_encode( $req ),true);
+            //$sJL_varanalis = json_decode(json_encode( $req ));            
 
-            loginfo('req:');
-            loginfo($sJL_varanalis);
 
             //loginfo($sJL_varanalis['status']);
             /*if($sJL_varanalis['data'] != '[]')
@@ -155,7 +157,7 @@ class Report_userdisp_Controller extends BaseController
             /*cambio 20220223*/;
 
             loginfo('Regreso información');
-            return $sJL_varanalis;
+            return $req;
             //return json_encode( $req );
 
         } catch (\Exception $e) {

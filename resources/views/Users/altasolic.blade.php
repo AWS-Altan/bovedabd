@@ -174,6 +174,36 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Campo Temporal de Organización -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Organización</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <select id="cbo_arr_organizacion" class="form-control" name="cbo_arr_organizacion">
+                                                        </select>
+													    <div class="help-block with-errors" id="err_msg_arr_organizacion"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Campo Temporal de sub Organización -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group mt-12">
+                                                    <div class="col-sm-3 mb-20">
+												        <label class="help-block text-left">Sub Organización</label>
+                                                    </div>
+                                                    <div class="col-sm-4 mb-20">
+                                                        <select id="cbo_arr_suborganizacion" class="form-control" name="cbo_arr_suborganizacion">
+                                                        </select>
+													    <div class="help-block with-errors" id="err_msg_arr_suborganizacion"></div>
+												    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                        
                                         <!-- Vigencia del Solicitante -->
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -225,6 +255,13 @@
 <script>
     // Funcion de Fin de Vista, ejecucion
     function finished()
+    {        
+        //Ejecuta la actualización
+        fun_ejecuta_cambio();
+    } //finished
+
+    
+    function fun_ejecuta_cambio()
     {
         // Limpio los mensajes de Error
         // $('#message' ).empty();
@@ -237,6 +274,8 @@
         $('err_msg_ID_Estado').empty();
         $('err_msg_ID_Nivel').empty();
         $('err_msg_ID_Responsable').empty();
+        $('err_msg_arr_organizacion').empty();
+        $('err_msg_arr_suborganizacion').empty();
         $('inputTxtDateiniError').empty();
         $('inputTxtDatefinError').empty();
 
@@ -321,15 +360,17 @@
         jsoninsert.materno = $('#cmd_ApMaterno').val();
         jsoninsert.msisdn = $('#data360').val();
         jsoninsert.id_company = $('#cbo_idCompany').val();
-        jsoninsert.fecha_alta = $('#txtDateini' ).val();
-        jsoninsert.fecha_termino = $('#txtDatefin' ).val();
         jsoninsert.id_estado = $('#cbo_ID_Estado').val();
         jsoninsert.nivel = $('#cbo_ID_Nivel').val();
         jsoninsert.idresp = $('#cbo_ID_Responsable').val();
+        jsoninsert.id_org = $('#cbo_arr_organizacion').val();
+        jsoninsert.id_sub_org = $('#cbo_arr_suborganizacion').val();        
+        jsoninsert.fecha_alta = $('#txtDateini' ).val();
+        jsoninsert.fecha_termino = $('#txtDatefin' ).val();                               
 
 
         $.ajax({
-            url: "{{ route('Users.call.alta_internalsolic') }}",
+            url: "{{route('Users.call.alta_internalsolic') }}",
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify(jsoninsert)
@@ -337,28 +378,58 @@
         .done(function(response)
         {
             console.log('Ejecución API Correcta');
-        	//obj2 = jQuery.parseJSON(response);
+        	obj2 = jQuery.parseJSON(response);
         	console.log(response);
-            $('#validar').hide();
-			$('#finish').hide();
-			//$('#message').empty();
-            $('#message_error').append('<label class="help-block mb-30 text-left">Alta del Solicitante fue<strong>&nbsp;&eacutexitosa</strong></label>');
 
-            $('#cmd_Mail_user').val("");
-            $('#cmd_NombreAlta').val("");
-            $('#cmd_ApPaterno').val("");
-            $('#cmd_ApMaterno').val("");
-            $('#data360').val("");
-            $('#cbo_idCompany').val("");
-            $('#txtDateini' ).val("");
-            $('#txtDatefin' ).val("");
-            $('#cbo_ID_Estado').val("");
-            $('#cbo_ID_Nivel').val("");
-            $('#cbo_ID_Responsable').val("");
+            if(obj2.status=='200')
+            {
+
+                $('#validar').hide();
+                $('#finish').hide();
+                //$('#message').empty();
+                $('#message_error').val("");
+                $('#message_error').append('<label class="help-block mb-30 text-left">Alta del Solicitante fue<strong>&nbsp;&eacutexitosa '+ obj2.description +'</strong></label>');
+
+                $('#cmd_Mail_user').val("");
+                $('#cmd_NombreAlta').val("");
+                $('#cmd_ApPaterno').val("");
+                $('#cmd_ApMaterno').val("");
+                $('#data360').val("");
+                $('#cbo_idCompany').val("");
+                $('#txtDateini' ).val("");
+                $('#txtDatefin' ).val("");
+                $('#cbo_ID_Estado').val("");
+                $('#cbo_ID_Nivel').val("");
+                $('#cbo_ID_Responsable').val("");
+                $('#cbo_arr_organizacion').val("");
+                $('#arr_suborganizacion').val("");
+                
+                $('#err_msg_Mail_user').empty();
+                $('err_msg_NombreAlta').empty();
+                $('err_txtApPaterno').empty();
+                $('err_txtApMaterno').empty();
+                $('err_msg_Telefono').empty();
+                $('err_msg_ID_Company').empty();
+                $('err_msg_ID_Estado').empty();
+                $('err_msg_ID_Nivel').empty();
+                $('err_msg_ID_Responsable').empty();
+                $('err_msg_arr_organizacion').empty();
+                $('err_msg_arr_suborganizacion').empty();
+                $('inputTxtDateiniError').empty();
+                $('inputTxtDatefinError').empty();
+            }//if
+            else
+            {
+                $('#message_error').append('<label class="help-block mb-30 text-left">Alta del Solicitante<strong>&nbsp; NO fue &eacutexitosa '+ obj2.description +'</strong></label>');
+            }//else
+
+
+            
         })
-        .fail(function()
+        .fail(function(response)
         {
             console.log('Ejecución API incorrecta');
+            console.log(response);
 			$('#message_error').append('<label class="alert-danger mb-30 text-left"><strong>Time Out</strong> en alta de Solicitante Boveda </label>');
 	        $.unblockUI();
 	    })
@@ -373,9 +444,9 @@
 
         //$.unblockUI();
 
-    } //finished
-
-    function fun_llena_catalog(iJL_catalog)
+    }//fun_ejecuta_cambio
+    
+    function fun_llena_catalog(iJL_catalog,sJLmail)
     {
         console.log(' Obtengo catalogo '+ iJL_catalog);
         //Realizo el bloqueo de la pantalla
@@ -391,6 +462,8 @@
 
         var jsonchange = {};
             jsonchange.type= iJL_catalog;
+            jsonchange.mail= sJLmail;
+            
 
         $.ajax({
             url: "{{ route('Users.call.catalogs_view_solic') }}",
@@ -403,14 +476,88 @@
             console.log("Ejecución Catalogo " + obj.status);
             console.log(obj);
             //$('#cbo_ID_Responsable').append($('<option></option>').val('').html('N/A'));
-			$.each( obj.data, function( value, name )
+			//
+            $.each( obj.data[1], function( value, name )
 			{
-                //console.log(value);
-				//console.log(name);
-			  	$('#cbo_ID_Responsable').append(
-					$('<option></option>').val(name.send_id).html(name.send_nameresp)
-				);
-			});
+                console.log("datito 1 ");
+                console.log(value);
+                console.log("datito 2 ");
+				console.log(name);
+                if(value == 'arr_responsables')
+                {
+                    $.each( name, function( value2, name2 )
+                    {
+                        console.log("datito 3 ");
+                        console.log(value2);
+                        console.log("datito 4 ");
+                        console.log(name2);
+                        respons=JSON.stringify(name2);
+                        //respons= jQuery.parseJSON(name2);
+                        respons= JSON.parse(respons);
+                        //console.log(respons);
+                        $('#cbo_ID_Responsable').append(                    
+                            $('<option></option>').val(respons.send_id).html(respons.send_nameresp)
+                        );
+                    });//each
+                    
+                }//if
+                
+			});//each
+
+            $.each( obj.data[2], function( value, name )
+			{
+                console.log("datito 5 ");
+                console.log(value);
+                console.log("datito 6 ");
+				console.log(name);
+                if(value == 'arr_organizacion')
+                {
+                    $.each( name, function( value2, name2 )
+                    {
+                        console.log("datito 7 ");
+                        console.log(value2);
+                        console.log("datito 8 ");
+                        console.log(name2);
+                        respons=JSON.stringify(name2);
+                        //respons= jQuery.parseJSON(name2);
+                        respons= JSON.parse(respons);
+                        console.log(respons);
+                        $('#cbo_arr_organizacion').append(                    
+                            $('<option></option>').val(respons.send_id).html(respons.send_nameorg)
+                        );
+                    });//each
+                    
+                }//if
+                
+			});//each
+
+            $.each( obj.data[3], function( value, name )
+			{
+                console.log("datito 9 ");
+                console.log(value);
+                console.log("datito 10 ");
+				console.log(name);
+                if(value == 'arr_dominio_suborganizacion')
+                {
+                    $.each( name, function( value2, name2 )
+                    {
+                        console.log("datito 11 ");
+                        console.log(value2);
+                        console.log("datito 12");
+                        console.log(name2);
+                        respons=JSON.stringify(name2);
+                        //respons= jQuery.parseJSON(name2);
+                        respons= JSON.parse(respons);
+                        console.log(respons);
+                        $('#cbo_arr_suborganizacion').append(                    
+                            $('<option></option>').val(respons.send_id).html(respons.send_namesuborg)
+                        );
+                    });//each
+                    
+                }//if
+                
+			});//each            
+
             return obj;
         })
         .fail(function() {
@@ -443,8 +590,9 @@
         $('#cbo_ID_Nivel').append($('<option></option>').val('3').html('Manager SOC'));
         //campo de numero
         TipoDato360('msisdn');
+        sJLmail= '{{app('auth')->user()->email}}';
         //catalogo de
-        fun_llena_catalog("1");
+        fun_llena_catalog("6",sJLmail);
 
 
         var Operations2 = function ()
@@ -456,7 +604,7 @@
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Alta');
-                    $('#finish').hide();
+                    //$('#finish').hide();
 
                     $('#message_error').empty();
 
