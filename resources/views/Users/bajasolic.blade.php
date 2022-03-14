@@ -107,7 +107,7 @@
         {
             console.log("Evalar");
             console.log(dato);
-        	fun_llena_catalog("2",dato);
+        	fun_llena_catalog("6",dato);
             return true;
 
 		} else {
@@ -149,16 +149,24 @@
             console.log(obj);
             //$('#cbo_ID_Responsable').append($('<option></option>').val('').html('N/A'));
 
-            if ( obj.status=="ok" )
+            console.log('resultado de busqueda');
+            sjl_resbus=obj.data[0];
+            console.log(sjl_resbus);
+            if ( sjl_resbus.status=="ok" )
             {
-                $('#cmd_Mail_user').val(sJLMail);
-                $('#cmd_NombreAlta').val(obj.data[0].send_username);
+                $('#cmd_Mail_user').val(sjl_resbus.infouser[0].send_mail);
+                $('#cmd_NombreAlta').val(sjl_resbus.infouser[0].send_username);
+                $('#message_error').empty();
+
             }
             else
             {
+                console.log("usuario incorrecto ");
                 $('#message_error').empty();
                 $('#message_error').append('<label class="help-block mb-30 text-center" style="color: red"><strong>Solicitante No encontrado</strong> ');
-                $( "#finish" ).hide();
+                $( "#previous" ).trigger( "click" );
+				$( "#previous" ).hide();
+                return false;
             }
             return obj;
         })
@@ -196,8 +204,7 @@
         } });
 
         //Ejecuto la busqueda del dato
-        var jsonchange = {};
-            jsonchange.estado= "0";
+        var jsonchange = {};            
             jsonchange.mail= sJLMail;
 
         $.ajax({

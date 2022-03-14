@@ -56,15 +56,15 @@ class Baja_solic_Controller extends BaseController
         loginfo($json);
         //hago la inserción por la API
         try {
-            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_user'). 'cambio-estado'
+            $req = json_decode($this->httpClient->request('POST',config('conf.url_gui_solic'). 'solicitante_baja_usuario'
                 , [
                     'json' => $json,
                   ])->getBody());
 
-            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_user') . 'cambio-estado', [$req]);
+            loginfo('user ' . app('auth')->user()->name . ' response ' . config('conf.url_gui_solic') . 'solicitante_baja_usuario', [$req]);
             loginfo('termina ejecución API');
         } catch (\Exception $e) {
-            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_user') .'cambio-estado', [ $e ]);
+            loginfo('user '.app('auth')->user()->name.' error ' . config('conf.url_gui_solic') .'solicitante_baja_usuario', [ $e ]);
         }
         loginfo('Regreso información');
         return json_encode( $req );
