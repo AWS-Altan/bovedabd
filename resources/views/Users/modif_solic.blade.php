@@ -44,7 +44,7 @@
 												        <label class="help-block text-left">Correo Solicitante</label>
                                                     </div>
                                                     <div class="col-sm-4 mb-20">
-														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del soliictante" data-error="Valor inválido" maxlength="150">
+														<input type="text" data-minlength="10" class="form-control" id="cmd_Mail_user" placeholder="Ingrese el correo del soliictante" data-error="Valor inválido" maxlength="150" disabled>
 													    <div class="help-block with-errors" id="err_msg_Mail_user"></div>
 												    </div>
                                                 </div>
