@@ -280,7 +280,7 @@
 		        init: function() {
 		        	$('#previous').hide();
                     $( "#finish" ).text('Deshabilitar');
-                    //$('#finish').hide();                    
+                    // $('#finish').hide();                    
 
                     $('#message_error').empty();
 				    //initializePlugins2();
